@@ -69,6 +69,7 @@
     <Compile Include="Controllers\CourseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
+    <Compile Include="Models\Instructor.cs" />
     <Compile Include="Views\DAL\SchoolContext.cs" />
     <Compile Include="Views\DAL\SchoolInitializer.cs" />
     <Compile Include="Global.asax.cs">

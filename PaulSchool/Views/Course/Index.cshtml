@@ -1,60 +1,72 @@
-﻿@model IEnumerable<PaulSchool.Models.Course>
+﻿@model PagedList.IPagedList<PaulSchool.Models.Course>
 
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Courses</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+@Html.ActionLink("Create New", "Create")
 </p>
+@using (Html.BeginForm())
+{
+<p>
+    Find by course title: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string) &nbsp;
+    <input type="submit" value="Search" /></p>
+}
 <table>
-    <tr>
+<tr>
+<th></th>
         <th>
-            Title
+            @Html.ActionLink("Title", "Index", new { sortOrder = ViewBag.TitleSortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
-            Credits
+            @Html.ActionLink("Credits", "Index", new { sortOrder = ViewBag.CreditsSortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
-            Instructor
+            @Html.ActionLink("Instructor", "Index", new { sortOrder = ViewBag.InstructorSortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
-            Year
+            @Html.ActionLink("Year", "Index", new { sortOrder = ViewBag.YearSortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
-            AttendingDays
+            @Html.ActionLink("Attending Days", "Index", new { sortOrder = ViewBag.AttendingDaysSortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
-            AttendanceCap
+            @Html.ActionLink("Attendance Cap", "Index", new { sortOrder = ViewBag.AttendanceCapSortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
-            StartDate
+            @Html.ActionLink("Start Date", "Index", new { sortOrder = ViewBag.StartDateSortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
-            Location
+            @Html.ActionLink("Location", "Index", new { sortOrder = ViewBag.LocationSortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
-            Parish
+            @Html.ActionLink("Parish", "Index", new { sortOrder = ViewBag.ParishSortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
-            Description
+            @Html.ActionLink("Description", "Index", new { sortOrder = ViewBag.DescriptionSortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
-            Approved
+            @Html.ActionLink("Approved", "Index", new { sortOrder = ViewBag.ApprovedSortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
-            Completed
+            @Html.ActionLink("Completed", "Index", new { sortOrder = ViewBag.CompletedSortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
-            Archived
+            @Html.ActionLink("Archived", "Index", new { sortOrder = ViewBag.ArchivedSortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
+        <td>
+        @Html.ActionLink("Edit", "Edit", new { id=item.CourseID }) |
+        @Html.ActionLink("Details", "Details", new { id=item.CourseID }) |
+        @Html.ActionLink("Delete", "Delete", new { id=item.CourseID })
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.Title)
         </td>
@@ -94,12 +106,38 @@
         <td>
             @Html.DisplayFor(modelItem => item.Archived)
         </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.CourseID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.CourseID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.CourseID })
-        </td>
     </tr>
 }
 
 </table>
+
+<div>
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+of @Model.PageCount
+&nbsp;
+@if (Model.HasPreviousPage)
+{
+    @Html.ActionLink("<<", "Index", new { page = 1, sortOrder = ViewBag.CurrentSort, currentFilter=ViewBag.CurrentFilter  })
+    @Html.Raw("&nbsp;");
+    @Html.ActionLink("< Prev", "Index", new { page = Model.PageNumber - 1, sortOrder = ViewBag.CurrentSort, currentFilter=ViewBag.CurrentFilter  })
+}
+else
+{
+    @:<<
+    @Html.Raw("&nbsp;");
+    @:< Prev
+}
+&nbsp;
+@if (Model.HasNextPage)
+{
+    @Html.ActionLink("Next >", "Index", new { page = Model.PageNumber + 1, sortOrder = ViewBag.CurrentSort, currentFilter=ViewBag.CurrentFilter  })
+    @Html.Raw("&nbsp;");
+    @Html.ActionLink(">>", "Index", new { page = Model.PageCount, sortOrder = ViewBag.CurrentSort, currentFilter=ViewBag.CurrentFilter  })
+}
+else
+{
+    @:Next >
+    @Html.Raw("&nbsp;")
+    @:>>
+}
+</div>
