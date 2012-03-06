@@ -9,14 +9,14 @@
 <fieldset>
     <legend>Student</legend>
 
+    <div class="display-label">First and Middle Name</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.FirstMidName)
+    </div>
+    
     <div class="display-label">LastName</div>
     <div class="display-field">
         @Html.DisplayFor(model => model.LastName)
-    </div>
-
-    <div class="display-label">FirstMidName</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.FirstMidName)
     </div>
 
     <div class="display-label">Email</div>
@@ -29,7 +29,8 @@
         @Html.DisplayFor(model => model.EnrollmentDate)
     </div>
     <div class="display-label">
-    @Html.LabelFor(model => model.Enrollments)
+    <!--@Html.LabelFor(model => model.Enrollments)-->
+    Class History
     </div>
     <div class="display-field">
     <table>
@@ -42,6 +43,31 @@
             <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.Course.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Grade)
+                </td>
+            </tr>
+        }
+    </table>
+    </div>
+
+    <!--Admin Only Section - needs links to classes-->
+    <div class="display-label">
+    <!--@Html.LabelFor(model => model.Enrollments)-->
+    Class History as viewed by Admins
+    </div>
+    <div class="display-field">
+    <table>
+        <tr>
+            <th>Course Title</th>
+            <th>Grade</th>
+        </tr>
+        @foreach (var item in Model.Enrollments)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink(item.Course.Title, "Details", "Course", new { id= item.Course.CourseID }, "a")
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Grade)

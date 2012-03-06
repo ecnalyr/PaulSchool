@@ -302,7 +302,9 @@ div#title {
 /* Styles for editor and display helpers
 ----------------------------------------------------------*/
 .display-label, 
-.editor-label {
+.editor-label 
+{
+    font-weight: bold;
     margin: 1em 0 0 0;
 }
 

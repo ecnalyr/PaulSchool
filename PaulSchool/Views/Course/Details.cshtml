@@ -73,6 +73,10 @@
     <div class="display-field">
         @Html.DisplayFor(model => model.Archived)
     </div>
+
+    <div class="display-label">
+    List of Students
+    </div>
     <div class="display-field">
     <table>
         <tr>
@@ -87,6 +91,30 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Student.LastName)
+                </td>
+            </tr>
+        }
+    </table>
+    </div>
+
+    <!-- As Viewable by Admin-->
+    <div class="display-label">
+    List of Students as viewed by Admins
+    </div>
+    <div class="display-field">
+    <table>
+        <tr>
+            <th>First and Middle Name</th>
+            <th>Last Name</th>
+        </tr>
+        @foreach (var item in Model.Enrollments)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink(item.Student.FirstMidName, "Details", "Student", new { id= item.Student.StudentID }, "a")
+                </td>
+                <td>
+                    @Html.ActionLink(item.Student.LastName, "Details", "Student", new { id= item.Student.StudentID }, "a")
                 </td>
             </tr>
         }
