@@ -25,7 +25,8 @@
             @Html.ActionLink("Credits", "Index", new { sortOrder = ViewBag.CreditsSortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
-            @Html.ActionLink("Instructor", "Index", new { sortOrder = ViewBag.InstructorSortParm, currentFilter = ViewBag.CurrentFilter })
+            <!--Instructor (LName)-->
+            @Html.ActionLink("Instructor (LName)", "Index", new { sortOrder = ViewBag.InstructorSortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
             @Html.ActionLink("Year", "Index", new { sortOrder = ViewBag.YearSortParm, currentFilter = ViewBag.CurrentFilter })
@@ -74,7 +75,7 @@
             @Html.DisplayFor(modelItem => item.Credits)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Instructor)
+            @Html.DisplayFor(modelItem => item.Instructor.LastName)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Year)

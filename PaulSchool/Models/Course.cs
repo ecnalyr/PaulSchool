@@ -11,6 +11,7 @@ namespace PaulSchool.Models
         public string Title { get; set; }
         public int Credits { get; set; }
         //public string Instructor { get; set; }
+        public int InstructorID { get; set; }
         public virtual Instructor Instructor { get; set; }
         public int Year { get; set; }
         public int AttendingDays { get; set; } // 10, 8, 3, or custom

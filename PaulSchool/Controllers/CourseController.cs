@@ -59,10 +59,10 @@ namespace PaulSchool.Controllers
                     courses = courses.OrderByDescending(s => s.Credits);
                     break;
                 case "Instructor":
-                    courses = courses.OrderBy(s => s.Instructor);
+                    courses = courses.OrderBy(s => s.Instructor.LastName);
                     break;
                 case "Instructor desc":
-                    courses = courses.OrderByDescending(s => s.Instructor);
+                    courses = courses.OrderByDescending(s => s.Instructor.LastName);
                     break;
                 case "Year":
                     courses = courses.OrderBy(s => s.Year);

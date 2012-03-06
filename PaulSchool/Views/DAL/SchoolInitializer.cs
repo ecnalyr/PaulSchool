@@ -25,15 +25,23 @@ namespace PaulSchool.DAL
             students.ForEach(s => context.Students.Add(s));
             context.SaveChanges();
 
+            var instructors = new List<Instructor>
+            {
+                new Instructor { FirstMidName = "Mister", LastName = "Instructor", Email = "mrinstruc@email.com", EnrollmentDate = DateTime.Parse("2001-04-02")},
+                new Instructor { FirstMidName = "Miss", LastName = "Teacher", Email = "instructmail@email.com", EnrollmentDate = DateTime.Parse("2002-06-03")}
+            };
+            instructors.ForEach(s => context.Instructors.Add(s));
+            context.SaveChanges();
+
             var courses = new List<Course>
             {
-                new Course { Title = "Prayer",         Credits = 3, Year = 2011, AttendingDays = 10, AttendanceCap = 30, StartDate = DateTime.Parse("2012-01-01"), Location = "Corpus Christi", Parish = "AliceParish", Description = "Very Cool Course", Approved = true, Completed = false, Archived = false},
-                new Course { Title = "Spirituality",   Credits = 3, Year = 2011, AttendingDays = 10, AttendanceCap = 30, StartDate = DateTime.Parse("2012-01-01"), Location = "Corpus Christi", Parish = "AliceParish", Description = "Very Cool Course", Approved = true, Completed = false, Archived = false},
-                new Course { Title = "Macroeconomics", Credits = 3, Year = 2011, AttendingDays = 10, AttendanceCap = 30, StartDate = DateTime.Parse("2012-01-01"), Location = "Corpus Christi", Parish = "AliceParish", Description = "Very Cool Course", Approved = true, Completed = false, Archived = false},
-                new Course { Title = "Calculus",       Credits = 4, Year = 2011, AttendingDays = 10, AttendanceCap = 30, StartDate = DateTime.Parse("2012-01-01"), Location = "Corpus Christi", Parish = "AliceParish", Description = "Very Cool Course", Approved = true, Completed = false, Archived = false},
-                new Course { Title = "Trigonometry",   Credits = 4, Year = 2011, AttendingDays = 10, AttendanceCap = 30, StartDate = DateTime.Parse("2012-01-01"), Location = "Corpus Christi", Parish = "AliceParish", Description = "Very Cool Course", Approved = true, Completed = false, Archived = false},
-                new Course { Title = "Composition",    Credits = 3, Year = 2011, AttendingDays = 10, AttendanceCap = 30, StartDate = DateTime.Parse("2012-01-01"), Location = "Corpus Christi", Parish = "AliceParish", Description = "Very Cool Course", Approved = true, Completed = false, Archived = false},
-                new Course { Title = "Literature",     Credits = 4, Year = 2011, AttendingDays = 10, AttendanceCap = 30, StartDate = DateTime.Parse("2012-01-01"), Location = "Corpus Christi", Parish = "AliceParish", Description = "Very Cool Course", Approved = true, Completed = false, Archived = false}
+                new Course { Title = "Prayer",          InstructorID = 1, Credits = 3, Year = 2011, AttendingDays = 10, AttendanceCap = 30, StartDate = DateTime.Parse("2012-01-01"), Location = "Corpus Christi", Parish = "AliceParish", Description = "Very Cool Course", Approved = true, Completed = false, Archived = false},
+                new Course { Title = "Spirituality",    InstructorID = 1, Credits = 3, Year = 2011, AttendingDays = 10, AttendanceCap = 30, StartDate = DateTime.Parse("2012-01-01"), Location = "Corpus Christi", Parish = "AliceParish", Description = "Very Cool Course", Approved = true, Completed = false, Archived = false},
+                new Course { Title = "Macroeconomics",  InstructorID = 2, Credits = 3, Year = 2011, AttendingDays = 10, AttendanceCap = 30, StartDate = DateTime.Parse("2012-01-01"), Location = "Corpus Christi", Parish = "AliceParish", Description = "Very Cool Course", Approved = true, Completed = false, Archived = false},
+                new Course { Title = "Calculus",        InstructorID = 1, Credits = 4, Year = 2011, AttendingDays = 10, AttendanceCap = 30, StartDate = DateTime.Parse("2012-01-01"), Location = "Corpus Christi", Parish = "AliceParish", Description = "Very Cool Course", Approved = true, Completed = false, Archived = false},
+                new Course { Title = "Trigonometry",    InstructorID = 1, Credits = 4, Year = 2011, AttendingDays = 10, AttendanceCap = 30, StartDate = DateTime.Parse("2012-01-01"), Location = "Corpus Christi", Parish = "AliceParish", Description = "Very Cool Course", Approved = true, Completed = false, Archived = false},
+                new Course { Title = "Composition",     InstructorID = 2, Credits = 3, Year = 2011, AttendingDays = 10, AttendanceCap = 30, StartDate = DateTime.Parse("2012-01-01"), Location = "Corpus Christi", Parish = "AliceParish", Description = "Very Cool Course", Approved = true, Completed = false, Archived = false},
+                new Course { Title = "Literature",      InstructorID = 1, Credits = 4, Year = 2011, AttendingDays = 10, AttendanceCap = 30, StartDate = DateTime.Parse("2012-01-01"), Location = "Corpus Christi", Parish = "AliceParish", Description = "Very Cool Course", Approved = true, Completed = false, Archived = false}
             };
             courses.ForEach(s => context.Courses.Add(s));
             context.SaveChanges();
