@@ -13,5 +13,6 @@ namespace PaulSchool.Models
         public string Email { get; set; }
         public DateTime EnrollmentDate { get; set; }
         public virtual ICollection<Course> Courses { get; set; }
+        public string UserName { get; set; }
     }
 }

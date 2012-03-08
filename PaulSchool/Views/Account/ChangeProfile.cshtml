@@ -1,0 +1,15 @@
+﻿@{
+    ViewBag.Title = "ChangeProfile";
+}
+
+<h2>ChangeProfile</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.EditorForModel()
+    <button type="submit">OK</button>
+}
+<div>
+    @Html.ActionLink("Back to Profile", "Profile")
+</div>
+

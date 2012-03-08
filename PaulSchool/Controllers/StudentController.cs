@@ -24,6 +24,7 @@ namespace PaulSchool.Controllers
             ViewBag.DateSortParm = sortOrder == "Date" ? "Date desc" : "Date";
             ViewBag.FNameSortParm = sortOrder == "FName" ? "FName desc" : "FName";
             ViewBag.EmailSortParm = sortOrder == "Email" ? "Email desc" : "Email";
+            ViewBag.UserNameSortParm = sortOrder == "UserName" ? "UserName desc" : "UserName";
 
             if (Request.HttpMethod == "GET")
             {
@@ -64,6 +65,12 @@ namespace PaulSchool.Controllers
                     break;
                 case "Email desc":
                     students = students.OrderByDescending(s => s.Email);
+                    break;
+                case "UserName":
+                    students = students.OrderBy(s => s.UserName);
+                    break;
+                case "UserName desc":
+                    students = students.OrderByDescending(s => s.UserName);
                     break;
                 default:
                     students = students.OrderBy(s => s.LastName);
@@ -185,6 +192,15 @@ namespace PaulSchool.Controllers
         {
             db.Dispose();
             base.Dispose(disposing);
+        }
+
+        //
+        // GET: /Student/MakeStudent
+        public ActionResult MakeStudent()
+        {
+            ViewBag.Message = "You just made this account into a student";
+
+            return View();
         }
     }
 }

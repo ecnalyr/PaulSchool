@@ -30,6 +30,9 @@
 <th>
     @Html.ActionLink("Enrollment Date", "Index", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
 </th>
+<th>
+    @Html.ActionLink("UserName", "Index", new { sortOrder = ViewBag.UserNameSortParm, currentFilter = ViewBag.CurrentFilter})
+</th>
 </tr>
 
 @foreach (var item in Model) {
@@ -50,6 +53,9 @@
     </td>
     <td>
         @Html.DisplayFor(modelItem => item.EnrollmentDate)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.UserName)
     </td>
 </tr>
 }

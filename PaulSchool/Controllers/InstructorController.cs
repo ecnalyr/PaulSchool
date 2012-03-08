@@ -24,6 +24,7 @@ namespace PaulSchool.Controllers
             ViewBag.DateSortParm = sortOrder == "Date" ? "Date desc" : "Date";
             ViewBag.FNameSortParm = sortOrder == "FName" ? "FName desc" : "FName";
             ViewBag.EmailSortParm = sortOrder == "Email" ? "Email desc" : "Email";
+            ViewBag.UserNameSortParm = sortOrder == "UserName" ? "UserName desc" : "UserName";
 
             if (Request.HttpMethod == "GET")
             {
@@ -64,6 +65,12 @@ namespace PaulSchool.Controllers
                     break;
                 case "Email desc":
                     instructors = instructors.OrderByDescending(s => s.Email);
+                    break;
+                case "UserName":
+                    instructors = instructors.OrderBy(s => s.UserName);
+                    break;
+                case "UserName desc":
+                    instructors = instructors.OrderByDescending(s => s.UserName);
                     break;
                 default:
                     instructors = instructors.OrderBy(s => s.LastName);

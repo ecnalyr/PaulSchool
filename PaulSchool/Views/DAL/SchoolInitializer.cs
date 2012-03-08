@@ -13,7 +13,7 @@ namespace PaulSchool.DAL
         {
             var students = new List<Student>
             {
-                new Student { FirstMidName = "Carson",   LastName = "Alexander", Email = "123@aol.com",     EnrollmentDate = DateTime.Parse("2005-09-01")},
+                new Student { FirstMidName = "Carson",   LastName = "Alexander", Email = "123@aol.com",     EnrollmentDate = DateTime.Parse("2005-09-01"), UserName = "Student1"},
                 new Student { FirstMidName = "Meredith", LastName = "Alonso", Email = "345@aol.com",        EnrollmentDate = DateTime.Parse("2002-09-01")},
                 new Student { FirstMidName = "Arturo",   LastName = "Anand", Email = "567@aol.com",         EnrollmentDate = DateTime.Parse("2003-09-01")},
                 new Student { FirstMidName = "Gytis",    LastName = "Barzdukas", Email = "456@aol.com",     EnrollmentDate = DateTime.Parse("2002-09-01")},
@@ -27,7 +27,7 @@ namespace PaulSchool.DAL
 
             var instructors = new List<Instructor>
             {
-                new Instructor { FirstMidName = "Mister", LastName = "Instructor", Email = "mrinstruc@email.com", EnrollmentDate = DateTime.Parse("2001-04-02")},
+                new Instructor { FirstMidName = "Mister", LastName = "Instructor", Email = "mrinstruc@email.com", EnrollmentDate = DateTime.Parse("2001-04-02"), UserName = "Instructor1"},
                 new Instructor { FirstMidName = "Miss", LastName = "Teacher", Email = "instructmail@email.com", EnrollmentDate = DateTime.Parse("2002-06-03")}
             };
             instructors.ForEach(s => context.Instructors.Add(s));

@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.Security;
 using PaulSchool.Models;
+using PaulSchool.ViewModels;
 
 namespace PaulSchool.Controllers
 {
@@ -31,14 +32,27 @@ namespace PaulSchool.Controllers
                 if (Membership.ValidateUser(model.UserName, model.Password))
                 {
                     FormsAuthentication.SetAuthCookie(model.UserName, model.RememberMe);
-                    if (Url.IsLocalUrl(returnUrl) && returnUrl.Length > 1 && returnUrl.StartsWith("/")
-                        && !returnUrl.StartsWith("//") && !returnUrl.StartsWith("/\\"))
+                    CustomProfile profile = CustomProfile.GetUserProfile(model.UserName);
+
+                    if (profile.FilledStudentInfo == "yes")     // If the user is not filled in their Student Info we need to have them fill out the 'student' details table
+                                                                // If the user has illed in their Student Info, they have already filled out the student details table, 
+                                                                // so we can allow them to log on like normal.
+                    //if (1==1)
                     {
-                        return Redirect(returnUrl);
+                        //FormsAuthentication.SetAuthCookie(model.UserName, model.RememberMe);
+                        if (Url.IsLocalUrl(returnUrl) && returnUrl.Length > 1 && returnUrl.StartsWith("/")
+                            && !returnUrl.StartsWith("//") && !returnUrl.StartsWith("/\\"))
+                        {
+                            return Redirect(returnUrl);
+                        }
+                        else
+                        {
+                            return RedirectToAction("Index", "Home");
+                        }
                     }
                     else
                     {
-                        return RedirectToAction("Index", "Home");
+                        return RedirectToAction("Profile", "Account");
                     }
                 }
                 else
@@ -148,6 +162,50 @@ namespace PaulSchool.Controllers
         public ActionResult ChangePasswordSuccess()
         {
             return View();
+        }
+
+        //
+        // GET: /Account/Profile
+
+        public ActionResult Profile()
+        {
+            return View();
+        }
+
+        //
+        // Get /Account/ChangeProfile
+
+        [Authorize]
+        public ActionResult ChangeProfile()
+        {
+            CustomProfile profile = CustomProfile.GetUserProfile(User.Identity.Name);
+            ProfileViewModel model = new ProfileViewModel
+            {
+                IsTeacher = profile.IsTeacher,
+                FilledStudentInfo = profile.FilledStudentInfo
+            };
+            return View(model);
+        }
+
+        //
+        // POST: /Account/ChangeProfile
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult ChangeProfile(ProfileViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                // there were validation errors => redisplay the view
+                return View(model);
+            }
+
+            // validation succeeded => process the results
+            CustomProfile profile = CustomProfile.GetUserProfile();
+            profile.IsTeacher = model.IsTeacher;
+            profile.FilledStudentInfo = model.FilledStudentInfo;
+            profile.Save();
+            return RedirectToAction("Profile");
         }
 
         #region Status Codes
