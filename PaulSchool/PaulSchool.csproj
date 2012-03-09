@@ -72,6 +72,7 @@
     <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Models\CustomProfile.cs" />
     <Compile Include="Models\Instructor.cs" />
+    <Compile Include="ViewModels\CreateStudentViewModel.cs" />
     <Compile Include="ViewModels\ProfileViewModel.cs" />
     <Compile Include="Views\DAL\SchoolContext.cs" />
     <Compile Include="Views\DAL\SchoolInitializer.cs" />
@@ -190,6 +191,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Account\ChangeProfile.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Student\Create.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

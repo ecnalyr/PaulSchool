@@ -7,6 +7,9 @@ using System.Web;
 using System.Web.Mvc;
 using PaulSchool.Models;
 using PagedList;
+using System.Web.Security;
+using PaulSchool.ViewModels;
+using System.Diagnostics;
 
 namespace PaulSchool.Controllers
 { 
@@ -95,30 +98,79 @@ namespace PaulSchool.Controllers
 
         public ActionResult Create()
         {
-            return View();
+            var users = Membership.GetAllUsers();
+            var model = new CreateStudentViewModel
+            {
+                Users = users.OfType<MembershipUser>().Select(x => new SelectListItem
+                {
+                    Value = x.UserName,
+                    Text = x.UserName,
+                })
+            };
+            return View(model);
         } 
 
         //
         // POST: /Student/Create
 
         [HttpPost]
-        public ActionResult Create(Student student)
+        public ActionResult Create(CreateStudentViewModel studentModel, string selectedUser, string lastName, string firstMidName, string email)
         {
+            /*
+            var users = Membership.GetAllUsers();
+            var model = new CreateStudentViewModel
+            {
+                Users = users.OfType<MembershipUser>().Select(x => new SelectListItem
+                {
+                    Value = x.UserName,
+                    Text = x.UserName,
+                })
+            };
+            */
             try
             {
                 if (ModelState.IsValid)
                 {
-                    db.Students.Add(student);
-                    db.SaveChanges();
+                    Student student = new Student();
+
+                    //Establish the student data
+                    student.UserName = selectedUser;
+                    student.LastName = lastName;
+                    student.FirstMidName = firstMidName;
+                    student.Email = email;
+                    student.EnrollmentDate = DateTime.Now;
+
+                    db.Students.Add(student);//inputs student data into database (is not saved yet)
+                    db.SaveChanges();//saves the student to database
+
+                    var user = System.Web.Security.Membership.GetUser(student.UserName);//gets the actual user
+                    Roles.AddUserToRole(user.UserName, "Student");//takes the user and sets role to student
+ 
+                    // assigns Student data to the profile of the user (so the user is associated with this specified Student data)
+                    CustomProfile profile = CustomProfile.GetUserProfile(student.UserName);
+                    profile.FilledStudentInfo = "yes";
+                    profile.Save();
+
                     return RedirectToAction("Index");
                 }
             }
             catch (DataException)
             {
                 //Log the error (add a variable name after DataException)
-                ModelState.AddModelError("", "Saving failed for some reason. Please try again (several times in several different ways if possible (i.e. try using a different computer) - if the problem persists see your system administrator.");
+                ModelState.AddModelError("", "Saving failed for some reason.  You may have left some information blank.  Please try again (several times in several different ways if possible (i.e. try using a different computer) - if the problem persists see your system administrator.");
             }
-            return View(student);
+
+            // This code block is here to allow the page to render in case we get a DataException and have to re-display the screen.
+            var users = Membership.GetAllUsers();
+            var model = new CreateStudentViewModel
+            {
+                Users = users.OfType<MembershipUser>().Select(x => new SelectListItem
+                {
+                    Value = x.UserName,
+                    Text = x.UserName,
+                })
+            };
+            return View(model);
         }
         
         //

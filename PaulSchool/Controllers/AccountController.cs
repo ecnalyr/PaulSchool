@@ -98,6 +98,11 @@ namespace PaulSchool.Controllers
                 if (createStatus == MembershipCreateStatus.Success)
                 {
                     FormsAuthentication.SetAuthCookie(model.UserName, false /* createPersistentCookie */);
+                    CustomProfile profile = CustomProfile.GetUserProfile(model.UserName);
+                    //Set default state of user
+                    profile.IsTeacher = "no";
+                    profile.FilledStudentInfo = "no";
+                    profile.Save();
                     return RedirectToAction("Index", "Home");
                 }
                 else
