@@ -21,7 +21,7 @@ namespace PaulSchool.Models
         }
 
         [SettingsAllowAnonymous(false)]
-        [Required(ErrorMessage = "FilledStudentInfo must be true or false")]
+        [Required(ErrorMessage = "FilledStudentInfo must be yes or no")]
         [DisplayName("FilledstudentInfo")]
         [StringLength(5)]
         public string FilledStudentInfo // I used strings (instead of bool) because I was having difficulty using bool with ASP.NET's default Membership Provider's profile feature
@@ -31,7 +31,7 @@ namespace PaulSchool.Models
         }
 
         [SettingsAllowAnonymous(false)]
-        [Required(ErrorMessage = "IsTeacher must be true or false")]
+        [Required(ErrorMessage = "IsTeacher must be yes or no")]
         [DisplayName("IsTeacher")]
         [StringLength(5)]
         public string IsTeacher // I used strings (instead of bool) because I was having difficulty using bool with ASP.NET's default Membership Provider's profile feature

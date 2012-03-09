@@ -98,16 +98,33 @@ namespace PaulSchool.Controllers
 
         public ActionResult Create()
         {
-            var users = Membership.GetAllUsers();
-            var model = new CreateStudentViewModel
+            if (User.IsInRole("Administrator"))
             {
-                Users = users.OfType<MembershipUser>().Select(x => new SelectListItem
+                var users = Membership.GetAllUsers();
+                var model = new CreateStudentViewModel
                 {
-                    Value = x.UserName,
-                    Text = x.UserName,
-                })
-            };
-            return View(model);
+                    Users = users.OfType<MembershipUser>().Select(x => new SelectListItem
+                    {
+                        Value = x.UserName,
+                        Text = x.UserName,
+                    })
+                };
+                return View(model);
+            }
+            if (User.IsInRole("Default"))
+            {
+                var users = Membership.FindUsersByName(User.Identity.Name); // this is problematic because it can find other users with similar user names
+                var model = new CreateStudentViewModel
+                {
+                    Users = users.OfType<MembershipUser>().Select(x => new SelectListItem
+                    {
+                        Value = x.UserName,
+                        Text = x.UserName,
+                    })
+                };
+                return View(model);
+            }
+            return View(/*user has a role that is not "Default" or "Administrator"  Needs error message*/);
         } 
 
         //
@@ -116,17 +133,6 @@ namespace PaulSchool.Controllers
         [HttpPost]
         public ActionResult Create(CreateStudentViewModel studentModel, string selectedUser, string lastName, string firstMidName, string email)
         {
-            /*
-            var users = Membership.GetAllUsers();
-            var model = new CreateStudentViewModel
-            {
-                Users = users.OfType<MembershipUser>().Select(x => new SelectListItem
-                {
-                    Value = x.UserName,
-                    Text = x.UserName,
-                })
-            };
-            */
             try
             {
                 if (ModelState.IsValid)

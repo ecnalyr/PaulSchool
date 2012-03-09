@@ -103,6 +103,7 @@ namespace PaulSchool.Controllers
                     profile.IsTeacher = "no";
                     profile.FilledStudentInfo = "no";
                     profile.Save();
+                    Roles.AddUserToRole(model.UserName, "Default"); // Adds student to the "Default" role so we can force them to become a "Student" role.
                     return RedirectToAction("Index", "Home");
                 }
                 else

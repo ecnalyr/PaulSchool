@@ -7,6 +7,8 @@ using System.Web;
 using System.Web.Mvc;
 using PaulSchool.Models;
 using PagedList;
+using System.Web.Security;
+using PaulSchool.ViewModels;
 
 namespace PaulSchool.Controllers
 { 
@@ -92,26 +94,80 @@ namespace PaulSchool.Controllers
 
         //
         // GET: /Instructor/Create
-
-        public ActionResult Create()
+        [Authorize]
+        public ActionResult Create() // This entire method is likely without necessary use.  Likely to remove.
         {
-            return View();
+            if (User.IsInRole("Administrator"))
+            {
+                var users = Roles.GetUsersInRole("Student");
+                var model = new CreateStudentViewModel
+                {
+                    Users = users.OfType<MembershipUser>().Select(x => new SelectListItem // does not actually return any users because we are using Roles.GetUserInRole instead of Membership.GetAllUsers()
+                    {
+                        Value = x.UserName,
+                        Text = x.UserName,
+                    })
+                };
+                return View(model);
+                /*ViewData["Users"] = Roles.GetUsersInRole("Student");
+                return View();*/
+            }
+            else // we do not check for another role, because we want only Administrator to be able to explicitly add a Teacher.
+            {
+                return View(/*not an administrator, no reason to be here, I think*/);
+            }
         } 
 
         //
         // POST: /Instructor/Create
 
         [HttpPost]
-        public ActionResult Create(Instructor instructor)
+        public ActionResult Create(CreateStudentViewModel studentModel, string selectedUser, string lastName, string firstMidName, string email)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.Instructors.Add(instructor);
-                db.SaveChanges();
-                return RedirectToAction("Index");  
+                if (ModelState.IsValid)
+                {
+                    Instructor instructor = new Instructor();
+
+                    //Establish the student data
+                    instructor.UserName = selectedUser;
+                    instructor.LastName = lastName;
+                    instructor.FirstMidName = firstMidName;
+                    instructor.Email = email;
+                    instructor.EnrollmentDate = DateTime.Now;
+
+                    db.Instructors.Add(instructor);//inputs student data into database (is not saved yet)
+                    db.SaveChanges();//saves the instructor to database
+
+                    var user = System.Web.Security.Membership.GetUser(instructor.UserName);//gets the actual user
+                    Roles.AddUserToRole(user.UserName, "Instructor");//takes the user and sets role to instructor
+
+                    // assigns Instructor data to the profile of the user (so the user is associated with this specified Instructor data)
+                    CustomProfile profile = CustomProfile.GetUserProfile(instructor.UserName);
+                    profile.IsTeacher = "yes";
+                    profile.Save();
+
+                    return RedirectToAction("Index");
+                }
+            }
+            catch (DataException)
+            {
+                //Log the error (add a variable name after DataException)
+                ModelState.AddModelError("", "Saving failed for some reason.  You may have left some information blank.  Please try again (several times in several different ways if possible (i.e. try using a different computer) - if the problem persists see your system administrator.");
             }
 
-            return View(instructor);
+            // This code block is here to allow the page to render in case we get a DataException and have to re-display the screen.
+            var users = Membership.GetAllUsers();
+            var model = new CreateStudentViewModel
+            {
+                Users = users.OfType<MembershipUser>().Select(x => new SelectListItem
+                {
+                    Value = x.UserName,
+                    Text = x.UserName,
+                })
+            };
+            return View(model);
         }
         
         //

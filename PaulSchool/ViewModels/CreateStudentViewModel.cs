@@ -9,12 +9,14 @@ namespace PaulSchool.ViewModels
 {
     public class CreateStudentViewModel
     {
-        [Display(Name = "select user")]
+        [Display(Name = "selected user")]
         public string SelectedUser { get; set; }
         public IEnumerable<SelectListItem> Users { get; set; }
-
+        [Required]
         public string LastName { get; set; }
+        [Required]
         public string FirstMidName { get; set; }
+        [Required]
         public string Email { get; set; }
     }
 }
