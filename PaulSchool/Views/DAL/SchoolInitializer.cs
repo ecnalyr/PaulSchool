@@ -46,6 +46,17 @@ namespace PaulSchool.DAL
             courses.ForEach(s => context.Courses.Add(s));
             context.SaveChanges();
 
+            var courseTemplates = new List<CourseTemplates>
+            {
+                new CourseTemplates { Title = "Prayer", Credits = 3, AttendingDays = 10, AttendanceCap = 30, Location = "Corpus Christi", Parish = "GoodParish", Description = "A course taken in Corpus Christi"},
+                new CourseTemplates { Title = "Spirituality", Credits = 3, AttendingDays = 10, AttendanceCap = 30, Location = "Corpus Christi", Parish = "GoodParish", Description = "A course taken in Corpus Christi"},
+                new CourseTemplates { Title = "Macroeconomics", Credits = 3, AttendingDays = 8, AttendanceCap = 30, Location = "Corpus Christi", Parish = "GoodParish", Description = "A course taken in Corpus Christi"},
+                new CourseTemplates { Title = "Calculus", Credits = 1, AttendingDays = 3, AttendanceCap = 25, Location = "Corpus Christi", Parish = "GoodParish", Description = "A course taken in Corpus Christi"},
+                new CourseTemplates { Title = "Trigonometry", Credits = 1, AttendingDays = 8, AttendanceCap = 25, Location = "Corpus Christi", Parish = "GoodParish", Description = "A course taken in Corpus Christi"},
+            };
+            courseTemplates.ForEach(s => context.CourseTemplates.Add(s));
+            context.SaveChanges();
+
             var enrollments = new List<Enrollment>
             {
                 new Enrollment { StudentID = 1, CourseID = 1, Grade = "pass" },

@@ -14,6 +14,7 @@ namespace PaulSchool.Models
         public DbSet<Enrollment> Enrollments { get; set; }
         public DbSet<Course> Courses { get; set; }
         public DbSet<Instructor> Instructors { get; set; }
+        public DbSet<CourseTemplates> CourseTemplates { get; set; }
 
         // Removes pluralization convention from database names
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

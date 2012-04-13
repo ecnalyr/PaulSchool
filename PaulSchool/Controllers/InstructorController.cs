@@ -92,6 +92,9 @@ namespace PaulSchool.Controllers
             return View(instructor);
         }
 
+
+        //UNNECESSARY
+        /*
         //
         // GET: /Instructor/Create
         [Authorize]
@@ -110,11 +113,11 @@ namespace PaulSchool.Controllers
                 };
                 return View(model);
                 /*ViewData["Users"] = Roles.GetUsersInRole("Student");
-                return View();*/
+                return View();*//*
             }
             else // we do not check for another role, because we want only Administrator to be able to explicitly add a Teacher.
             {
-                return View(/*not an administrator, no reason to be here, I think*/);
+                return View(/*not an administrator, no reason to be here, I think*//*);
             }
         } 
 
@@ -169,6 +172,7 @@ namespace PaulSchool.Controllers
             };
             return View(model);
         }
+        */
         
         //
         // GET: /Instructor/Edit/5

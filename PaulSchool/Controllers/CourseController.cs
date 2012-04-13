@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using PaulSchool.Models;
 using PagedList;
+using PaulSchool.ViewModels;
 
 namespace PaulSchool.Controllers
 {
@@ -140,6 +141,32 @@ namespace PaulSchool.Controllers
         {
             Course course = db.Courses.Find(id);
             return View(course);
+        }
+
+        //
+        // GET: /Course/ApplyToTeach
+
+        public ActionResult ApplyToTeach()
+        {
+            var course = db.CourseTemplates;
+            var model = new ApplyCourseViewModel
+            {
+                Courses = course.Select(x => new SelectListItem
+                {
+                    Value = x.Title,
+                    Text = x.Title,
+                })
+            };
+            return View(model);
+        }
+
+        //
+        // POST: /Course/ApplyToTeach
+
+        [HttpPost]
+        public ActionResult ApplyToTeach(ApplyCourseViewModel appliedCourse)
+        {
+            return RedirectToAction("Index");
         }
 
     }
