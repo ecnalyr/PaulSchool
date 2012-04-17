@@ -18,12 +18,15 @@
                                                         }))
     </div>
     <div>
-            @Html.DropDownListFor(x => x.SelectedCourse, Model.Courses, "Custom", "nameoflist")
+            <p>Select a course from the dropdown to help you get started (or leave it as Custom to fill out all info yourself).</p>
+            @Html.DropDownListFor(x => x.SelectedCourse, Model.Courses, "Custom")
             @Html.ValidationMessageFor(model => model.Courses)
     </div>
     <div id="testDiv">
         area for test div
     </div>
-<div id="testDiv2">
+<div id="originalForm">
 @Html.Partial("_CourseForm")
+</div>
+<div id ="divToAppend">
 </div>
