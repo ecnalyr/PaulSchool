@@ -2,4 +2,28 @@
 @{
     ViewBag.Title = "ApplyToTeach";
 }
+<script src="@Url.Content("~/Scripts/FillCourseForm.js")" type="text/javascript"></script>
+<h2>ApplyToTeach</h2>
 
+    <div class="editor-label">
+        Which class would you like to teach? (select "Custom" if you would like to submit a customized class)
+    </div>
+
+    <div class ="editor-field" id ="selectCourse">
+        @Ajax.ActionLink("Click Here to PreFill", "PrefillCourse", new AjaxOptions
+                                                        {
+                                                            UpdateTargetId = "testDiv",
+                                                            HttpMethod="GET", //default
+                                                            InsertionMode= InsertionMode.Replace, //default
+                                                        }))
+    </div>
+    <div>
+            @Html.DropDownListFor(x => x.SelectedCourse, Model.Courses, "Custom", "nameoflist")
+            @Html.ValidationMessageFor(model => model.Courses)
+    </div>
+    <div id="testDiv">
+        area for test div
+    </div>
+<div id="testDiv2">
+@Html.Partial("_CourseForm")
+</div>

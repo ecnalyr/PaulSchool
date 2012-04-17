@@ -12,6 +12,19 @@ namespace PaulSchool.Controllers
     public class CourseController : Controller
     {
         private SchoolContext db = new SchoolContext();
+
+        public PartialViewResult PreFillCourse(string selectedCourse)
+        {
+            ViewBag.selectedString = selectedCourse;
+            ApplyCourseViewModel preFill = new ApplyCourseViewModel
+            {
+                Title = selectedCourse,
+                Location = "defaultStringForTesting",
+            };
+            return PartialView("_CourseForm", preFill);
+        }
+
+
         //
         // GET: /Course/
 
