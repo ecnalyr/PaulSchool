@@ -13,13 +13,22 @@ namespace PaulSchool.Controllers
     {
         private SchoolContext db = new SchoolContext();
 
-        public PartialViewResult PreFillCourse(string selectedCourse)
+        public PartialViewResult PreFillCourse(string selectedCourse) 
+            // Note that this is searching by title only - there cannot be more than one class with the same title
         {
+            CourseTemplates selectedTemplate = db.CourseTemplates.FirstOrDefault(
+                                                o => o.Title == selectedCourse);
+
             ViewBag.selectedString = selectedCourse;
             ApplyCourseViewModel preFill = new ApplyCourseViewModel
             {
-                Title = selectedCourse,
-                Location = "defaultStringForTesting",
+                Title = selectedTemplate.Title,
+                Credits = selectedTemplate.Credits,
+                AttendingDays = selectedTemplate.AttendingDays,
+                AttendanceCap = selectedTemplate.AttendanceCap,
+                Location = selectedTemplate.Location,
+                Parish = selectedTemplate.Parish,
+                Description = selectedTemplate.Description,
             };
             return PartialView("_CourseForm", preFill);
         }

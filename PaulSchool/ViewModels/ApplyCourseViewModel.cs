@@ -35,6 +35,9 @@ namespace PaulSchool.ViewModels
         public int AttendanceCap { get; set; } // default of 30
 
         [Required]
+        public DateTime StartDate { get; set; }
+
+        [Required]
         public string Location { get; set; }
 
         [Required]
