@@ -48,6 +48,7 @@ namespace PaulSchool.DAL
 
             var courseTemplates = new List<CourseTemplates>
             {
+                new CourseTemplates { Title = "Custom (edit title)", Credits = 3, AttendingDays = 10, AttendanceCap = 30},
                 new CourseTemplates { Title = "Prayer", Credits = 3, AttendingDays = 10, AttendanceCap = 30, Location = "Corpus Christi", Parish = "GoodParish", Description = "A course taken in Corpus Christi"},
                 new CourseTemplates { Title = "Spirituality", Credits = 3, AttendingDays = 10, AttendanceCap = 30, Location = "Corpus Christi", Parish = "GoodParish", Description = "A course taken in Corpus Christi"},
                 new CourseTemplates { Title = "Macroeconomics", Credits = 3, AttendingDays = 8, AttendanceCap = 30, Location = "Corpus Christi", Parish = "GoodParish", Description = "A course taken in Corpus Christi"},

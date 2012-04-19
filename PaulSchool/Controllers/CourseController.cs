@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using PaulSchool.Models;
 using PagedList;
 using PaulSchool.ViewModels;
+using System.Web.Security;
 
 namespace PaulSchool.Controllers
 {
@@ -188,7 +189,49 @@ namespace PaulSchool.Controllers
         [HttpPost]
         public ActionResult ApplyToTeach(ApplyCourseViewModel appliedCourse)
         {
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                // Make sure the user is set to an instructor
+                if (!User.IsInRole("Instructor"))
+                {
+                    Instructor newInstructor = new Instructor
+                    // Creates a new Instructor in the Instructor Table
+                    // using the User's information
+                    {
+                        // Need to add other profile details to this (first and last name, etc)
+                        UserName = User.Identity.Name,
+                        EnrollmentDate = DateTime.Now
+                    };
+                    db.Instructors.Add(newInstructor);
+                    db.SaveChanges();
+                    Roles.AddUserToRole(User.Identity.Name, "Instructor");
+                    // sets the actual role of the user to Instructor
+                }
+
+                Instructor instructor = db.Instructors.FirstOrDefault(
+                    o => o.UserName == User.Identity.Name);
+
+                Course newCourse = new Course
+                {
+                    Title = appliedCourse.Title,
+                    Credits = appliedCourse.Credits,
+                    InstructorID = instructor.InstructorID, 
+                    Year = appliedCourse.StartDate.Year,
+                    AttendingDays = appliedCourse.AttendingDays,
+                    AttendanceCap = appliedCourse.AttendanceCap,
+                    StartDate = appliedCourse.StartDate,
+                    Location = appliedCourse.Location,
+                    Parish = appliedCourse.Parish,
+                    Description = appliedCourse.Description,
+                    Approved = false,
+                    Completed = false,
+                    Archived = false
+                };
+                db.Courses.Add(newCourse);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(appliedCourse);
         }
 
     }

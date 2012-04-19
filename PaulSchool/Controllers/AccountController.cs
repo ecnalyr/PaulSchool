@@ -12,6 +12,7 @@ namespace PaulSchool.Controllers
 {
     public class AccountController : Controller
     {
+        private SchoolContext db = new SchoolContext();
 
         //
         // GET: /Account/LogOn
@@ -175,6 +176,8 @@ namespace PaulSchool.Controllers
 
         public ActionResult Profile()
         {
+            MembershipUser u = Membership.GetUser(User.Identity.Name);
+            ViewBag.Email = u.Email;
             return View();
         }
 
@@ -188,7 +191,9 @@ namespace PaulSchool.Controllers
             ProfileViewModel model = new ProfileViewModel
             {
                 IsTeacher = profile.IsTeacher,
-                FilledStudentInfo = profile.FilledStudentInfo
+                FilledStudentInfo = profile.FilledStudentInfo,
+                LastName = profile.LastName,
+                FirstMidName = profile.FirstMidName
             };
             return View(model);
         }
@@ -207,10 +212,54 @@ namespace PaulSchool.Controllers
             }
 
             // validation succeeded => process the results
+            // save the profile data
             CustomProfile profile = CustomProfile.GetUserProfile();
             profile.IsTeacher = model.IsTeacher;
             profile.FilledStudentInfo = model.FilledStudentInfo;
+            profile.LastName = model.LastName;
+            profile.FirstMidName = model.FirstMidName;
             profile.Save();
+
+            // check if already existing on the student table - update the table if needed
+            Student isStudent = db.Students.FirstOrDefault(
+                o => o.UserName == User.Identity.Name);
+            if (isStudent != null) // IF the user already exists in the Student Table . . .
+            {
+                isStudent.LastName = model.LastName;
+                isStudent.FirstMidName = model.FirstMidName;
+                MembershipUser u = Membership.GetUser(User.Identity.Name); // needed to get email for isStudent.Email = u.Email;
+                isStudent.Email = u.Email;
+                db.SaveChanges();
+            }
+            else
+            // Create student in student table if they have not been there before (everyone needs to be at least a student)
+            {
+                MembershipUser u = Membership.GetUser(User.Identity.Name); // needed to get email for Email = u.Email;
+                Student newStudent = new Student
+                {
+                    LastName = model.LastName,
+                    FirstMidName = model.FirstMidName,
+                    Email = u.Email,
+                    UserName = User.Identity.Name,
+                    EnrollmentDate = DateTime.Now
+                };
+                db.Students.Add(newStudent);
+                db.SaveChanges();
+                Roles.AddUserToRole(User.Identity.Name, "Student");
+            }
+
+            // check if already existing on the instructor table - update the table if needed
+            Instructor isInstructor = db.Instructors.FirstOrDefault(
+                o => o.UserName == User.Identity.Name);
+            if (isInstructor != null) // IF the user already exists in the Instructor Table . . .
+            {
+                isInstructor.LastName = model.LastName;
+                isInstructor.FirstMidName = model.FirstMidName;
+                MembershipUser u = Membership.GetUser(User.Identity.Name); // needed to get email for isInstructor.Email = u.Email;
+                isInstructor.Email = u.Email;
+                db.SaveChanges();
+            }
+
             return RedirectToAction("Profile");
         }
 

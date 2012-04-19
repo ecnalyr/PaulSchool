@@ -40,7 +40,22 @@ namespace PaulSchool.Models
             set { base["IsTeacher"] = value; }
         }
 
+        [Required(ErrorMessage = "Must have a Last Name")]
+        [DisplayName("Last Name")]
+        [StringLength(20)]
+        public string LastName
+        {
+            get { return base["LastName"] as string; }
+            set { base["LastName"] = value; }
+        }
 
-        
+        [Required(ErrorMessage = "Must have a First Name (you may include a Middle Name if you choose)")]
+        [DisplayName("First and Middle Name")]
+        [StringLength(20)]
+        public string FirstMidName
+        {
+            get { return base["FirstMidName"] as string; }
+            set { base["FirstMidName"] = value; }
+        }        
     }
 }

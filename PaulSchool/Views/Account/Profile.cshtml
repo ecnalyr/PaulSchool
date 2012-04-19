@@ -14,5 +14,14 @@
     <p>
         Have you filled out student info?: <b>@PaulSchool.Models.CustomProfile.GetUserProfile(User.Identity.Name).FilledStudentInfo</b>
     </p>
+    <p>
+        Last Name: <b>@PaulSchool.Models.CustomProfile.GetUserProfile(User.Identity.Name).LastName</b>
+    </p>
+    <p>
+        First and Middle Name: <b>@PaulSchool.Models.CustomProfile.GetUserProfile(User.Identity.Name).FirstMidName</b>
+    </p>
+    <p>
+        Email: <b>@ViewBag.email</b>
+    </p>
     @Html.ActionLink("Edit Profile", "ChangeProfile")
 }

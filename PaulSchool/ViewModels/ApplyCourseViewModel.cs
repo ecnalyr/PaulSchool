@@ -13,7 +13,7 @@ namespace PaulSchool.ViewModels
         public string SelectedCourse { get; set; }
         public IEnumerable<SelectListItem> Courses { get; set; }
 
-        public int CourseTemplatesID { get; set; }
+        public int? CourseTemplatesID { get; set; }
         
         [Required]
         [StringLength(50)]

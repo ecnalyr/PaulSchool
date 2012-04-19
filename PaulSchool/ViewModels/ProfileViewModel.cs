@@ -13,5 +13,7 @@ namespace PaulSchool.ViewModels
     {
         public string IsTeacher { get; set; }
         public string FilledStudentInfo { get; set; }
+        public string LastName {get; set; }
+        public string FirstMidName { get; set; }
     }
 }
