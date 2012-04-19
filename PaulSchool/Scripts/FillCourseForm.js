@@ -1,5 +1,7 @@
 ﻿/// <reference path="jquery-1.5.1-vsdoc.js" />
 /// <reference path="jquery-ui-1.8.11.js" />
+/// <reference path="jquery-ui-1.8.19.min.js" />
+/// <reference path="jquery-ui-timepicker-addon.js" />
 
 //
 $(document).ready(function () {
@@ -17,5 +19,9 @@ $(document).ready(function () {
             $("#originalForm").remove();
             $('#divToAppend').html(data);
         });
+    });
+
+    $("#StartDate").datetimepicker({
+        ampm: true
     });
 });

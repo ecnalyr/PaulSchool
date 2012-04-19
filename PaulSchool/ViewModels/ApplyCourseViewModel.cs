@@ -38,7 +38,7 @@ namespace PaulSchool.ViewModels
         public DateTime StartDate { get; set; }
 
         [Required]
-        public string Location { get; set; }
+        public string Location { get ; set; }
 
         [Required]
         public string Parish { get; set; }

@@ -30,6 +30,7 @@ namespace PaulSchool.Controllers
                 Location = selectedTemplate.Location,
                 Parish = selectedTemplate.Parish,
                 Description = selectedTemplate.Description,
+                StartDate = DateTime.Now
             };
             return PartialView("_CourseForm", preFill);
         }
@@ -178,7 +179,8 @@ namespace PaulSchool.Controllers
                 {
                     Value = x.Title,
                     Text = x.Title,
-                })
+                }),
+                StartDate = DateTime.Now
             };
             return View(model);
         }
@@ -191,16 +193,26 @@ namespace PaulSchool.Controllers
         {
             if (ModelState.IsValid)
             {
-                // Make sure the user is set to an instructor
-                if (!User.IsInRole("Instructor"))
+                Instructor instructor = db.Instructors.FirstOrDefault(
+                    o => o.UserName == User.Identity.Name);
+
+                if (instructor == null) 
+                // If the user is currently not an Instructor, make them one
                 {
+                    Student currentUser = db.Students.FirstOrDefault(
+                        o => o.UserName == User.Identity.Name);
+                    // "currentUser" needed to have user's information ( every user should have data in the Student table, 
+                    // so their information is stored there)
+
                     Instructor newInstructor = new Instructor
                     // Creates a new Instructor in the Instructor Table
                     // using the User's information
                     {
-                        // Need to add other profile details to this (first and last name, etc)
                         UserName = User.Identity.Name,
-                        EnrollmentDate = DateTime.Now
+                        EnrollmentDate = DateTime.Now,
+                        LastName = currentUser.LastName,
+                        FirstMidName = currentUser.FirstMidName,
+                        Email = currentUser.Email
                     };
                     db.Instructors.Add(newInstructor);
                     db.SaveChanges();
@@ -208,14 +220,15 @@ namespace PaulSchool.Controllers
                     // sets the actual role of the user to Instructor
                 }
 
-                Instructor instructor = db.Instructors.FirstOrDefault(
-                    o => o.UserName == User.Identity.Name);
-
+                Instructor instructorAgain = db.Instructors.FirstOrDefault(
+                 o => o.UserName == User.Identity.Name);
+                // Have to check the instructor again because if we just created 
+                // the instructor there will be "null" in the "instructor" variable
                 Course newCourse = new Course
                 {
                     Title = appliedCourse.Title,
                     Credits = appliedCourse.Credits,
-                    InstructorID = instructor.InstructorID, 
+                    InstructorID = instructorAgain.InstructorID, 
                     Year = appliedCourse.StartDate.Year,
                     AttendingDays = appliedCourse.AttendingDays,
                     AttendanceCap = appliedCourse.AttendanceCap,
