@@ -11,7 +11,8 @@ using System.Web.Security;
 using PaulSchool.ViewModels;
 
 namespace PaulSchool.Controllers
-{ 
+{
+    //[Authorize(Roles = "Administrator, SuperAdministrator, Instructor")]
     public class InstructorController : Controller
     {
         private SchoolContext db = new SchoolContext();
@@ -19,77 +20,138 @@ namespace PaulSchool.Controllers
         //
         // GET: /Instructor/
 
-        public ViewResult Index(string sortOrder, string currentFilter, string searchString, int? page)
+        [Authorize(Roles = "Administrator, SuperAdministrator, Instructor")]
+        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
-            ViewBag.CurrentSort = sortOrder;
-            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "Name desc" : "";
-            ViewBag.DateSortParm = sortOrder == "Date" ? "Date desc" : "Date";
-            ViewBag.FNameSortParm = sortOrder == "FName" ? "FName desc" : "FName";
-            ViewBag.EmailSortParm = sortOrder == "Email" ? "Email desc" : "Email";
-            ViewBag.UserNameSortParm = sortOrder == "UserName" ? "UserName desc" : "UserName";
-
-            if (Request.HttpMethod == "GET")
+            if (User.IsInRole("Administrator") | User.IsInRole("SuperAdministrator"))
             {
-                searchString = currentFilter;
+                ViewBag.CurrentSort = sortOrder;
+                ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "Name desc" : "";
+                ViewBag.DateSortParm = sortOrder == "Date" ? "Date desc" : "Date";
+                ViewBag.FNameSortParm = sortOrder == "FName" ? "FName desc" : "FName";
+                ViewBag.EmailSortParm = sortOrder == "Email" ? "Email desc" : "Email";
+                ViewBag.UserNameSortParm = sortOrder == "UserName" ? "UserName desc" : "UserName";
+
+                if (Request.HttpMethod == "GET")
+                {
+                    searchString = currentFilter;
+                }
+                else
+                {
+                    page = 1;
+                }
+                ViewBag.CurrentFilter = searchString;
+
+                var instructors = from s in db.Instructors
+                                  select s;
+                if (!String.IsNullOrEmpty(searchString))
+                {
+                    instructors = instructors.Where(s => s.LastName.ToUpper().Contains(searchString.ToUpper())
+                                           || s.FirstMidName.ToUpper().Contains(searchString.ToUpper()));
+                }
+                switch (sortOrder)
+                {
+                    case "Name desc":
+                        instructors = instructors.OrderByDescending(s => s.LastName);
+                        break;
+                    case "Date":
+                        instructors = instructors.OrderBy(s => s.EnrollmentDate);
+                        break;
+                    case "Date desc":
+                        instructors = instructors.OrderByDescending(s => s.EnrollmentDate);
+                        break;
+                    case "FName":
+                        instructors = instructors.OrderBy(s => s.FirstMidName);
+                        break;
+                    case "FName desc":
+                        instructors = instructors.OrderByDescending(s => s.FirstMidName);
+                        break;
+                    case "Email":
+                        instructors = instructors.OrderBy(s => s.Email);
+                        break;
+                    case "Email desc":
+                        instructors = instructors.OrderByDescending(s => s.Email);
+                        break;
+                    case "UserName":
+                        instructors = instructors.OrderBy(s => s.UserName);
+                        break;
+                    case "UserName desc":
+                        instructors = instructors.OrderByDescending(s => s.UserName);
+                        break;
+                    default:
+                        instructors = instructors.OrderBy(s => s.LastName);
+                        break;
+                }
+                int pageSize = 4;
+                int pageNumber = (page ?? 1);
+                return View(instructors.ToPagedList(pageNumber, pageSize));
             }
+
             else
+            // User is not an Admin, let's see if they are an Instructor
             {
-                page = 1;
-            }
-            ViewBag.CurrentFilter = searchString;
+                if (User.IsInRole("Instructor"))
+                {
+                    Instructor instructor = db.Instructors.FirstOrDefault(
+                        n => n.UserName == User.Identity.Name);
 
-            var instructors = from s in db.Instructors
-                           select s;
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                instructors = instructors.Where(s => s.LastName.ToUpper().Contains(searchString.ToUpper())
-                                       || s.FirstMidName.ToUpper().Contains(searchString.ToUpper()));
+                    int id = instructor.InstructorID;
+
+                    Course testCourse = db.Courses.FirstOrDefault(
+                        o => o.InstructorID == id &&
+                             o.Approved == true);
+                    if (testCourse == null)
+                    {
+                        //This is not an instructor with an approved course
+                        ViewBag.FailAllCheck = true;
+                        ViewBag.Fail = "User does not have an Admin-Approved class";
+                        return View();
+                    }
+                    else
+                    {
+                        //This is an instructor with an approved course
+                        //Display the instructor's page
+                        Instructor thisInstructor = db.Instructors.FirstOrDefault(
+                            o => o.UserName == User.Identity.Name);
+                        return RedirectToAction("Details", new { id = thisInstructor.InstructorID });
+                    }
+                }
+                else
+                // Useless as long as the [Authorize] Roles method works at preventing people from getting into this view
+                {
+                    // This user is not an "Administrator", "SuperAdministrator", or "Instructor"
+                    return RedirectToAction("UserNotAuthorized");
+                    //return View();
+                }
             }
-            switch (sortOrder)
-            {
-                case "Name desc":
-                    instructors = instructors.OrderByDescending(s => s.LastName);
-                    break;
-                case "Date":
-                    instructors = instructors.OrderBy(s => s.EnrollmentDate);
-                    break;
-                case "Date desc":
-                    instructors = instructors.OrderByDescending(s => s.EnrollmentDate);
-                    break;
-                case "FName":
-                    instructors = instructors.OrderBy(s => s.FirstMidName);
-                    break;
-                case "FName desc":
-                    instructors = instructors.OrderByDescending(s => s.FirstMidName);
-                    break;
-                case "Email":
-                    instructors = instructors.OrderBy(s => s.Email);
-                    break;
-                case "Email desc":
-                    instructors = instructors.OrderByDescending(s => s.Email);
-                    break;
-                case "UserName":
-                    instructors = instructors.OrderBy(s => s.UserName);
-                    break;
-                case "UserName desc":
-                    instructors = instructors.OrderByDescending(s => s.UserName);
-                    break;
-                default:
-                    instructors = instructors.OrderBy(s => s.LastName);
-                    break;
-            }
-            int pageSize = 4;
-            int pageNumber = (page ?? 1);
-            return View(instructors.ToPagedList(pageNumber, pageSize));
         }
 
         //
         // GET: /Instructor/Details/5
 
-        public ViewResult Details(int id)
+        [Authorize(Roles = "Administrator, SuperAdministrator, Instructor")]
+        public ActionResult Details(int id)
         {
-            Instructor instructor = db.Instructors.Find(id);
-            return View(instructor);
+            if (User.IsInRole("Administrator") | User.IsInRole("SuperAdministrator"))
+            {
+                Instructor instructor = db.Instructors.Find(id);
+                return View(instructor);
+            }
+            else
+            {
+                Instructor instructor = db.Instructors.FirstOrDefault(
+                    o => o.UserName == User.Identity.Name);
+                if (id == instructor.InstructorID)
+                    // if the current user's id matches the instructor's id
+                {
+                    return View(instructor);
+                }
+                else
+                {
+                    // the current user and the selected instructor's id do not match
+                    return RedirectToAction("failedtomatch");
+                }
+            }
         }
 
 

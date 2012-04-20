@@ -33,12 +33,12 @@ namespace PaulSchool.Controllers
                 if (Membership.ValidateUser(model.UserName, model.Password))
                 {
                     FormsAuthentication.SetAuthCookie(model.UserName, model.RememberMe);
-                    CustomProfile profile = CustomProfile.GetUserProfile(model.UserName);
-
-                    if (profile.FilledStudentInfo == "yes")     // If the user is not filled in their Student Info we need to have them fill out the 'student' details table
-                                                                // If the user has illed in their Student Info, they have already filled out the student details table, 
-                                                                // so we can allow them to log on like normal.
-                    //if (1==1)
+                    // Need to identify the user because the user is not officially 'logged in' yet.
+                    MembershipUser u = Membership.GetUser(model.UserName);
+                    var authorized = Roles.IsUserInRole(model.UserName, "Student");
+                    if (authorized)
+                        // If the user already has the Student role, they can be redirected as normal, 
+                        // if not, they need to fill out their profile details.
                     {
                         //FormsAuthentication.SetAuthCookie(model.UserName, model.RememberMe);
                         if (Url.IsLocalUrl(returnUrl) && returnUrl.Length > 1 && returnUrl.StartsWith("/")
