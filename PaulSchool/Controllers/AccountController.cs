@@ -172,8 +172,75 @@ namespace PaulSchool.Controllers
         }
 
         //
+        // GET: /Account/ChangeEmail
+
+        public ActionResult ChangeEmail()
+        {
+            MembershipUser u = Membership.GetUser(User.Identity.Name);
+            ViewBag.Email1 = u.Email;
+            var model = new ChangeEmailViewModel
+            {
+                Email = u.Email
+            };
+            return View(model);
+        }
+
+        //
+        // POST: /Account/ChangeEmail
+
+        [HttpPost]
+        public ActionResult ChangeEmail(ChangeEmailViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                string email = model.Email;
+                string userName = Membership.GetUserNameByEmail(email);
+                // checks if there is a duplicate email in the database
+                if (userName == null)
+                {
+                    // change email
+                    MembershipUser u = Membership.GetUser(User.Identity.Name);
+                    u.Email = email;
+                    System.Web.Security.Membership.UpdateUser(u);
+
+                    //
+                    // Update Student Table, if needed
+                    Student isStudent = db.Students.FirstOrDefault(
+                        o => o.UserName == User.Identity.Name);
+                    if (isStudent != null) // IF the user already exists in the Student Table . . .
+                    {
+                        isStudent.Email = email;
+                        db.SaveChanges();
+                    }
+
+                    //
+                    // Update Instructor Table, if needed
+                    Instructor isInstructor = db.Instructors.FirstOrDefault(
+                        o => o.UserName == User.Identity.Name);
+                    if (isInstructor != null) // IF the user already exists in the Instructor Table . . .
+                    {
+                        isInstructor.Email = email;
+                        db.SaveChanges();
+                    }
+
+                    return RedirectToAction("Profile");
+                }
+                else
+                {
+                    return RedirectToAction("failed");
+                    // don't allow email change as that email is already in use
+                }
+
+            }
+
+            return View(model);
+        }
+
+
+        //
         // GET: /Account/Profile
 
+        [Authorize]
         public ActionResult Profile()
         {
             MembershipUser u = Membership.GetUser(User.Identity.Name);
@@ -190,8 +257,6 @@ namespace PaulSchool.Controllers
             CustomProfile profile = CustomProfile.GetUserProfile(User.Identity.Name);
             ProfileViewModel model = new ProfileViewModel
             {
-                IsTeacher = profile.IsTeacher,
-                FilledStudentInfo = profile.FilledStudentInfo,
                 LastName = profile.LastName,
                 FirstMidName = profile.FirstMidName
             };
@@ -214,8 +279,6 @@ namespace PaulSchool.Controllers
             // validation succeeded => process the results
             // save the profile data
             CustomProfile profile = CustomProfile.GetUserProfile();
-            profile.IsTeacher = model.IsTeacher;
-            profile.FilledStudentInfo = model.FilledStudentInfo;
             profile.LastName = model.LastName;
             profile.FirstMidName = model.FirstMidName;
             profile.Save();

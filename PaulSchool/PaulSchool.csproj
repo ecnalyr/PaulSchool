@@ -75,6 +75,7 @@
     <Compile Include="Models\CustomProfile.cs" />
     <Compile Include="Models\Instructor.cs" />
     <Compile Include="ViewModels\ApplyCourseViewModel.cs" />
+    <Compile Include="ViewModels\ChangeEmailViewModel.cs" />
     <Compile Include="ViewModels\CreateStudentViewModel.cs" />
     <Compile Include="ViewModels\ProfileViewModel.cs" />
     <Compile Include="Views\DAL\SchoolContext.cs" />
@@ -255,6 +256,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Course\_CourseForm.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Account\ChangeEmail.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

@@ -1,0 +1,13 @@
+﻿@{
+    ViewBag.Title = "ChangeEmail";
+}
+
+<h2>ChangeEmail</h2>
+This is your email: <b>@ViewBag.email1</b>
+@using (Html.BeginForm())
+{
+    @Html.EditorForModel()
+    <button type="submit">OK</button>
+}
+<p>The ability to change email is not working as intended.  It does not save the email change and does not apply email change to Instructor and Student tables.</p>
+<p>Need to use something along the lines of: String userName = MembershipProvider.GetUserNameByEmail(email)</p>
