@@ -196,7 +196,8 @@ namespace PaulSchool.Controllers
                 string email = model.Email;
                 string userName = Membership.GetUserNameByEmail(email);
                 // checks if there is a duplicate email in the database
-                if (userName == null)
+                // the following code also executes if user attmps to change their email to the same email that they were already using
+                if (userName == null || (userName != null && userName == User.Identity.Name)) 
                 {
                     // change email
                     MembershipUser u = Membership.GetUser(User.Identity.Name);

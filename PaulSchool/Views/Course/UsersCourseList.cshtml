@@ -1,0 +1,61 @@
+﻿@model PaulSchool.Models.Student
+
+@{
+    ViewBag.Title = "UsersCourseList";
+}
+
+<h2>These are your existing courses</h2>
+<p>If you do not see any courses here, you have yet to sign up for one.  Click @Html.ActionLink("here", "ApplyToCourse", "Course") to sign up for one.</p>
+
+    <div class="display-label">User Name</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.UserName)
+    </div>
+
+    <div class="display-label">
+    <!--@Html.LabelFor(model => model.Enrollments)-->
+    Class History
+    </div>
+    <div class="display-field">
+    <table>
+        <tr>
+            <th>Course Title</th>
+            <th>Start Date</th>
+            <th>Instructor</th>
+            <th>Days in Course</th>
+            <th>Location</th>
+            <th>Parish</th>
+            <th>Description</th>
+            <th>Grade</th>
+        </tr>
+        @foreach (var item in Model.Enrollments)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Course.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Course.StartDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Course.Instructor.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Course.AttendingDays)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Course.Location)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Course.Parish)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Course.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Grade)
+                </td>
+            </tr>
+        }
+    </table>
+    </div>

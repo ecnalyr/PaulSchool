@@ -10,6 +10,7 @@ using System.Web.Security;
 
 namespace PaulSchool.Controllers
 {
+    [Authorize]
     public class CourseController : Controller
     {
         private SchoolContext db = new SchoolContext();
@@ -39,123 +40,133 @@ namespace PaulSchool.Controllers
         //
         // GET: /Course/
 
-        public ViewResult Index(string sortOrder, string currentFilter, string searchString, int? page)
+        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
-            ViewBag.CurrentSort = sortOrder;
-            ViewBag.TitleSortParm = String.IsNullOrEmpty(sortOrder) ? "Title desc" : "";
-            ViewBag.CreditsSortParm = sortOrder == "Credits" ? "Credits desc" : "Credits";
-            ViewBag.InstructorSortParm = sortOrder == "Instructor" ? "Instructor desc" : "Instructor";
-            ViewBag.YearSortParm = sortOrder == "Year" ? "Year desc" : "Year";
-            ViewBag.AttendingDaysSortParm = sortOrder == "AttendingDays" ? "AttendingDays desc" : "AttendingDays";
-            ViewBag.AttendanceCapSortParm = sortOrder == "AttendanceCap" ? "AttendanceCap desc" : "AttendanceCap";
-            ViewBag.StartDateSortParm = sortOrder == "StartDate" ? "StartDate desc" : "StartDate";
-            ViewBag.LocationSortParm = sortOrder == "Location" ? "Location desc" : "Location";
-            ViewBag.ParishSortParm = sortOrder == "Parish" ? "Parish desc" : "Parish";
-            ViewBag.DescriptionSortParm = sortOrder == "Description" ? "Description desc" : "Description";
-            ViewBag.ApprovedSortPArm = sortOrder == "Approved" ? "Approved desc" : "Approved";
-            ViewBag.CompletedSortPArm = sortOrder == "Completed" ? "Completed desc" : "Completed";
-            ViewBag.ArchivedSortPArm = sortOrder == "Archived" ? "Archived desc" : "Archived";
-
-            if (Request.HttpMethod == "GET")
+            /*if (User.IsInRole("Student") && ((!User.IsInRole("Administrator") && (!User.IsInRole("Instructor")) && (!User.IsInRole("SuperAdministrator")))))
+            // If user is only a student
             {
-                searchString = currentFilter;
+                Student thisStudent = db.Students.FirstOrDefault(
+                    o => o.UserName == User.Identity.Name);
+                return RedirectToAction("UsersCourseList", new { id = thisStudent.StudentID });
             }
             else
-            {
-                page = 1;
-            }
-            ViewBag.CurrentFilter = searchString;
+            {*/
+                ViewBag.CurrentSort = sortOrder;
+                ViewBag.TitleSortParm = String.IsNullOrEmpty(sortOrder) ? "Title desc" : "";
+                ViewBag.CreditsSortParm = sortOrder == "Credits" ? "Credits desc" : "Credits";
+                ViewBag.InstructorSortParm = sortOrder == "Instructor" ? "Instructor desc" : "Instructor";
+                ViewBag.YearSortParm = sortOrder == "Year" ? "Year desc" : "Year";
+                ViewBag.AttendingDaysSortParm = sortOrder == "AttendingDays" ? "AttendingDays desc" : "AttendingDays";
+                ViewBag.AttendanceCapSortParm = sortOrder == "AttendanceCap" ? "AttendanceCap desc" : "AttendanceCap";
+                ViewBag.StartDateSortParm = sortOrder == "StartDate" ? "StartDate desc" : "StartDate";
+                ViewBag.LocationSortParm = sortOrder == "Location" ? "Location desc" : "Location";
+                ViewBag.ParishSortParm = sortOrder == "Parish" ? "Parish desc" : "Parish";
+                ViewBag.DescriptionSortParm = sortOrder == "Description" ? "Description desc" : "Description";
+                ViewBag.ApprovedSortPArm = sortOrder == "Approved" ? "Approved desc" : "Approved";
+                ViewBag.CompletedSortPArm = sortOrder == "Completed" ? "Completed desc" : "Completed";
+                ViewBag.ArchivedSortPArm = sortOrder == "Archived" ? "Archived desc" : "Archived";
 
-            var courses = from s in db.Courses
-                           select s;
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                courses = courses.Where(s => s.Title.ToUpper().Contains(searchString.ToUpper()));
-            }
-            switch (sortOrder)
-            {
-                case "Title desc":
-                    courses = courses.OrderByDescending(s => s.Title);
-                    break;
-                case "Credits":
-                    courses = courses.OrderBy(s => s.Credits);
-                    break;
-                case "Credits desc":
-                    courses = courses.OrderByDescending(s => s.Credits);
-                    break;
-                case "Instructor":
-                    courses = courses.OrderBy(s => s.Instructor.LastName);
-                    break;
-                case "Instructor desc":
-                    courses = courses.OrderByDescending(s => s.Instructor.LastName);
-                    break;
-                case "Year":
-                    courses = courses.OrderBy(s => s.Year);
-                    break;
-                case "Year desc":
-                    courses = courses.OrderByDescending(s => s.Year);
-                    break;
-                case "AttendingDays":
-                    courses = courses.OrderBy(s => s.AttendingDays);
-                    break;
-                case "AttendingDays desc":
-                    courses = courses.OrderByDescending(s => s.AttendingDays);
-                    break;
-                case "AttendanceCap":
-                    courses = courses.OrderBy(s => s.AttendanceCap);
-                    break;
-                case "AttendanceCap desc":
-                    courses = courses.OrderByDescending(s => s.AttendanceCap);
-                    break;
-                case "StartDate":
-                    courses = courses.OrderBy(s => s.StartDate);
-                    break;
-                case "StartDate desc":
-                    courses = courses.OrderByDescending(s => s.StartDate);
-                    break;
-                case "Location":
-                    courses = courses.OrderBy(s => s.Location);
-                    break;
-                case "Location desc":
-                    courses = courses.OrderByDescending(s => s.Location);
-                    break;
-                case "Parish":
-                    courses = courses.OrderBy(s => s.Parish);
-                    break;
-                case "Parish desc":
-                    courses = courses.OrderByDescending(s => s.Parish);
-                    break;
-                case "Description":
-                    courses = courses.OrderBy(s => s.Description);
-                    break;
-                case "Description desc":
-                    courses = courses.OrderByDescending(s => s.Description);
-                    break;
-                case "Approved":
-                    courses = courses.OrderBy(s => s.Approved);
-                    break;
-                case "Approved desc":
-                    courses = courses.OrderByDescending(s => s.Approved);
-                    break;
-                case "Completed":
-                    courses = courses.OrderBy(s => s.Completed);
-                    break;
-                case "Completed desc":
-                    courses = courses.OrderByDescending(s => s.Completed);
-                    break;
-                case "Archived":
-                    courses = courses.OrderBy(s => s.Archived);
-                    break;
-                case "Archived desc":
-                    courses = courses.OrderByDescending(s => s.Archived);
-                    break;
-                default:
-                    courses = courses.OrderBy(s => s.Title);
-                    break;
-            }
-            int pageSize = 4;
-            int pageNumber = (page ?? 1);
-            return View(courses.ToPagedList(pageNumber, pageSize));
+                if (Request.HttpMethod == "GET")
+                {
+                    searchString = currentFilter;
+                }
+                else
+                {
+                    page = 1;
+                }
+                ViewBag.CurrentFilter = searchString;
+
+                var courses = from s in db.Courses
+                               select s;
+                if (!String.IsNullOrEmpty(searchString))
+                {
+                    courses = courses.Where(s => s.Title.ToUpper().Contains(searchString.ToUpper()));
+                }
+                switch (sortOrder)
+                {
+                    case "Title desc":
+                        courses = courses.OrderByDescending(s => s.Title);
+                        break;
+                    case "Credits":
+                        courses = courses.OrderBy(s => s.Credits);
+                        break;
+                    case "Credits desc":
+                        courses = courses.OrderByDescending(s => s.Credits);
+                        break;
+                    case "Instructor":
+                        courses = courses.OrderBy(s => s.Instructor.LastName);
+                        break;
+                    case "Instructor desc":
+                        courses = courses.OrderByDescending(s => s.Instructor.LastName);
+                        break;
+                    case "Year":
+                        courses = courses.OrderBy(s => s.Year);
+                        break;
+                    case "Year desc":
+                        courses = courses.OrderByDescending(s => s.Year);
+                        break;
+                    case "AttendingDays":
+                        courses = courses.OrderBy(s => s.AttendingDays);
+                        break;
+                    case "AttendingDays desc":
+                        courses = courses.OrderByDescending(s => s.AttendingDays);
+                        break;
+                    case "AttendanceCap":
+                        courses = courses.OrderBy(s => s.AttendanceCap);
+                        break;
+                    case "AttendanceCap desc":
+                        courses = courses.OrderByDescending(s => s.AttendanceCap);
+                        break;
+                    case "StartDate":
+                        courses = courses.OrderBy(s => s.StartDate);
+                        break;
+                    case "StartDate desc":
+                        courses = courses.OrderByDescending(s => s.StartDate);
+                        break;
+                    case "Location":
+                        courses = courses.OrderBy(s => s.Location);
+                        break;
+                    case "Location desc":
+                        courses = courses.OrderByDescending(s => s.Location);
+                        break;
+                    case "Parish":
+                        courses = courses.OrderBy(s => s.Parish);
+                        break;
+                    case "Parish desc":
+                        courses = courses.OrderByDescending(s => s.Parish);
+                        break;
+                    case "Description":
+                        courses = courses.OrderBy(s => s.Description);
+                        break;
+                    case "Description desc":
+                        courses = courses.OrderByDescending(s => s.Description);
+                        break;
+                    case "Approved":
+                        courses = courses.OrderBy(s => s.Approved);
+                        break;
+                    case "Approved desc":
+                        courses = courses.OrderByDescending(s => s.Approved);
+                        break;
+                    case "Completed":
+                        courses = courses.OrderBy(s => s.Completed);
+                        break;
+                    case "Completed desc":
+                        courses = courses.OrderByDescending(s => s.Completed);
+                        break;
+                    case "Archived":
+                        courses = courses.OrderBy(s => s.Archived);
+                        break;
+                    case "Archived desc":
+                        courses = courses.OrderByDescending(s => s.Archived);
+                        break;
+                    default:
+                        courses = courses.OrderBy(s => s.Title);
+                        break;
+                }
+                int pageSize = 4;
+                int pageNumber = (page ?? 1);
+                return View(courses.ToPagedList(pageNumber, pageSize));
+            //}
         }
 
         //
@@ -247,5 +258,103 @@ namespace PaulSchool.Controllers
             return View(appliedCourse);
         }
 
+        //
+        // GET: /Course/UsersCourseList
+
+        public ViewResult UsersCourseList()
+        {
+            Student thisStudent = db.Students.FirstOrDefault(
+                o => o.UserName == User.Identity.Name);
+            return View(thisStudent);
+        }
+
+        //
+        // GET: /Course/ApplyToCourse
+
+        public ViewResult ApplyToCourse(string sortOrder, string currentFilter, string searchString, int? page)
+        {
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.TitleSortParm = String.IsNullOrEmpty(sortOrder) ? "Title desc" : "";
+            ViewBag.StartDateSortParm = sortOrder == "StartDate" ? "StartDate desc" : "StartDate";
+            ViewBag.CreditsSortParm = sortOrder == "Credits" ? "Credits desc" : "Credits";
+            ViewBag.InstructorSortParm = sortOrder == "Instructor" ? "Instructor desc" : "Instructor";
+            ViewBag.AttendingDaysSortParm = sortOrder == "AttendingDays" ? "AttendingDays desc" : "AttendingDays";
+            ViewBag.AttendanceCapSortParm = sortOrder == "AttendanceCap" ? "AttendanceCap desc" : "AttendanceCap";
+            ViewBag.LocationSortParm = sortOrder == "Location" ? "Location desc" : "Location";
+            ViewBag.ParishSortParm = sortOrder == "Parish" ? "Parish desc" : "Parish";
+
+            if (Request.HttpMethod == "GET")
+            {
+                searchString = currentFilter;
+            }
+            else
+            {
+                page = 1;
+            }
+            ViewBag.CurrentFilter = searchString;
+
+            var courses = from s in db.Courses
+                          where s.Approved == true
+                          select s;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                courses = courses.Where(s => s.Title.ToUpper().Contains(searchString.ToUpper()));
+            }
+            switch (sortOrder)
+            {
+                case "Title desc":
+                    courses = courses.OrderByDescending(s => s.Title);
+                    break;
+                case "StartDate":
+                    courses = courses.OrderBy(s => s.StartDate);
+                    break;
+                case "StartDate desc":
+                    courses = courses.OrderByDescending(s => s.StartDate);
+                    break;
+                case "Credits":
+                    courses = courses.OrderBy(s => s.Credits);
+                    break;
+                case "Credits desc":
+                    courses = courses.OrderByDescending(s => s.Credits);
+                    break;
+                case "Instructor":
+                    courses = courses.OrderBy(s => s.Instructor.LastName);
+                    break;
+                case "Instructor desc":
+                    courses = courses.OrderByDescending(s => s.Instructor.LastName);
+                    break;
+                case "AttendingDays":
+                    courses = courses.OrderBy(s => s.AttendingDays);
+                    break;
+                case "AttendingDays desc":
+                    courses = courses.OrderByDescending(s => s.AttendingDays);
+                    break;
+                case "AttendanceCap":
+                    courses = courses.OrderBy(s => s.AttendanceCap);
+                    break;
+                case "AttendanceCap desc":
+                    courses = courses.OrderByDescending(s => s.AttendanceCap);
+                    break;
+                case "Location":
+                    courses = courses.OrderBy(s => s.Location);
+                    break;
+                case "Location desc":
+                    courses = courses.OrderByDescending(s => s.Location);
+                    break;
+                case "Parish":
+                    courses = courses.OrderBy(s => s.Parish);
+                    break;
+                case "Parish desc":
+                    courses = courses.OrderByDescending(s => s.Parish);
+                    break;
+                default:
+                    courses = courses.OrderBy(s => s.Title);
+                    break;
+            }
+            int pageSize = 4;
+            int pageNumber = (page ?? 1);
+            return View(courses.ToPagedList(pageNumber, pageSize));
+        }
     }
 }

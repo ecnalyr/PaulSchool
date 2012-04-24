@@ -4,12 +4,22 @@
 
 <h2>ChangeProfile</h2>
 
-@using (Html.BeginForm())
+@if (Request.IsAuthenticated)
 {
-    @Html.EditorForModel()
-    <button type="submit">OK</button>
+    <div>
+
+    @using (Html.BeginForm())
+    {
+        @Html.EditorForModel()
+        <button type="submit">OK</button>
+    }
+    <div>
+        @Html.ActionLink("Back to Profile", "Profile")
+    </div>
+    <div>
+        @Html.ActionLink("Change Email", "ChangeEmail")
+    </div>
+
+    </div>
 }
-<div>
-    @Html.ActionLink("Back to Profile", "Profile")
-</div>
 
