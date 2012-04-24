@@ -172,10 +172,55 @@ namespace PaulSchool.Controllers
         //
         // GET: /Course/Details/5
 
-        public ViewResult Details(int id)
+        public ActionResult Details(int id)
         {
             Course course = db.Courses.Find(id);
             return View(course);
+        }
+
+        //
+        // POST: /Course/Details/5
+        [HttpPost]
+        public ActionResult ApplyUsingDetails(Course idGetter)
+        {
+            //try to join class
+            Course course = db.Courses.Find(idGetter.CourseID);
+            int id = course.CourseID;
+            if (course.Approved && !course.Completed)
+            {
+                Student thisStudent = db.Students.FirstOrDefault(
+                    o => o.UserName == User.Identity.Name);
+
+                //Enrollment nullIfStudentDoesNotHaveThisCourse = db.Enrollments.FirstOrDefault(
+                //    o => o.Student == thisStudent && o.CourseID == id);
+                var nullIfStudentDoesNotHaveThisCourse = from s in db.Enrollments
+                                    where s.Student == thisStudent && s.CourseID == id 
+                                    select s;
+
+                if ( nullIfStudentDoesNotHaveThisCourse != null)
+                {
+                    if ( course.Enrollments.Count < course.AttendanceCap )
+                    {
+                        //allow student to join class
+                        return View("student is allowed to join class");
+                    }
+                    else
+                    {
+                        // Class is full
+                        return View("class is full");
+                    }
+                }
+                else
+                {
+                    //  Student is already in class
+                    return View("student is already in class");
+                }
+            }
+            else
+            {
+                // Course is either not approved to begin by administrator or has already been completed
+                return View("CourseNotReady");
+            }
         }
 
         //
@@ -293,9 +338,7 @@ namespace PaulSchool.Controllers
             }
             ViewBag.CurrentFilter = searchString;
 
-            var courses = from s in db.Courses
-                          where s.Approved == true
-                          select s;
+            var courses = db.Courses.Where(s => s.Approved== true);
 
             if (!String.IsNullOrEmpty(searchString))
             {
