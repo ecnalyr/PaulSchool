@@ -306,6 +306,18 @@ namespace PaulSchool.Controllers
             return View(appliedCourse);
         }
 
+
+        //
+        // GET: /Course/TeachingCourseList
+
+        public ViewResult TeachingCourseList()
+        {
+            Instructor thisInstructor = db.Instructors.FirstOrDefault(
+                o => o.UserName == User.Identity.Name);
+            return View(thisInstructor);
+        }
+
+
         //
         // GET: /Course/UsersCourseList
 

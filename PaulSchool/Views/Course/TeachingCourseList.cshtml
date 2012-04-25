@@ -1,0 +1,61 @@
+﻿@model PaulSchool.Models.Instructor
+
+@{
+    ViewBag.Title = "TeachingCourseList";
+}
+
+<h2>Classes you are teaching or have taught</h2>
+<p>If you do not see any courses here, you have yet to sign up to teach a class.  Click @Html.ActionLink("here", "ApplyToTeach", "Course") to apply to teach.</p>
+
+    <div class="display-label">User Name</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.UserName)
+    </div>
+
+    <div class="display-label">
+    <!--@Html.LabelFor(model => model.Courses)-->
+    Classes you are teaching or have taught
+    </div>
+    <div class="display-field">
+    <table>
+        <tr>
+            <th>Course Title</th>
+            <th>Start Date</th>
+            <th>Days in Course</th>
+            <th>Location</th>
+            <th>Parish</th>
+            <th>Description</th>
+            <th>Admin Approved?</th>
+            <th>Completed?</th>
+        </tr>
+        @foreach (var item in Model.Courses)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AttendingDays)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Location)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Parish)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Approved)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Completed)
+                </td>
+            </tr>
+        }
+    </table>
+    </div>
