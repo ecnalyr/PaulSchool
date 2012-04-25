@@ -31,7 +31,7 @@ namespace PaulSchool.ViewModels
 
         [Required]
         [Range(1, 100.00,
-            ErrorMessage = "Credits must be a positive value (typically 30)")]
+            ErrorMessage = "Attendance Cap must be a positive value (typically 30)")]
         public int AttendanceCap { get; set; } // default of 30
 
         [Required]
