@@ -175,7 +175,7 @@ namespace PaulSchool.Controllers
         [HttpPost]
         public ActionResult ApplyUsingDetails(Course idGetter)
         {
-            //try to join class
+            //try to join course
             Course course = db.Courses.Find(idGetter.CourseID);
             int id = course.CourseID;
             if (course.Approved && !course.Completed)
@@ -196,6 +196,19 @@ namespace PaulSchool.Controllers
                             StudentID = thisStudent.StudentID,
                             Grade = "incomplete"
                         };
+
+                        for (int i = 0; i < course.AttendingDays; i++)
+                        // Adds attendance rows for every day needed in the attendance table
+                        {
+                            Attendance newAttendance = new Attendance
+                            {
+                                CourseID = course.CourseID,
+                                StudentID = thisStudent.StudentID,
+                                AttendanceDay = i+1,
+                                Present = false
+                            };
+                            db.Attendance.Add(newAttendance);
+                        }
 
                         db.Enrollments.Add(newEnrollment);
                         db.SaveChanges();

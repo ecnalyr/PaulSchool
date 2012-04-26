@@ -71,6 +71,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InstructorController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
+    <Compile Include="Models\Attendance.cs" />
     <Compile Include="Models\CourseTemplates.cs" />
     <Compile Include="Models\CustomProfile.cs" />
     <Compile Include="Models\Instructor.cs" />
