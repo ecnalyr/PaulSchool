@@ -1,0 +1,14 @@
+C:\Users\Administrator\Desktop\TroyGoode-MembershipStarterKit-0d8f761\TroyGoode-MembershipStarterKit-0d8f761\src\MvcMembership\bin\Debug\MvcMembership.dll
+C:\Users\Administrator\Desktop\TroyGoode-MembershipStarterKit-0d8f761\TroyGoode-MembershipStarterKit-0d8f761\src\MvcMembership\bin\Debug\MvcMembership.pdb
+C:\Users\Administrator\Desktop\TroyGoode-MembershipStarterKit-0d8f761\TroyGoode-MembershipStarterKit-0d8f761\src\MvcMembership\bin\Debug\PagedList.dll
+C:\Users\Administrator\Desktop\TroyGoode-MembershipStarterKit-0d8f761\TroyGoode-MembershipStarterKit-0d8f761\src\MvcMembership\bin\Debug\PagedList.xml
+C:\Users\Administrator\Desktop\TroyGoode-MembershipStarterKit-0d8f761\TroyGoode-MembershipStarterKit-0d8f761\src\MvcMembership\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Administrator\Desktop\TroyGoode-MembershipStarterKit-0d8f761\TroyGoode-MembershipStarterKit-0d8f761\src\MvcMembership\obj\Debug\MvcMembership.dll
+C:\Users\Administrator\Desktop\TroyGoode-MembershipStarterKit-0d8f761\TroyGoode-MembershipStarterKit-0d8f761\src\MvcMembership\obj\Debug\MvcMembership.pdb
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\PaulSchoolGit\MvcMembership\bin\Debug\MvcMembership.dll
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\PaulSchoolGit\MvcMembership\bin\Debug\MvcMembership.pdb
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\PaulSchoolGit\MvcMembership\bin\Debug\PagedList.dll
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\PaulSchoolGit\MvcMembership\bin\Debug\PagedList.xml
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\PaulSchoolGit\MvcMembership\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\PaulSchoolGit\MvcMembership\obj\Debug\MvcMembership.dll
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\PaulSchoolGit\MvcMembership\obj\Debug\MvcMembership.pdb

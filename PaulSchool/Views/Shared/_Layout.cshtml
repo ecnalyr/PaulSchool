@@ -22,12 +22,13 @@
             </div>
             <div id="menucontainer">
                 <ul id="menu">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Students", "Index", "Student")</li>
-                    <li>@Html.ActionLink("Courses", "Index", "Course")</li>
-                    <li>@Html.ActionLink("Instructors", "Index", "Instructor")</li>
-                    <li>@Html.ActionLink("Your Classes", "UsersCourseList", "Course")</li>
-                    <li>@Html.ActionLink("Classes You Teach", "TeachingCourseList", "Course")</li>
+                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, null)</li>
+                    <li>@Html.ActionLink("Students", "Index", "Student", new { area = "" }, null)</li>
+                    <li>@Html.ActionLink("Courses", "Index", "Course", new { area = "" }, null)</li>
+                    <li>@Html.ActionLink("Instructors", "Index", "Instructor", new { area = "" }, null)</li>
+                    <li>@Html.ActionLink("Your Classes", "UsersCourseList", "Course", new { area = "" }, null)</li>
+                    <li>@Html.ActionLink("Classes You Teach", "TeachingCourseList", "Course", new { area = "" }, null)</li>
+                    <li>@Html.ActionLink("User Administration", "Index", "UserAdministration", new { area = "MvcMembership" }, null)</li>
                 </ul>
             </div>
         </div>

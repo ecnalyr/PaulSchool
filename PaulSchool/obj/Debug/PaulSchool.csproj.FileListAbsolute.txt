@@ -16,3 +16,11 @@ C:\Users\Administrator\Documents\Visual Studio 2010\Projects\PaulSchoolGit\PaulS
 C:\Users\Administrator\Documents\Visual Studio 2010\Projects\PaulSchoolGit\PaulSchool\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\Administrator\Documents\Visual Studio 2010\Projects\PaulSchoolGit\PaulSchool\obj\Debug\PaulSchool.dll
 C:\Users\Administrator\Documents\Visual Studio 2010\Projects\PaulSchoolGit\PaulSchool\obj\Debug\PaulSchool.pdb
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\PaulSchoolGit\PaulSchool\bin\DataAnnotationsExtensions.ClientValidation.dll
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\PaulSchoolGit\PaulSchool\bin\DataAnnotationsExtensions.dll
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\PaulSchoolGit\PaulSchool\bin\MvcMembership.dll
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\PaulSchoolGit\PaulSchool\bin\WebActivator.dll
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\PaulSchoolGit\PaulSchool\bin\MvcMembership.pdb
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\PaulSchoolGit\PaulSchool\bin\MvcMembership.xml
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\PaulSchoolGit\PaulSchool\bin\PagedList.Mvc.dll
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\PaulSchoolGit\PaulSchool\bin\PagedList.Mvc.xml

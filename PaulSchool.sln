@@ -2,6 +2,11 @@
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Web Developer Express 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaulSchool", "PaulSchool\PaulSchool.csproj", "{CC2DC116-F51B-416C-A716-45025F1A33D2}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C9D7F653-E589-44CE-9D41-89821F4F9E4E} = {C9D7F653-E589-44CE-9D41-89821F4F9E4E}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcMembership", "MvcMembership\MvcMembership.csproj", "{C9D7F653-E589-44CE-9D41-89821F4F9E4E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,6 +18,10 @@ Global
 		{CC2DC116-F51B-416C-A716-45025F1A33D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CC2DC116-F51B-416C-A716-45025F1A33D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CC2DC116-F51B-416C-A716-45025F1A33D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9D7F653-E589-44CE-9D41-89821F4F9E4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9D7F653-E589-44CE-9D41-89821F4F9E4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9D7F653-E589-44CE-9D41-89821F4F9E4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9D7F653-E589-44CE-9D41-89821F4F9E4E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

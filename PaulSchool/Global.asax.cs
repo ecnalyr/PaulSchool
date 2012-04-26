@@ -7,6 +7,7 @@ using System.Web.Routing;
 using System.Data.Entity;
 using PaulSchool.Models;
 using PaulSchool.DAL;
+using System.Web.Security;
 
 namespace PaulSchool
 {
@@ -41,5 +42,12 @@ namespace PaulSchool
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
         }
+
+        protected void Application_AuthenticateRequest()
+        {
+            if (HttpContext.Current.User != null)
+                Membership.GetUser(true);
+        }
+
     }
 }
