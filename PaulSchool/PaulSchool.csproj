@@ -81,6 +81,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\WebActivator.1.2.0.0\lib\NETFramework40\WebActivator.dll</HintPath>
     </Reference>
+    <Reference Include="WebGridMvc">
+      <HintPath>..\packages\WebGridMvc.1.0.0\lib\net40\WebGridMvc.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RegisterClientValidationExtensions.cs" />
@@ -91,6 +94,7 @@
     <Compile Include="Areas\MvcMembership\Models\UserAdministration\RoleViewModel.cs" />
     <Compile Include="Areas\MvcMembership\MvcMembershipAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AttendanceController.cs" />
     <Compile Include="Controllers\CourseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InstructorController.cs" />
@@ -100,6 +104,7 @@
     <Compile Include="Models\CustomProfile.cs" />
     <Compile Include="Models\Instructor.cs" />
     <Compile Include="ViewModels\ApplyCourseViewModel.cs" />
+    <Compile Include="ViewModels\AttendanceViewModel.cs" />
     <Compile Include="ViewModels\ChangeEmailViewModel.cs" />
     <Compile Include="ViewModels\CreateStudentViewModel.cs" />
     <Compile Include="ViewModels\ProfileViewModel.cs" />
@@ -200,6 +205,7 @@
     <Content Include="Scripts\modernizr-2.5.3.js" />
     <Content Include="Scripts\PagedList\PagedList.Mvc.js" />
     <Content Include="Scripts\PagedList\PagedList.Mvc.Template.html" />
+    <Content Include="Scripts\webGrid.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -311,6 +317,12 @@
       <Project>{C9D7F653-E589-44CE-9D41-89821F4F9E4E}</Project>
       <Name>MvcMembership</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Attendance\Attendance.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Attendance\List.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

@@ -24,3 +24,4 @@ C:\Users\Administrator\Documents\Visual Studio 2010\Projects\PaulSchoolGit\PaulS
 C:\Users\Administrator\Documents\Visual Studio 2010\Projects\PaulSchoolGit\PaulSchool\bin\MvcMembership.xml
 C:\Users\Administrator\Documents\Visual Studio 2010\Projects\PaulSchoolGit\PaulSchool\bin\PagedList.Mvc.dll
 C:\Users\Administrator\Documents\Visual Studio 2010\Projects\PaulSchoolGit\PaulSchool\bin\PagedList.Mvc.xml
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\PaulSchoolGit\PaulSchool\bin\WebGridMvc.dll
