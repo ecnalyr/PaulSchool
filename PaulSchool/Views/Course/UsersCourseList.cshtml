@@ -28,8 +28,10 @@
             <th>Description</th>
             <th>Grade</th>
         </tr>
-        @foreach (var item in Model.Enrollments)
-        {
+        @{if (Model != null)
+          { 
+            foreach (var item in Model.Enrollments)
+            {
             <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.Course.Title)
@@ -56,6 +58,9 @@
                     @Html.DisplayFor(modelItem => item.Grade)
                 </td>
             </tr>
+            }
+          }
         }
+
     </table>
     </div>
