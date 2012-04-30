@@ -81,52 +81,58 @@
 
         </div>
 
-        <div class="display-label">
-        List of Students
-        </div>
-        <div class="display-field">
-        <table>
-            <tr>
-                <th>First and Middle Name</th>
-                <th>Last Name</th>
-            </tr>
-            @foreach (var item in Model.Enrollments)
-            {
+        @{if (User.IsInRole("Administrator"))
+          {
+            <!-- As Viewable by Admin-->
+            <div class="display-label">
+            List of Students as viewed by Admins
+            </div>
+            <div class="display-field">
+            <table>
                 <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Student.FirstMidName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Student.LastName)
-                    </td>
+                    <th>First and Middle Name</th>
+                    <th>Last Name</th>
                 </tr>
-            }
-        </table>
-        </div>
-
-        <!-- As Viewable by Admin-->
-        <div class="display-label">
-        List of Students as viewed by Admins
-        </div>
-        <div class="display-field">
-        <table>
-            <tr>
-                <th>First and Middle Name</th>
-                <th>Last Name</th>
-            </tr>
-            @foreach (var item in Model.Enrollments)
-            {
+                @foreach (var item in Model.Enrollments)
+                {
+                    <tr>
+                        <td>
+                            @Html.ActionLink(item.Student.FirstMidName, "Details", "Student", new { id = item.Student.StudentID }, "a")
+                        </td>
+                        <td>
+                            @Html.ActionLink(item.Student.LastName, "Details", "Student", new { id = item.Student.StudentID }, "a")
+                        </td>
+                    </tr>
+                }
+            </table>
+            </div>
+          }
+          if (User.IsInRole("Instructor"))
+          {
+            <div class="display-label">
+            List of Students
+            </div>
+            <div class="display-field">
+            <table>
                 <tr>
-                    <td>
-                        @Html.ActionLink(item.Student.FirstMidName, "Details", "Student", new { id = item.Student.StudentID }, "a")
-                    </td>
-                    <td>
-                        @Html.ActionLink(item.Student.LastName, "Details", "Student", new { id = item.Student.StudentID }, "a")
-                    </td>
+                    <th>First and Middle Name</th>
+                    <th>Last Name</th>
                 </tr>
-            }
-        </table>
-        </div>
+                @foreach (var item in Model.Enrollments)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Student.FirstMidName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Student.LastName)
+                        </td>
+                    </tr>
+                }
+            </table>
+            </div>
+          }
+         }
     </fieldset>
     <p>
         @Html.ActionLink("Edit", "Edit", new { id = Model.CourseID }) |

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<PaulSchool.Models.Attendance>
+﻿@model IEnumerable<dynamic>
 @{
     ViewBag.Title = "List";
 }
@@ -8,7 +8,8 @@
 <div>
 @{
     var grid = new WebGrid(Model, defaultSort: "Name");
-    
-    @grid.GetHtml()
 }
+        
+    @grid.GetHtml()
+
 </div>

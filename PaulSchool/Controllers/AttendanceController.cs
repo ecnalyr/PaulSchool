@@ -35,8 +35,22 @@ namespace PaulSchool.Controllers
         // GET: /Attendance/List  - Should list all attendance values from ONLY courseID = 4
         public ActionResult List()
         {
-            IEnumerable<Attendance> model = db.Attendance.Where(s => s.CourseID == 4);
+            //IEnumerable<Attendance> model = db.Attendance.Where(s => s.CourseID == 4);
+            //return View(model);
+            // All of the below code is a work in progress - above code yields a functional (although incorrect) table when used
+            // with the List view.
+            var z = 4;
+            var model = from s in db.Attendance
+                                 where s.CourseID == z
+                                 group s.AttendanceDay by s.StudentID into t
+                                 select new
+                                 {
+                                     StudentID = t.Key,
+                                     Days = t.OrderBy(x => x)
+                                 };
+
             return View(model);
+
         }
 
     }

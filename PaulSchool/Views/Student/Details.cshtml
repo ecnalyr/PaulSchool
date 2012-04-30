@@ -34,56 +34,62 @@
         @Html.DisplayFor(model => model.UserName)
     </div>
 
-    <div class="display-label">
-    <!--@Html.LabelFor(model => model.Enrollments)-->
-    Class History
-    </div>
-    <div class="display-field">
-    <table>
-        <tr>
-            <th>Course Title</th>
-            <th>Grade</th>
-        </tr>
-        @foreach (var item in Model.Enrollments)
-        {
+    @{if (User.IsInRole("Administrator"))
+      {
+        <!--Admin Only Section - needs links to classes-->
+        <div class="display-label">
+        Class History as viewed by Admins
+        </div>
+        <div class="display-field">
+        <table>
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Course.Title)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Grade)
-                </td>
+                <th>Course Title</th>
+                <th>Grade</th>
             </tr>
-        }
-    </table>
-    </div>
+            @foreach (var item in Model.Enrollments)
+            {
+                <tr>
+                    <td>
+                        @Html.ActionLink(item.Course.Title, "Details", "Course", new { id = item.Course.CourseID }, "a")
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Grade)
+                    </td>
+                </tr>
+            }
+        </table>
+        </div> 
+      }
+      else
+      {
+        <div class="display-label">
+        Class History
+        </div>
+        <div class="display-field">
+        <table>
+            <tr>
+                <th>Course Title</th>
+                <th>Grade</th>
+            </tr>
+            @foreach (var item in Model.Enrollments)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Course.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Grade)
+                    </td>
+                </tr>
+            }
+        </table>
+        </div>
 
-    <!--Admin Only Section - needs links to classes-->
-    <div class="display-label">
-    <!--@Html.LabelFor(model => model.Enrollments)-->
-    Class History as viewed by Admins
-    </div>
-    <div class="display-field">
-    <table>
-        <tr>
-            <th>Course Title</th>
-            <th>Grade</th>
-        </tr>
-        @foreach (var item in Model.Enrollments)
-        {
-            <tr>
-                <td>
-                    @Html.ActionLink(item.Course.Title, "Details", "Course", new { id= item.Course.CourseID }, "a")
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Grade)
-                </td>
-            </tr>
-        }
-    </table>
-    </div>
+      }
+    }
+
 </fieldset>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id=Model.StudentID }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.StudentID }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
