@@ -309,7 +309,10 @@ namespace PaulSchool.Controllers
                 };
                 db.Students.Add(newStudent);
                 db.SaveChanges();
-                Roles.AddUserToRole(User.Identity.Name, "Student");
+                if (!User.IsInRole("Student"))
+                {
+                    Roles.AddUserToRole(User.Identity.Name, "Student");
+                }
             }
 
             // check if already existing on the instructor table - update the table if needed

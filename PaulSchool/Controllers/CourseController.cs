@@ -288,7 +288,10 @@ namespace PaulSchool.Controllers
                     };
                     db.Instructors.Add(newInstructor);
                     db.SaveChanges();
-                    Roles.AddUserToRole(User.Identity.Name, "Instructor");
+                    if (!User.IsInRole("Instructor"))
+                    {
+                        Roles.AddUserToRole(User.Identity.Name, "Instructor");
+                    }
                     // sets the actual role of the user to Instructor
                 }
 
@@ -313,6 +316,17 @@ namespace PaulSchool.Controllers
                     Archived = false
                 };
                 db.Courses.Add(newCourse);
+                db.SaveChanges();
+
+                // Add the notification for the Admin that someone has applied to teach a Course
+                Notification newNotification = new Notification
+                {
+                    Time = DateTime.Now,
+                    Link = Url.Action("Details", "Course", new { id = newCourse.CourseID }),
+                    ViewableBy = "Admin",
+                    Complete = false
+                };
+                db.Notification.Add(newNotification);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
