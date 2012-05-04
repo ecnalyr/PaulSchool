@@ -33,6 +33,8 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Link)
+            @Html.ActionLink("click", Url.Action(item.Link))
+            <a href=@item.Link>"clicky"</a>
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.ViewableBy)
