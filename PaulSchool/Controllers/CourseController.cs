@@ -319,9 +319,11 @@ namespace PaulSchool.Controllers
                 db.SaveChanges();
 
                 // Add the notification for the Admin that someone has applied to teach a Course
+                
                 Notification newNotification = new Notification
                 {
                     Time = DateTime.Now,
+                    Details = "An Instructor by the name of "+instructorAgain.LastName+" has applied to teach "+appliedCourse.Title,
                     Link = Url.Action("Details", "Course", new { id = newCourse.CourseID }),
                     ViewableBy = "Admin",
                     Complete = false

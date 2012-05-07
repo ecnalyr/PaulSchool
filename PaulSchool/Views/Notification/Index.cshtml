@@ -32,9 +32,10 @@
             @Html.DisplayFor(modelItem => item.Time)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Link)
-            @Html.ActionLink("click", Url.Action(item.Link))
-            <a href=@item.Link>"clicky"</a>
+            @Html.DisplayFor(modelItem => item.Details)
+        </td>
+        <td>
+            <a href=@item.Link>"Go to issue"</a>
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.ViewableBy)
