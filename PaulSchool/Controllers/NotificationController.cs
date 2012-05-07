@@ -9,6 +9,7 @@ using PaulSchool.Models;
 
 namespace PaulSchool.Controllers
 { 
+    [Authorize]
     public class NotificationController : Controller
     {
         private SchoolContext db = new SchoolContext();
@@ -18,7 +19,10 @@ namespace PaulSchool.Controllers
 
         public ViewResult Index()
         {
-            return View(db.Notification.ToList());
+            var incompleteNotifications= db.Notification.Where(
+                o => o.Complete == false);
+
+            return View(incompleteNotifications.ToList());
         }
 
         //
@@ -95,6 +99,17 @@ namespace PaulSchool.Controllers
         {            
             Notification notification = db.Notification.Find(id);
             db.Notification.Remove(notification);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        //
+        // GET: /Notification/Complete/5
+
+        public ActionResult Complete(int id)
+        {
+            Notification notification = db.Notification.Find(id);
+            notification.Complete = true;
             db.SaveChanges();
             return RedirectToAction("Index");
         }

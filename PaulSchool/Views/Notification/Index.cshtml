@@ -15,6 +15,9 @@
             Time
         </th>
         <th>
+            Description
+        </th>
+        <th>
             Link
         </th>
         <th>
@@ -35,7 +38,7 @@
             @Html.DisplayFor(modelItem => item.Details)
         </td>
         <td>
-            <a href=@item.Link>"Go to issue"</a>
+            <a href=@item.Link>View</a>
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.ViewableBy)
@@ -44,9 +47,12 @@
             @Html.DisplayFor(modelItem => item.Complete)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.NotificationID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.NotificationID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.NotificationID })
+            @Html.ActionLink("Complete", "Complete", new { id=item.NotificationID })
+            @{if (User.IsInRole("SuperAdministrator"))
+              {
+                  @Html.ActionLink("Delete", "Delete", new { id = item.NotificationID });                  
+              }
+            }
         </td>
     </tr>
 }

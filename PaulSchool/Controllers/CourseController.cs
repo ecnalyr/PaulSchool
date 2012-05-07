@@ -213,6 +213,18 @@ namespace PaulSchool.Controllers
                         db.Enrollments.Add(newEnrollment);
                         db.SaveChanges();
 
+                        Notification newNotification = new Notification
+                        {
+                            Time = DateTime.Now,
+                            Details = "A Student by the name of " + thisStudent.FirstMidName + " " + thisStudent.LastName + " has signed up for " + course.Title,
+                            Link = Url.Action("Details", "Student", new { id = thisStudent.StudentID }),
+                            ViewableBy = "Admin",
+                            Complete = false
+                        };
+                        db.Notification.Add(newNotification);
+                        db.SaveChanges();
+
+
                         return Content("You have been added to the class");
 
 
