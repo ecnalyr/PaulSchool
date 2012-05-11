@@ -7,12 +7,12 @@
 <h2>Details</h2>
 @using (Html.BeginForm("ApplyUsingDetails", "Course", FormMethod.Post))
 {
-   <div class="display-label">Course ID</div>
+   <!--<div class="display-label">Course ID</div>-->
    <div class="display-field">
-        @Html.DisplayFor(model => model.CourseID)
+        <!--@Html.DisplayFor(model => model.CourseID)-->
         @Html.HiddenFor(model => model.CourseID)
    </div>
-    <p><input type="submit" value="Apply to take this course" /></p>
+    <p><input type="submit" value="Sign up for this course", new { onclick = "return confirm('Are you sure you are ready to sign up for this class?');" }  /></p>
     <fieldset>
 
         <div class="display-label">Title</div>
@@ -68,6 +68,11 @@
         <div class="display-label">Approved</div>
         <div class="display-field">
             @Html.DisplayFor(model => model.Approved)
+            @{if (User.IsInRole("Administrator") | User.IsInRole("SuperAdministrator"))
+              {
+                @Html.ActionLink("Clicking here will approve this class with it's current details.", "ApproveClass", null,  new { onclick = "return confirm('Are you sure you are ready to approve of this class?');" })
+              }
+             }
         </div>
 
         <div class="display-label">Completed</div>
@@ -78,6 +83,11 @@
         <div class="display-label">Archived</div>
         <div class="display-field">
         @Html.DisplayFor(model => model.Archived)
+            @{if (User.IsInRole("Administrator") | User.IsInRole("SuperAdministrator"))
+              {
+                @Html.ActionLink("Clicking here will archive this class - this will make the class uneditable.", "ApproveClass", null,  new { onclick = "return confirm('Are you sure you are ready to archive this class?  This process is not reversable.');" })
+              }
+             }
 
         </div>
 
