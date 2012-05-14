@@ -31,6 +31,14 @@
         </div>
 
         <div class="editor-label">
+            @Html.LabelFor(model => model.Elective)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Elective)
+            @Html.ValidationMessageFor(model => model.Elective)
+        </div>
+
+        <div class="editor-label">
             @Html.LabelFor(model => model.AttendingDays)
         </div>
         <div class="editor-field">

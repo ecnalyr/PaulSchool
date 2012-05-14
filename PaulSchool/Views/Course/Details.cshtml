@@ -25,6 +25,11 @@
             @Html.DisplayFor(model => model.Credits)
         </div>
 
+        <div class="display-label">Elective</div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Elective)
+        </div>
+
         <div class="display-label">Instructor</div>
         <div class="display-field">
             @Html.DisplayFor(model => model.Instructor)
@@ -68,9 +73,9 @@
         <div class="display-label">Approved</div>
         <div class="display-field">
             @Html.DisplayFor(model => model.Approved)
-            @{if (User.IsInRole("Administrator") | User.IsInRole("SuperAdministrator"))
+            @{if ((User.IsInRole("Administrator") | User.IsInRole("SuperAdministrator")) && Model.Approved == false)
               {
-                @Html.ActionLink("Clicking here will approve this class with it's current details.", "ApproveClass", null,  new { onclick = "return confirm('Are you sure you are ready to approve of this class?');" })
+                @Html.ActionLink("Clicking here will approve this class with it's current details.", "ApproveClass", new { id = Model.CourseID },  new { onclick = "return confirm('Are you sure you are ready to approve of this class?');" })
               }
              }
         </div>
@@ -83,9 +88,9 @@
         <div class="display-label">Archived</div>
         <div class="display-field">
         @Html.DisplayFor(model => model.Archived)
-            @{if (User.IsInRole("Administrator") | User.IsInRole("SuperAdministrator"))
+            @{if ((User.IsInRole("Administrator") | User.IsInRole("SuperAdministrator")) && Model.Archived == false)
               {
-                @Html.ActionLink("Clicking here will archive this class - this will make the class uneditable.", "ApproveClass", null,  new { onclick = "return confirm('Are you sure you are ready to archive this class?  This process is not reversable.');" })
+                @Html.ActionLink("Clicking here will archive this class - this will make the class uneditable.", "ApproveClass", new { id = Model.CourseID },  new { onclick = "return confirm('Are you sure you are ready to archive this class?  This process is not reversible.');" })
               }
              }
 

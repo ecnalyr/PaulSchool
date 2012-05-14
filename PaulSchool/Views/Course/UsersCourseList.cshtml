@@ -7,6 +7,9 @@
 <h2>These are your existing courses</h2>
 <p>If you do not see any courses here, you have yet to sign up for one.  Click @Html.ActionLink("here", "ApplyToCourse", "Course") to sign up for one.</p>
 
+<p>You have completed this many core classes: @ViewBag.cores</p>
+<p>You have completed this many elective classes: @ViewBag.electives</p>
+
     <div class="display-label">User Name</div>
     <div class="display-field">
         @Html.DisplayFor(model => model.UserName)
@@ -27,6 +30,8 @@
             <th>Parish</th>
             <th>Description</th>
             <th>Grade</th>
+            <th>Is this an elective?</th>
+            <th>Link to attendance and notes</th>
         </tr>
         @{if (Model != null)
           { 
@@ -56,6 +61,12 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Grade)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Course.Elective)
+                </td>
+                <td>
+                    @Html.ActionLink("Click here for details (not working)", "Details", "Attendance")
                 </td>
             </tr>
             }

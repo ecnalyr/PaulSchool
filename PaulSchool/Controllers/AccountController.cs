@@ -369,5 +369,27 @@ namespace PaulSchool.Controllers
             }
         }
         #endregion
+
+        public class ProfileRequiredActionFilter : IActionFilter
+        {
+            #region Implementation of IActionFilter
+
+            public void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            //TODO: Check if the Authenticated User has a profile.
+            
+            //var authorized = Roles.IsUserInRole(User, "Student");
+            //var authorized = Roles.IsUserInRole(User.Identity.Name, "Student");
+
+            //If Authenicated User doesn't have a profile...
+            filterContext.Result = new RedirectResult("Path-To-Create-A-Profile");
+        }
+
+            public void OnActionExecuted(ActionExecutedContext filterContext)
+            {
+            }
+
+            #endregion
+        }
     }
 }

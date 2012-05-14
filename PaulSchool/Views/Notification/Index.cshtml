@@ -23,9 +23,6 @@
         <th>
             ViewableBy
         </th>
-        <th>
-            Complete
-        </th>
         <th></th>
     </tr>
 
@@ -44,10 +41,7 @@
             @Html.DisplayFor(modelItem => item.ViewableBy)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Complete)
-        </td>
-        <td>
-            @Html.ActionLink("Complete", "Complete", new { id=item.NotificationID })
+            @Html.ActionLink("Remove Notification from Queu", "Complete", new { id=item.NotificationID })
             @{if (User.IsInRole("SuperAdministrator"))
               {
                   @Html.ActionLink("Delete", "Delete", new { id = item.NotificationID });                  

@@ -31,6 +31,9 @@
             @Html.ActionLink("Credits", "Index", new { sortOrder = ViewBag.CreditsSortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
+            @Html.ActionLink("Elective", "Index", new { sortOrder = ViewBag.ElectiveSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
             <!--Instructor (LName)-->
             @Html.ActionLink("Instructor (LName)", "Index", new { sortOrder = ViewBag.InstructorSortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
@@ -79,6 +82,9 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Credits)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Elective)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Instructor.LastName)

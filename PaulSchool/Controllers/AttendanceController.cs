@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using PaulSchool.Models;
 using PaulSchool.ViewModels;
+using LinqLib;
 
 namespace PaulSchool.Controllers
 {
@@ -48,10 +49,15 @@ namespace PaulSchool.Controllers
                                      StudentID = t.Key,
                                      Days = t.OrderBy(x => x)
                                  };
-
+            
+            //model.Pivot(o => o.AttendanceDay, 
             return View(model);
 
         }
 
+        public ActionResult AttendnaceLinq()
+        {
+            return View();
+        }
     }
 }

@@ -27,6 +27,7 @@ namespace PaulSchool.Controllers
             {
                 Title = selectedTemplate.Title,
                 Credits = selectedTemplate.Credits,
+                Elective = selectedTemplate.Elective,
                 AttendingDays = selectedTemplate.AttendingDays,
                 AttendanceCap = selectedTemplate.AttendanceCap,
                 Location = selectedTemplate.Location,
@@ -46,6 +47,7 @@ namespace PaulSchool.Controllers
             ViewBag.CurrentSort = sortOrder;
             ViewBag.TitleSortParm = String.IsNullOrEmpty(sortOrder) ? "Title desc" : "";
             ViewBag.CreditsSortParm = sortOrder == "Credits" ? "Credits desc" : "Credits";
+            ViewBag.ElectiveSortParm = sortOrder == "Elective" ? "Elective desc" : "Elective";
             ViewBag.InstructorSortParm = sortOrder == "Instructor" ? "Instructor desc" : "Instructor";
             ViewBag.YearSortParm = sortOrder == "Year" ? "Year desc" : "Year";
             ViewBag.AttendingDaysSortParm = sortOrder == "AttendingDays" ? "AttendingDays desc" : "AttendingDays";
@@ -83,6 +85,12 @@ namespace PaulSchool.Controllers
                     courses = courses.OrderBy(s => s.Credits);
                     break;
                 case "Credits desc":
+                    courses = courses.OrderByDescending(s => s.Credits);
+                    break;
+                case "Elective":
+                    courses = courses.OrderBy(s => s.Credits);
+                    break;
+                case "Elective desc":
                     courses = courses.OrderByDescending(s => s.Credits);
                     break;
                 case "Instructor":
@@ -315,6 +323,7 @@ namespace PaulSchool.Controllers
                 {
                     Title = appliedCourse.Title,
                     Credits = appliedCourse.Credits,
+                    Elective = appliedCourse.Elective,
                     InstructorID = instructorAgain.InstructorID, 
                     Year = appliedCourse.StartDate.Year,
                     AttendingDays = appliedCourse.AttendingDays,
@@ -366,6 +375,8 @@ namespace PaulSchool.Controllers
         {
             Student thisStudent = db.Students.FirstOrDefault(
                 o => o.UserName == User.Identity.Name);
+            ViewBag.cores = foreach(var completedcourse in thisStudent.Enrollments
+            ViewBag.electives = 2;
             return View(thisStudent);
         }
 
@@ -462,6 +473,16 @@ namespace PaulSchool.Controllers
         {
             ViewBag.error = message;
             return View();
+        }
+
+        //
+        // GET /Course/ApproveClass/5
+        public ActionResult ApproveClass(int id)
+        {
+            Course course = db.Courses.Find(id);
+            course.Approved = true;
+            db.SaveChanges();
+            return RedirectToAction("Details", new { id=course.CourseID });
         }
     }
 }

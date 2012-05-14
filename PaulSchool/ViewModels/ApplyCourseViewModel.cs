@@ -25,6 +25,9 @@ namespace PaulSchool.ViewModels
         public int Credits { get; set; }
 
         [Required]
+        public bool Elective { get; set; } 
+
+        [Required]
         [Range(1, 100.00,
             ErrorMessage = "Total Attending Days must be a positive value (often 10, 8, or 3)")]
         public int AttendingDays { get; set; } // 10, 8, 3, or custom

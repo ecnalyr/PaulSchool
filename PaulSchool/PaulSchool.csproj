@@ -46,6 +46,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\EntityFramework.4.3.1\lib\net40\EntityFramework.dll</HintPath>
     </Reference>
+    <Reference Include="LinqLib">
+      <HintPath>..\packages\LinqExtLibrary.1.0.2.8\lib\LinqLib.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="PagedList, Version=1.14.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -105,6 +108,7 @@
     <Compile Include="Models\CustomProfile.cs" />
     <Compile Include="Models\Instructor.cs" />
     <Compile Include="Models\Notification.cs" />
+    <Compile Include="Models\ProfileRequiredActionFilter.cs" />
     <Compile Include="ViewModels\ApplyCourseViewModel.cs" />
     <Compile Include="ViewModels\AttendanceViewModel.cs" />
     <Compile Include="ViewModels\ChangeEmailViewModel.cs" />
