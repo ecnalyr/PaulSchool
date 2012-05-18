@@ -28,9 +28,11 @@ namespace PaulSchool.Controllers
             List<Attendance> attendanceItemsList = attendanceItems.ToList();
             // End of generating list of Attendances
 
-
+            //
+            // Generates list of Students in alphabetical order sorted by LastName
             var student = attendanceItemsList.Select(a => a.Student).Distinct().OrderBy(s => s.LastName);
             List<Student> StudentList = student.ToList();
+            // End of generating list of Students
             
 
             //
@@ -60,8 +62,10 @@ namespace PaulSchool.Controllers
             List<Attendance> attendanceItemsList = attendanceItems.ToList();
             // End of generating list of Attendances
 
+            // Generates list of Students (should be one only one student)
             var student = db.Students.Where(a => a.UserName == User.Identity.Name);  // This works for adding one student, not all of them.
             List<Student> StudentList = student.ToList();
+            // End of generating list of Students
 
             //
             // Generates list of AttendingDays specifically for current Course

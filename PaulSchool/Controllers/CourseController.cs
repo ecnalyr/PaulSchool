@@ -340,7 +340,6 @@ namespace PaulSchool.Controllers
                 db.SaveChanges();
 
                 // Add the notification for the Admin that someone has applied to teach a Course
-                
                 Notification newNotification = new Notification
                 {
                     Time = DateTime.Now,
@@ -481,6 +480,18 @@ namespace PaulSchool.Controllers
         {
             Course course = db.Courses.Find(id);
             course.Approved = true;
+
+            // Add the notification for the Instructor that their Course has been approved
+            Notification newNotification = new Notification
+            {
+                Time = DateTime.Now,
+                Details = "An Administrator has approved your application to teach " + course.Title + " beginning " + course.StartDate,
+                Link = Url.Action("Details", "Course", new { id = course.CourseID }),
+                ViewableBy = course.Instructor.UserName,
+                Complete = false
+            };
+            db.Notification.Add(newNotification);
+
             db.SaveChanges();
             return RedirectToAction("Details", new { id=course.CourseID });
         }
