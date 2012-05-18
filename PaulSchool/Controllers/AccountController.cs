@@ -105,6 +105,45 @@ namespace PaulSchool.Controllers
                     profile.FilledStudentInfo = "no";
                     profile.Save();
                     Roles.AddUserToRole(model.UserName, "Default"); // Adds student to the "Default" role so we can force them to become a "Student" role.
+
+                    // validation succeeded => process the results
+                    // save the profile data
+                    // /*unecessary from copy-paste*/ CustomProfile profile = CustomProfile.GetUserProfile();
+                    profile.LastName = model.LastName;
+                    profile.FirstMidName = model.FirstMidName;
+                    profile.Save();
+
+                    // check if already existing on the student table - update the table if needed
+                    Student isStudent = db.Students.FirstOrDefault(
+                        o => o.UserName == User.Identity.Name);
+                    if (isStudent != null) // IF the user already exists in the Student Table . . .
+                    {
+                        isStudent.LastName = model.LastName;
+                        isStudent.FirstMidName = model.FirstMidName;
+                        MembershipUser u = Membership.GetUser(User.Identity.Name); // needed to get email for isStudent.Email = u.Email;
+                        isStudent.Email = u.Email;
+                        db.SaveChanges();
+                    }
+                    else
+                    // Create student in student table if they have not been there before (everyone needs to be at least a student)
+                    {
+                        MembershipUser u = Membership.GetUser(User.Identity.Name); // needed to get email for Email = u.Email;
+                        Student newStudent = new Student
+                        {
+                            LastName = model.LastName,
+                            FirstMidName = model.FirstMidName,
+                            Email = model.Email,
+                            UserName = model.UserName,
+                            EnrollmentDate = DateTime.Now
+                        };
+                        db.Students.Add(newStudent);
+                        db.SaveChanges();
+                        if (!User.IsInRole("Student"))
+                        {
+                            Roles.AddUserToRole(model.UserName, "Student");
+                        }
+                    }
+
                     return RedirectToAction("Index", "Home");
                 }
                 else

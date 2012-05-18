@@ -63,5 +63,16 @@ namespace PaulSchool.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        // new
+        [Required(ErrorMessage = "Must have a First Name (you may include a Middle Name if you choose)")]
+        [Display(Name = "First and Middle Name")]
+        [StringLength(20)]
+        public string FirstMidName { get; set; }
+
+        [Required(ErrorMessage = "Must have a Last Name")]
+        [Display(Name = "Last Name")]
+        [StringLength(20)]
+        public string LastName { get; set; }
     }
 }

@@ -38,6 +38,22 @@
             </div>
 
             <div class="editor-label">
+                @Html.LabelFor(m => m.FirstMidName)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(m => m.FirstMidName)
+                @Html.ValidationMessageFor(m => m.FirstMidName)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(m => m.LastName)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(m => m.LastName)
+                @Html.ValidationMessageFor(m => m.LastName)
+            </div>
+
+            <div class="editor-label">
                 @Html.LabelFor(m => m.Password)
             </div>
             <div class="editor-field">

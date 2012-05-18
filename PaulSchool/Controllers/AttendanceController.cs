@@ -19,45 +19,6 @@ namespace PaulSchool.Controllers
         {
             return View();
         }
-        
-        //
-        // GET: /Attendance/Attendance/1
-        public ActionResult Attendance(int id)
-        {
-            var viewModel = new AttendanceViewModel
-            {
-                AttendanceItems = db.Attendance.Where(s => s.CourseID == id)
-            };
-            return View(viewModel);
-        }
-
-        //
-        // GET: /Attendance/List  - Should list all attendance values from ONLY courseID = 4
-        public ActionResult List()
-        {
-            //IEnumerable<Attendance> model = db.Attendance.Where(s => s.CourseID == 4);
-            //return View(model);
-            // All of the below code is a work in progress - above code yields a functional (although incorrect) table when used
-            // with the List view.
-            var z = 4;
-            var model = from s in db.Attendance
-                                 where s.CourseID == z
-                                 group s.AttendanceDay by s.StudentID into t
-                                 select new
-                                 {
-                                     StudentID = t.Key,
-                                     Days = t.OrderBy(x => x)
-                                 };
-            
-            //model.Pivot(o => o.AttendanceDay, 
-            return View(model);
-
-        }
-
-        public ActionResult AttendnaceLinq()
-        {
-            return View();
-        }
 
         public ActionResult AttendanceView(int id)
         {
@@ -67,7 +28,7 @@ namespace PaulSchool.Controllers
             List<Attendance> attendanceItemsList = attendanceItems.ToList();
             // End of generating list of Attendances
 
-            var student = attendanceItemsList.Select(a => a.Student).Distinct()/*.OrderBy(a => a)*/;  // This works for adding one student, not all of them.
+            var student = attendanceItemsList.Select(a => a.Student).Distinct();  // This works for adding one student, not all of them.
             List<Student> StudentList = student.ToList();
 
             //
