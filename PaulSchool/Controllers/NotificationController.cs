@@ -16,13 +16,28 @@ namespace PaulSchool.Controllers
 
         //
         // GET: /Notification/
-
+        
         public ViewResult Index()
         {
-            var incompleteNotifications= db.Notification.Where(
-                o => o.Complete == false);
+            if (User.IsInRole("Administrator"))
+            // returns notifications viewable by Administrators
+            {
+                var incompleteNotifications= db.Notification.Where(
+                    o => o.Complete == false &&
+                    o.ViewableBy == "Admin");
+                return View(incompleteNotifications.ToList());
+            }
 
-            return View(incompleteNotifications.ToList());
+            else
+            // returns notifications by user name
+            {
+                var incompleteNotifications = db.Notification.Where(
+                    o => o.Complete == false &&
+                    o.ViewableBy == User.Identity.Name);
+                return View(incompleteNotifications.ToList());
+            }
+
+            
         }
 
         //
