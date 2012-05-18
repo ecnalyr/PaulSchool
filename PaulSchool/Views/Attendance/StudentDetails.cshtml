@@ -1,0 +1,30 @@
+﻿@model PaulSchool.ViewModels.AttendanceReportViewModel
+
+@{
+    ViewBag.Title = "StudentDetails";
+}
+
+<h2>StudentDetails</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Attendance Day</th>
+            @foreach (var attendanceDay in Model.AttendanceDays)
+            {
+                <th>@attendanceDay</th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var student in Model.Students)
+        {
+            <tr>
+                <td>@student.LastName</td>
+                @foreach (var attendanceDay in Model.AttendanceDays)
+                {
+                    <td>@Model.IsPresent(student, attendanceDay)</td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>
