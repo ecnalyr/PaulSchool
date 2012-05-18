@@ -28,8 +28,10 @@ namespace PaulSchool.Controllers
             List<Attendance> attendanceItemsList = attendanceItems.ToList();
             // End of generating list of Attendances
 
-            var student = attendanceItemsList.Select(a => a.Student).Distinct();  // This works for adding one student, not all of them.
+
+            var student = attendanceItemsList.Select(a => a.Student).Distinct().OrderBy(s => s.LastName);
             List<Student> StudentList = student.ToList();
+            
 
             //
             // Generates list of AttendingDays specifically for current Course
@@ -74,7 +76,7 @@ namespace PaulSchool.Controllers
             AttendanceReportViewModel model = new AttendanceReportViewModel
             {
                 AttendanceDays = attDayList,
-                Students = StudentList, // should be only one student for this section
+                Students = StudentList, // should be only one student for this ActionResult
                 Attendances = attendanceItemsList,
             };
             return View(model);

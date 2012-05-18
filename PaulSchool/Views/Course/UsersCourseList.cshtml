@@ -66,7 +66,7 @@
                     @Html.DisplayFor(modelItem => item.Course.Elective)
                 </td>
                 <td>
-                    @Html.ActionLink("Click here for details (not working)", "StudentDetails", "Attendance", new { id = item.CourseID }, null)
+                    @Html.ActionLink("Click here for details", "StudentDetails", "Attendance", new { id = item.CourseID }, null)
                 </td>
             </tr>
             }
