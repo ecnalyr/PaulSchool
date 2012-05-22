@@ -493,7 +493,26 @@ namespace PaulSchool.Controllers
             db.Notification.Add(newNotification);
 
             db.SaveChanges();
-            return RedirectToAction("Details", new { id=course.CourseID });
+            return RedirectToAction("Details", new { id = course.CourseID });
+        }
+
+        //
+        // POST /Course/RemoveFromClass/5
+        [Authorize (Roles = "Administrator, SuperAdministrator")]
+        public ActionResult RemoveFromClass(int id)
+        {
+            Enrollment enrollment = db.Enrollments.Find(id);
+            db.Enrollments.Remove(enrollment);
+
+            // remove attendance items related to Enrollment
+            var attendanceItems = db.Attendance.Where(s => s.CourseID == enrollment.CourseID &&
+                s.StudentID == enrollment.StudentID);
+            foreach (var item in attendanceItems)
+            {
+                db.Attendance.Remove(item);
+            }
+            db.SaveChanges();
+            return RedirectToAction("Details", new { id = enrollment.CourseID });
         }
     }
 }
