@@ -9,7 +9,9 @@ namespace PaulSchool.ViewModels
     public class AttendanceReportViewModel
     {
         public List<int> AttendanceDays { get; set; }
+        
         public List<Student> Students { get; set; }
+        
         public List<Attendance> Attendances { get; set; }
 
         public string IsPresent(Student student, int attendanceDay)

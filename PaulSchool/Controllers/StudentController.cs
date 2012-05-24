@@ -237,6 +237,7 @@ namespace PaulSchool.Controllers
             }
             catch (DataException)
             {
+
                 //Log the error (add a variable name after DataException)
                 return RedirectToAction("Delete",
                     new System.Web.Routing.RouteValueDictionary { 

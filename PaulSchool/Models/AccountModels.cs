@@ -7,7 +7,6 @@ using System.Web.Security;
 
 namespace PaulSchool.Models
 {
-
     public class ChangePasswordModel
     {
         [Required]

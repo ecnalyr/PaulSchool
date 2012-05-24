@@ -15,6 +15,7 @@ namespace PaulSchool.Models
         {
             return Create(username) as CustomProfile;
         }
+
         public static CustomProfile GetUserProfile()
         {
             return Create(Membership.GetUser().UserName) as CustomProfile;

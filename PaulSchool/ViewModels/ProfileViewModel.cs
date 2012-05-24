@@ -11,7 +11,8 @@ namespace PaulSchool.ViewModels
 {
     public class ProfileViewModel
     {
-        public string LastName {get; set; }
+        public string LastName { get; set; }
+
         public string FirstMidName { get; set; }
     }
 }

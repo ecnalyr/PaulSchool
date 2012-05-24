@@ -12,10 +12,13 @@ namespace PaulSchool.ViewModels
         [Display(Name = "selected user")]
         public string SelectedUser { get; set; }
         public IEnumerable<SelectListItem> Users { get; set; }
+
         [Required]
         public string LastName { get; set; }
+        
         [Required]
         public string FirstMidName { get; set; }
+        
         [Required]
         public string Email { get; set; }
     }

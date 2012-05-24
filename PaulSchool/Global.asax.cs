@@ -5,14 +5,15 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using System.Data.Entity;
-using PaulSchool.Models;
-using PaulSchool.DAL;
 using System.Web.Security;
+using PaulSchool.DAL;
+using PaulSchool.Models;
 
 namespace PaulSchool
 {
     // Note: For instructions on enabling IIS6 or IIS7 classic mode, 
     // visit http://go.microsoft.com/?LinkId=9394801
+    //
 
     public class MvcApplication : System.Web.HttpApplication
     {
@@ -28,9 +29,7 @@ namespace PaulSchool
             routes.MapRoute(
                 "Default", // Route name
                 "{controller}/{action}/{id}", // URL with parameters
-                new { controller = "Home", action = "Index", id = UrlParameter.Optional } // Parameter defaults
-            );
-
+                new { controller = "Home", action = "Index", id = UrlParameter.Optional }); // Parameter defaults
         }
 
         protected void Application_Start()
@@ -46,8 +45,9 @@ namespace PaulSchool
         protected void Application_AuthenticateRequest()
         {
             if (HttpContext.Current.User != null)
+            {
                 Membership.GetUser(true);
+            }
         }
-
     }
 }
