@@ -1,8 +1,8 @@
 ﻿@if(Request.IsAuthenticated) {
     <text>Welcome <strong>@User.Identity.Name</strong>!
-    [ @Html.ActionLink("Log Off", "LogOff", "Account") ]
-    [ @Html.ActionLink("Profile", "Profile", "Account") ]</text>
+    [ @Html.ActionLink("Log Off", "LogOff", "Account", new { area = "" }, null) ]
+    [ @Html.ActionLink("Profile", "Profile", "Account", new { area = "" }, null) ]</text>
 }
 else {
-    @:[ @Html.ActionLink("Log On", "LogOn", "Account") ]
+    @:[ @Html.ActionLink("Log On", "LogOn", "Account", new { area = "" }, null) ]
 }

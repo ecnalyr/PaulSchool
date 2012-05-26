@@ -25,3 +25,6 @@ C:\Users\Administrator\Documents\Visual Studio 2010\Projects\PaulSchoolGit\PaulS
 C:\Users\Administrator\Documents\Visual Studio 2010\Projects\PaulSchoolGit\PaulSchool\bin\PagedList.Mvc.dll
 C:\Users\Administrator\Documents\Visual Studio 2010\Projects\PaulSchoolGit\PaulSchool\bin\PagedList.Mvc.xml
 C:\Users\Administrator\Documents\Visual Studio 2010\Projects\PaulSchoolGit\PaulSchool\bin\WebGridMvc.dll
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\PaulSchoolGit\PaulSchool\obj\Debug\PaulSchool.Resources.PaulSchoolResource.resources
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\PaulSchoolGit\PaulSchool\obj\Debug\GenerateResource.read.1.tlog
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\PaulSchoolGit\PaulSchool\obj\Debug\GenerateResource.write.1.tlog

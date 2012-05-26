@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using PaulSchool.Models;
+using PaulSchool.Resources;
 
 namespace PaulSchool.ViewModels
 {
@@ -14,9 +15,11 @@ namespace PaulSchool.ViewModels
         
         public List<Attendance> Attendances { get; set; }
 
+        public int courseId { get; set; }
+
         public string IsPresent(Student student, int attendanceDay)
         {
-            return Attendances.Single(a => a.StudentID == student.StudentID && a.AttendanceDay == attendanceDay).Present ? "present" : "absent";
+            return Attendances.Single(a => a.StudentID == student.StudentID && a.AttendanceDay == attendanceDay).Present ? PaulSchoolResource.Present_Text : PaulSchoolResource.Absent_Text;
         }
     }
 }
