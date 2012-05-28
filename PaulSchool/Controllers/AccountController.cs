@@ -108,9 +108,16 @@ namespace PaulSchool.Controllers
 
                     // validation succeeded => process the results
                     // save the profile data
-                    // /*unecessary from copy-paste*/ CustomProfile profile = CustomProfile.GetUserProfile();
                     profile.LastName = model.LastName;
                     profile.FirstMidName = model.FirstMidName;
+                    profile.StreetAddress = model.StreetAddress;
+                    profile.City = model.City;
+                    profile.State = model.State;
+                    profile.ZipCode = model.ZipCode;
+                    profile.Phone = model.Phone;
+                    profile.DateOfBirth = model.DateOfBirth;
+                    profile.ParishAffiliation = model.ParishAffiliation;
+                    profile.MinistryInvolvement = model.MinistryInvolvement;
                     profile.Save();
 
                     // check if already existing on the student table - update the table if needed
@@ -122,6 +129,15 @@ namespace PaulSchool.Controllers
                         isStudent.FirstMidName = model.FirstMidName;
                         MembershipUser u = Membership.GetUser(User.Identity.Name); // needed to get email for isStudent.Email = u.Email;
                         isStudent.Email = u.Email;
+                        isStudent.StreetAddress = model.StreetAddress;
+                        isStudent.City = model.City;
+                        isStudent.State = model.State;
+                        isStudent.ZipCode = model.ZipCode;
+                        isStudent.Phone = model.Phone;
+                        isStudent.DateOfBirth = model.DateOfBirth;
+                        isStudent.ParishAffiliation = model.ParishAffiliation;
+                        isStudent.MinistryInvolvement = model.MinistryInvolvement;
+
                         db.SaveChanges();
                     }
                     else
@@ -134,7 +150,15 @@ namespace PaulSchool.Controllers
                             FirstMidName = model.FirstMidName,
                             Email = model.Email,
                             UserName = model.UserName,
-                            EnrollmentDate = DateTime.Now
+                            EnrollmentDate = DateTime.Now,
+                            StreetAddress = model.StreetAddress,
+                            City = model.City,
+                            State = model.State,
+                            ZipCode = model.ZipCode,
+                            Phone = model.Phone,
+                            DateOfBirth = model.DateOfBirth,
+                            ParishAffiliation = model.ParishAffiliation,
+                            MinistryInvolvement = model.MinistryInvolvement
                         };
                         db.Students.Add(newStudent);
                         db.SaveChanges();
@@ -298,7 +322,15 @@ namespace PaulSchool.Controllers
             ProfileViewModel model = new ProfileViewModel
             {
                 LastName = profile.LastName,
-                FirstMidName = profile.FirstMidName
+                FirstMidName = profile.FirstMidName,
+                StreetAddress = profile.StreetAddress,
+                City = profile.City,
+                State = profile.State,
+                ZipCode = profile.ZipCode,
+                Phone = profile.Phone,
+                DateOfBirth = profile.DateOfBirth,
+                ParishAffiliation = profile.ParishAffiliation,
+                MinistryInvolvement = profile.MinistryInvolvement
             };
             return View(model);
         }
@@ -321,6 +353,14 @@ namespace PaulSchool.Controllers
             CustomProfile profile = CustomProfile.GetUserProfile();
             profile.LastName = model.LastName;
             profile.FirstMidName = model.FirstMidName;
+            profile.StreetAddress = model.StreetAddress;
+            profile.City = model.City;
+            profile.State = model.State;
+            profile.ZipCode = model.ZipCode;
+            profile.Phone = model.Phone;
+            profile.DateOfBirth = model.DateOfBirth;
+            profile.ParishAffiliation = model.ParishAffiliation;
+            profile.MinistryInvolvement = model.MinistryInvolvement;
             profile.Save();
 
             // check if already existing on the student table - update the table if needed
@@ -330,6 +370,14 @@ namespace PaulSchool.Controllers
             {
                 isStudent.LastName = model.LastName;
                 isStudent.FirstMidName = model.FirstMidName;
+                isStudent.StreetAddress = model.StreetAddress;
+                isStudent.City = model.City;
+                isStudent.State = model.State;
+                isStudent.ZipCode = model.ZipCode;
+                isStudent.Phone = model.Phone;
+                isStudent.DateOfBirth = model.DateOfBirth;
+                isStudent.ParishAffiliation = model.ParishAffiliation;
+                isStudent.MinistryInvolvement = model.MinistryInvolvement;
                 MembershipUser u = Membership.GetUser(User.Identity.Name); // needed to get email for isStudent.Email = u.Email;
                 isStudent.Email = u.Email;
                 db.SaveChanges();
@@ -344,7 +392,15 @@ namespace PaulSchool.Controllers
                     FirstMidName = model.FirstMidName,
                     Email = u.Email,
                     UserName = User.Identity.Name,
-                    EnrollmentDate = DateTime.Now
+                    EnrollmentDate = DateTime.Now,
+                    StreetAddress = model.StreetAddress,
+                    City = model.City,
+                    State = model.State,
+                    ZipCode = model.ZipCode,
+                    Phone = model.Phone,
+                    DateOfBirth = model.DateOfBirth,
+                    ParishAffiliation = model.ParishAffiliation,
+                    MinistryInvolvement = model.MinistryInvolvement
                 };
                 db.Students.Add(newStudent);
                 db.SaveChanges();

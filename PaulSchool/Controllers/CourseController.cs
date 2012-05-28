@@ -30,6 +30,8 @@ namespace PaulSchool.Controllers
                 Elective = selectedTemplate.Elective,
                 AttendingDays = selectedTemplate.AttendingDays,
                 AttendanceCap = selectedTemplate.AttendanceCap,
+                DurationHours = selectedTemplate.DurationHours,
+                DurationMins = selectedTemplate.DurationMins,
                 Location = selectedTemplate.Location,
                 Parish = selectedTemplate.Parish,
                 Description = selectedTemplate.Description,
@@ -272,7 +274,8 @@ namespace PaulSchool.Controllers
                     Value = x.Title,
                     Text = x.Title,
                 }),
-                StartDate = DateTime.Now
+                StartDate = DateTime.Now,
+                EndDate = DateTime.Now
             };
             return View(model);
         }
@@ -329,6 +332,9 @@ namespace PaulSchool.Controllers
                     AttendingDays = appliedCourse.AttendingDays,
                     AttendanceCap = appliedCourse.AttendanceCap,
                     StartDate = appliedCourse.StartDate,
+                    EndDate = appliedCourse.EndDate,
+                    DurationHours = appliedCourse.DurationHours,
+                    DurationMins = appliedCourse.DurationMins,
                     Location = appliedCourse.Location,
                     Parish = appliedCourse.Parish,
                     Description = appliedCourse.Description,

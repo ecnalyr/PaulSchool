@@ -57,6 +57,76 @@ namespace PaulSchool.Models
         {
             get { return base["FirstMidName"] as string; }
             set { base["FirstMidName"] = value; }
-        }        
+        }
+
+        [Required(ErrorMessage = "Must have a Street Address")]
+        [DisplayName("Street Address")]
+        [StringLength(30)]
+        public string StreetAddress
+        {
+            get { return base["StreetAddress"] as string; }
+            set { base["StreetAddress"] = value; }
+        }
+
+        [Required(ErrorMessage = "Must have a City")]
+        [DisplayName("City")]
+        [StringLength(30)]
+        public string City
+        {
+            get { return base["City"] as string; }
+            set { base["City"] = value; }
+        }
+
+        [Required(ErrorMessage = "Must have a State")]
+        [DisplayName("State")]
+        [StringLength(15)]
+        public string State
+        {
+            get { return base["State"] as string; }
+            set { base["State"] = value; }
+        }
+
+        [Required(ErrorMessage = "Must have a Zip Code")]
+        [DisplayName("Zip Code")]
+        [StringLength(5)]
+        public string ZipCode
+        {
+            get { return base["ZipCode"] as string; }
+            set { base["ZipCode"] = value; }
+        }
+
+        [Required(ErrorMessage = "Must have a Phone Number")]
+        [DisplayName("Phone Number")]
+        [StringLength(10)]
+        public string Phone
+        {
+            get { return base["Phone"] as string; }
+            set { base["Phone"] = value; }
+        }
+
+        [Required(ErrorMessage = "Must have a Date of Birth (MM/DD/YYYY)")]
+        [DisplayName("Date of Birth")]
+        [StringLength(10)]
+        public string DateOfBirth
+        {
+            get { return base["DateOfBirth"] as string; }
+            set { base["DateOfBirth"] = value; }
+        }
+
+        [DisplayName("Parish Affiliation")]
+        [StringLength(30)]
+        public string ParishAffiliation
+        {
+            get { return base["ParishAffiliation"] as string; }
+            set { base["ParishAffiliation"] = value; }
+        }
+
+        [DisplayName("Ministry Involvement")]
+        [StringLength(50)]
+        public string MinistryInvolvement
+        {
+            get { return base["MinistryInvolvement"] as string; }
+            set { base["MinistryInvolvement"] = value; }
+        }
     }
 }

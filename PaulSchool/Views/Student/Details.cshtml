@@ -45,6 +45,7 @@
             <tr>
                 <th>Course Title</th>
                 <th>Grade</th>
+                <th>Completion Date</th>
             </tr>
             @foreach (var item in Model.Enrollments)
             {
@@ -54,6 +55,9 @@
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Grade)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Course.EndDate)
                     </td>
                 </tr>
             }
@@ -70,6 +74,7 @@
             <tr>
                 <th>Course Title</th>
                 <th>Grade</th>
+                <th>Completion Date</th>
             </tr>
             @foreach (var item in Model.Enrollments)
             {
@@ -79,6 +84,9 @@
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Grade)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Course.EndDate)
                     </td>
                 </tr>
             }

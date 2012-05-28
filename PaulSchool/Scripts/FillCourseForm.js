@@ -24,4 +24,8 @@ $(document).ready(function () {
     $("#StartDate").datetimepicker({
         ampm: true
     });
+
+    $("#EndDate").datetimepicker({
+        ampm: true
+    });
 });

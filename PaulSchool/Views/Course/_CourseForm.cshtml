@@ -63,6 +63,30 @@
         </div>
 
         <div class="editor-label">
+            @Html.LabelFor(model => model.EndDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.EndDate)
+            @Html.ValidationMessageFor(model => model.EndDate)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DurationHours)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DurationHours)
+            @Html.ValidationMessageFor(model => model.DurationHours)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DurationMins)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DurationMins)
+            @Html.ValidationMessageFor(model => model.DurationMins)
+        </div>
+
+        <div class="editor-label">
             @Html.LabelFor(model => model.Location)
         </div>
         <div class="editor-field">
