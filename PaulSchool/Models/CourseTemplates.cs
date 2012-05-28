@@ -27,6 +27,15 @@ namespace PaulSchool.Models
         [Range(1, 100.00, ErrorMessage = "Attendance Cap must be a positive value (typically 30)")]
         public int AttendanceCap { get; set; } // default of 30
 
+        [Required]
+        [Range(0, 24, ErrorMessage = "Hours must be a value (you can use 0 hours then input 45 mins below, for example")]
+        public int DurationHours { get; set; }
+
+        [Required]
+        [Range(0, 59, ErrorMessage = "0 - 59 mins")]
+        public int DurationMins { get; set; }
+
+
         public string Location { get; set; }
 
         public string Parish { get; set; }

@@ -26,7 +26,13 @@ namespace PaulSchool.Models
         
         public int AttendanceCap { get; set; } // default of 30
         
-        public DateTime StartDate { get; set; } // pop-up calendar would be nice
+        public DateTime StartDate { get; set; }
+
+        public DateTime EndDate { get; set; }
+
+        public int DurationHours { get; set; } // i.e. 1 hour, or 0 hour and 45 mins
+
+        public int DurationMins { get; set; } // i.e. 0 mins, or 0 hour and 45 mins
         
         public string Location { get; set; }
         

@@ -32,6 +32,7 @@ namespace PaulSchool.Controllers
             //
             // Generates list of Students in alphabetical order sorted by LastName
             var student = attendanceItemsList.Select(a => a.Student).Distinct().OrderBy(s => s.LastName);
+            //var student = attendanceItemsList.Select(a => a.Student).Distinct(); // This line does not have the attendance editor bug
             List<Student> StudentList = student.ToList();
             // End of generating list of Students
             
