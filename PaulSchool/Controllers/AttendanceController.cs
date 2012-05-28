@@ -93,6 +93,30 @@ namespace PaulSchool.Controllers
             return View(model);
         }
 
+        //
+        // GET: /Attendance/EditComment/5 and another int
+
+        public ActionResult EditComment(int studentId, int courseId)
+        {
+            Enrollment enrollment = db.Enrollments.FirstOrDefault(s => s.StudentID == studentId && s.CourseID == courseId);
+            return View(enrollment);
+        }
+
+        //
+        // POST: /Attendance/EditComment/etc. . .
+
+        [HttpPost]
+        public ActionResult EditComment(Enrollment enrollmentComment)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(enrollmentComment).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("AttendanceView", new { id = enrollmentComment.CourseID });
+            }
+            return View(enrollmentComment);
+        }
+
         /// <summary>
         /// Method to Update the Attendance of the student
         /// </summary>

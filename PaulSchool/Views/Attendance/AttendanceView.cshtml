@@ -16,6 +16,9 @@
                 <th>@attendanceDay
                 </th>
             }
+            <th>
+                
+            </th>
         </tr>
     </thead>
     <tbody id="@Model.courseId">
@@ -31,6 +34,7 @@
                         </span>
                     </td>
                 }
+                <td>@Html.ActionLink("click", "EditComment", new { studentId=student.StudentID, courseId=Model.courseId })</td>
             </tr>
         }
     </tbody>
