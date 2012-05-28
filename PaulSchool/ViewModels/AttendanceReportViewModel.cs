@@ -21,5 +21,7 @@ namespace PaulSchool.ViewModels
         {
             return Attendances.Single(a => a.StudentID == student.StudentID && a.AttendanceDay == attendanceDay).Present ? PaulSchoolResource.Present_Text : PaulSchoolResource.Absent_Text;
         }
+
+        public string Comments { get; set; }
     }
 }

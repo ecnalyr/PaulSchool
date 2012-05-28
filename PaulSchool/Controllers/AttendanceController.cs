@@ -31,8 +31,10 @@ namespace PaulSchool.Controllers
 
             //
             // Generates list of Students in alphabetical order sorted by LastName
-            var student = attendanceItemsList.Select(a => a.Student).Distinct().OrderBy(s => s.LastName);
-            //var student = attendanceItemsList.Select(a => a.Student).Distinct(); // This line does not have the attendance editor bug
+            // This was the original - it works var student = attendanceItemsList.Select(a => a.Student).Distinct().OrderBy(s => s.LastName);
+            //var student = attendanceItemsList.Select(a => a.Student).Distinct(); // This line does not have the attendance editor bug, but does not order alphabetically
+
+            var student = db.Enrollments.Where(e => e.CourseID == id).Select(e => e.Student).OrderBy(s => s.LastName);
             List<Student> StudentList = student.ToList();
             // End of generating list of Students
             
@@ -78,12 +80,16 @@ namespace PaulSchool.Controllers
             };
             //// End of generating list of AttendingDays
 
+            var enrollment = db.Enrollments.FirstOrDefault(q => q.Student.UserName == User.Identity.Name && q.CourseID == id);
+
             AttendanceReportViewModel model = new AttendanceReportViewModel
             {
                 AttendanceDays = attDayList,
                 Students = StudentList, ////should be only one student for this ActionResult
                 Attendances = attendanceItemsList,
+                Comments = enrollment.Comments
             };
+
             return View(model);
         }
 

@@ -61,7 +61,7 @@ namespace PaulSchool.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Absent!.
+        ///   Looks up a localized string similar to absent.
         /// </summary>
         public static string Absent_Text {
             get {
