@@ -99,7 +99,20 @@ namespace PaulSchool.Controllers
         public ActionResult EditComment(int studentId, int courseId)
         {
             Enrollment enrollment = db.Enrollments.FirstOrDefault(s => s.StudentID == studentId && s.CourseID == courseId);
-            return View(enrollment);
+            var model = new EditCommentGradeViewModel
+            {
+                EnrollmentID = enrollment.EnrollmentID,
+                Student = enrollment.Student,
+                Grades = new List<SelectListItem>
+                {
+                    new SelectListItem {Text = "Incomplete", Value = "Incomplete"},
+                    new SelectListItem {Text = "Pass", Value = "Pass"},
+                    new SelectListItem {Text = "Fail", Value = "Fail"},
+                },
+                Grade = enrollment.Grade,
+                Comments = enrollment.Comments
+            };
+            return View(model);
         }
 
         //

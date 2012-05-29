@@ -113,8 +113,8 @@
     </Compile>
     <Compile Include="ViewModels\ApplyCourseViewModel.cs" />
     <Compile Include="ViewModels\AttendanceReportViewModel.cs" />
-    <Compile Include="ViewModels\AttendanceViewModel.cs" />
     <Compile Include="ViewModels\ChangeEmailViewModel.cs" />
+    <Compile Include="ViewModels\EditCommentGradeViewModel.cs" />
     <Compile Include="ViewModels\CreateStudentViewModel.cs" />
     <Compile Include="ViewModels\ProfileViewModel.cs" />
     <Compile Include="Views\DAL\SchoolContext.cs" />

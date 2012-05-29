@@ -1,4 +1,4 @@
-﻿@model PaulSchool.Models.Enrollment
+﻿@model PaulSchool.ViewModels.EditCommentGradeViewModel
 
 @{
     ViewBag.Title = "EditComment";
@@ -17,18 +17,17 @@
         @Html.HiddenFor(model => model.EnrollmentID)
         
         <div class="editor-label">
-            @Html.LabelFor(model => model.StudentID)
+            @Html.DisplayText("Name")
         </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.StudentID)
-            @Html.ValidationMessageFor(model => model.StudentID)
+        <div>
+            @Html.DisplayFor(model => model.Student.FirstMidName) @Html.DisplayFor(model => model.Student.LastName)
         </div>
 
         <div class="editor-label">
             @Html.LabelFor(model => model.Grade)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.Grade)
+            @Html.DropDownListFor(model => model.Grade, Model.Grades)
             @Html.ValidationMessageFor(model => model.Grade)
         </div>
 
@@ -36,7 +35,7 @@
             @Html.LabelFor(model => model.Comments)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.Comments)
+            @Html.TextAreaFor(model => model.Comments)
             @Html.ValidationMessageFor(model => model.Comments)
         </div>
 
