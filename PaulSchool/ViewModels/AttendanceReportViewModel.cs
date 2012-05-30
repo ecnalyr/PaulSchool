@@ -15,6 +15,8 @@ namespace PaulSchool.ViewModels
         
         public List<Attendance> Attendances { get; set; }
 
+        public IEnumerable<Enrollment> Enrollments { get; set; }
+
         public int courseId { get; set; }
 
         public string IsPresent(Student student, int attendanceDay)

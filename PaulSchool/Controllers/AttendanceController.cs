@@ -37,7 +37,13 @@ namespace PaulSchool.Controllers
             var student = db.Enrollments.Where(e => e.CourseID == id).Select(e => e.Student).OrderBy(s => s.LastName);
             List<Student> StudentList = student.ToList();
             // End of generating list of Students
-            
+
+            //
+            // Generates a list of all Enrollments for course - to be used to generate grades
+            // Should to be refactored with above code-block
+            var enrollment = db.Enrollments.Where(i => i.CourseID == id);
+            //List<Enrollment> EnrollmentList = enrollment.ToList();
+            IEnumerable<Enrollment> EnrollmentList = enrollment;
 
             //
             // Generates list of AttendingDays specifically for current Course
@@ -53,6 +59,52 @@ namespace PaulSchool.Controllers
             {
                 AttendanceDays = attDayList,
                 Students = StudentList,
+                Enrollments = EnrollmentList,
+                Attendances = attendanceItemsList,
+                courseId = id
+            };
+            return View(model);
+        }
+
+        public ActionResult EditIndividualAttendance(int id, int studentId)
+        {
+            //
+            // Generates list of Attendances specifically for current Course
+            var attendanceItems = db.Attendance.Where(s => s.CourseID == id);
+            List<Attendance> attendanceItemsList = attendanceItems.ToList();
+            // End of generating list of Attendances
+
+            //
+            // Generates list of Students in alphabetical order sorted by LastName
+            // This was the original - it works var student = attendanceItemsList.Select(a => a.Student).Distinct().OrderBy(s => s.LastName);
+            //var student = attendanceItemsList.Select(a => a.Student).Distinct(); // This line does not have the attendance editor bug, but does not order alphabetically
+
+            var student = db.Enrollments.Where(e => e.CourseID == id && e.StudentID == studentId).Select(e => e.Student).OrderBy(s => s.LastName);
+            List<Student> StudentList = student.ToList();
+            // End of generating list of Students
+
+            //
+            // Generates a list of all Enrollments for course - to be used to generate grades
+            // Should to be refactored with above code-block
+            var enrollment = db.Enrollments.Where(i => i.CourseID == id && i.StudentID == studentId);
+            //List<Enrollment> EnrollmentList = enrollment.ToList();
+            IEnumerable<Enrollment> EnrollmentList = enrollment;
+
+            //
+            // Generates list of AttendingDays specifically for current Course
+            Course course = db.Courses.FirstOrDefault(p => p.CourseID == id);
+            List<int> attDayList = new List<int>();
+            for (int i = 0; i < course.AttendingDays; i++)
+            {
+                attDayList.Add(i + 1);
+            };
+            // End of generating list of AttendingDays
+
+            AttendanceReportViewModel model = new AttendanceReportViewModel
+            {
+                AttendanceDays = attDayList,
+                Students = StudentList,
+                Enrollments = EnrollmentList,
                 Attendances = attendanceItemsList,
                 courseId = id
             };

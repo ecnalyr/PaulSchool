@@ -8,6 +8,7 @@ using PagedList;
 using PaulSchool.ViewModels;
 using System.Web.Security;
 using System.Diagnostics;
+using System.Data;
 
 namespace PaulSchool.Controllers
 {
@@ -519,6 +520,41 @@ namespace PaulSchool.Controllers
             }
             db.SaveChanges();
             return RedirectToAction("Details", new { id = enrollment.CourseID });
+        }
+
+        //
+        // Get /Course/EditClass/5
+
+        public ActionResult EditCourse(int id)
+        {
+            Course course = db.Courses.Find(id);
+            return View(course);
+        }
+
+        //
+        // POST: /Course/EditClass/5
+
+        [HttpPost]
+        public ActionResult EditCourse(Course course)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(course).State = EntityState.Modified;
+
+                // Add a notification for the Instructor to see that the Course was modified
+                Notification newNotification = new Notification
+                {
+                    Time = DateTime.Now,
+                    Details = "An Admin has edited the course you applied to teach: " + course.Title + " beginning " + course.StartDate,
+                    Link = Url.Action("Details", "Course", new { id = course.CourseID }),
+                    ViewableBy = course.Instructor.UserName,
+                    Complete = false
+                };
+                db.Notification.Add(newNotification);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(course);
         }
     }
 }

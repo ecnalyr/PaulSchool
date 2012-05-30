@@ -17,6 +17,12 @@
                 </th>
             }
             <th>
+                Edit Student's Attendance
+            </th>
+            <th>
+                Grade
+            </th>
+            <th>
                 Edit Grade / Comments
             </th>
         </tr>
@@ -34,13 +40,15 @@
                         </span>
                     </td>
                 }
-                <td>@Html.ActionLink("click", "EditComment", new { studentId=student.StudentID, courseId=Model.courseId })</td>
+                <td>@Html.ActionLink("click", "EditIndividualAttendance", new { id = Model.courseId, studentId = student.StudentID })</td>
+                <td>@Html.Raw(Model.Enrollments.FirstOrDefault( o => o.StudentID == student.StudentID).Grade)</td>
+                <td>@Html.ActionLink("click", "EditComment", new { studentId = student.StudentID, courseId = Model.courseId })</td>
             </tr>
         }
     </tbody>
 </table>
-<script type="text/javascript">
+<!--<script type="text/javascript">
     absentText = $.trim('@PaulSchool.Resources.PaulSchoolResource.Absent_Text').toLowerCase();
     presentText = $.trim('@PaulSchool.Resources.PaulSchoolResource.Present_Text').toLowerCase();
     updateAttendanceUrl = '@Url.Action("UpdateAttendance", "Attendance")';
-</script>
+</script>-->
