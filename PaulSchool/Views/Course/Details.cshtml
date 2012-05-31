@@ -90,7 +90,8 @@
             @Html.DisplayFor(model => model.Approved)
             @{if ((User.IsInRole("Administrator") | User.IsInRole("SuperAdministrator")) && Model.Approved == false)
               {
-                @Html.ActionLink("Clicking here will approve this class with it's current details.", "ApproveClass", new { id = Model.CourseID },  new { onclick = "return confirm('Are you sure you are ready to approve of this class?');" })
+                @Html.ActionLink("Clicking here will approve this class with it's current details.", "ApproveCourse", new { id = Model.CourseID },  new { onclick = "return confirm('Are you sure you are ready to approve of this course?');" })
+                @Html.ActionLink("Clicking here will deny this class with it's current details.  You will be given the option to offer an explanation on the following page.", "Delete", new { id = Model.CourseID }, new { onclick = "return confirm('Are you sure you want to deny this course?');" })
               }
              }
         </div>
@@ -105,14 +106,14 @@
         @Html.DisplayFor(model => model.Archived)
             @{if ((User.IsInRole("Administrator") | User.IsInRole("SuperAdministrator")) && Model.Archived == false)
               {
-                @Html.ActionLink("Clicking here will archive this class - this will make the class uneditable.", "ApproveClass", new { id = Model.CourseID },  new { onclick = "return confirm('Are you sure you are ready to archive this class?  This process is not reversible.');" })
+                @Html.ActionLink("Clicking here will archive this class - this will make the class uneditable.", "ApproveClass", new { id = Model.CourseID }, new { onclick = "return confirm('Are you sure you are ready to archive this class?  This process is not reversible.');" })
               }
              }
         </div>
         <div class="display-field">
             @{if ((User.IsInRole("Administrator") | User.IsInRole("SuperAdministrator")) && Model.Approved == false)
               {
-                  @Html.ActionLink("Click here to edit the details of the course", "EditCourse" new { id = Model.CourseID })
+                  @Html.ActionLink("Click here to edit the details of the course", "EditCourse", new { id = Model.CourseID })
               }
              }
         </div>
@@ -140,7 +141,7 @@
                             @Html.ActionLink(item.Student.LastName, "Details", "Student", new { id = item.Student.StudentID }, "a")
                         </td>
                         <td>
-                            @Html.ActionLink("Remove", "RemoveFromClass", new { id = item.EnrollmentID }, new { onclick = "return confirm('Are you absolutely certain that you want to remove this student from this Course?  This is not reversible.');" })
+                            @Html.ActionLink("Remove", "RemoveFromCourse", new { id = item.EnrollmentID }, new { onclick = "return confirm('Are you absolutely certain that you want to remove this student from this Course?  This is not reversible.');" })
                         </td>
                     </tr>
                 }

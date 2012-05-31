@@ -39,6 +39,8 @@ namespace PaulSchool.Models
         public string Parish { get; set; }
         
         public string Description { get; set; }
+
+        public string AdminDenialReason { get; set; }
         
         public bool Approved { get; set; } // yes, no - needs to be a drop down
         

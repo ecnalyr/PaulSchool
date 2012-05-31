@@ -482,8 +482,8 @@ namespace PaulSchool.Controllers
         }
 
         //
-        // GET /Course/ApproveClass/5
-        public ActionResult ApproveClass(int id)
+        // GET /Course/ApproveCourse/5
+        public ActionResult ApproveCourse(int id)
         {
             Course course = db.Courses.Find(id);
             course.Approved = true;
@@ -504,9 +504,9 @@ namespace PaulSchool.Controllers
         }
 
         //
-        // POST /Course/RemoveFromClass/5
+        // POST /Course/RemoveFromCourse/5
         [Authorize (Roles = "Administrator, SuperAdministrator")]
-        public ActionResult RemoveFromClass(int id)
+        public ActionResult RemoveFromCourse(int id)
         {
             Enrollment enrollment = db.Enrollments.Find(id);
             db.Enrollments.Remove(enrollment);
@@ -555,6 +555,40 @@ namespace PaulSchool.Controllers
                 return RedirectToAction("Index");
             }
             return View(course);
+        }
+
+        //
+        // GET: /Course/Delete/5
+
+        [Authorize (Roles = "Administrator, SuperAdministrator")]
+        public ActionResult Delete(int id)
+        {
+            Course course = db.Courses.Find(id);
+            return View(course);
+        }
+
+        //
+        // POST: /Course/Delete/5
+
+        [HttpPost, ActionName("Delete")]
+        public ActionResult DeleteConfirmed(int id, Course hasReasonForDeletion)
+        {
+            Course course = db.Courses.Find(id);
+
+            // Add the notification for the Instructor that their Course has been approved
+            Notification newNotification = new Notification
+            {
+                Time = DateTime.Now,
+                Details = "An Administrator has denied your application to teach " + course.Title + " citing the following reason: " + hasReasonForDeletion.AdminDenialReason,
+                Link = Url.Action("Apply Again?", "ApplyToTeach", new { id = course.CourseID }),
+                ViewableBy = course.Instructor.UserName,
+                Complete = false
+            };
+            db.Notification.Add(newNotification);
+
+            db.Courses.Remove(course);
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
     }
 }
