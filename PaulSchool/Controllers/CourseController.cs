@@ -202,65 +202,71 @@ namespace PaulSchool.Controllers
                 {
                     if ( course.Enrollments.Count < course.AttendanceCap )
                     {
-                        Enrollment newEnrollment = new Enrollment
-                        {
-                            CourseID = course.CourseID,
-                            StudentID = thisStudent.StudentID,
-                            Grade = "incomplete"
-                        };
-
-                        for (int i = 0; i < course.AttendingDays; i++)
-                        // Adds attendance rows for every day needed in the attendance table
-                        {
-                            Attendance newAttendance = new Attendance
-                            {
-                                CourseID = course.CourseID,
-                                StudentID = thisStudent.StudentID,
-                                AttendanceDay = i+1,
-                                Present = false
-                            };
-                            db.Attendance.Add(newAttendance);
-                        }
-
-                        db.Enrollments.Add(newEnrollment);
-                        db.SaveChanges();
-
-                        Notification newNotification = new Notification
-                        {
-                            Time = DateTime.Now,
-                            Details = "A Student by the name of " + thisStudent.FirstMidName + " " + thisStudent.LastName + " has signed up for " + course.Title,
-                            Link = Url.Action("Details", "Student", new { id = thisStudent.StudentID }),
-                            ViewableBy = "Admin",
-                            Complete = false
-                        };
-                        db.Notification.Add(newNotification);
-                        db.SaveChanges();
-
-
+                        createEnrollmentAttendanceAndNotificationData(course, thisStudent);
                         return Content("You have been added to the class");
-
-
-                        //allow student to join class
-                        //return Content("Student is allowed to join class");
-                        //return RedirectToAction("Error", "Course", message);
                     }
                     else
                     {
-                        // Class is full
                         return Content("Class is full");
                     }
                 }
                 else
                 {
-                    //  Student is already in class
                     return Content("Student is already in class");
                 }
             }
             else
             {
-                // Course is either not approved to begin by administrator or has already been completed
                 return Content("Course is not ready to be joined");
             }
+        }
+
+        private void createEnrollmentAttendanceAndNotificationData(Course course, Student thisStudent)
+        {
+            buildEnrollmentData(course, thisStudent);
+            buildAttendanceData(course, thisStudent);
+            buildNotificationData(course, thisStudent);
+            db.SaveChanges();
+        }
+
+        private void buildNotificationData(Course course, Student thisStudent)
+        {
+            Notification newNotification = new Notification
+            {
+                Time = DateTime.Now,
+                Details = "A Student by the name of " + thisStudent.FirstMidName + " " + thisStudent.LastName + " has signed up for " + course.Title,
+                Link = Url.Action("Details", "Student", new { id = thisStudent.StudentID }),
+                ViewableBy = "Admin",
+                Complete = false
+            };
+            db.Notification.Add(newNotification);
+        }
+
+        private void buildAttendanceData(Course course, Student thisStudent)
+        {
+            for (int i = 0; i < course.AttendingDays; i++)
+            // Adds attendance rows for every day needed in the attendance table
+            {
+                Attendance newAttendance = new Attendance
+                {
+                    CourseID = course.CourseID,
+                    StudentID = thisStudent.StudentID,
+                    AttendanceDay = i + 1,
+                    Present = false
+                };
+                db.Attendance.Add(newAttendance);
+            }
+        }
+
+        private void buildEnrollmentData(Course course, Student thisStudent)
+        {
+            Enrollment newEnrollment = new Enrollment
+            {
+                CourseID = course.CourseID,
+                StudentID = thisStudent.StudentID,
+                Grade = "incomplete"
+            };
+            db.Enrollments.Add(newEnrollment);
         }
 
         //
@@ -301,66 +307,80 @@ namespace PaulSchool.Controllers
                     // "currentUser" needed to have user's information ( every user should have data in the Student table, 
                     // so their information is stored there)
 
-                    Instructor newInstructor = new Instructor
                     // Creates a new Instructor in the Instructor Table
                     // using the User's information
-                    {
-                        UserName = User.Identity.Name,
-                        EnrollmentDate = DateTime.Now,
-                        LastName = currentUser.LastName,
-                        FirstMidName = currentUser.FirstMidName,
-                        Email = currentUser.Email
-                    };
-                    db.Instructors.Add(newInstructor);
-                    db.SaveChanges();
-                    if (!User.IsInRole("Instructor"))
-                    {
-                        Roles.AddUserToRole(User.Identity.Name, "Instructor");
-                    }
-                    // sets the actual role of the user to Instructor
+                    createsInstructorDataAndAssignsRole(currentUser);
                 }
 
                 Instructor instructorAgain = db.Instructors.FirstOrDefault(
                  o => o.UserName == User.Identity.Name);
                 // Have to check the instructor again because if we just created 
                 // the instructor there will be "null" in the "instructor" variable
-                Course newCourse = new Course
-                {
-                    Title = appliedCourse.Title,
-                    Credits = appliedCourse.Credits,
-                    Elective = appliedCourse.Elective,
-                    InstructorID = instructorAgain.InstructorID, 
-                    Year = appliedCourse.StartDate.Year,
-                    AttendingDays = appliedCourse.AttendingDays,
-                    AttendanceCap = appliedCourse.AttendanceCap,
-                    StartDate = appliedCourse.StartDate,
-                    EndDate = appliedCourse.EndDate,
-                    DurationHours = appliedCourse.DurationHours,
-                    DurationMins = appliedCourse.DurationMins,
-                    Location = appliedCourse.Location,
-                    Parish = appliedCourse.Parish,
-                    Description = appliedCourse.Description,
-                    Approved = false,
-                    Completed = false,
-                    Archived = false
-                };
-                db.Courses.Add(newCourse);
-                db.SaveChanges();
 
-                // Add the notification for the Admin that someone has applied to teach a Course
-                Notification newNotification = new Notification
-                {
-                    Time = DateTime.Now,
-                    Details = "An Instructor by the name of "+instructorAgain.LastName+" has applied to teach "+appliedCourse.Title,
-                    Link = Url.Action("Details", "Course", new { id = newCourse.CourseID }),
-                    ViewableBy = "Admin",
-                    Complete = false
-                };
-                db.Notification.Add(newNotification);
+                Course newCourse = buildCourseData(appliedCourse, instructorAgain);
+                db.SaveChanges();
+                buildNotificationData(appliedCourse, instructorAgain, newCourse);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(appliedCourse);
+        }
+
+        private void buildNotificationData(ApplyCourseViewModel appliedCourse, Instructor instructorAgain, Course newCourse)
+        {
+            Notification newNotification = new Notification
+            {
+                Time = DateTime.Now,
+                Details = "An Instructor by the name of " + instructorAgain.LastName + " has applied to teach " + appliedCourse.Title,
+                Link = Url.Action("Details", "Course", new { id = newCourse.CourseID }),
+                ViewableBy = "Admin",
+                Complete = false
+            };
+            db.Notification.Add(newNotification);
+        }
+
+        private Course buildCourseData(ApplyCourseViewModel appliedCourse, Instructor instructorAgain)
+        {
+            Course newCourse = new Course
+            {
+                Title = appliedCourse.Title,
+                Credits = appliedCourse.Credits,
+                Elective = appliedCourse.Elective,
+                InstructorID = instructorAgain.InstructorID,
+                Year = appliedCourse.StartDate.Year,
+                AttendingDays = appliedCourse.AttendingDays,
+                AttendanceCap = appliedCourse.AttendanceCap,
+                StartDate = appliedCourse.StartDate,
+                EndDate = appliedCourse.EndDate,
+                DurationHours = appliedCourse.DurationHours,
+                DurationMins = appliedCourse.DurationMins,
+                Location = appliedCourse.Location,
+                Parish = appliedCourse.Parish,
+                Description = appliedCourse.Description,
+                Approved = false,
+                Completed = false,
+                Archived = false
+            };
+            db.Courses.Add(newCourse);
+            return newCourse;
+        }
+
+        private void createsInstructorDataAndAssignsRole(Student currentUser)
+        {
+            Instructor newInstructor = new Instructor
+            {
+                UserName = User.Identity.Name,
+                EnrollmentDate = DateTime.Now,
+                LastName = currentUser.LastName,
+                FirstMidName = currentUser.FirstMidName,
+                Email = currentUser.Email
+            };
+            db.Instructors.Add(newInstructor);
+            db.SaveChanges();
+            if (!User.IsInRole("Instructor"))
+            {
+                Roles.AddUserToRole(User.Identity.Name, "Instructor");
+            }
         }
 
 
@@ -489,19 +509,23 @@ namespace PaulSchool.Controllers
             Course course = db.Courses.Find(id);
             course.Approved = true;
 
-            // Add the notification for the Instructor that their Course has been approved
+            // Add the notification for the Instructor stating that their Course has been approved
+            buildNotificationData(course);
+            db.SaveChanges();
+            return RedirectToAction("Details", new { id = course.CourseID });
+        }
+
+        private void buildNotificationData(Course course)
+        {
             Notification newNotification = new Notification
             {
                 Time = DateTime.Now,
                 Details = "An Administrator has approved your application to teach " + course.Title + " beginning " + course.StartDate,
-                Link = Url.Action("Details", "Course", new { id = course.CourseID }),
+                Link = Url.Action("AttendanceView", "Attendance", new { id = course.CourseID }),
                 ViewableBy = course.Instructor.UserName,
                 Complete = false
             };
             db.Notification.Add(newNotification);
-
-            db.SaveChanges();
-            return RedirectToAction("Details", new { id = course.CourseID });
         }
 
         //
@@ -509,18 +533,22 @@ namespace PaulSchool.Controllers
         [Authorize (Roles = "Administrator, SuperAdministrator")]
         public ActionResult RemoveFromCourse(int id)
         {
+            Enrollment enrollment = removeEnrollmentAndAttendanceData(id);
+            db.SaveChanges();
+            return RedirectToAction("Details", new { id = enrollment.CourseID });
+        }
+
+        private Enrollment removeEnrollmentAndAttendanceData(int id)
+        {
             Enrollment enrollment = db.Enrollments.Find(id);
             db.Enrollments.Remove(enrollment);
-
-            // remove attendance items related to Enrollment
             var attendanceItems = db.Attendance.Where(s => s.CourseID == enrollment.CourseID &&
                 s.StudentID == enrollment.StudentID);
             foreach (var item in attendanceItems)
             {
                 db.Attendance.Remove(item);
             }
-            db.SaveChanges();
-            return RedirectToAction("Details", new { id = enrollment.CourseID });
+            return enrollment;
         }
 
         //
@@ -581,7 +609,7 @@ namespace PaulSchool.Controllers
             {
                 Time = DateTime.Now,
                 Details = "An Administrator has denied your application to teach " + course.Title + " citing the following reason: " + hasReasonForDeletion.AdminDenialReason,
-                Link = Url.Action("Apply Again?", "ApplyToTeach", new { id = course.CourseID }),
+                Link = Url.Action("ApplyToTeach", "Course", new { id = course.CourseID }),
                 ViewableBy = course.Instructor.UserName,
                 Complete = false
             };

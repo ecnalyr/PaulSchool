@@ -5,176 +5,185 @@
 }
 
 <h2>Details</h2>
-@using (Html.BeginForm("ApplyUsingDetails", "Course", FormMethod.Post))
-{
-   <!--<div class="display-label">Course ID</div>-->
-   <div class="display-field">
-        <!--@Html.DisplayFor(model => model.CourseID)-->
-        @Html.HiddenFor(model => model.CourseID)
-   </div>
-    <p><input type="submit" value="Sign up for this course", new { onclick = "return confirm('Are you sure you are ready to sign up for this class?');" }  /></p>
-    <fieldset>
+@{if (Model != null)
+  {
+    using (Html.BeginForm("ApplyUsingDetails", "Course", FormMethod.Post))
+    {
+       <!--<div class="display-label">Course ID</div>-->
+           <div class="display-field">
+                <!--@Html.DisplayFor(model => model.CourseID)-->
+                @Html.HiddenFor(model => model.CourseID)
+           </div>
+            <p><input type="submit" value="Sign up for this course", new { onclick = "return confirm('Are you sure you are ready to sign up for this class?');" }  /></p>
+            <fieldset>
 
-        <div class="display-label">Title</div>
-        <div class="display-field">
-            @Html.DisplayFor(model => model.Title)
-        </div>
+                <div class="display-label">Title</div>
+                <div class="display-field">
+                    @Html.DisplayFor(model => model.Title)
+                </div>
 
-        <div class="display-label">Credits</div>
-        <div class="display-field">
-            @Html.DisplayFor(model => model.Credits)
-        </div>
+                <div class="display-label">Credits</div>
+                <div class="display-field">
+                    @Html.DisplayFor(model => model.Credits)
+                </div>
 
-        <div class="display-label">Elective</div>
-        <div class="display-field">
-            @Html.DisplayFor(model => model.Elective)
-        </div>
+                <div class="display-label">Elective</div>
+                <div class="display-field">
+                    @Html.DisplayFor(model => model.Elective)
+                </div>
 
-        <div class="display-label">Instructor</div>
-        <div class="display-field">
-            @Html.DisplayFor(model => model.Instructor)
-        </div>
+                <div class="display-label">Instructor</div>
+                <div class="display-field">
+                    @Html.DisplayFor(model => model.Instructor)
+                </div>
 
-        <div class="display-label">Year</div>
-        <div class="display-field">
-            @Html.DisplayFor(model => model.Year)
-        </div>
+                <div class="display-label">Year</div>
+                <div class="display-field">
+                    @Html.DisplayFor(model => model.Year)
+                </div>
 
-        <div class="display-label">AttendingDays</div>
-        <div class="display-field">
-            @Html.DisplayFor(model => model.AttendingDays)
-        </div>
+                <div class="display-label">AttendingDays</div>
+                <div class="display-field">
+                    @Html.DisplayFor(model => model.AttendingDays)
+                </div>
 
-        <div class="display-label">AttendanceCap</div>
-        <div class="display-field">
-            @Html.DisplayFor(model => model.AttendanceCap)
-        </div>
+                <div class="display-label">AttendanceCap</div>
+                <div class="display-field">
+                    @Html.DisplayFor(model => model.AttendanceCap)
+                </div>
 
-        <div class="display-label">StartDate</div>
-        <div class="display-field">
-            @Html.DisplayFor(model => model.StartDate)
-        </div>
+                <div class="display-label">StartDate</div>
+                <div class="display-field">
+                    @Html.DisplayFor(model => model.StartDate)
+                </div>
 
-        <div class="display-label">EndDate</div>
-        <div class="display-field">
-            @Html.DisplayFor(model => model.EndDate)
-        </div>
+                <div class="display-label">EndDate</div>
+                <div class="display-field">
+                    @Html.DisplayFor(model => model.EndDate)
+                </div>
 
-        <div class="display-label">DurationHours</div>
-        <div class="display-field">
-            @Html.DisplayFor(model => model.DurationHours)
-        </div>
+                <div class="display-label">DurationHours</div>
+                <div class="display-field">
+                    @Html.DisplayFor(model => model.DurationHours)
+                </div>
 
-        <div class="display-label">DurationMins</div>
-        <div class="display-field">
-            @Html.DisplayFor(model => model.DurationMins)
-        </div>
+                <div class="display-label">DurationMins</div>
+                <div class="display-field">
+                    @Html.DisplayFor(model => model.DurationMins)
+                </div>
 
-        <div class="display-label">Location</div>
-        <div class="display-field">
-            @Html.DisplayFor(model => model.Location)
-        </div>
+                <div class="display-label">Location</div>
+                <div class="display-field">
+                    @Html.DisplayFor(model => model.Location)
+                </div>
 
-        <div class="display-label">Parish</div>
-        <div class="display-field">
-            @Html.DisplayFor(model => model.Parish)
-        </div>
+                <div class="display-label">Parish</div>
+                <div class="display-field">
+                    @Html.DisplayFor(model => model.Parish)
+                </div>
 
-        <div class="display-label">Description</div>
-        <div class="display-field">
-            @Html.DisplayFor(model => model.Description)
-        </div>
+                <div class="display-label">Description</div>
+                <div class="display-field">
+                    @Html.DisplayFor(model => model.Description)
+                </div>
 
-        <div class="display-label">Approved</div>
-        <div class="display-field">
-            @Html.DisplayFor(model => model.Approved)
-            @{if ((User.IsInRole("Administrator") | User.IsInRole("SuperAdministrator")) && Model.Approved == false)
-              {
-                @Html.ActionLink("Clicking here will approve this class with it's current details.", "ApproveCourse", new { id = Model.CourseID },  new { onclick = "return confirm('Are you sure you are ready to approve of this course?');" })
-                @Html.ActionLink("Clicking here will deny this class with it's current details.  You will be given the option to offer an explanation on the following page.", "Delete", new { id = Model.CourseID }, new { onclick = "return confirm('Are you sure you want to deny this course?');" })
-              }
-             }
-        </div>
+                <div class="display-label">Approved</div>
+                <div class="display-field">
+                    @Html.DisplayFor(model => model.Approved)
+                    @{if ((User.IsInRole("Administrator") | User.IsInRole("SuperAdministrator")) && Model.Approved == false)
+                      {
+                        <p>@Html.ActionLink("Clicking here will approve this class with it's current details.", "ApproveCourse", new { id = Model.CourseID }, new { onclick = "return confirm('Are you sure you are ready to approve of this course?');" })</p>
+                        <p>@Html.ActionLink("Clicking here will deny this class with it's current details.  You will be given the option to offer an explanation on the following page.", "Delete", new { id = Model.CourseID }, new { onclick = "return confirm('Are you sure you want to deny this course?');" })</p>
+                      }
+                     }
+                </div>
 
-        <div class="display-label">Completed</div>
-        <div class="display-field">
-            @Html.DisplayFor(model => model.Completed)
-        </div>
+                <div class="display-label">Completed</div>
+                <div class="display-field">
+                    @Html.DisplayFor(model => model.Completed)
+                </div>
 
-        <div class="display-label">Archived</div>
-        <div class="display-field">
-        @Html.DisplayFor(model => model.Archived)
-            @{if ((User.IsInRole("Administrator") | User.IsInRole("SuperAdministrator")) && Model.Archived == false)
-              {
-                @Html.ActionLink("Clicking here will archive this class - this will make the class uneditable.", "ApproveClass", new { id = Model.CourseID }, new { onclick = "return confirm('Are you sure you are ready to archive this class?  This process is not reversible.');" })
-              }
-             }
-        </div>
-        <div class="display-field">
-            @{if ((User.IsInRole("Administrator") | User.IsInRole("SuperAdministrator")) && Model.Approved == false)
-              {
-                  @Html.ActionLink("Click here to edit the details of the course", "EditCourse", new { id = Model.CourseID })
-              }
-             }
-        </div>
+                <div class="display-label">Archived</div>
+                <div class="display-field">
+                @Html.DisplayFor(model => model.Archived)
+                    @{if ((User.IsInRole("Administrator") | User.IsInRole("SuperAdministrator")) && Model.Archived == false)
+                      {
+                        @Html.ActionLink("Clicking here will archive this class - this will make the class uneditable.", "ApproveClass", new { id = Model.CourseID }, new { onclick = "return confirm('Are you sure you are ready to archive this class?  This process is not reversible.');" })
+                      }
+                     }
+                </div>
+                <div class="display-field">
+                    @{if ((User.IsInRole("Administrator") | User.IsInRole("SuperAdministrator")) && Model.Approved == false)
+                      {
+                          @Html.ActionLink("Click here to edit the details of the course", "EditCourse", new { id = Model.CourseID })
+                      }
+                     }
+                </div>
 
-        @{if (User.IsInRole("Administrator"))
-          {
-            <!-- As Viewable by Admin-->
-            <div class="display-label">
-            List of Students as viewed by Admins
-            </div>
-            <div class="display-field">
-            <table>
-                <tr>
-                    <th>First and Middle Name</th>
-                    <th>Last Name</th>
-                    <th>Remove from class</th>
-                </tr>
-                @foreach (var item in Model.Enrollments)
-                {
-                    <tr>
-                        <td>
-                            @Html.ActionLink(item.Student.FirstMidName, "Details", "Student", new { id = item.Student.StudentID }, "a")
-                        </td>
-                        <td>
-                            @Html.ActionLink(item.Student.LastName, "Details", "Student", new { id = item.Student.StudentID }, "a")
-                        </td>
-                        <td>
-                            @Html.ActionLink("Remove", "RemoveFromCourse", new { id = item.EnrollmentID }, new { onclick = "return confirm('Are you absolutely certain that you want to remove this student from this Course?  This is not reversible.');" })
-                        </td>
-                    </tr>
-                }
-            </table>
-            </div>
-          }
-          if (User.IsInRole("Instructor"))
-          {
-            <div class="display-label">
-            List of Students
-            </div>
-            <div class="display-field">
-            <table>
-                <tr>
-                    <th>First and Middle Name</th>
-                    <th>Last Name</th>
-                </tr>
-                @foreach (var item in Model.Enrollments)
-                {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Student.FirstMidName)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Student.LastName)
-                        </td>
-                    </tr>
-                }
-            </table>
-            </div>
-          }
-         }
-    </fieldset>
+                @{if (User.IsInRole("Administrator"))
+                  {
+                    <!-- As Viewable by Admin-->
+                    <div class="display-label">
+                    List of Students as viewed by Admins
+                    </div>
+                    <div class="display-field">
+                    <table>
+                        <tr>
+                            <th>First and Middle Name</th>
+                            <th>Last Name</th>
+                            <th>Remove from class</th>
+                        </tr>
+                        @foreach (var item in Model.Enrollments)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.ActionLink(item.Student.FirstMidName, "Details", "Student", new { id = item.Student.StudentID }, "a")
+                                </td>
+                                <td>
+                                    @Html.ActionLink(item.Student.LastName, "Details", "Student", new { id = item.Student.StudentID }, "a")
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Remove", "RemoveFromCourse", new { id = item.EnrollmentID }, new { onclick = "return confirm('Are you absolutely certain that you want to remove this student from this Course?  This is not reversible.');" })
+                                </td>
+                            </tr>
+                        }
+                    </table>
+                    </div>
+                  }
+                  if (User.IsInRole("Instructor"))
+                  {
+                    <div class="display-label">
+                    List of Students
+                    </div>
+                    <div class="display-field">
+                    <table>
+                        <tr>
+                            <th>First and Middle Name</th>
+                            <th>Last Name</th>
+                        </tr>
+                        @foreach (var item in Model.Enrollments)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Student.FirstMidName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Student.LastName)
+                                </td>
+                            </tr>
+                        }
+                    </table>
+                    </div>
+                  }
+                 }
+            </fieldset>
+    }
+  }
+  else
+  {
+    <p>It appears that this Course has been deleted.</p>  
+  }
+
     <p>
         @Html.ActionLink("Back to List", "Index")
     </p>
