@@ -36,7 +36,8 @@ namespace PaulSchool.Controllers
                 Location = selectedTemplate.Location,
                 Parish = selectedTemplate.Parish,
                 Description = selectedTemplate.Description,
-                StartDate = DateTime.Now
+                StartDate = DateTime.Now,
+                EndDate = DateTime.Now.AddMonths(1)
             };
             return PartialView("_CourseForm", preFill);
         }
