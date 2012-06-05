@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using PaulSchool.Models;
 using PagedList;
 using PaulSchool.ViewModels;
 using System.Web.Security;
-using System.Diagnostics;
 using System.Data;
 
 namespace PaulSchool.Controllers
@@ -24,22 +21,26 @@ namespace PaulSchool.Controllers
                                                 o => o.Title == selectedCourse);
 
             ViewBag.selectedString = selectedCourse;
-            ApplyCourseViewModel preFill = new ApplyCourseViewModel
+            if (selectedTemplate != null)
             {
-                Title = selectedTemplate.Title,
-                Credits = selectedTemplate.Credits,
-                Elective = selectedTemplate.Elective,
-                AttendingDays = selectedTemplate.AttendingDays,
-                AttendanceCap = selectedTemplate.AttendanceCap,
-                DurationHours = selectedTemplate.DurationHours,
-                DurationMins = selectedTemplate.DurationMins,
-                Location = selectedTemplate.Location,
-                Parish = selectedTemplate.Parish,
-                Description = selectedTemplate.Description,
-                StartDate = DateTime.Now,
-                EndDate = DateTime.Now.AddMonths(1)
-            };
-            return PartialView("_CourseForm", preFill);
+                var preFill = new ApplyCourseViewModel
+                                                   {
+                                                       Title = selectedTemplate.Title,
+                                                       Credits = selectedTemplate.Credits,
+                                                       Elective = selectedTemplate.Elective,
+                                                       AttendingDays = selectedTemplate.AttendingDays,
+                                                       AttendanceCap = selectedTemplate.AttendanceCap,
+                                                       DurationHours = selectedTemplate.DurationHours,
+                                                       DurationMins = selectedTemplate.DurationMins,
+                                                       Location = selectedTemplate.Location,
+                                                       Parish = selectedTemplate.Parish,
+                                                       Description = selectedTemplate.Description,
+                                                       StartDate = DateTime.Now,
+                                                       EndDate = DateTime.Now.AddMonths(1)
+                                                   };
+                return PartialView("_CourseForm", preFill);
+            }
+            return null;
         }
 
 
@@ -189,7 +190,6 @@ namespace PaulSchool.Controllers
         {
             //try to join course
             Course course = db.Courses.Find(idGetter.CourseID);
-            int id = course.CourseID;
             if (course.Approved && !course.Completed)
             {
                 Student thisStudent = db.Students.FirstOrDefault(
@@ -202,36 +202,27 @@ namespace PaulSchool.Controllers
                 {
                     if ( course.Enrollments.Count < course.AttendanceCap )
                     {
-                        createEnrollmentAttendanceAndNotificationData(course, thisStudent);
+                        CreateEnrollmentAttendanceAndNotificationData(course, thisStudent);
                         return Content("You have been added to the class");
                     }
-                    else
-                    {
-                        return Content("Class is full");
-                    }
+                    return Content("Class is full");
                 }
-                else
-                {
-                    return Content("Student is already in class");
-                }
+                return Content("Student is already in class");
             }
-            else
-            {
-                return Content("Course is not ready to be joined");
-            }
+            return Content("Course is not ready to be joined");
         }
 
-        private void createEnrollmentAttendanceAndNotificationData(Course course, Student thisStudent)
+        private void CreateEnrollmentAttendanceAndNotificationData(Course course, Student thisStudent)
         {
-            buildEnrollmentData(course, thisStudent);
-            buildAttendanceData(course, thisStudent);
-            buildNotificationData(course, thisStudent);
+            BuildEnrollmentData(course, thisStudent);
+            BuildAttendanceData(course, thisStudent);
+            BuildNotificationData(course, thisStudent);
             db.SaveChanges();
         }
 
-        private void buildNotificationData(Course course, Student thisStudent)
+        private void BuildNotificationData(Course course, Student thisStudent)
         {
-            Notification newNotification = new Notification
+            var newNotification = new Notification
             {
                 Time = DateTime.Now,
                 Details = "A Student by the name of " + thisStudent.FirstMidName + " " + thisStudent.LastName + " has signed up for " + course.Title,
@@ -242,12 +233,12 @@ namespace PaulSchool.Controllers
             db.Notification.Add(newNotification);
         }
 
-        private void buildAttendanceData(Course course, Student thisStudent)
+        private void BuildAttendanceData(Course course, Student thisStudent)
         {
             for (int i = 0; i < course.AttendingDays; i++)
             // Adds attendance rows for every day needed in the attendance table
             {
-                Attendance newAttendance = new Attendance
+                var newAttendance = new Attendance
                 {
                     CourseID = course.CourseID,
                     StudentID = thisStudent.StudentID,
@@ -258,9 +249,9 @@ namespace PaulSchool.Controllers
             }
         }
 
-        private void buildEnrollmentData(Course course, Student thisStudent)
+        private void BuildEnrollmentData(Course course, Student thisStudent)
         {
-            Enrollment newEnrollment = new Enrollment
+            var newEnrollment = new Enrollment
             {
                 CourseID = course.CourseID,
                 StudentID = thisStudent.StudentID,
@@ -309,7 +300,7 @@ namespace PaulSchool.Controllers
 
                     // Creates a new Instructor in the Instructor Table
                     // using the User's information
-                    createsInstructorDataAndAssignsRole(currentUser);
+                    CreatesInstructorDataAndAssignsRole(currentUser);
                 }
 
                 Instructor instructorAgain = db.Instructors.FirstOrDefault(
@@ -317,18 +308,18 @@ namespace PaulSchool.Controllers
                 // Have to check the instructor again because if we just created 
                 // the instructor there will be "null" in the "instructor" variable
 
-                Course newCourse = buildCourseData(appliedCourse, instructorAgain);
+                Course newCourse = BuildCourseData(appliedCourse, instructorAgain);
                 db.SaveChanges();
-                buildNotificationData(appliedCourse, instructorAgain, newCourse);
+                BuildNotificationData(appliedCourse, instructorAgain, newCourse);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(appliedCourse);
         }
 
-        private void buildNotificationData(ApplyCourseViewModel appliedCourse, Instructor instructorAgain, Course newCourse)
+        private void BuildNotificationData(ApplyCourseViewModel appliedCourse, Instructor instructorAgain, Course newCourse)
         {
-            Notification newNotification = new Notification
+            var newNotification = new Notification
             {
                 Time = DateTime.Now,
                 Details = "An Instructor by the name of " + instructorAgain.LastName + " has applied to teach " + appliedCourse.Title,
@@ -339,9 +330,9 @@ namespace PaulSchool.Controllers
             db.Notification.Add(newNotification);
         }
 
-        private Course buildCourseData(ApplyCourseViewModel appliedCourse, Instructor instructorAgain)
+        private Course BuildCourseData(ApplyCourseViewModel appliedCourse, Instructor instructorAgain)
         {
-            Course newCourse = new Course
+            var newCourse = new Course
             {
                 Title = appliedCourse.Title,
                 Credits = appliedCourse.Credits,
@@ -365,9 +356,9 @@ namespace PaulSchool.Controllers
             return newCourse;
         }
 
-        private void createsInstructorDataAndAssignsRole(Student currentUser)
+        private void CreatesInstructorDataAndAssignsRole(Student currentUser)
         {
-            Instructor newInstructor = new Instructor
+            var newInstructor = new Instructor
             {
                 UserName = User.Identity.Name,
                 EnrollmentDate = DateTime.Now,
@@ -432,7 +423,7 @@ namespace PaulSchool.Controllers
             }
             ViewBag.CurrentFilter = searchString;
 
-            var courses = db.Courses.Where(s => s.Approved== true);
+            var courses = db.Courses.Where(s => s.Approved); // used to read s=> s.approved == true
 
             if (!String.IsNullOrEmpty(searchString))
             {
@@ -510,14 +501,14 @@ namespace PaulSchool.Controllers
             course.Approved = true;
 
             // Add the notification for the Instructor stating that their Course has been approved
-            buildNotificationData(course);
+            BuildNotificationData(course);
             db.SaveChanges();
             return RedirectToAction("Details", new { id = course.CourseID });
         }
 
-        private void buildNotificationData(Course course)
+        private void BuildNotificationData(Course course)
         {
-            Notification newNotification = new Notification
+            var newNotification = new Notification
             {
                 Time = DateTime.Now,
                 Details = "An Administrator has approved your application to teach " + course.Title + " beginning " + course.StartDate,
@@ -533,12 +524,12 @@ namespace PaulSchool.Controllers
         [Authorize (Roles = "Administrator, SuperAdministrator")]
         public ActionResult RemoveFromCourse(int id)
         {
-            Enrollment enrollment = removeEnrollmentAndAttendanceData(id);
+            Enrollment enrollment = RemoveEnrollmentAndAttendanceData(id);
             db.SaveChanges();
             return RedirectToAction("Details", new { id = enrollment.CourseID });
         }
 
-        private Enrollment removeEnrollmentAndAttendanceData(int id)
+        private Enrollment RemoveEnrollmentAndAttendanceData(int id)
         {
             Enrollment enrollment = db.Enrollments.Find(id);
             db.Enrollments.Remove(enrollment);
@@ -571,7 +562,7 @@ namespace PaulSchool.Controllers
                 db.Entry(course).State = EntityState.Modified;
 
                 // Add a notification for the Instructor to see that the Course was modified
-                Notification newNotification = new Notification
+                var newNotification = new Notification
                 {
                     Time = DateTime.Now,
                     Details = "An Admin has edited the course you applied to teach: " + course.Title + " beginning " + course.StartDate,
@@ -605,7 +596,7 @@ namespace PaulSchool.Controllers
             Course course = db.Courses.Find(id);
 
             // Add the notification for the Instructor that their Course has been approved
-            Notification newNotification = new Notification
+            var newNotification = new Notification
             {
                 Time = DateTime.Now,
                 Details = "An Administrator has denied your application to teach " + course.Title + " citing the following reason: " + hasReasonForDeletion.AdminDenialReason,

@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using System.Web.Routing;
 using System.Web.Security;
 using PaulSchool.Models;
+using PaulSchool.Resources;
 using PaulSchool.ViewModels;
 
 namespace PaulSchool.Controllers
@@ -32,19 +30,16 @@ namespace PaulSchool.Controllers
             {
                 if (Membership.ValidateUser(model.UserName, model.Password))
                 {
-                    return logUserIn(model, returnUrl);
+                    return LogUserIn(model, returnUrl);
                 }
-                else
-                {
-                    ModelState.AddModelError("", "The user name or password provided is incorrect.");
-                }
+                ModelState.AddModelError("", PaulSchoolResource.AccountController_LogOn_The_user_name_or_password_provided_is_incorrect_);
             }
 
             // If we got this far, something failed, redisplay form
             return View(model);
         }
 
-        private ActionResult logUserIn(LogOnModel model, string returnUrl)
+        private ActionResult LogUserIn(LogOnModel model, string returnUrl)
         {
             FormsAuthentication.SetAuthCookie(model.UserName, model.RememberMe);
             //FormsAuthentication.SetAuthCookie(model.UserName, model.RememberMe);
@@ -53,10 +48,7 @@ namespace PaulSchool.Controllers
             {
                 return Redirect(returnUrl);
             }
-            else
-            {
-                return RedirectToAction("Index", "Home");
-            }
+            return RedirectToAction("Index", "Home");
         }
 
         //
@@ -91,40 +83,37 @@ namespace PaulSchool.Controllers
 
                 if (createStatus == MembershipCreateStatus.Success)
                 {
-                    return createAndSaveNewUserWithStudentProfileAndCookie(model);
+                    return CreateAndSaveNewUserWithStudentProfileAndCookie(model);
                 }
-                else
-                {
-                    ModelState.AddModelError("", ErrorCodeToString(createStatus));
-                }
+                ModelState.AddModelError("", ErrorCodeToString(createStatus));
             }
 
             // If we got this far, something failed, redisplay form
             return View(model);
         }
 
-        private ActionResult createAndSaveNewUserWithStudentProfileAndCookie(RegisterModel model)
+        private ActionResult CreateAndSaveNewUserWithStudentProfileAndCookie(RegisterModel model)
         {
             if (ModelState.IsValid)
             {
                 FormsAuthentication.SetAuthCookie(model.UserName, false /* createPersistentCookie */);
                 CustomProfile profile = CustomProfile.GetUserProfile(model.UserName);
 
-                setDefaultStateOfUser(model, profile);
+                SetDefaultStateOfUser(model, profile);
 
-                saveNewProfile(model, profile);
+                SaveNewProfile(model, profile);
 
                 // check if already existing on the student table - update the table if needed
                 Student isStudent = db.Students.FirstOrDefault(
                     o => o.UserName == User.Identity.Name);
                 if (isStudent != null) // IF the user already exists in the Student Table . . .
                 {
-                    updateStudentsTableWithUpdatedProfileDataFromRegisterModel(model, isStudent);
+                    UpdateStudentsTableWithUpdatedProfileDataFromRegisterModel(model, isStudent);
                 }
                 else
                 // Create student in student table if they have not been there before (everyone needs to be at least a student)
                 {
-                    createStudentTableDataWithNewProfileDataAndAssignStudentRole(model);
+                    CreateStudentTableDataWithNewProfileDataAndAssignStudentRole(model);
                 }
 
                 return RedirectToAction("Index", "Home");
@@ -132,7 +121,7 @@ namespace PaulSchool.Controllers
             return View(model);
         }
 
-        private static void setDefaultStateOfUser(RegisterModel model, CustomProfile profile)
+        private static void SetDefaultStateOfUser(RegisterModel model, CustomProfile profile)
         {
             profile.IsTeacher = "no";
             profile.FilledStudentInfo = "no";
@@ -140,7 +129,7 @@ namespace PaulSchool.Controllers
             Roles.AddUserToRole(model.UserName, "Default"); // Adds student to the "Default" role so we can force them to become a "Student" role.
         }
 
-        private static void saveNewProfile(RegisterModel model, CustomProfile profile)
+        private static void SaveNewProfile(RegisterModel model, CustomProfile profile)
         {
             profile.LastName = model.LastName;
             profile.FirstMidName = model.FirstMidName;
@@ -155,7 +144,7 @@ namespace PaulSchool.Controllers
             profile.Save();
         }
 
-        private void updateStudentsTableWithUpdatedProfileDataFromRegisterModel(RegisterModel model, Student isStudent)
+        private void UpdateStudentsTableWithUpdatedProfileDataFromRegisterModel(RegisterModel model, Student isStudent)
         {
             isStudent.LastName = model.LastName;
             isStudent.FirstMidName = model.FirstMidName;
@@ -168,14 +157,13 @@ namespace PaulSchool.Controllers
             isStudent.ParishAffiliation = model.ParishAffiliation;
             isStudent.MinistryInvolvement = model.MinistryInvolvement;
             MembershipUser u = Membership.GetUser(User.Identity.Name); // needed to get email for isStudent.Email = u.Email;
-            isStudent.Email = u.Email;
+            if (u != null) isStudent.Email = u.Email;
             db.SaveChanges();
         }
 
-        private void createStudentTableDataWithNewProfileDataAndAssignStudentRole(RegisterModel model)
+        private void CreateStudentTableDataWithNewProfileDataAndAssignStudentRole(RegisterModel model)
         {
-            MembershipUser u = Membership.GetUser(User.Identity.Name); // needed to get email for Email = u.Email;
-            Student newStudent = new Student
+            var newStudent = new Student
             {
                 LastName = model.LastName,
                 FirstMidName = model.FirstMidName,
@@ -217,14 +205,12 @@ namespace PaulSchool.Controllers
         {
             if (ModelState.IsValid)
             {
-
-                // ChangePassword will throw an exception rather
-                // than return false in certain failure scenarios.
-                bool changePasswordSucceeded;
+                bool changePasswordSucceeded = false;
                 try
                 {
                     MembershipUser currentUser = Membership.GetUser(User.Identity.Name, true /* userIsOnline */);
-                    changePasswordSucceeded = currentUser.ChangePassword(model.OldPassword, model.NewPassword);
+                    if (currentUser != null)
+                        changePasswordSucceeded = currentUser.ChangePassword(model.OldPassword, model.NewPassword);
                 }
                 catch (Exception)
                 {
@@ -235,10 +221,7 @@ namespace PaulSchool.Controllers
                 {
                     return RedirectToAction("ChangePasswordSuccess");
                 }
-                else
-                {
-                    ModelState.AddModelError("", "The current password is incorrect or the new password is invalid.");
-                }
+                ModelState.AddModelError("", PaulSchoolResource.AccountController_ChangePassword_The_current_password_is_incorrect_or_the_new_password_is_invalid_);
             }
 
             // If we got this far, something failed, redisplay form
@@ -278,39 +261,38 @@ namespace PaulSchool.Controllers
                 string email = model.Email;
                 string userName = Membership.GetUserNameByEmail(email);
                 // checks if there is a duplicate email in the database
-                if (userName == null || (userName != null && userName == User.Identity.Name)) 
+                if (userName == null || (userName == User.Identity.Name && userName != null)) 
                 {
-                    updateProfileEmailInAllLocations(email);
+                    UpdateProfileEmailInAllLocations(email);
                     return RedirectToAction("Profile");
                 }
-                else
-                {
-                    return RedirectToAction("failed");
-                    // don't allow email change as that email is already in use
-                }
-
+                return RedirectToAction("failed");
+                // don't allow email change as that email is already in use
             }
 
             return View(model);
         }
 
-        private void updateProfileEmailInAllLocations(string email)
+        private void UpdateProfileEmailInAllLocations(string email)
         {
             // change email
             MembershipUser u = Membership.GetUser(User.Identity.Name);
-            u.Email = email;
-            System.Web.Security.Membership.UpdateUser(u);
+            if (u != null)
+            {
+                u.Email = email;
+                Membership.UpdateUser(u);
+            }
 
             //
             // Update Student Table, if needed
-            updateCurrentUsersStudentTableEntrysEmailIfNeeded(email);
+            UpdateCurrentUsersStudentTableEntrysEmailIfNeeded(email);
 
             //
             // Update Instructor Table, if needed
-            updateCurrentUsersInstructorTableEntrysEmailIfNeeded(email);
+            UpdateCurrentUsersInstructorTableEntrysEmailIfNeeded(email);
         }
 
-        private void updateCurrentUsersInstructorTableEntrysEmailIfNeeded(string email)
+        private void UpdateCurrentUsersInstructorTableEntrysEmailIfNeeded(string email)
         {
             Instructor isInstructor = db.Instructors.FirstOrDefault(
                 o => o.UserName == User.Identity.Name);
@@ -321,7 +303,7 @@ namespace PaulSchool.Controllers
             }
         }
 
-        private void updateCurrentUsersStudentTableEntrysEmailIfNeeded(string email)
+        private void UpdateCurrentUsersStudentTableEntrysEmailIfNeeded(string email)
         {
             Student isStudent = db.Students.FirstOrDefault(
                 o => o.UserName == User.Identity.Name);
@@ -340,7 +322,7 @@ namespace PaulSchool.Controllers
         public ActionResult Profile()
         {
             MembershipUser u = Membership.GetUser(User.Identity.Name);
-            ViewBag.Email = u.Email;
+            if (u != null) ViewBag.Email = u.Email;
             return View();
         }
 
@@ -350,14 +332,14 @@ namespace PaulSchool.Controllers
         [Authorize]
         public ActionResult ChangeProfile()
         {
-            ProfileViewModel model = preloadProfileViewModelWithCurrentUsersProfileData();
+            ProfileViewModel model = PreloadProfileViewModelWithCurrentUsersProfileData();
             return View(model);
         }
 
-        private ProfileViewModel preloadProfileViewModelWithCurrentUsersProfileData()
+        private ProfileViewModel PreloadProfileViewModelWithCurrentUsersProfileData()
         {
             CustomProfile profile = CustomProfile.GetUserProfile(User.Identity.Name);
-            ProfileViewModel model = new ProfileViewModel
+            var model = new ProfileViewModel
             {
                 LastName = profile.LastName,
                 FirstMidName = profile.FirstMidName,
@@ -387,19 +369,19 @@ namespace PaulSchool.Controllers
 
             // validation succeeded => process the results
             // save the profile data
-            saveNewProfileData(model);
+            SaveNewProfileData(model);
 
             // check if already existing on the student table - update the table if needed
             Student isStudent = db.Students.FirstOrDefault(
                 o => o.UserName == User.Identity.Name);
             if (isStudent != null) // IF the user already exists in the Student Table . . .
             {
-                updateStudentsTableWithUpdatedProfileDataFromProfileViewModel(model, isStudent);
+                UpdateStudentsTableWithUpdatedProfileDataFromProfileViewModel(model, isStudent);
             }
             else
             // Create student in student table if they have not been there before (everyone needs to be at least a student)
             {
-                createStudentInStudentTableFromProfileViewModel(model);
+                CreateStudentInStudentTableFromProfileViewModel(model);
             }
 
             // check if already existing on the instructor table - update the table if needed
@@ -407,13 +389,13 @@ namespace PaulSchool.Controllers
                 o => o.UserName == User.Identity.Name);
             if (isInstructor != null) // IF the user already exists in the Instructor Table . . .
             {
-                updateInstructorsTableWithUpdatedProfileDataFromProfileViewModel(model, isInstructor);
+                UpdateInstructorsTableWithUpdatedProfileDataFromProfileViewModel(model, isInstructor);
             }
 
             return RedirectToAction("Profile");
         }
 
-        private static void saveNewProfileData(ProfileViewModel model)
+        private static void SaveNewProfileData(ProfileViewModel model)
         {
             CustomProfile profile = CustomProfile.GetUserProfile();
             profile.LastName = model.LastName;
@@ -429,7 +411,7 @@ namespace PaulSchool.Controllers
             profile.Save();
         }
 
-        private void updateStudentsTableWithUpdatedProfileDataFromProfileViewModel(ProfileViewModel model, Student isStudent)
+        private void UpdateStudentsTableWithUpdatedProfileDataFromProfileViewModel(ProfileViewModel model, Student isStudent)
         {
             isStudent.LastName = model.LastName;
             isStudent.FirstMidName = model.FirstMidName;
@@ -442,14 +424,15 @@ namespace PaulSchool.Controllers
             isStudent.ParishAffiliation = model.ParishAffiliation;
             isStudent.MinistryInvolvement = model.MinistryInvolvement;
             MembershipUser u = Membership.GetUser(User.Identity.Name); // needed to get email for isStudent.Email = u.Email;
-            isStudent.Email = u.Email;
+            if (u != null) isStudent.Email = u.Email;
             db.SaveChanges();
         }
 
-        private void createStudentInStudentTableFromProfileViewModel(ProfileViewModel model)
+        private void CreateStudentInStudentTableFromProfileViewModel(ProfileViewModel model)
         {
             MembershipUser u = Membership.GetUser(User.Identity.Name); // needed to get email for Email = u.Email;
-            Student newStudent = new Student
+            if (u == null) throw new ArgumentNullException("model");
+            var newStudent = new Student
             {
                 LastName = model.LastName,
                 FirstMidName = model.FirstMidName,
@@ -473,12 +456,12 @@ namespace PaulSchool.Controllers
             }
         }
 
-        private void updateInstructorsTableWithUpdatedProfileDataFromProfileViewModel(ProfileViewModel model, Instructor isInstructor)
+        private void UpdateInstructorsTableWithUpdatedProfileDataFromProfileViewModel(ProfileViewModel model, Instructor isInstructor)
         {
             isInstructor.LastName = model.LastName;
             isInstructor.FirstMidName = model.FirstMidName;
             MembershipUser u = Membership.GetUser(User.Identity.Name); // needed to get email for isInstructor.Email = u.Email;
-            isInstructor.Email = u.Email;
+            if (u != null) isInstructor.Email = u.Email;
             db.SaveChanges();
         }
 
@@ -521,27 +504,5 @@ namespace PaulSchool.Controllers
             }
         }
         #endregion
-
-        public class ProfileRequiredActionFilter : IActionFilter
-        {
-            #region Implementation of IActionFilter
-
-            public void OnActionExecuting(ActionExecutingContext filterContext)
-        {
-            //TODO: Check if the Authenticated User has a profile.
-            
-            //var authorized = Roles.IsUserInRole(User, "Student");
-            //var authorized = Roles.IsUserInRole(User.Identity.Name, "Student");
-
-            //If Authenicated User doesn't have a profile...
-            filterContext.Result = new RedirectResult("Path-To-Create-A-Profile");
-        }
-
-            public void OnActionExecuted(ActionExecutedContext filterContext)
-            {
-            }
-
-            #endregion
-        }
     }
 }

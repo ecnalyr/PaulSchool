@@ -123,4 +123,10 @@
   <data name="Present_Text" xml:space="preserve">
     <value>present</value>
   </data>
+  <data name="AccountController_LogOn_The_user_name_or_password_provided_is_incorrect_">
+    <value xml:space="preserve">The user name or password provided is incorrect.</value>
+  </data>
+  <data name="AccountController_ChangePassword_The_current_password_is_incorrect_or_the_new_password_is_invalid_">
+    <value xml:space="preserve">The current password is incorrect or the new password is invalid.</value>
+  </data>
 </root>

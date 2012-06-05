@@ -70,6 +70,25 @@ namespace PaulSchool.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The current password is incorrect or the new password is invalid..
+        /// </summary>
+        public static string AccountController_ChangePassword_The_current_password_is_incorrect_or_the_new_password_is_invalid_ {
+            get {
+                return ResourceManager.GetString("AccountController_ChangePassword_The_current_password_is_incorrect_or_the_new_pas" +
+                        "sword_is_invalid_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The user name or password provided is incorrect..
+        /// </summary>
+        public static string AccountController_LogOn_The_user_name_or_password_provided_is_incorrect_ {
+            get {
+                return ResourceManager.GetString("AccountController_LogOn_The_user_name_or_password_provided_is_incorrect_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to present.
         /// </summary>
         public static string Present_Text {

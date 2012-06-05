@@ -87,43 +87,32 @@ namespace PaulSchool.Controllers
                 return View(instructors.ToPagedList(pageNumber, pageSize));
             }
 
-            else
-            // User is not an Admin, let's see if they are an Instructor
+            if (User.IsInRole("Instructor"))
             {
-                if (User.IsInRole("Instructor"))
-                {
-                    Instructor instructor = db.Instructors.FirstOrDefault(
-                        n => n.UserName == User.Identity.Name);
+                Instructor instructor = db.Instructors.FirstOrDefault(
+                    n => n.UserName == User.Identity.Name);
 
-                    int id = instructor.InstructorID;
+                int id = instructor.InstructorID;
 
-                    Course testCourse = db.Courses.FirstOrDefault(
-                        o => o.InstructorID == id &&
-                             o.Approved == true);
-                    if (testCourse == null)
-                    {
-                        //This is not an instructor with an approved course
-                        ViewBag.FailAllCheck = true;
-                        ViewBag.Fail = "User does not have an Admin-Approved class";
-                        return View();
-                    }
-                    else
-                    {
-                        //This is an instructor with an approved course
-                        //Display the instructor's page
-                        Instructor thisInstructor = db.Instructors.FirstOrDefault(
-                            o => o.UserName == User.Identity.Name);
-                        return RedirectToAction("Details", new { id = thisInstructor.InstructorID });
-                    }
-                }
-                else
-                // Useless as long as the [Authorize] Roles method works at preventing people from getting into this view
+                Course testCourse = db.Courses.FirstOrDefault(
+                    o => o.InstructorID == id &&
+                         o.Approved == true);
+                if (testCourse == null)
                 {
-                    // This user is not an "Administrator", "SuperAdministrator", or "Instructor"
-                    return RedirectToAction("UserNotAuthorized");
-                    //return View();
+                    //This is not an instructor with an approved course
+                    ViewBag.FailAllCheck = true;
+                    ViewBag.Fail = "User does not have an Admin-Approved class";
+                    return View();
                 }
+                //This is an instructor with an approved course
+                //Display the instructor's page
+                Instructor thisInstructor = db.Instructors.FirstOrDefault(
+                    o => o.UserName == User.Identity.Name);
+                return RedirectToAction("Details", new { id = thisInstructor.InstructorID });
             }
+            // This user is not an "Administrator", "SuperAdministrator", or "Instructor"
+            return RedirectToAction("UserNotAuthorized");
+            //return View();
         }
 
         //
@@ -146,11 +135,8 @@ namespace PaulSchool.Controllers
                 {
                     return View(instructor);
                 }
-                else
-                {
-                    // the current user and the selected instructor's id do not match
-                    return RedirectToAction("failedtomatch");
-                }
+                // the current user and the selected instructor's id do not match
+                return RedirectToAction("failedtomatch");
             }
         }
 
