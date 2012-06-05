@@ -1,0 +1,57 @@
+﻿@model PaulSchool.ViewModels.InstructorApplicationViewModel
+@{
+    ViewBag.Title = "ApplyToBecomeInstructor";
+}
+
+<h2>ApplyToBecomeInstructor</h2>
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/EducationalBackgroundListEditor.js")" type="text/javascript"></script>
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>ApplyToBecomeInstructor</legend>
+        
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BasicInfoGatheredFromProfile.LastName)
+            @Html.DisplayFor(model =>model.BasicInfoGatheredFromProfile)
+        </div>
+        
+        <div class="editor-label">
+            @Html.LabelFor(model => model.EducationalBackground)
+        </div>
+        <div id = "editorRows">
+            @Html.Partial("_EducationalBackground")
+            <!-- PUT PARTIAL VIEWS HERE -->
+        </div>
+
+        @Html.ActionLink("Add another row", "EducationalBackground", null, new { id = "addItem" })
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Experience)
+        </div>
+        <div clsas="editor-field">
+            @Html.EditorFor(model => model.Experience)
+            @Html.ValidationMessageFor(model => model.Experience)
+        </div>
+        
+        <div class="editor-label">
+            @Html.LabelFor(model => model.WillingToTravel)
+        </div>
+        <div clsas="editor-field">
+            @Html.EditorFor(model => model.WillingToTravel)
+            @Html.ValidationMessageFor(model => model.WillingToTravel)
+        </div>
+        
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back", "Index")
+</div>
