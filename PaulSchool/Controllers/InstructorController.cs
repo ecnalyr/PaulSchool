@@ -87,23 +87,26 @@ namespace PaulSchool.Controllers
                 Instructor instructor = db.Instructors.FirstOrDefault(
                     n => n.UserName == User.Identity.Name);
 
-                int id = instructor.InstructorID;
-
-                Course testCourse = db.Courses.FirstOrDefault(
-                    o => o.InstructorID == id &&
-                         o.Approved);
-                if (testCourse == null)
+                if (instructor != null)
                 {
-                    //This is not an instructor with an approved course
-                    ViewBag.FailAllCheck = true;
-                    ViewBag.Fail = "User does not have an Admin-Approved class";
-                    return View();
+                    int id = instructor.InstructorID;
+
+                    Course testCourse = db.Courses.FirstOrDefault(
+                        o => o.InstructorID == id &&
+                             o.Approved);
+                    if (testCourse == null)
+                    {
+                        //This is not an instructor with an approved course
+                        ViewBag.FailAllCheck = true;
+                        ViewBag.Fail = "User does not have an Admin-Approved class";
+                        return View();
+                    }
                 }
                 //This is an instructor with an approved course
                 //Display the instructor's page
                 Instructor thisInstructor = db.Instructors.FirstOrDefault(
                     o => o.UserName == User.Identity.Name);
-                return RedirectToAction("Details", new {id = thisInstructor.InstructorID});
+                if (thisInstructor != null) return RedirectToAction("Details", new {id = thisInstructor.InstructorID});
             }
             // This user is not an "Administrator", "SuperAdministrator", or "Instructor"
             return RedirectToAction("UserNotAuthorized");
@@ -125,7 +128,7 @@ namespace PaulSchool.Controllers
             {
                 Instructor instructor = db.Instructors.FirstOrDefault(
                     o => o.UserName == User.Identity.Name);
-                if (id == instructor.InstructorID)
+                if (instructor != null && id == instructor.InstructorID)
                     // if the current user's id matches the instructor's id
                 {
                     return View(instructor);
