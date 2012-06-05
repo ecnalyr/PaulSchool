@@ -1,43 +1,37 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
+﻿using System.Data;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using PaulSchool.Models;
 
 namespace PaulSchool.Controllers
-{ 
+{
     [Authorize]
     public class NotificationController : Controller
     {
-        private SchoolContext db = new SchoolContext();
+        private readonly SchoolContext db = new SchoolContext();
 
         //
         // GET: /Notification/
-        
+
         public ViewResult Index()
         {
             if (User.IsInRole("Administrator"))
-            // returns notifications viewable by Administrators
+                // returns notifications viewable by Administrators
             {
-                var incompleteNotifications= db.Notification.Where(
+                IQueryable<Notification> incompleteNotifications = db.Notification.Where(
                     o => o.Complete == false &&
-                    o.ViewableBy == "Admin");
+                         o.ViewableBy == "Admin");
                 return View(incompleteNotifications.ToList());
             }
 
             else
-            // returns notifications by user name
+                // returns notifications by user name
             {
-                var incompleteNotifications = db.Notification.Where(
+                IQueryable<Notification> incompleteNotifications = db.Notification.Where(
                     o => o.Complete == false &&
-                    o.ViewableBy == User.Identity.Name);
+                         o.ViewableBy == User.Identity.Name);
                 return View(incompleteNotifications.ToList());
             }
-
-            
         }
 
         //
@@ -55,7 +49,7 @@ namespace PaulSchool.Controllers
         public ActionResult Create()
         {
             return View();
-        } 
+        }
 
         //
         // POST: /Notification/Create
@@ -67,15 +61,15 @@ namespace PaulSchool.Controllers
             {
                 db.Notification.Add(notification);
                 db.SaveChanges();
-                return RedirectToAction("Index");  
+                return RedirectToAction("Index");
             }
 
             return View(notification);
         }
-        
+
         //
         // GET: /Notification/Edit/5
- 
+
         public ActionResult Edit(int id)
         {
             Notification notification = db.Notification.Find(id);
@@ -99,7 +93,7 @@ namespace PaulSchool.Controllers
 
         //
         // GET: /Notification/Delete/5
- 
+
         public ActionResult Delete(int id)
         {
             Notification notification = db.Notification.Find(id);
@@ -111,7 +105,7 @@ namespace PaulSchool.Controllers
 
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id)
-        {            
+        {
             Notification notification = db.Notification.Find(id);
             db.Notification.Remove(notification);
             db.SaveChanges();

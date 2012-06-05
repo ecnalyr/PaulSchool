@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace PaulSchool.Models
 {
@@ -33,8 +31,9 @@ namespace PaulSchool.Models
 
         public DateTime EnrollmentDate { get; set; }
 
-        public virtual ICollection<Enrollment> Enrollments { get; set; } //if a given Student row in the database has two related Enrollment rows (rows that contain that student's primary key value in their StudentID foreign key column), that Student entity's Enrollments navigation property will contain those two Enrollment entities.
-        
+        public virtual ICollection<Enrollment> Enrollments { get; set; }
+        //if a given Student row in the database has two related Enrollment rows (rows that contain that student's primary key value in their StudentID foreign key column), that Student entity's Enrollments navigation property will contain those two Enrollment entities.
+
         public string UserName { get; set; }
     }
 }

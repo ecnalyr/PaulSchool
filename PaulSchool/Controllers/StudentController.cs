@@ -1,21 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Data.Entity;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using PaulSchool.Models;
-using PagedList;
+using System.Web.Routing;
 using System.Web.Security;
+using PagedList;
+using PaulSchool.Models;
 using PaulSchool.ViewModels;
-using System.Diagnostics;
 
 namespace PaulSchool.Controllers
-{ 
+{
     public class StudentController : Controller
     {
-        private SchoolContext db = new SchoolContext();
+        private readonly SchoolContext db = new SchoolContext();
 
         //
         // GET: /Student/
@@ -39,12 +36,12 @@ namespace PaulSchool.Controllers
             }
             ViewBag.CurrentFilter = searchString;
 
-            var students = from s in db.Students
-                           select s;
+            IQueryable<Student> students = from s in db.Students
+                                           select s;
             if (!String.IsNullOrEmpty(searchString))
             {
                 students = students.Where(s => s.LastName.ToUpper().Contains(searchString.ToUpper())
-                                       || s.FirstMidName.ToUpper().Contains(searchString.ToUpper()));
+                                               || s.FirstMidName.ToUpper().Contains(searchString.ToUpper()));
             }
             switch (sortOrder)
             {
@@ -100,44 +97,46 @@ namespace PaulSchool.Controllers
         {
             if (User.IsInRole("Administrator"))
             {
-                var users = Membership.GetAllUsers();
+                MembershipUserCollection users = Membership.GetAllUsers();
                 var model = new CreateStudentViewModel
-                {
-                    Users = users.OfType<MembershipUser>().Select(x => new SelectListItem
-                    {
-                        Value = x.UserName,
-                        Text = x.UserName,
-                    })
-                };
+                                {
+                                    Users = users.OfType<MembershipUser>().Select(x => new SelectListItem
+                                                                                           {
+                                                                                               Value = x.UserName,
+                                                                                               Text = x.UserName,
+                                                                                           })
+                                };
                 return View(model);
             }
             if (User.IsInRole("Default"))
             {
-                var users = Membership.FindUsersByName(User.Identity.Name); // this is problematic because it can find other users with similar user names
+                MembershipUserCollection users = Membership.FindUsersByName(User.Identity.Name);
+                    // this is problematic because it can find other users with similar user names
                 var model = new CreateStudentViewModel
-                {
-                    Users = users.OfType<MembershipUser>().Select(x => new SelectListItem
-                    {
-                        Value = x.UserName,
-                        Text = x.UserName,
-                    })
-                };
+                                {
+                                    Users = users.OfType<MembershipUser>().Select(x => new SelectListItem
+                                                                                           {
+                                                                                               Value = x.UserName,
+                                                                                               Text = x.UserName,
+                                                                                           })
+                                };
                 return View(model);
             }
-            return View(/*user has a role that is not "Default" or "Administrator"  Needs error message*/);
-        } 
+            return View( /*user has a role that is not "Default" or "Administrator"  Needs error message*/);
+        }
 
         //
         // POST: /Student/Create
 
         [HttpPost]
-        public ActionResult Create(CreateStudentViewModel studentModel, string selectedUser, string lastName, string firstMidName, string email)
+        public ActionResult Create(CreateStudentViewModel studentModel, string selectedUser, string lastName,
+                                   string firstMidName, string email)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    Student student = new Student();
+                    var student = new Student();
 
                     //Establish the student data
                     student.UserName = selectedUser;
@@ -146,12 +145,12 @@ namespace PaulSchool.Controllers
                     student.Email = email;
                     student.EnrollmentDate = DateTime.Now;
 
-                    db.Students.Add(student);//inputs student data into database (is not saved yet)
-                    db.SaveChanges();//saves the student to database
+                    db.Students.Add(student); //inputs student data into database (is not saved yet)
+                    db.SaveChanges(); //saves the student to database
 
-                    var user = System.Web.Security.Membership.GetUser(student.UserName);//gets the actual user
-                    Roles.AddUserToRole(user.UserName, "Student");//takes the user and sets role to student
- 
+                    MembershipUser user = Membership.GetUser(student.UserName); //gets the actual user
+                    Roles.AddUserToRole(user.UserName, "Student"); //takes the user and sets role to student
+
                     // assigns Student data to the profile of the user (so the user is associated with this specified Student data)
                     CustomProfile profile = CustomProfile.GetUserProfile(student.UserName);
                     profile.FilledStudentInfo = "yes";
@@ -163,25 +162,26 @@ namespace PaulSchool.Controllers
             catch (DataException)
             {
                 //Log the error (add a variable name after DataException)
-                ModelState.AddModelError("", "Saving failed for some reason.  You may have left some information blank.  Please try again (several times in several different ways if possible (i.e. try using a different computer) - if the problem persists see your system administrator.");
+                ModelState.AddModelError("",
+                                         "Saving failed for some reason.  You may have left some information blank.  Please try again (several times in several different ways if possible (i.e. try using a different computer) - if the problem persists see your system administrator.");
             }
 
             // This code block is here to allow the page to render in case we get a DataException and have to re-display the screen.
-            var users = Membership.GetAllUsers();
+            MembershipUserCollection users = Membership.GetAllUsers();
             var model = new CreateStudentViewModel
-            {
-                Users = users.OfType<MembershipUser>().Select(x => new SelectListItem
-                {
-                    Value = x.UserName,
-                    Text = x.UserName,
-                })
-            };
+                            {
+                                Users = users.OfType<MembershipUser>().Select(x => new SelectListItem
+                                                                                       {
+                                                                                           Value = x.UserName,
+                                                                                           Text = x.UserName,
+                                                                                       })
+                            };
             return View(model);
         }
-        
+
         //
         // GET: /Student/Edit/5
- 
+
         public ActionResult Edit(int id)
         {
             Student student = db.Students.Find(id);
@@ -206,7 +206,8 @@ namespace PaulSchool.Controllers
             catch (DataException)
             {
                 //Log the error (add a variable name after DataException)
-                ModelState.AddModelError("", "Saving failed for some reason. Please try again (several times in several different ways if possible (i.e. try using a different computer) - if the problem persists see your system administrator.");
+                ModelState.AddModelError("",
+                                         "Saving failed for some reason. Please try again (several times in several different ways if possible (i.e. try using a different computer) - if the problem persists see your system administrator.");
             }
             return View(student);
         }
@@ -218,7 +219,8 @@ namespace PaulSchool.Controllers
         {
             if (saveChangesError.GetValueOrDefault())
             {
-                ViewBag.ErrorMessage = "Saving failed for some reason. Please try again (several times in several different ways if possible (i.e. try using a different computer) - if the problem persists see your system administrator.";
+                ViewBag.ErrorMessage =
+                    "Saving failed for some reason. Please try again (several times in several different ways if possible (i.e. try using a different computer) - if the problem persists see your system administrator.";
             }
             return View(db.Students.Find(id));
         }
@@ -237,12 +239,13 @@ namespace PaulSchool.Controllers
             }
             catch (DataException)
             {
-
                 //Log the error (add a variable name after DataException)
                 return RedirectToAction("Delete",
-                    new System.Web.Routing.RouteValueDictionary { 
-                { "id", id }, 
-                { "saveChangesError", true } });
+                                        new RouteValueDictionary
+                                            {
+                                                {"id", id},
+                                                {"saveChangesError", true}
+                                            });
             }
             return RedirectToAction("Index");
         }

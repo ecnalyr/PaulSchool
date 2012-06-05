@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Globalization;
+﻿using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
-using System.Web.Security;
 
 namespace PaulSchool.Models
 {
@@ -93,11 +89,11 @@ namespace PaulSchool.Models
         [StringLength(10)]
         public string DateOfBirth { get; set; }
 
-        [Display(Name= "Parish Affiliation")]
+        [Display(Name = "Parish Affiliation")]
         [StringLength(30)]
         public string ParishAffiliation { get; set; }
 
-        [Display(Name= "Ministry Involvement")]
+        [Display(Name = "Ministry Involvement")]
         [StringLength(50)]
         public string MinistryInvolvement { get; set; }
 

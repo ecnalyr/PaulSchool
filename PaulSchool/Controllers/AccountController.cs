@@ -10,7 +10,7 @@ namespace PaulSchool.Controllers
 {
     public class AccountController : Controller
     {
-        private SchoolContext db = new SchoolContext();
+        private readonly SchoolContext db = new SchoolContext();
 
         //
         // GET: /Account/LogOn
@@ -32,7 +32,9 @@ namespace PaulSchool.Controllers
                 {
                     return LogUserIn(model, returnUrl);
                 }
-                ModelState.AddModelError("", PaulSchoolResource.AccountController_LogOn_The_user_name_or_password_provided_is_incorrect_);
+                ModelState.AddModelError("",
+                                         PaulSchoolResource.
+                                             AccountController_LogOn_The_user_name_or_password_provided_is_incorrect_);
             }
 
             // If we got this far, something failed, redisplay form
@@ -79,7 +81,8 @@ namespace PaulSchool.Controllers
             {
                 // Attempt to register the user
                 MembershipCreateStatus createStatus;
-                Membership.CreateUser(model.UserName, model.Password, model.Email, null, null, true, null, out createStatus);
+                Membership.CreateUser(model.UserName, model.Password, model.Email, null, null, true, null,
+                                      out createStatus);
 
                 if (createStatus == MembershipCreateStatus.Success)
                 {
@@ -111,7 +114,7 @@ namespace PaulSchool.Controllers
                     UpdateStudentsTableWithUpdatedProfileDataFromRegisterModel(model, isStudent);
                 }
                 else
-                // Create student in student table if they have not been there before (everyone needs to be at least a student)
+                    // Create student in student table if they have not been there before (everyone needs to be at least a student)
                 {
                     CreateStudentTableDataWithNewProfileDataAndAssignStudentRole(model);
                 }
@@ -126,7 +129,8 @@ namespace PaulSchool.Controllers
             profile.IsTeacher = "no";
             profile.FilledStudentInfo = "no";
             profile.Save();
-            Roles.AddUserToRole(model.UserName, "Default"); // Adds student to the "Default" role so we can force them to become a "Student" role.
+            Roles.AddUserToRole(model.UserName, "Default");
+            // Adds student to the "Default" role so we can force them to become a "Student" role.
         }
 
         private static void SaveNewProfile(RegisterModel model, CustomProfile profile)
@@ -156,7 +160,8 @@ namespace PaulSchool.Controllers
             isStudent.DateOfBirth = model.DateOfBirth;
             isStudent.ParishAffiliation = model.ParishAffiliation;
             isStudent.MinistryInvolvement = model.MinistryInvolvement;
-            MembershipUser u = Membership.GetUser(User.Identity.Name); // needed to get email for isStudent.Email = u.Email;
+            MembershipUser u = Membership.GetUser(User.Identity.Name);
+            // needed to get email for isStudent.Email = u.Email;
             if (u != null) isStudent.Email = u.Email;
             db.SaveChanges();
         }
@@ -164,21 +169,21 @@ namespace PaulSchool.Controllers
         private void CreateStudentTableDataWithNewProfileDataAndAssignStudentRole(RegisterModel model)
         {
             var newStudent = new Student
-            {
-                LastName = model.LastName,
-                FirstMidName = model.FirstMidName,
-                Email = model.Email,
-                UserName = model.UserName,
-                EnrollmentDate = DateTime.Now,
-                StreetAddress = model.StreetAddress,
-                City = model.City,
-                State = model.State,
-                ZipCode = model.ZipCode,
-                Phone = model.Phone,
-                DateOfBirth = model.DateOfBirth,
-                ParishAffiliation = model.ParishAffiliation,
-                MinistryInvolvement = model.MinistryInvolvement
-            };
+                                 {
+                                     LastName = model.LastName,
+                                     FirstMidName = model.FirstMidName,
+                                     Email = model.Email,
+                                     UserName = model.UserName,
+                                     EnrollmentDate = DateTime.Now,
+                                     StreetAddress = model.StreetAddress,
+                                     City = model.City,
+                                     State = model.State,
+                                     ZipCode = model.ZipCode,
+                                     Phone = model.Phone,
+                                     DateOfBirth = model.DateOfBirth,
+                                     ParishAffiliation = model.ParishAffiliation,
+                                     MinistryInvolvement = model.MinistryInvolvement
+                                 };
             db.Students.Add(newStudent);
             db.SaveChanges();
             if (!User.IsInRole("Student"))
@@ -221,7 +226,9 @@ namespace PaulSchool.Controllers
                 {
                     return RedirectToAction("ChangePasswordSuccess");
                 }
-                ModelState.AddModelError("", PaulSchoolResource.AccountController_ChangePassword_The_current_password_is_incorrect_or_the_new_password_is_invalid_);
+                ModelState.AddModelError("",
+                                         PaulSchoolResource.
+                                             AccountController_ChangePassword_The_current_password_is_incorrect_or_the_new_password_is_invalid_);
             }
 
             // If we got this far, something failed, redisplay form
@@ -244,9 +251,9 @@ namespace PaulSchool.Controllers
             MembershipUser u = Membership.GetUser(User.Identity.Name);
             ViewBag.Email1 = u.Email;
             var model = new ChangeEmailViewModel
-            {
-                Email = u.Email
-            };
+                            {
+                                Email = u.Email
+                            };
             return View(model);
         }
 
@@ -261,7 +268,7 @@ namespace PaulSchool.Controllers
                 string email = model.Email;
                 string userName = Membership.GetUserNameByEmail(email);
                 // checks if there is a duplicate email in the database
-                if (userName == null || (userName == User.Identity.Name && userName != null)) 
+                if (userName == null || (userName == User.Identity.Name && userName != null))
                 {
                     UpdateProfileEmailInAllLocations(email);
                     return RedirectToAction("Profile");
@@ -340,18 +347,18 @@ namespace PaulSchool.Controllers
         {
             CustomProfile profile = CustomProfile.GetUserProfile(User.Identity.Name);
             var model = new ProfileViewModel
-            {
-                LastName = profile.LastName,
-                FirstMidName = profile.FirstMidName,
-                StreetAddress = profile.StreetAddress,
-                City = profile.City,
-                State = profile.State,
-                ZipCode = profile.ZipCode,
-                Phone = profile.Phone,
-                DateOfBirth = profile.DateOfBirth,
-                ParishAffiliation = profile.ParishAffiliation,
-                MinistryInvolvement = profile.MinistryInvolvement
-            };
+                            {
+                                LastName = profile.LastName,
+                                FirstMidName = profile.FirstMidName,
+                                StreetAddress = profile.StreetAddress,
+                                City = profile.City,
+                                State = profile.State,
+                                ZipCode = profile.ZipCode,
+                                Phone = profile.Phone,
+                                DateOfBirth = profile.DateOfBirth,
+                                ParishAffiliation = profile.ParishAffiliation,
+                                MinistryInvolvement = profile.MinistryInvolvement
+                            };
             return model;
         }
 
@@ -379,7 +386,7 @@ namespace PaulSchool.Controllers
                 UpdateStudentsTableWithUpdatedProfileDataFromProfileViewModel(model, isStudent);
             }
             else
-            // Create student in student table if they have not been there before (everyone needs to be at least a student)
+                // Create student in student table if they have not been there before (everyone needs to be at least a student)
             {
                 CreateStudentInStudentTableFromProfileViewModel(model);
             }
@@ -411,7 +418,8 @@ namespace PaulSchool.Controllers
             profile.Save();
         }
 
-        private void UpdateStudentsTableWithUpdatedProfileDataFromProfileViewModel(ProfileViewModel model, Student isStudent)
+        private void UpdateStudentsTableWithUpdatedProfileDataFromProfileViewModel(ProfileViewModel model,
+                                                                                   Student isStudent)
         {
             isStudent.LastName = model.LastName;
             isStudent.FirstMidName = model.FirstMidName;
@@ -423,7 +431,8 @@ namespace PaulSchool.Controllers
             isStudent.DateOfBirth = model.DateOfBirth;
             isStudent.ParishAffiliation = model.ParishAffiliation;
             isStudent.MinistryInvolvement = model.MinistryInvolvement;
-            MembershipUser u = Membership.GetUser(User.Identity.Name); // needed to get email for isStudent.Email = u.Email;
+            MembershipUser u = Membership.GetUser(User.Identity.Name);
+            // needed to get email for isStudent.Email = u.Email;
             if (u != null) isStudent.Email = u.Email;
             db.SaveChanges();
         }
@@ -433,21 +442,21 @@ namespace PaulSchool.Controllers
             MembershipUser u = Membership.GetUser(User.Identity.Name); // needed to get email for Email = u.Email;
             if (u == null) throw new ArgumentNullException("model");
             var newStudent = new Student
-            {
-                LastName = model.LastName,
-                FirstMidName = model.FirstMidName,
-                Email = u.Email,
-                UserName = User.Identity.Name,
-                EnrollmentDate = DateTime.Now,
-                StreetAddress = model.StreetAddress,
-                City = model.City,
-                State = model.State,
-                ZipCode = model.ZipCode,
-                Phone = model.Phone,
-                DateOfBirth = model.DateOfBirth,
-                ParishAffiliation = model.ParishAffiliation,
-                MinistryInvolvement = model.MinistryInvolvement
-            };
+                                 {
+                                     LastName = model.LastName,
+                                     FirstMidName = model.FirstMidName,
+                                     Email = u.Email,
+                                     UserName = User.Identity.Name,
+                                     EnrollmentDate = DateTime.Now,
+                                     StreetAddress = model.StreetAddress,
+                                     City = model.City,
+                                     State = model.State,
+                                     ZipCode = model.ZipCode,
+                                     Phone = model.Phone,
+                                     DateOfBirth = model.DateOfBirth,
+                                     ParishAffiliation = model.ParishAffiliation,
+                                     MinistryInvolvement = model.MinistryInvolvement
+                                 };
             db.Students.Add(newStudent);
             db.SaveChanges();
             if (!User.IsInRole("Student"))
@@ -456,16 +465,19 @@ namespace PaulSchool.Controllers
             }
         }
 
-        private void UpdateInstructorsTableWithUpdatedProfileDataFromProfileViewModel(ProfileViewModel model, Instructor isInstructor)
+        private void UpdateInstructorsTableWithUpdatedProfileDataFromProfileViewModel(ProfileViewModel model,
+                                                                                      Instructor isInstructor)
         {
             isInstructor.LastName = model.LastName;
             isInstructor.FirstMidName = model.FirstMidName;
-            MembershipUser u = Membership.GetUser(User.Identity.Name); // needed to get email for isInstructor.Email = u.Email;
+            MembershipUser u = Membership.GetUser(User.Identity.Name);
+            // needed to get email for isInstructor.Email = u.Email;
             if (u != null) isInstructor.Email = u.Email;
             db.SaveChanges();
         }
 
         #region Status Codes
+
         private static string ErrorCodeToString(MembershipCreateStatus createStatus)
         {
             // See http://go.microsoft.com/fwlink/?LinkID=177550 for
@@ -476,7 +488,8 @@ namespace PaulSchool.Controllers
                     return "User name already exists. Please enter a different user name.";
 
                 case MembershipCreateStatus.DuplicateEmail:
-                    return "A user name for that e-mail address already exists. Please enter a different e-mail address.";
+                    return
+                        "A user name for that e-mail address already exists. Please enter a different e-mail address.";
 
                 case MembershipCreateStatus.InvalidPassword:
                     return "The password provided is invalid. Please enter a valid password value.";
@@ -494,15 +507,19 @@ namespace PaulSchool.Controllers
                     return "The user name provided is invalid. Please check the value and try again.";
 
                 case MembershipCreateStatus.ProviderError:
-                    return "The authentication provider returned an error. Please verify your entry and try again. If the problem persists, please contact your system administrator.";
+                    return
+                        "The authentication provider returned an error. Please verify your entry and try again. If the problem persists, please contact your system administrator.";
 
                 case MembershipCreateStatus.UserRejected:
-                    return "The user creation request has been canceled. Please verify your entry and try again. If the problem persists, please contact your system administrator.";
+                    return
+                        "The user creation request has been canceled. Please verify your entry and try again. If the problem persists, please contact your system administrator.";
 
                 default:
-                    return "An unknown error occurred. Please verify your entry and try again. If the problem persists, please contact your system administrator.";
+                    return
+                        "An unknown error occurred. Please verify your entry and try again. If the problem persists, please contact your system administrator.";
             }
         }
+
         #endregion
     }
 }

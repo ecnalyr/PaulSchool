@@ -1,17 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using PaulSchool.Models;
+using PaulSchool.Resources;
 using PaulSchool.ViewModels;
-using System.Data;
 
 namespace PaulSchool.Controllers
 {
     public class AttendanceController : Controller
     {
-        private SchoolContext db = new SchoolContext();
+        private readonly SchoolContext db = new SchoolContext();
 
         //
         // GET: /Attendance/
@@ -25,44 +25,45 @@ namespace PaulSchool.Controllers
         {
             //
             // Generates list of Attendances specifically for current Course
-            var attendanceItems = db.Attendance.Where(s => s.CourseID == id);
+            IQueryable<Attendance> attendanceItems = db.Attendance.Where(s => s.CourseID == id);
             List<Attendance> attendanceItemsList = attendanceItems.ToList();
             // End of generating list of Attendances
 
             //
             // Generates list of Students in alphabetical order sorted by LastName
             // This was the original - it works var student = attendanceItemsList.Select(a => a.Student).Distinct().OrderBy(s => s.LastName);
-            //var student = attendanceItemsList.Select(a => a.Student).Distinct(); // This line does not have the attendance editor bug, but does not order alphabetically
+            // var student = attendanceItemsList.Select(a => a.Student).Distinct(); // This line does not have the attendance editor bug, but does not order alphabetically
 
-            var student = db.Enrollments.Where(e => e.CourseID == id).Select(e => e.Student).OrderBy(s => s.LastName);
+            IOrderedQueryable<Student> student =
+                db.Enrollments.Where(e => e.CourseID == id).Select(e => e.Student).OrderBy(s => s.LastName);
             List<Student> StudentList = student.ToList();
             // End of generating list of Students
 
             //
             // Generates a list of all Enrollments for course - to be used to generate grades
             // Should to be refactored with above code-block
-            var enrollment = db.Enrollments.Where(i => i.CourseID == id);
+            IQueryable<Enrollment> enrollment = db.Enrollments.Where(i => i.CourseID == id);
             //List<Enrollment> EnrollmentList = enrollment.ToList();
-            IEnumerable<Enrollment> EnrollmentList = enrollment;
+            IEnumerable<Enrollment> enrollmentList = enrollment;
 
             //
             // Generates list of AttendingDays specifically for current Course
             Course course = db.Courses.FirstOrDefault(p => p.CourseID == id);
-            List<int> attDayList = new List<int>();
+            var attDayList = new List<int>();
             for (int i = 0; i < course.AttendingDays; i++)
             {
                 attDayList.Add(i + 1);
-            };
+            }
             // End of generating list of AttendingDays
 
-            AttendanceReportViewModel model = new AttendanceReportViewModel
-            {
-                AttendanceDays = attDayList,
-                Students = StudentList,
-                Enrollments = EnrollmentList,
-                Attendances = attendanceItemsList,
-                courseId = id
-            };
+            var model = new AttendanceReportViewModel
+                            {
+                                AttendanceDays = attDayList,
+                                Students = StudentList,
+                                Enrollments = enrollmentList,
+                                Attendances = attendanceItemsList,
+                                courseId = id
+                            };
             return View(model);
         }
 
@@ -70,7 +71,7 @@ namespace PaulSchool.Controllers
         {
             //
             // Generates list of Attendances specifically for current Course
-            var attendanceItems = db.Attendance.Where(s => s.CourseID == id);
+            IQueryable<Attendance> attendanceItems = db.Attendance.Where(s => s.CourseID == id);
             List<Attendance> attendanceItemsList = attendanceItems.ToList();
             // End of generating list of Attendances
 
@@ -79,68 +80,73 @@ namespace PaulSchool.Controllers
             // This was the original - it works var student = attendanceItemsList.Select(a => a.Student).Distinct().OrderBy(s => s.LastName);
             //var student = attendanceItemsList.Select(a => a.Student).Distinct(); // This line does not have the attendance editor bug, but does not order alphabetically
 
-            var student = db.Enrollments.Where(e => e.CourseID == id && e.StudentID == studentId).Select(e => e.Student).OrderBy(s => s.LastName);
-            List<Student> StudentList = student.ToList();
+            IOrderedQueryable<Student> student =
+                db.Enrollments.Where(e => e.CourseID == id && e.StudentID == studentId).Select(e => e.Student).OrderBy(
+                    s => s.LastName);
+            List<Student> studentList = student.ToList();
             // End of generating list of Students
 
             //
             // Generates a list of all Enrollments for course - to be used to generate grades
             // Should to be refactored with above code-block
-            var enrollment = db.Enrollments.Where(i => i.CourseID == id && i.StudentID == studentId);
+            IQueryable<Enrollment> enrollment = db.Enrollments.Where(i => i.CourseID == id && i.StudentID == studentId);
             //List<Enrollment> EnrollmentList = enrollment.ToList();
-            IEnumerable<Enrollment> EnrollmentList = enrollment;
+            IEnumerable<Enrollment> enrollmentList = enrollment;
 
             //
             // Generates list of AttendingDays specifically for current Course
             Course course = db.Courses.FirstOrDefault(p => p.CourseID == id);
-            List<int> attDayList = new List<int>();
+            var attDayList = new List<int>();
             for (int i = 0; i < course.AttendingDays; i++)
             {
                 attDayList.Add(i + 1);
-            };
+            }
             // End of generating list of AttendingDays
 
-            AttendanceReportViewModel model = new AttendanceReportViewModel
-            {
-                AttendanceDays = attDayList,
-                Students = StudentList,
-                Enrollments = EnrollmentList,
-                Attendances = attendanceItemsList,
-                courseId = id
-            };
+            var model = new AttendanceReportViewModel
+                            {
+                                AttendanceDays = attDayList,
+                                Students = studentList,
+                                Enrollments = enrollmentList,
+                                Attendances = attendanceItemsList,
+                                courseId = id
+                            };
             return View(model);
         }
 
         public ActionResult StudentDetails(int id)
         {
             //// Generates list of Attendances specifically for current Course
-            var attendanceItems = db.Attendance.Where(s => s.CourseID == id);
+            IQueryable<Attendance> attendanceItems = db.Attendance.Where(s => s.CourseID == id);
             List<Attendance> attendanceItemsList = attendanceItems.ToList();
             //// End of generating list of Attendances
 
             //// Generates list of Students (should be one only one student)
-            var student = db.Students.Where(a => a.UserName == User.Identity.Name);  //// This works for adding one student, not all of them.
-            List<Student> StudentList = student.ToList();
+            IQueryable<Student> student = db.Students.Where(a => a.UserName == User.Identity.Name);
+            //// This works for adding one student, not all of them.
+            List<Student> studentList = student.ToList();
             //// End of generating list of Students
 
             //// Generates list of AttendingDays specifically for current Course
             Course course = db.Courses.FirstOrDefault(p => p.CourseID == id);
-            List<int> attDayList = new List<int>();
+            var attDayList = new List<int>();
             for (int i = 0; i < course.AttendingDays; i++)
             {
                 attDayList.Add(i + 1);
-            };
+            }
             //// End of generating list of AttendingDays
 
-            var enrollment = db.Enrollments.FirstOrDefault(q => q.Student.UserName == User.Identity.Name && q.CourseID == id);
+            Enrollment enrollment =
+                db.Enrollments.FirstOrDefault(q => q.Student.UserName == User.Identity.Name && q.CourseID == id);
 
-            AttendanceReportViewModel model = new AttendanceReportViewModel
-            {
-                AttendanceDays = attDayList,
-                Students = StudentList, ////should be only one student for this ActionResult
-                Attendances = attendanceItemsList,
-                Comments = enrollment.Comments
-            };
+            var model = new AttendanceReportViewModel
+                            {
+                                AttendanceDays = attDayList,
+                                Students = studentList,
+                                ////should be only one student for this ActionResult
+                                Attendances = attendanceItemsList,
+                                Comments = enrollment.Comments
+                            };
 
             return View(model);
         }
@@ -150,20 +156,21 @@ namespace PaulSchool.Controllers
 
         public ActionResult EditComment(int studentId, int courseId)
         {
-            Enrollment enrollment = db.Enrollments.FirstOrDefault(s => s.StudentID == studentId && s.CourseID == courseId);
+            Enrollment enrollment =
+                db.Enrollments.FirstOrDefault(s => s.StudentID == studentId && s.CourseID == courseId);
             var model = new EditCommentGradeViewModel
-            {
-                EnrollmentID = enrollment.EnrollmentID,
-                Student = enrollment.Student,
-                Grades = new List<SelectListItem>
-                {
-                    new SelectListItem {Text = "Incomplete", Value = "Incomplete"},
-                    new SelectListItem {Text = "Pass", Value = "Pass"},
-                    new SelectListItem {Text = "Fail", Value = "Fail"},
-                },
-                Grade = enrollment.Grade,
-                Comments = enrollment.Comments
-            };
+                            {
+                                EnrollmentID = enrollment.EnrollmentID,
+                                Student = enrollment.Student,
+                                Grades = new List<SelectListItem>
+                                             {
+                                                 new SelectListItem {Text = PaulSchoolResource.AttendanceController_EditComment_Incomplete, Value = PaulSchoolResource.AttendanceController_EditComment_Incomplete},
+                                                 new SelectListItem {Text = PaulSchoolResource.AttendanceController_EditComment_Pass, Value = PaulSchoolResource.AttendanceController_EditComment_Pass},
+                                                 new SelectListItem {Text = PaulSchoolResource.AttendanceController_EditComment_Fail, Value = PaulSchoolResource.AttendanceController_EditComment_Fail},
+                                             },
+                                Grade = enrollment.Grade,
+                                Comments = enrollment.Comments
+                            };
             return View(model);
         }
 
@@ -177,7 +184,7 @@ namespace PaulSchool.Controllers
             {
                 db.Entry(enrollmentComment).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("AttendanceView", new { id = enrollmentComment.CourseID });
+                return RedirectToAction("AttendanceView", new {id = enrollmentComment.CourseID});
             }
             return View(enrollmentComment);
         }
@@ -194,11 +201,14 @@ namespace PaulSchool.Controllers
         public bool UpdateAttendance(int userId, int attendanceDay, int courseId, int present)
         {
             //// Taking the attendence of corresponding userId
-            Attendance attendance = db.Attendance.Where(s => s.StudentID == userId 
-                                                        && s.CourseID == courseId 
-                                                        && s.AttendanceDay == attendanceDay).FirstOrDefault();
-            attendance.Present = Convert.ToBoolean(present);
-            db.Entry(attendance).State = EntityState.Modified;
+            Attendance attendance = db.Attendance.FirstOrDefault(s => s.StudentID == userId
+                                                                      && s.CourseID == courseId
+                                                                      && s.AttendanceDay == attendanceDay);
+            if (attendance != null)
+            {
+                attendance.Present = Convert.ToBoolean(present);
+                db.Entry(attendance).State = EntityState.Modified;
+            }
             db.SaveChanges();
             return true;
         }

@@ -1,21 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Data.Entity;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using PaulSchool.Models;
 using PagedList;
-using System.Web.Security;
-using PaulSchool.ViewModels;
+using PaulSchool.Models;
 
 namespace PaulSchool.Controllers
 {
     //[Authorize(Roles = "Administrator, SuperAdministrator, Instructor")]
     public class InstructorController : Controller
     {
-        private SchoolContext db = new SchoolContext();
+        private readonly SchoolContext db = new SchoolContext();
 
         //
         // GET: /Instructor/
@@ -42,12 +37,12 @@ namespace PaulSchool.Controllers
                 }
                 ViewBag.CurrentFilter = searchString;
 
-                var instructors = from s in db.Instructors
-                                  select s;
+                IQueryable<Instructor> instructors = from s in db.Instructors
+                                                     select s;
                 if (!String.IsNullOrEmpty(searchString))
                 {
                     instructors = instructors.Where(s => s.LastName.ToUpper().Contains(searchString.ToUpper())
-                                           || s.FirstMidName.ToUpper().Contains(searchString.ToUpper()));
+                                                         || s.FirstMidName.ToUpper().Contains(searchString.ToUpper()));
                 }
                 switch (sortOrder)
                 {
@@ -96,7 +91,7 @@ namespace PaulSchool.Controllers
 
                 Course testCourse = db.Courses.FirstOrDefault(
                     o => o.InstructorID == id &&
-                         o.Approved == true);
+                         o.Approved);
                 if (testCourse == null)
                 {
                     //This is not an instructor with an approved course
@@ -108,7 +103,7 @@ namespace PaulSchool.Controllers
                 //Display the instructor's page
                 Instructor thisInstructor = db.Instructors.FirstOrDefault(
                     o => o.UserName == User.Identity.Name);
-                return RedirectToAction("Details", new { id = thisInstructor.InstructorID });
+                return RedirectToAction("Details", new {id = thisInstructor.InstructorID});
             }
             // This user is not an "Administrator", "SuperAdministrator", or "Instructor"
             return RedirectToAction("UserNotAuthorized");
@@ -161,11 +156,13 @@ namespace PaulSchool.Controllers
                 };
                 return View(model);
                 /*ViewData["Users"] = Roles.GetUsersInRole("Student");
-                return View();*//*
+                return View();*/
+        /*
             }
             else // we do not check for another role, because we want only Administrator to be able to explicitly add a Teacher.
             {
-                return View(/*not an administrator, no reason to be here, I think*//*);
+                return View(/*not an administrator, no reason to be here, I think*/
+        /*);
             }
         } 
 
@@ -221,10 +218,10 @@ namespace PaulSchool.Controllers
             return View(model);
         }
         */
-        
+
         //
         // GET: /Instructor/Edit/5
- 
+
         public ActionResult Edit(int id)
         {
             Instructor instructor = db.Instructors.Find(id);
@@ -248,7 +245,7 @@ namespace PaulSchool.Controllers
 
         //
         // GET: /Instructor/Delete/5
- 
+
         public ActionResult Delete(int id)
         {
             Instructor instructor = db.Instructors.Find(id);
@@ -260,7 +257,7 @@ namespace PaulSchool.Controllers
 
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id)
-        {            
+        {
             Instructor instructor = db.Instructors.Find(id);
             db.Instructors.Remove(instructor);
             db.SaveChanges();

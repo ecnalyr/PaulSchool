@@ -89,6 +89,33 @@ namespace PaulSchool.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Fail.
+        /// </summary>
+        public static string AttendanceController_EditComment_Fail {
+            get {
+                return ResourceManager.GetString("AttendanceController_EditComment_Fail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Incomplete.
+        /// </summary>
+        public static string AttendanceController_EditComment_Incomplete {
+            get {
+                return ResourceManager.GetString("AttendanceController_EditComment_Incomplete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pass.
+        /// </summary>
+        public static string AttendanceController_EditComment_Pass {
+            get {
+                return ResourceManager.GetString("AttendanceController_EditComment_Pass", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to present.
         /// </summary>
         public static string Present_Text {

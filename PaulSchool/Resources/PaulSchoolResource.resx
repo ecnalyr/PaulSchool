@@ -129,4 +129,13 @@
   <data name="AccountController_ChangePassword_The_current_password_is_incorrect_or_the_new_password_is_invalid_">
     <value xml:space="preserve">The current password is incorrect or the new password is invalid.</value>
   </data>
+  <data name="AttendanceController_EditComment_Incomplete">
+    <value xml:space="preserve">Incomplete</value>
+  </data>
+  <data name="AttendanceController_EditComment_Pass">
+    <value xml:space="preserve">Pass</value>
+  </data>
+  <data name="AttendanceController_EditComment_Fail">
+    <value xml:space="preserve">Fail</value>
+  </data>
 </root>

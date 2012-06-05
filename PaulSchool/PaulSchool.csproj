@@ -377,6 +377,7 @@
     <EmbeddedResource Include="Resources\PaulSchoolResource.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>PaulSchoolResource1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -393,6 +394,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Course\Delete.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Attendance\Index.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

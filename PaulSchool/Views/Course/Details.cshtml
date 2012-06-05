@@ -108,7 +108,7 @@
                 @Html.DisplayFor(model => model.Archived)
                     @{if ((User.IsInRole("Administrator") | User.IsInRole("SuperAdministrator")) && Model.Archived == false)
                       {
-                        @Html.ActionLink("Clicking here will archive this class - this will make the class uneditable.", "ApproveClass", new { id = Model.CourseID }, new { onclick = "return confirm('Are you sure you are ready to archive this class?  This process is not reversible.');" })
+                        @Html.ActionLink("Clicking here will archive this class - this will make the class uneditable.", "ApproveCourse", new { id = Model.CourseID }, new { onclick = "return confirm('Are you sure you are ready to archive this class?  This process is not reversible.');" })
                       }
                      }
                 </div>

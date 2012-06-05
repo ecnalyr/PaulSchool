@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
+﻿using System.Data;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using PaulSchool.Models;
 
 namespace PaulSchool.Controllers
-{ 
-    [Authorize (Roles= "Administrator, SuperAdministrator")]
+{
+    [Authorize(Roles = "Administrator, SuperAdministrator")]
     public class CourseTemplatesController : Controller
     {
-        private SchoolContext db = new SchoolContext();
+        private readonly SchoolContext db = new SchoolContext();
 
         //
         // GET: /CourseTemplates/
@@ -37,7 +33,7 @@ namespace PaulSchool.Controllers
         public ActionResult Create()
         {
             return View();
-        } 
+        }
 
         //
         // POST: /CourseTemplates/Create
@@ -49,15 +45,15 @@ namespace PaulSchool.Controllers
             {
                 db.CourseTemplates.Add(coursetemplates);
                 db.SaveChanges();
-                return RedirectToAction("Index");  
+                return RedirectToAction("Index");
             }
 
             return View(coursetemplates);
         }
-        
+
         //
         // GET: /CourseTemplates/Edit/5
- 
+
         public ActionResult Edit(int id)
         {
             CourseTemplates coursetemplates = db.CourseTemplates.Find(id);
@@ -81,7 +77,7 @@ namespace PaulSchool.Controllers
 
         //
         // GET: /CourseTemplates/Delete/5
- 
+
         public ActionResult Delete(int id)
         {
             CourseTemplates coursetemplates = db.CourseTemplates.Find(id);
@@ -93,7 +89,7 @@ namespace PaulSchool.Controllers
 
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id)
-        {            
+        {
             CourseTemplates coursetemplates = db.CourseTemplates.Find(id);
             db.CourseTemplates.Remove(coursetemplates);
             db.SaveChanges();
