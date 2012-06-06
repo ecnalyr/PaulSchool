@@ -1,13 +1,8 @@
 ﻿@model PaulSchool.ViewModels.InstructorApplicationViewModel
 @using (Html.BeginForm())
 {
-@Html.ValidationSummary(true)
+    @Html.ValidationSummary(true)
     <div class="editorRow">
-        @Html.EditorFor(model => model.UniversityOrCollege)
-        @Html.ValidationMessageFor(model => model.UniversityOrCollege)
-    <p>
-        <!--@Html.ActionLink("deleteRow", "#", new { @class = "deleteRow" })-->
-        <a href="#" class="deleteRow">delete</a>
-    </p>
+        @Html.EditorFor(model => model.UniversityOrCollege) @Html.ValidationMessageFor(model => model.UniversityOrCollege) <a href="#" class="deleteRow">delete</a>
     </div>
 }
