@@ -16,8 +16,7 @@
         <legend>ApplyToBecomeInstructor</legend>
         
         <div class="editor-label">
-            @Html.LabelFor(model => model.BasicInfoGatheredFromProfile.LastName)
-            @Html.DisplayFor(model => model.BasicInfoGatheredFromProfile)
+            <p>Information from your user profile will be considered when applying to become an Instructor</p>
         </div>
         
         <div class="editor-label">
@@ -28,20 +27,20 @@
             <!-- PUT PARTIAL VIEWS HERE -->
         </div>
 
-        @Html.ActionLink("Add another row", "EducationalBackground", null, new {id = "addItem"})
+        @Html.ActionLink("Add additional educational background.", "EducationalBackground", null, new {id = "addItem"})
 
         <div class="editor-label">
             @Html.LabelFor(model => model.Experience)
         </div>
-        <div clsas="editor-field">
+        <div class="editor-field">
             @Html.EditorFor(model => model.Experience)
             @Html.ValidationMessageFor(model => model.Experience)
         </div>
         
         <div class="editor-label">
-            @Html.LabelFor(model => model.WillingToTravel)
+            Are you willing to travel?
         </div>
-        <div clsas="editor-field">
+        <div class="editor-field">
             @Html.EditorFor(model => model.WillingToTravel)
             @Html.ValidationMessageFor(model => model.WillingToTravel)
         </div>

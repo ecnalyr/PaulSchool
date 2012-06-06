@@ -3,6 +3,14 @@
 {
     @Html.ValidationSummary(true)
     <div class="editorRow">
-        @Html.EditorFor(model => model.UniversityOrCollege) @Html.ValidationMessageFor(model => model.UniversityOrCollege) <a href="#" class="deleteRow">delete</a>
+        @Html.LabelFor(model => model.UniversityOrCollege) @Html.EditorFor(model => model.UniversityOrCollege) 
+
+        @Html.LabelFor(model => model.AreaOfStudy) @Html.EditorFor(model => model.AreaOfStudy) 
+
+        @Html.LabelFor(model => model.Degree) @Html.EditorFor(model => model.Degree) 
+
+        @Html.LabelFor(model => model.YearReceived) @Html.EditorFor(model => model.YearReceived)<a href="#" class="deleteRow">Delete</a>
+        
+        @Html.ValidationMessageFor(model => model.UniversityOrCollege) @Html.ValidationMessageFor(model => model.AreaOfStudy) @Html.ValidationMessageFor(model => model.Degree) @Html.ValidationMessageFor(model => model.YearReceived)
     </div>
 }

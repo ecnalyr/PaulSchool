@@ -1,20 +1,18 @@
 ﻿<RecentFiles>
   <RecentFiles>
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Shared/f:_LogOnPartial.cshtml" caret="0" fromTop="0" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:AccountController.cs" caret="818" fromTop="18" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:CourseTemplatesController.cs" caret="0" fromTop="0" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Account/f:Profile.cshtml" caret="0" fromTop="0" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:InstructorApplication/f:_EducationalBackground.cshtml" caret="852" fromTop="15" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:InstructorApplication/f:ApplyToBecomeInstructor.cshtml" caret="1320" fromTop="22" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:CourseController.cs" caret="2166" fromTop="17" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Models/f:InstructorApplication.cs" caret="451" fromTop="16" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:ViewModels/f:InstructorApplicationViewModel.cs" caret="0" fromTop="0" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Models/f:AccountModels.cs" caret="0" fromTop="0" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:AccountController.cs" caret="0" fromTop="0" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:InstructorApplicationController.cs" caret="2287" fromTop="3" />
   </RecentFiles>
   <RecentEdits>
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:AccountController.cs" caret="28820" fromTop="9" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:AccountController.cs" caret="28820" fromTop="3" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:AccountController.cs" caret="28820" fromTop="755" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:AccountController.cs" caret="28820" fromTop="20" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:AccountController.cs" caret="0" fromTop="0" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:AccountController.cs" caret="28820" fromTop="756" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:AccountController.cs" caret="28820" fromTop="20" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:AccountController.cs" caret="28820" fromTop="21" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:AccountController.cs" caret="28820" fromTop="23" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:AccountController.cs" caret="28820" fromTop="4" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:AccountController.cs" caret="28820" fromTop="5" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:AccountController.cs" caret="28820" fromTop="17" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:AccountController.cs" caret="28820" fromTop="27" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:AccountController.cs" caret="28820" fromTop="15" />
@@ -33,5 +31,17 @@
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:AccountController.cs" caret="28820" fromTop="24" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:AccountController.cs" caret="28820" fromTop="773" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:AccountController.cs" caret="675" fromTop="10" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:InstructorApplicationController.cs" caret="897" fromTop="17" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:InstructorApplication/f:_EducationalBackground.cshtml" caret="466" fromTop="8" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:InstructorApplication/f:ApplyToBecomeInstructor.cshtml" caret="757" fromTop="18" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:InstructorApplication/f:ApplyToBecomeInstructor.cshtml" caret="1302" fromTop="19" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:InstructorApplication/f:ApplyToBecomeInstructor.cshtml" caret="1580" fromTop="27" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:InstructorApplication/f:ApplyToBecomeInstructor.cshtml" caret="1120" fromTop="17" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:InstructorApplication/f:_EducationalBackground.cshtml" caret="590" fromTop="11" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:InstructorApplicationController.cs" caret="3074" fromTop="32" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:InstructorApplicationController.cs" caret="2585" fromTop="23" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Models/f:InstructorApplication.cs" caret="0" fromTop="0" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:InstructorApplicationController.cs" caret="3061" fromTop="30" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:InstructorApplicationController.cs" caret="1441" fromTop="5" />
   </RecentEdits>
 </RecentFiles>
