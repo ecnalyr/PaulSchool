@@ -1,48 +1,13 @@
 ﻿@model PaulSchool.ViewModels.InstructorApplicationViewModel
-<h2>_EducationalBackground</h2>
 @using (Html.BeginForm())
 {
 @Html.ValidationSummary(true)
     <div class="editorRow">
-        <div class="editor-label">
-        @Html.LabelFor(model => model.UniversityOrCollege)
-    </div>
-    <div class="editor-field">
         @Html.EditorFor(model => model.UniversityOrCollege)
         @Html.ValidationMessageFor(model => model.UniversityOrCollege)
-    </div>
-
-    <div class="editor-label">
-        @Html.LabelFor(model => model.AreaOfStudy)
-    </div>
-    <div class="editor-field">
-        @Html.EditorFor(model => model.AreaOfStudy)
-        @Html.ValidationMessageFor(model => model.AreaOfStudy)
-    </div>
-
-    <div class="editor-label">
-        @Html.LabelFor(model => model.Degree)
-    </div>
-    <div class="editor-field">
-        @Html.EditorFor(model => model.Degree)
-        @Html.ValidationMessageFor(model => model.Degree)
-    </div>
-
-    <div class="editor-label">
-        @Html.LabelFor(model => model.YearReceived)
-    </div>
-    <div class="editor-field">
-        @Html.EditorFor(model => model.YearReceived)
-        @Html.ValidationMessageFor(model => model.YearReceived)
-    </div>
-
     <p>
         <!--@Html.ActionLink("deleteRow", "#", new { @class = "deleteRow" })-->
         <a href="#" class="deleteRow">delete</a>
     </p>
     </div>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>

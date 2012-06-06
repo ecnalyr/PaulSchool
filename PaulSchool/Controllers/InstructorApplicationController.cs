@@ -21,7 +21,7 @@ namespace PaulSchool.Controllers
 
         public ActionResult ApplyToBecomeInstructor()
         {
-            var thisStudent = db.Students.FirstOrDefault(
+            Student thisStudent = db.Students.FirstOrDefault(
                 o => o.UserName == User.Identity.Name);
             var model = new InstructorApplicationViewModel
                             {
@@ -34,8 +34,7 @@ namespace PaulSchool.Controllers
 
         public PartialViewResult EducationalBackground()
         {
-            return PartialView("_EducationalBackground");
+            return PartialView("_EducationalBackground", new InstructorApplicationViewModel());
         }
-
     }
 }
