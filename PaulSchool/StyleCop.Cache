@@ -7330,17 +7330,17 @@
       <timestamp>06/06/2012 16:07:23</timestamp>
       <milliseconds>627</milliseconds>
     </settings>
-    <timestamp>06/06/2012 16:27:34</timestamp>
-    <milliseconds>114</milliseconds>
+    <timestamp>06/06/2012 16:41:00</timestamp>
+    <milliseconds>566</milliseconds>
     <violations>
       <violation namespace="StyleCop.CSharp.ReadabilityRules" rule="ParameterMustNotSpanMultipleLines" ruleCheckId="SA1118">
         <context>The parameter spans multiple lines. If the parameter is short, place the entire parameter on a single line. Otherwise, save the contents of the parameter in a temporary variable and pass the temporary variable as a parameter. </context>
-        <line>133</line>
+        <line>138</line>
         <warning>False</warning>
       </violation>
       <violation namespace="StyleCop.CSharp.SpacingRules" rule="MemberAccessSymbolsMustBeSpacedCorrectly" ruleCheckId="SA1019">
         <context>Invalid spacing around the member access symbol.</context>
-        <line>133</line>
+        <line>138</line>
         <warning>False</warning>
       </violation>
     </violations>
