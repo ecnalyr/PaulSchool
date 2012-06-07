@@ -58,29 +58,29 @@ namespace PaulSchool.Controllers
         /// <param name="applicationFromView">
         /// The application from view.
         /// </param>
-        /// <param name="listFromView">
-        /// The list from view.
-        /// </param>
         /// <returns>
         /// </returns>
         [HttpPost]
-        public ActionResult ApplyToBecomeInstructor(
-            InstructorApplicationViewModel applicationFromView, IEnumerable<InstructorApplicationViewModel> listFromView)
+        public ActionResult ApplyToBecomeInstructor(InstructorApplicationViewModel applicationFromView)
         {
             var instructorApplication = new InstructorApplication
                 {
                     BasicInfoGatheredFromProfile = applicationFromView.BasicInfoGatheredFromProfile, 
-                    // EducationalBackground = listFromView.,
+                    EducationalBackground =
+                        applicationFromView.EducationalBackground as ICollection<EducationalBackground>, 
                     Experience = applicationFromView.Experience, 
                     WillingToTravel = applicationFromView.WillingToTravel
                 };
-            return this.View(applicationFromView);
+            this.db.InstructorApplication.Add(instructorApplication);
+            this.db.SaveChanges();
+            return this.Redirect("Index");
         }
 
         /// <summary>
         /// The educational background.
         /// </summary>
         /// <returns>
+        /// Educational background rows to the Instructor Application View Model
         /// </returns>
         public PartialViewResult EducationalBackground()
         {
