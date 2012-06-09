@@ -11,7 +11,7 @@ namespace PaulSchool.DAL
         {
             var students = new List<Student>
             {
-                new Student { FirstMidName = "Carson",   LastName = "Alexander", Email = "123@aol.com",     EnrollmentDate = DateTime.Parse("2005-09-01") },
+                new Student { FirstMidName = "Carson", UserName="TestUser", LastName = "Alexander", Email = "123@aol.com",     EnrollmentDate = DateTime.Parse("2005-09-01") },
                 new Student { FirstMidName = "Meredith", LastName = "Alonso", Email = "345@aol.com",        EnrollmentDate = DateTime.Parse("2002-09-01") },
                 new Student { FirstMidName = "Arturo",   LastName = "Anand", Email = "567@aol.com",         EnrollmentDate = DateTime.Parse("2003-09-01") },
                 new Student { FirstMidName = "Gytis",    LastName = "Barzdukas", Email = "456@aol.com",     EnrollmentDate = DateTime.Parse("2002-09-01") },

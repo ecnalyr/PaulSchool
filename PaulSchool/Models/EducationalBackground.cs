@@ -1,3 +1,5 @@
+using System;
+
 namespace PaulSchool.Models
 {
     public class EducationalBackground
@@ -10,7 +12,7 @@ namespace PaulSchool.Models
 
         public string Degree { get; set; }
 
-        public int YearReceived { get; set; }
+        public string YearReceived { get; set; }
 
         public virtual InstructorApplication InstructorApplication { get; set; }
     }

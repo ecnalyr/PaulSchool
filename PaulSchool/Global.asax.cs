@@ -32,6 +32,9 @@ namespace PaulSchool
         protected void Application_Start()
         {
             Database.SetInitializer<SchoolContext>(new SchoolInitializer()); // Resets database
+            ViewEngines.Engines.Clear();
+
+            ViewEngines.Engines.Add(new CustomViewEngine());
 
             AreaRegistration.RegisterAllAreas();
 

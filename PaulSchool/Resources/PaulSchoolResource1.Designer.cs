@@ -89,6 +89,33 @@ namespace PaulSchool.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add additional educational background..
+        /// </summary>
+        public static string Additional_background_Text {
+            get {
+                return ResourceManager.GetString("Additional_background_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ApplyToBecomeInstructor.
+        /// </summary>
+        public static string ApplyToBecomeInstructor_Text {
+            get {
+                return ResourceManager.GetString("ApplyToBecomeInstructor_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AreaOfStudy.
+        /// </summary>
+        public static string AreaofStudy_Text {
+            get {
+                return ResourceManager.GetString("AreaofStudy_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Fail.
         /// </summary>
         public static string AttendanceController_EditComment_Fail {
@@ -116,11 +143,65 @@ namespace PaulSchool.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Degree.
+        /// </summary>
+        public static string Degree_Text {
+            get {
+                return ResourceManager.GetString("Degree_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete.
+        /// </summary>
+        public static string Delete_Text {
+            get {
+                return ResourceManager.GetString("Delete_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Information from your user profile will be considered when applying to become an Instructor.
+        /// </summary>
+        public static string Instructor_Information_Text {
+            get {
+                return ResourceManager.GetString("Instructor_Information_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to present.
         /// </summary>
         public static string Present_Text {
             get {
                 return ResourceManager.GetString("Present_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UniversityOrCollege.
+        /// </summary>
+        public static string University_Text {
+            get {
+                return ResourceManager.GetString("University_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you willing to travel?.
+        /// </summary>
+        public static string Willing_travel_Text {
+            get {
+                return ResourceManager.GetString("Willing_travel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to YearReceived.
+        /// </summary>
+        public static string YearReceiver_Text {
+            get {
+                return ResourceManager.GetString("YearReceiver_Text", resourceCulture);
             }
         }
     }

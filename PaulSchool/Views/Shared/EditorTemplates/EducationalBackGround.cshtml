@@ -1,0 +1,22 @@
+﻿@model PaulSchool.ViewModels.EducationalBackGround
+<div class="editorRow">
+        <p>
+            @Html.LabelFor(model => model.UniversityOrCollege)
+            @Html.TextBoxFor(model => model.UniversityOrCollege, new { @class="university" })
+        </p>
+        <p>
+            @Html.LabelFor(model => model.AreaOfStudy)
+            @Html.TextBoxFor(model => model.AreaOfStudy, new { @class="area" })
+        </p>
+        <p>
+            @Html.LabelFor(model => model.Degree)
+            @Html.TextBoxFor(model => model.Degree, new { @class = "degree" })
+        </p>
+        <p>
+            @Html.LabelFor(model => model.YearReceived)
+            @Html.TextBoxFor(model => model.YearReceived, new { @class = "year" })
+        </p>
+    <div>
+        <a href="javascript:void(0);" class="deleteRow">@PaulSchool.Resources.PaulSchoolResource.Delete_Text</a>
+    </div>
+</div>

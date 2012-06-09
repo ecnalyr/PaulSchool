@@ -123,19 +123,46 @@
   <data name="Present_Text" xml:space="preserve">
     <value>present</value>
   </data>
-  <data name="AccountController_LogOn_The_user_name_or_password_provided_is_incorrect_">
-    <value xml:space="preserve">The user name or password provided is incorrect.</value>
+  <data name="AccountController_LogOn_The_user_name_or_password_provided_is_incorrect_" xml:space="preserve">
+    <value>The user name or password provided is incorrect.</value>
   </data>
-  <data name="AccountController_ChangePassword_The_current_password_is_incorrect_or_the_new_password_is_invalid_">
-    <value xml:space="preserve">The current password is incorrect or the new password is invalid.</value>
+  <data name="AccountController_ChangePassword_The_current_password_is_incorrect_or_the_new_password_is_invalid_" xml:space="preserve">
+    <value>The current password is incorrect or the new password is invalid.</value>
   </data>
-  <data name="AttendanceController_EditComment_Incomplete">
-    <value xml:space="preserve">Incomplete</value>
+  <data name="AttendanceController_EditComment_Incomplete" xml:space="preserve">
+    <value>Incomplete</value>
   </data>
-  <data name="AttendanceController_EditComment_Pass">
-    <value xml:space="preserve">Pass</value>
+  <data name="AttendanceController_EditComment_Pass" xml:space="preserve">
+    <value>Pass</value>
   </data>
-  <data name="AttendanceController_EditComment_Fail">
-    <value xml:space="preserve">Fail</value>
+  <data name="AttendanceController_EditComment_Fail" xml:space="preserve">
+    <value>Fail</value>
+  </data>
+  <data name="Additional_background_Text" xml:space="preserve">
+    <value>Add additional educational background.</value>
+  </data>
+  <data name="ApplyToBecomeInstructor_Text" xml:space="preserve">
+    <value>ApplyToBecomeInstructor</value>
+  </data>
+  <data name="AreaofStudy_Text" xml:space="preserve">
+    <value>AreaOfStudy</value>
+  </data>
+  <data name="Degree_Text" xml:space="preserve">
+    <value>Degree</value>
+  </data>
+  <data name="Delete_Text" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="Instructor_Information_Text" xml:space="preserve">
+    <value>Information from your user profile will be considered when applying to become an Instructor</value>
+  </data>
+  <data name="University_Text" xml:space="preserve">
+    <value>UniversityOrCollege</value>
+  </data>
+  <data name="Willing_travel_Text" xml:space="preserve">
+    <value>Are you willing to travel?</value>
+  </data>
+  <data name="YearReceiver_Text" xml:space="preserve">
+    <value>YearReceived</value>
   </data>
 </root>

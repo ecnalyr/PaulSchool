@@ -2,55 +2,70 @@
 @{
     ViewBag.Title = "ApplyToBecomeInstructor";
 }
-
-<h2>ApplyToBecomeInstructor</h2>
+<h2>@PaulSchool.Resources.PaulSchoolResource.ApplyToBecomeInstructor_Text</h2>
 
 <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"> </script>
 <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"> </script>
 <script src="@Url.Content("~/Scripts/EducationalBackgroundListEditor.js")" type="text/javascript"> </script>
-
 @using (Html.BeginForm())
 {
-    @Html.ValidationSummary(true)
     <fieldset>
-        <legend>ApplyToBecomeInstructor</legend>
-        
+        <legend>@PaulSchool.Resources.PaulSchoolResource.ApplyToBecomeInstructor_Text</legend>
         <div class="editor-label">
-            <p>Information from your user profile will be considered when applying to become an Instructor</p>
+            <p>@PaulSchool.Resources.PaulSchoolResource.Instructor_Information_Text</p>
         </div>
-        
+            @Html.HiddenFor(model => model.CurrentUserId)
         <div class="editor-label">
-            @Html.LabelFor(model => model.EducationalBackground)
+            @Html.LabelFor(model => model.EducationalBackgrounds)
         </div>
-        <div id = "editorRows">
-            @Html.Partial("_EducationalBackground")
-            <!-- PUT PARTIAL VIEWS HERE -->
+        <div id="editorRows">
+            @Html.EditorFor(model => model.EducationalBackgrounds)
         </div>
-
-        @Html.ActionLink("Add additional educational background.", "EducationalBackground", null, new {id = "addItem"})
-
+            @Html.ActionLink(@PaulSchool.Resources.PaulSchoolResource.Additional_background_Text, "EducationalBackground", null, new { id = "addItem" })
         <div class="editor-label">
             @Html.LabelFor(model => model.Experience)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.Experience)
-            @Html.ValidationMessageFor(model => model.Experience)
+            @Html.DropDownListFor(model=>model.Experience, Model.ExperienceList)
         </div>
-        
         <div class="editor-label">
-            Are you willing to travel?
+            @PaulSchool.Resources.PaulSchoolResource.Willing_travel_Text
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.WillingToTravel)
-            @Html.ValidationMessageFor(model => model.WillingToTravel)
         </div>
-        
         <p>
-            <input type="submit" value="Create" />
+            <input type="submit" value="Create" id="btnSubmit" />
         </p>
+        <div class="newRow" style="display: none;">
+            <div class="editorRow">
+                <p>
+                    <label>@PaulSchool.Resources.PaulSchoolResource.University_Text</label>
+                    <input class="university" type="text" value="" />
+                </p>
+                <p>
+                    <label>@PaulSchool.Resources.PaulSchoolResource.AreaofStudy_Text</label>
+                    <input class="area" type="text" value="" />
+                </p>
+                <p>
+                    <label>@PaulSchool.Resources.PaulSchoolResource.Degree_Text</label>
+                    <input class="degree" type="text" value="" />
+                </p>
+                <p>
+                    <label>@PaulSchool.Resources.PaulSchoolResource.YearReceiver_Text</label>
+                    <input class="year" type="text" value="" />
+                </p>
+                <div>
+                    <a href="javascript:void(0);" class="deleteRow">@PaulSchool.Resources.PaulSchoolResource.Delete_Text</a>
+                </div>
+            </div>
+        </div>
     </fieldset>
 }
-
 <div>
     @Html.ActionLink("Back", "Index")
 </div>
+<script type="text/javascript">
+    instructorUrl = '@Url.Action("ApplyToBecomeInstructor", "InstructorApplication")';
+    currentUser = '@Model.CurrentUserId';
+</script>
