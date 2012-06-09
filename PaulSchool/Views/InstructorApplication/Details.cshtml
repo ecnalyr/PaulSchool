@@ -8,13 +8,49 @@
 
 <fieldset>
     <legend>InstructorApplication</legend>
+    
+    <div class="display-label">First Name and Middle Initial</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BasicInfoGatheredFromProfile.FirstMidName)
+    </div>
+    
+    <div class="display-label">Last Name</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BasicInfoGatheredFromProfile.LastName)
+    </div>
 
-    <div class="display-label">Experience</div>
+    <div class="display-label">Address</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BasicInfoGatheredFromProfile.StreetAddress)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BasicInfoGatheredFromProfile.City) , @Html.DisplayFor(model => model.BasicInfoGatheredFromProfile.State) @Html.DisplayFor(model => model.BasicInfoGatheredFromProfile.ZipCode)
+    </div>
+    
+    <div class="display-label">Phone and Email:</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BasicInfoGatheredFromProfile.Phone) , @Html.DisplayFor(model => model.BasicInfoGatheredFromProfile.Email)
+    </div>
+    
+    <div class="display-label">Parish Affiliation</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BasicInfoGatheredFromProfile.ParishAffiliation)
+    </div>
+    
+    <div class="display-label">Educational Background</div>
+        @foreach( var item in Model.EducationalBackground)
+        {
+            <div class="display-field">            
+            @Html.DisplayFor(model => model.EducationalBackground)
+            </div>
+        }
+
+    <div class="display-label">Experience as a Catachetical Leader</div>
     <div class="display-field">
         @Html.DisplayFor(model => model.Experience)
     </div>
 
-    <div class="display-label">WillingToTravel</div>
+    <div class="display-label">Willing to travel? (checked if yes, empty if no)</div>
     <div class="display-field">
         @Html.DisplayFor(model => model.WillingToTravel)
     </div>
