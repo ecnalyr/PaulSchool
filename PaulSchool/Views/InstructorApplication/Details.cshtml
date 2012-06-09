@@ -1,0 +1,25 @@
+﻿@model PaulSchool.Models.InstructorApplication
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>InstructorApplication</legend>
+
+    <div class="display-label">Experience</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Experience)
+    </div>
+
+    <div class="display-label">WillingToTravel</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.WillingToTravel)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.InstructorApplicationID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
