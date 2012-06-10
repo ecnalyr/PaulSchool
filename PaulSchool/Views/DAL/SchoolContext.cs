@@ -5,7 +5,7 @@ namespace PaulSchool.Models
 {
     public class SchoolContext : DbContext
     {
-        public DbSet<Student> Students { get; set; }
+        public DbSet<Student> Students { get; set; } // In Entity Framework terminology, an entity set typically corresponds to a database table, and an entity corresponds to a row in the table.
         
         public DbSet<Enrollment> Enrollments { get; set; }
         

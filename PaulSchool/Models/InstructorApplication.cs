@@ -6,9 +6,11 @@ namespace PaulSchool.Models
     {
         public int InstructorApplicationID { get; set; }
 
-        public Student BasicInfoGatheredFromProfile { get; set; }
+        public int StudentID { get; set; }
 
-        public virtual ICollection<EducationalBackground> EducationalBackground { get; set; }
+        public virtual Student Student { get; set; }
+
+        public List<EducationalBackground> EducationalBackground { get; set; }
 
         public string Experience { get; set; }
 

@@ -127,28 +127,27 @@
                     List of Students as viewed by Admins
                     </div>
                     <div class="display-field">
-                        <table>
+                    <table>
+                        <tr>
+                            <th>First and Middle Name</th>
+                            <th>Last Name</th>
+                            <th>Remove from class</th>
+                        </tr>
+                        @foreach (var item in Model.Enrollments)
+                        {
                             <tr>
-                                <th>First and Middle Name</th>
-                                <th>Last Name</th>
-                                <th>Remove from class</th>
+                                <td>
+                                    @Html.ActionLink(item.Student.FirstMidName, "Details", "Student", new { id = item.Student.StudentID }, "a")
+                                </td>
+                                <td>
+                                    @Html.ActionLink(item.Student.LastName, "Details", "Student", new { id = item.Student.StudentID }, "a")
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Remove", "RemoveFromCourse", new { id = item.EnrollmentID }, new { onclick = "return confirm('Are you absolutely certain that you want to remove this student from this Course?  This is not reversible.');" })
+                                </td>
                             </tr>
-                            @foreach (var item in Model.Enrollments)
-                            {
-                                <tr>
-                                    <td>
-                                        @Html.ActionLink(item.Student.FirstMidName, "Details", "Student", new { id = item.Student.StudentID }, "a")
-                                    </td>
-                                    <td>
-                                        @Html.ActionLink(item.Student.LastName, "Details", "Student", new { id = item.Student.StudentID }, "a")
-                                    </td>
-                                    <td>
-                                        @Html.ActionLink("Remove", "RemoveFromCourse", new { id = item.EnrollmentID }, new { onclick = "return confirm('Are you absolutely certain that you want to remove this student from this Course?  This is not reversible.');" })
-                                    </td>
-                                </tr>
-                            }
-                        </table>
-                        @Html.ActionLink("Click here to see attendance details of this Course", "AttendanceView", "Attendance", new { id = Model.CourseID }, null)
+                        }
+                    </table>
                     </div>
                   }
                   if (User.IsInRole("Instructor"))

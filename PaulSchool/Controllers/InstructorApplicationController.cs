@@ -20,7 +20,7 @@ namespace PaulSchool.Controllers
     /// <summary>
     /// The instructor application controller.
     /// </summary>
-    [Authorize]
+    //[Authorize]
     public class InstructorApplicationController : Controller
     {
         #region Fields
@@ -79,7 +79,6 @@ namespace PaulSchool.Controllers
         [HttpPost]
         public ActionResult ApplyToBecomeInstructor(InstructorApplicationViewModel applicationFromView)
         {
-            Debug.Write("one");
             Student thisUser = this.db.Students.FirstOrDefault(o => o.StudentID == applicationFromView.CurrentUserId);
             var instructorApplication = this.buildNewInstructorApplicationAndAddToDB(applicationFromView, thisUser);
             
@@ -102,13 +101,26 @@ namespace PaulSchool.Controllers
         private static InstructorApplication buildNewInstructorApplication(
             InstructorApplicationViewModel applicationFromView, Student thisUser)
         {
+            List<PaulSchool.Models.EducationalBackground> educationList = new List<EducationalBackground>();
+            foreach (var educate in applicationFromView.EducationalBackgrounds)
+            {
+                var education = new Models.EducationalBackground
+                {
+                    YearReceived = educate.YearReceived,
+                    Degree = educate.Degree,
+                    AreaOfStudy = educate.AreaOfStudy,
+                    UniversityOrCollege = educate.UniversityOrCollege
+                };
+                educationList.Add(education);
+            }
             var instructorApplication = new InstructorApplication
                 {
-                    BasicInfoGatheredFromProfile = thisUser,
-                    EducationalBackground = applicationFromView.EducationalBackgrounds as ICollection<EducationalBackground>,
+                    StudentID = thisUser.StudentID,
+                    EducationalBackground = new List<Models.EducationalBackground>(),
                     Experience = applicationFromView.Experience,
                     WillingToTravel = applicationFromView.WillingToTravel
                 };
+            instructorApplication.EducationalBackground.AddRange(educationList);
             return instructorApplication;
         }
 
@@ -147,7 +159,9 @@ namespace PaulSchool.Controllers
         /// </returns>
         public ViewResult Details(int id)
         {
-            InstructorApplication instructorApplication = this.db.InstructorApplication.Find(id);
+            InstructorApplication instructorApplication =
+                this.db.InstructorApplication.Include("EducationalBackGround").Where(
+                m => m.InstructorApplicationID == id).FirstOrDefault();
             return View(instructorApplication);
         }
 
