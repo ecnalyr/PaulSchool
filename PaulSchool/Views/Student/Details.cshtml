@@ -8,37 +8,19 @@
 
 <fieldset>
     <legend>Student</legend>
-
-    <div class="display-label">First and Middle Name</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.FirstMidName)
-    </div>
     
-    <div class="display-label">LastName</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.LastName)
-    </div>
-
-    <div class="display-label">Email</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Email)
-    </div>
-
-    <div class="display-label">EnrollmentDate</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.EnrollmentDate)
-    </div>
-
     <div class="display-label">User Name</div>
     <div class="display-field">
         @Html.DisplayFor(model => model.UserName)
     </div>
 
+    @Html.DisplayForModel()
+
     @{if (User.IsInRole("Administrator"))
       {
         <!--Admin Only Section - needs links to classes-->
         <div class="display-label">
-        Class History as viewed by Admins
+        Class History as viewed by Admin
         </div>
         <div class="display-field">
         <table>

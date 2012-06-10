@@ -169,7 +169,7 @@ namespace PaulSchool.Controllers
                     courses = courses.OrderBy(s => s.Title);
                     break;
             }
-            int pageSize = 4;
+            int pageSize = 10;
             int pageNumber = (page ?? 1);
             return View(courses.ToPagedList(pageNumber, pageSize));
             //}
@@ -487,7 +487,7 @@ namespace PaulSchool.Controllers
                     courses = courses.OrderBy(s => s.Title);
                     break;
             }
-            int pageSize = 4;
+            int pageSize = 10;
             int pageNumber = (page ?? 1);
             return View(courses.ToPagedList(pageNumber, pageSize));
         }
@@ -600,13 +600,12 @@ namespace PaulSchool.Controllers
 
         //
         // POST: /Course/Delete/5
-
+        [Authorize(Roles = "Administrator, SuperAdministrator")]
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id, Course hasReasonForDeletion)
         {
             Course course = db.Courses.Find(id);
 
-            // Add the notification for the Instructor that their Course has been approved
             var newNotification = new Notification
                                       {
                                           Time = DateTime.Now,

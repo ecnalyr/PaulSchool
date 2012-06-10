@@ -99,10 +99,10 @@
     <div>
         <div class="display-label">AdminDenialReason</div>
         <div class="display-field">
-            @Html.EditorFor(model => model.AdminDenialReason)
+            @Html.TextAreaFor(model => model.AdminDenialReason)
         </div>
         <p>
-            <input type="submit" value="Delete" /> |
+            <input type="submit" value="Deny (and delete) application to teach" /> |
             @Html.ActionLink("Back to List", "Index")
         </p>
     </div>

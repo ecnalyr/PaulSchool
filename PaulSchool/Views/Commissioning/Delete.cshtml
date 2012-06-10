@@ -1,0 +1,44 @@
+﻿@model PaulSchool.Models.ApplicationCommissioning
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>ApplicationCommissioning</legend>
+    
+    <div class="display-label">Applicant's Name</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Student.FirstMidName) @Html.DisplayFor(model => model.Student.LastName)
+    </div>
+
+    <div class="display-label">RecommendationFiled</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.RecommendationFiled)
+    </div>
+
+    <div class="display-label">PersonalStatement</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PersonalStatement)
+    </div>
+
+    <div class="display-label">ApplicationFeePaid</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ApplicationFeePaid)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <div>
+        <div class="display-label">AdminDenialReason</div>
+        <div class="display-field">
+            @Html.TextAreaFor(model => model.AdminDenialReason)
+        </div>
+        <p>
+            <input type="submit" value="Deny (and delete) application for Commissioning" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+    </div>
+}

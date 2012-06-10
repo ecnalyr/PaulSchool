@@ -1,0 +1,49 @@
+﻿@model PaulSchool.Models.ApplicationCommissioning
+
+@{
+    ViewBag.Title = "An Application for Commissioning";
+}
+
+<h2>Details of application</h2>
+
+<fieldset>
+    <legend>ApplicationCommissioning</legend>
+    
+    <div class="display-label">Applicant's name</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Student.FirstMidName) @Html.DisplayFor(model => model.Student.LastName)
+        <p>
+            You can click @Html.ActionLink("here", "Details", "Student", new { id = Model.StudentID }, null) to see the rest of the student's basic profile information.
+        </p>
+    </div>
+
+    <div class="display-label">Has their recommendation been filed? (an admin can edit this field by clicking "edit" at the botton of this page)</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.RecommendationFiled)
+    </div>
+
+    <div class="display-label">PersonalStatement</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PersonalStatement)
+    </div>
+    
+    <div class="display-label">Applicant has performed their Diocesan sponsored day of reflection</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DayOfReflection)
+    </div>
+
+    <div class="display-label">Applicant has paid application fee</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ApplicationFeePaid)
+    </div>
+    
+    <div class="display-label">Date and time application was filed</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DateFiled)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit / Update Application", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Dny Application", "Delete", new { id=Model.Id }) |
+    @Html.ActionLink("Back to List of Applications", "Index")
+</p>
