@@ -33,4 +33,5 @@
   <Module PersistentId="WebActivator, Version=1.2.0.0, Culture=neutral, PublicKeyToken=null" ModuleId="WebActivator" />
   <Module PersistentId="WebGridMvc, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" ModuleId="WebGridMvc" />
   <Module PersistentId="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" ModuleId="mscorlib" />
+  <Module PersistentId="919FD655-F067-4BA2-B932-D926E85DD6B4" ModuleId="Script Documents" />
 </Modules>

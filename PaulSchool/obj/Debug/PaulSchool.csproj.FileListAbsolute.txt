@@ -181,3 +181,4 @@ L:\Users\Jason\Desktop\PaulSchoolModifiedVersion\PaulSchoolModifiedVersion\PaulS
 L:\Users\Jason\Desktop\PaulSchoolModifiedVersion\PaulSchoolModifiedVersion\PaulSchool\obj\Debug\GenerateResource.write.1.tlog
 L:\Users\Jason\Desktop\PaulSchoolModifiedVersion\PaulSchoolModifiedVersion\PaulSchool\obj\Debug\PaulSchool.dll
 L:\Users\Jason\Desktop\PaulSchoolModifiedVersion\PaulSchoolModifiedVersion\PaulSchool\obj\Debug\PaulSchool.pdb
+C:\Users\Administrator\Documents\GitHub\PaulSchool\PaulSchool\bin\App_Data\School.sdf
