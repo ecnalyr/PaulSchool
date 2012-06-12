@@ -1,7 +1,5 @@
 ﻿<RecentFiles>
   <RecentFiles>
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Shared/d:EditorTemplates/f:EducationalBackGround.cshtml" caret="0" fromTop="0" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Shared/f:_Layout.cshtml" caret="0" fromTop="0" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Scripts/f:EducationalBackgroundListEditor.js" caret="0" fromTop="0" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Models/f:RecommendationForCommissioning.cs" caret="0" fromTop="0" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Attendance/f:EditComment.cshtml" caret="1251" fromTop="22" />
@@ -17,7 +15,6 @@
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Models/f:Enrollment.cs" caret="32" fromTop="2" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:CourseController.cs" caret="25653" fromTop="6" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Models/f:Course.cs" caret="0" fromTop="0" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:CommissioningController.cs" caret="4036" fromTop="10" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Models/f:ApplicationCommissioning.cs" caret="0" fromTop="0" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:DAL/f:SchoolContext.cs" caret="1227" fromTop="11" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:CommissioningRequirements/f:Index.cshtml" caret="371" fromTop="8" />
@@ -28,23 +25,19 @@
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:CommissioningRequirements/f:Delete.cshtml" caret="0" fromTop="0" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Models/f:CommissioningRequirements.cs" caret="118" fromTop="5" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Course/f:Details.cshtml" caret="5346" fromTop="115" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:StudentController.cs" caret="4034" fromTop="13" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Student/f:Details.cshtml" caret="38" fromTop="2" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Student/f:Details.cshtml" caret="0" fromTop="0" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Commissioning/f:Index.cshtml" caret="126" fromTop="8" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:StudentController.cs" caret="4437" fromTop="16" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:CommissioningController.cs" caret="2409" fromTop="0" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Commissioning/f:Create.cshtml" caret="411" fromTop="11" />
   </RecentFiles>
   <RecentEdits>
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:CommissioningController.cs" caret="3782" fromTop="12" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:CourseController.cs" caret="8572" fromTop="1" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:CommissioningController.cs" caret="2604" fromTop="17" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Models/f:ApplicationCommissioning.cs" caret="783" fromTop="25" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Models/f:Student.cs" caret="1171" fromTop="24" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:CommissioningController.cs" caret="1126" fromTop="9" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:CommissioningController.cs" caret="2107" fromTop="19" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Models/f:ApplicationCommissioning.cs" caret="230" fromTop="8" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:CommissioningController.cs" caret="1547" fromTop="21" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:CommissioningController.cs" caret="2307" fromTop="16" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:CommissioningController.cs" caret="3007" fromTop="28" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:CommissioningController.cs" caret="4668" fromTop="15" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:CommissioningController.cs" caret="5079" fromTop="18" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:CommissioningController.cs" caret="2828" fromTop="21" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:CommissioningController.cs" caret="3588" fromTop="16" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:CommissioningController.cs" caret="4288" fromTop="28" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:CommissioningController.cs" caret="5949" fromTop="15" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:CommissioningController.cs" caret="6360" fromTop="18" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Commissioning/f:Details.cshtml" caret="532" fromTop="15" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Attendance/f:EditIndividualAttendance.cshtml" caret="1268" fromTop="23" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Course/f:Details.cshtml" caret="7670" fromTop="24" />
@@ -58,9 +51,16 @@
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:DAL/f:SchoolContext.cs" caret="1227" fromTop="11" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:CommissioningRequirementsController.cs" caret="248" fromTop="11" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:CommissioningRequirements/f:Index.cshtml" caret="371" fromTop="8" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:StudentController.cs" caret="4286" fromTop="15" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:StudentController.cs" caret="4034" fromTop="13" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:StudentController.cs" caret="4376" fromTop="15" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Student/f:Details.cshtml" caret="411" fromTop="10" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Student/f:Details.cshtml" caret="250" fromTop="9" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Commissioning/f:Create.cshtml" caret="411" fromTop="11" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:CommissioningController.cs" caret="2035" fromTop="15" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:CommissioningController.cs" caret="2033" fromTop="19" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:CommissioningController.cs" caret="1281" fromTop="10" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:StudentController.cs" caret="4007" fromTop="7" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:StudentController.cs" caret="3730" fromTop="8" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:StudentController.cs" caret="4437" fromTop="16" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:CommissioningController.cs" caret="2409" fromTop="18" />
   </RecentEdits>
 </RecentFiles>

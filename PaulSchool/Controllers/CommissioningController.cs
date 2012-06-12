@@ -38,9 +38,33 @@ namespace PaulSchool.Controllers
 
         public ActionResult Create()
         {
+            var totalCoresNeeded = db.CommissioningRequirementse.Find(1).CoreCoursesRequired;
+            var totalElectivesNeeded = db.CommissioningRequirementse.Find(1).ElectiveCoursesRequired;
+            ViewBag.totalCoresNeeded = totalCoresNeeded;
+            ViewBag.totalElectivesNeeded = totalElectivesNeeded;
+
             var thisStudent = db.Students.FirstOrDefault(
                     o => o.UserName == User.Identity.Name);
             Debug.Write(thisStudent.StudentID);
+
+            var totalElectivesPassed = db.Enrollments.Where(s => s.StudentID == thisStudent.StudentID
+                                                                 && s.Grade == "pass"
+                                                                 && s.Course.Elective == true).Count();
+            var totalCoresPassed = db.Enrollments.Where(s => s.StudentID == thisStudent.StudentID
+                                                             && s.Grade == "pass"
+                                                             && s.Course.Elective == false).Count();
+            var doOrDoNotQualify = "blank";
+            if (totalCoresPassed >= totalCoresNeeded && totalElectivesPassed >= totalElectivesNeeded)
+            {
+                doOrDoNotQualify = "do";
+            }
+            else
+            {
+                doOrDoNotQualify = "do not";
+            }
+
+            ViewBag.doOrDoNotQualify = doOrDoNotQualify;
+
             var applicationWithUserData = new ApplicationCommissioning
                 {
                     StudentID = thisStudent.StudentID,

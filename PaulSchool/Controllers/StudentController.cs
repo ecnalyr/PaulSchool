@@ -89,17 +89,21 @@ namespace PaulSchool.Controllers
             Student student = db.Students.Find(id);
             //ViewBag.testCompletedCoreCourses = (from o in student where o.enrollment)
 
-            var totalElectivesPassed = db.Enrollments.Where(s => s.Grade == "pass"
-                                                                 && s.Course.Elective == true).Count();
-            var totalCoresPassed = db.Enrollments.Where(s => s.Grade == "pass"
-                                                             && s.Course.Elective == false).Count();
-            var totalElectivesNeeded = db.CommissioningRequirementse.Find(1).ElectiveCoursesRequired;
-            var totalCoresNeeded = db.CommissioningRequirementse.Find(1).CoreCoursesRequired;
+            var totalCoresPassed = db.Enrollments.Where(s => s.StudentID == id
+                                                 && s.Grade == "pass"
+                                                 && s.Course.Elective == false).Count();
 
-            ViewBag.electivesPassed = totalElectivesPassed;
+            var totalElectivesPassed = db.Enrollments.Where(s => s.StudentID ==  id
+                                                                 && s.Grade == "pass"
+                                                                 && s.Course.Elective == true).Count();
+
+            var totalCoresNeeded = db.CommissioningRequirementse.Find(1).CoreCoursesRequired;
+            var totalElectivesNeeded = db.CommissioningRequirementse.Find(1).ElectiveCoursesRequired;
+
             ViewBag.coresPassed = totalCoresPassed;
-            ViewBag.electivesNeeded = totalElectivesNeeded;
+            ViewBag.electivesPassed = totalElectivesPassed;
             ViewBag.coresNeeded = totalCoresNeeded;
+            ViewBag.electivesNeeded = totalElectivesNeeded;
 
             ViewBag.testCompletedElectiveCourses = 1;
             return View(student);
