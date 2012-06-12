@@ -28,4 +28,20 @@ $(document).ready(function() {
     $("#EndDate").datetimepicker({
         ampm: true
     });
+
+    $("#DateOfBirth").datetimepicker({
+        ampm: true
+    });
+    
+    $('#StartDate').rules('add', {
+        date: true
+    });
+    
+    $('#EndDate').rules('add', {
+        date: true
+    });
+
+    $('#DateOfBirth').rules('add', {
+        date: true
+    });
 });

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.ComponentModel.DataAnnotations;
 
 namespace PaulSchool.Models
 {
@@ -15,6 +16,9 @@ namespace PaulSchool.Models
 
         public RecommendationForCommissioning Recommendation { get; set; }
 
+        [Required]
+        [Display(Name = "Personal Statement")]
+        [StringLength(1000)]
         public string PersonalStatement { get; set; }
 
         public bool DayOfReflection { get; set; }

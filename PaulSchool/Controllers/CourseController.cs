@@ -317,7 +317,7 @@ namespace PaulSchool.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(appliedCourse);
+            return View("ValidationFailed");
         }
 
         private void BuildNotificationData(ApplyCourseViewModel appliedCourse, Instructor instructorAgain,

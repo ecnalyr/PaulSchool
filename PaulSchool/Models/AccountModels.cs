@@ -1,5 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
+using DataAnnotationsExtensions;
+
 
 namespace PaulSchool.Models
 {
@@ -46,6 +48,7 @@ namespace PaulSchool.Models
         [Required]
         [DataType(DataType.EmailAddress)]
         [Display(Name = "Email address")]
+        [Email]
         public string Email { get; set; }
 
         // new
@@ -77,16 +80,19 @@ namespace PaulSchool.Models
         [Required(ErrorMessage = "Must have a Zip Code")]
         [Display(Name = "Zip Code")]
         [StringLength(5)]
+        [Digits]
         public string ZipCode { get; set; }
 
         [Required(ErrorMessage = "Must have a Phone Number")]
         [Display(Name = "Phone Number")]
         [StringLength(10)]
+        [Digits]
         public string Phone { get; set; }
 
         [Required(ErrorMessage = "Must have a Date of Birth (MM/DD/YYYY)")]
         [Display(Name = "Date of Birth")]
         [StringLength(10)]
+        [Date]
         public string DateOfBirth { get; set; }
 
         [Display(Name = "Parish Affiliation")]
