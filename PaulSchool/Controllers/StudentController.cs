@@ -93,8 +93,13 @@ namespace PaulSchool.Controllers
                                                                  && s.Course.Elective == true).Count();
             var totalCoresPassed = db.Enrollments.Where(s => s.Grade == "pass"
                                                              && s.Course.Elective == false).Count();
+            var totalElectivesNeeded = db.CommissioningRequirementse.Find(1).ElectiveCoursesRequired;
+            var totalCoresNeeded = db.CommissioningRequirementse.Find(1).CoreCoursesRequired;
+
             ViewBag.electivesPassed = totalElectivesPassed;
             ViewBag.coresPassed = totalCoresPassed;
+            ViewBag.electivesNeeded = totalElectivesNeeded;
+            ViewBag.coresNeeded = totalCoresNeeded;
 
             ViewBag.testCompletedElectiveCourses = 1;
             return View(student);

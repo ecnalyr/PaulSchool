@@ -27,6 +27,8 @@ namespace PaulSchool.Models
 
         public DbSet<RecommendationForCommissioning> RecommendationForCommissionings { get; set; }
 
+        public DbSet<CommissioningRequirements> CommissioningRequirementse { get; set; }
+
         // Removes pluralization convention from database names
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

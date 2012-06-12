@@ -1,0 +1,25 @@
+﻿@model PaulSchool.Models.CommissioningRequirements
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>CommissioningRequirements</legend>
+
+    <div class="display-label">CoreCoursesRequired</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CoreCoursesRequired)
+    </div>
+
+    <div class="display-label">ElectiveCoursesRequired</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ElectiveCoursesRequired)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

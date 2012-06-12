@@ -96,6 +96,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AttendanceController.cs" />
     <Compile Include="Controllers\CommissioningController.cs" />
+    <Compile Include="Controllers\CommissioningRequirementsController.cs" />
     <Compile Include="Controllers\CourseController.cs" />
     <Compile Include="Controllers\CourseTemplatesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -106,6 +107,7 @@
     <Compile Include="CustomViewEngine.cs" />
     <Compile Include="Models\ApplicationCommissioning.cs" />
     <Compile Include="Models\Attendance.cs" />
+    <Compile Include="Models\CommissioningRequirements.cs" />
     <Compile Include="Models\CourseTemplates.cs" />
     <Compile Include="Models\CustomProfile.cs" />
     <Compile Include="Models\EducationalBackground.cs" />
@@ -432,6 +434,21 @@
     <Content Include="Views\Commissioning\Details.cshtml" />
     <Content Include="Views\Commissioning\Edit.cshtml" />
     <Content Include="Views\Commissioning\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\CommissioningRequirements\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\CommissioningRequirements\Details.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\CommissioningRequirements\Create.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\CommissioningRequirements\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\CommissioningRequirements\Delete.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
