@@ -1,20 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Data.Entity;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using PaulSchool.Models;
 
 namespace PaulSchool.Controllers
 {
-    using System.Web.Routing;
-    using System.Diagnostics;
-
     public class CommissioningController : Controller
     {
-        private SchoolContext db = new SchoolContext();
+        private readonly SchoolContext db = new SchoolContext();
 
         //
         // GET: /Commissioning/
@@ -30,6 +24,19 @@ namespace PaulSchool.Controllers
         public ViewResult Details(int id)
         {
             ApplicationCommissioning applicationcommissioning = db.ApplicationCommissionings.Find(id);
+
+            var totalCoresNeeded = db.CommissioningRequirementse.Find(1).CoreCoursesRequired;
+            var totalElectivesNeeded = db.CommissioningRequirementse.Find(1).ElectiveCoursesRequired;
+            ViewBag.totalCoresNeeded = totalCoresNeeded;
+            ViewBag.totalElectivesNeeded = totalElectivesNeeded;
+
+            var thisStudent = db.Students.FirstOrDefault(
+                    o => o.StudentID == applicationcommissioning.StudentID);
+
+            var doOrDoNotQualify = DoOrDoNotQualify(thisStudent, totalCoresNeeded, totalElectivesNeeded);
+
+            ViewBag.doOrDoNotQualify = doOrDoNotQualify;
+
             return View(applicationcommissioning);
         }
 
@@ -45,15 +52,23 @@ namespace PaulSchool.Controllers
 
             var thisStudent = db.Students.FirstOrDefault(
                     o => o.UserName == User.Identity.Name);
-            Debug.Write(thisStudent.StudentID);
 
-            var totalElectivesPassed = db.Enrollments.Where(s => s.StudentID == thisStudent.StudentID
-                                                                 && s.Grade == "pass"
-                                                                 && s.Course.Elective == true).Count();
-            var totalCoresPassed = db.Enrollments.Where(s => s.StudentID == thisStudent.StudentID
-                                                             && s.Grade == "pass"
-                                                             && s.Course.Elective == false).Count();
-            var doOrDoNotQualify = "blank";
+            var doOrDoNotQualify = DoOrDoNotQualify(thisStudent, totalCoresNeeded, totalElectivesNeeded);
+
+            ViewBag.doOrDoNotQualify = doOrDoNotQualify;
+
+            var applicationWithUserData = ApplicationWithUserData(thisStudent);
+
+            return View(applicationWithUserData);
+        }
+
+        private string DoOrDoNotQualify(Student thisStudent, int totalCoresNeeded, int totalElectivesNeeded)
+        {
+            int totalElectivesPassed;
+            int totalCoresPassed;
+            TotalCoresAndElectivesPassed(thisStudent, out totalElectivesPassed, out totalCoresPassed);
+
+            string doOrDoNotQualify;
             if (totalCoresPassed >= totalCoresNeeded && totalElectivesPassed >= totalElectivesNeeded)
             {
                 doOrDoNotQualify = "do";
@@ -62,22 +77,44 @@ namespace PaulSchool.Controllers
             {
                 doOrDoNotQualify = "do not";
             }
+            return doOrDoNotQualify;
+        }
 
-            ViewBag.doOrDoNotQualify = doOrDoNotQualify;
-
+        private static ApplicationCommissioning ApplicationWithUserData(Student thisStudent)
+        {
             var applicationWithUserData = new ApplicationCommissioning
-                {
-                    StudentID = thisStudent.StudentID,
-                    RecommendationFiled = false,
-                    PersonalStatement = "Type Personal Statement Here",
-                    DayOfReflection = false,
-                    ApplicationFeePaid = false,
-                    MeetsMinimumRequirements = false
-                };
-            Debug.Write(thisStudent.LastName);
+                                              {
+                                                  StudentID = thisStudent.StudentID,
+                                                  RecommendationFiled = false,
+                                                  PersonalStatement = "Type Personal Statement Here",
+                                                  DayOfReflection = false,
+                                                  ApplicationFeePaid = false,
+                                                  MeetsMinimumRequirements = false
+                                              };
+            return applicationWithUserData;
+        }
 
-            return View(applicationWithUserData);
-        } 
+        private void TotalCoresAndElectivesPassed(Student thisStudent, out int totalElectivesPassed, out int totalCoresPassed)
+        {
+            totalElectivesPassed = TotalElectivesPassed(thisStudent);
+            totalCoresPassed = TotalCoresPassed(thisStudent);
+        }
+
+        private int TotalCoresPassed(Student thisStudent)
+        {
+            int totalCoresPassed = db.Enrollments.Count(s => s.StudentID == thisStudent.StudentID
+                                                             && s.Grade == "pass"
+                                                             && s.Course.Elective == false);
+            return totalCoresPassed;
+        }
+
+        private int TotalElectivesPassed(Student thisStudent)
+        {
+            int totalElectivesPassed = db.Enrollments.Count(s => s.StudentID == thisStudent.StudentID
+                                                                 && s.Grade == "pass"
+                                                                 && s.Course.Elective);
+            return totalElectivesPassed;
+        }
 
         //
         // POST: /Commissioning/Create
@@ -89,7 +126,7 @@ namespace PaulSchool.Controllers
             {
                 var thisStudent = db.Students.FirstOrDefault(
                     o => o.UserName == User.Identity.Name);
-                applicationcommissioning.StudentID = thisStudent.StudentID;
+                if (thisStudent != null) applicationcommissioning.StudentID = thisStudent.StudentID;
                 applicationcommissioning.DateFiled = DateTime.Now;
                 db.ApplicationCommissionings.Add(applicationcommissioning);
                 db.SaveChanges();
@@ -101,12 +138,12 @@ namespace PaulSchool.Controllers
                         "A student by the name of " + applicationcommissioning.Student.FirstMidName + " "
                         + applicationcommissioning.Student.LastName
                         + " has submitted an application for Commissioning",
-                    Link = this.Url.Action("Details", "Commissioning", new { id = applicationcommissioning.Id }),
+                    Link = Url.Action("Details", "Commissioning", new { id = applicationcommissioning.Id }),
                     ViewableBy = "Admin",
                     Complete = false
                 };
-                this.db.Notification.Add(newNotification);
-                this.db.SaveChanges();
+                db.Notification.Add(newNotification);
+                db.SaveChanges();
 
                 return RedirectToAction("Index");  
             }
@@ -129,10 +166,27 @@ namespace PaulSchool.Controllers
         [HttpPost]
         public ActionResult Edit(ApplicationCommissioning applicationcommissioning)
         {
-            if (this.ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                this.db.Entry(applicationcommissioning).State = EntityState.Modified;
-                this.db.SaveChanges();
+                db.Entry(applicationcommissioning).State = EntityState.Modified;
+                db.SaveChanges();
+                var thisStudent = db.Students.FirstOrDefault(
+                    o => o.StudentID == applicationcommissioning.StudentID);
+
+                var newNotification = new Notification
+                                          {
+                                              Time = DateTime.Now,
+                                              Details =
+                                                  "An Administrator has edited your application for Commissioning, filed on " +
+                                                  applicationcommissioning.DateFiled,
+                                              Link =
+                                                  Url.Action("Details", "Commissioning",
+                                                             new {id = applicationcommissioning.Id}),
+                                              ViewableBy = thisStudent.UserName,
+                                              Complete = false
+                                          };
+                db.Notification.Add(newNotification);
+                db.SaveChanges();
 
                 return this.RedirectToAction("Index");
             }

@@ -570,6 +570,8 @@ namespace PaulSchool.Controllers
             {
                 db.Entry(course).State = EntityState.Modified;
 
+                var thisInstructor = db.Instructors.FirstOrDefault(
+                    o => o.InstructorID == course.InstructorID);
                 // Add a notification for the Instructor to see that the Course was modified
                 var newNotification = new Notification
                                           {
@@ -578,7 +580,8 @@ namespace PaulSchool.Controllers
                                                   "An Admin has edited the course you applied to teach: " + course.Title +
                                                   " beginning " + course.StartDate,
                                               Link = Url.Action("Details", "Course", new {id = course.CourseID}),
-                                              ViewableBy = course.Instructor.UserName,
+                                              //ViewableBy = course.Instructor.UserName,
+                                              ViewableBy = thisInstructor.UserName,
                                               Complete = false
                                           };
                 db.Notification.Add(newNotification);

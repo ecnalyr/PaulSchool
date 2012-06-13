@@ -56,6 +56,14 @@ namespace PaulSchool.DAL
             courseTemplates.ForEach(s => context.CourseTemplates.Add(s));
             context.SaveChanges();
 
+            var commissioningRequirements = new List<CommissioningRequirements>
+            {
+                new CommissioningRequirements
+                    {CoreCoursesRequired = 6, ElectiveCoursesRequired = 2}
+            };
+            commissioningRequirements.ForEach(s => context.CommissioningRequirementse.Add(s));
+            context.SaveChanges();
+
             /*var enrollments = new List<Enrollment>
             {
                 new Enrollment { StudentID = 1, CourseID = 1, Grade = "incomplete"},
