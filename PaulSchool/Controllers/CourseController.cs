@@ -169,7 +169,7 @@ namespace PaulSchool.Controllers
                     courses = courses.OrderBy(s => s.Title);
                     break;
             }
-            int pageSize = 4;
+            int pageSize = 10;
             int pageNumber = (page ?? 1);
             return View(courses.ToPagedList(pageNumber, pageSize));
             //}
@@ -265,7 +265,7 @@ namespace PaulSchool.Controllers
 
         //
         // GET: /Course/ApplyToTeach
-
+        [Authorize (Roles = "Administrator, SuperAdministrator, Instructor")]
         public ActionResult ApplyToTeach()
         {
             DbSet<CourseTemplates> course = db.CourseTemplates;
@@ -487,7 +487,7 @@ namespace PaulSchool.Controllers
                     courses = courses.OrderBy(s => s.Title);
                     break;
             }
-            int pageSize = 4;
+            int pageSize = 10;
             int pageNumber = (page ?? 1);
             return View(courses.ToPagedList(pageNumber, pageSize));
         }

@@ -72,12 +72,22 @@
         @Html.DisplayFor(model => model.Experience)
     </div>
     <div class="display-label">
-        WillingToTravel</div>
+        Willing To Travel?</div>
     <div class="display-field">
         @Html.DisplayFor(model => model.WillingToTravel)
     </div>
+     <div class="display-label">
+        Approved?</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Approved)
+    </div>
 </fieldset>
 <p>
+    @{ if ((User.IsInRole("Administrator") | User.IsInRole("SuperAdministrator")) && Model.Approved == false)
+       {
+           @Html.ActionLink("Clicking here will approve this Instructor's Application", "ApproveInstructorApplication", new { id = Model.InstructorApplicationID }, new { onclick = "return confirm('Are you sure you are aready to approve this application?  Doing so is not reversible.');" })
+       }
+    }
     @Html.ActionLink("Edit", "Edit", new { id = Model.InstructorApplicationID }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

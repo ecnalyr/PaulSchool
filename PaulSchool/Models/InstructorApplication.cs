@@ -15,5 +15,7 @@ namespace PaulSchool.Models
         public string Experience { get; set; }
 
         public bool WillingToTravel { get; set; }
+
+        public bool Approved { get; set; }
     }
 }

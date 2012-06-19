@@ -14,9 +14,6 @@ namespace PaulSchool.Controllers
     {
         private readonly SchoolContext db = new SchoolContext();
 
-        //
-        // GET: /Student/
-
         public ViewResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
             ViewBag.CurrentSort = sortOrder;
@@ -76,13 +73,10 @@ namespace PaulSchool.Controllers
                     students = students.OrderBy(s => s.LastName);
                     break;
             }
-            int pageSize = 4;
+            int pageSize = 25;
             int pageNumber = (page ?? 1);
             return View(students.ToPagedList(pageNumber, pageSize));
         }
-
-        //
-        // GET: /Student/Details/5
 
         public ViewResult Details(int id)
         {
@@ -130,7 +124,6 @@ namespace PaulSchool.Controllers
             if (User.IsInRole("Default"))
             {
                 MembershipUserCollection users = Membership.FindUsersByName(User.Identity.Name);
-                    // this is problematic because it can find other users with similar user names
                 var model = new CreateStudentViewModel
                                 {
                                     Users = users.OfType<MembershipUser>().Select(x => new SelectListItem
@@ -143,9 +136,6 @@ namespace PaulSchool.Controllers
             }
             return View( /*user has a role that is not "Default" or "Administrator"  Needs error message*/);
         }
-
-        //
-        // POST: /Student/Create
 
         [HttpPost]
         public ActionResult Create(CreateStudentViewModel studentModel, string selectedUser, string lastName,
@@ -198,17 +188,11 @@ namespace PaulSchool.Controllers
             return View(model);
         }
 
-        //
-        // GET: /Student/Edit/5
-
         public ActionResult Edit(int id)
         {
             Student student = db.Students.Find(id);
             return View(student);
         }
-
-        //
-        // POST: /Student/Edit/5
 
         [HttpPost]
         public ActionResult Edit(Student student)
@@ -231,8 +215,6 @@ namespace PaulSchool.Controllers
             return View(student);
         }
 
-        //
-        // GET: /Student/Delete/5
 
         public ActionResult Delete(int id, bool? saveChangesError)
         {
@@ -244,8 +226,6 @@ namespace PaulSchool.Controllers
             return View(db.Students.Find(id));
         }
 
-        //
-        // POST: /Student/Delete/5
 
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id)
@@ -275,8 +255,6 @@ namespace PaulSchool.Controllers
             base.Dispose(disposing);
         }
 
-        //
-        // GET: /Student/MakeStudent
         public ActionResult MakeStudent()
         {
             ViewBag.Message = "You just made this account into a student";

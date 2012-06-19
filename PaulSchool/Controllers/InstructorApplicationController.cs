@@ -16,6 +16,7 @@ namespace PaulSchool.Controllers
     using PaulSchool.Models;
     using PaulSchool.ViewModels;
     using System.Diagnostics;
+    using System.Web.Security;
 
     /// <summary>
     /// The instructor application controller.
@@ -32,7 +33,6 @@ namespace PaulSchool.Controllers
 
         #endregion
 
-        // GET: /InstructorApplication/ApplyToBecomeInstructor
         #region Public Methods and Operators
 
         /// <summary>
@@ -62,7 +62,7 @@ namespace PaulSchool.Controllers
                                     }
                             }, 
                     CurrentUserId = thisStudent.StudentID, 
-                    ExperienceList = new SelectList(experiences)
+                    ExperienceList = new SelectList(experiences),
                 };
             return View(model);
         }
@@ -80,25 +80,25 @@ namespace PaulSchool.Controllers
         public ActionResult ApplyToBecomeInstructor(InstructorApplicationViewModel applicationFromView)
         {
             Student thisUser = this.db.Students.FirstOrDefault(o => o.StudentID == applicationFromView.CurrentUserId);
-            var instructorApplication = this.buildNewInstructorApplicationAndAddToDB(applicationFromView, thisUser);
+            var instructorApplication = this.BuildNewInstructorApplicationAndAddToDb(applicationFromView, thisUser);
             
             this.db.SaveChanges();
 
-            this.buildNewNotificationAndAddToDB(instructorApplication, thisUser);
+            this.BuildNewNotificationAndAddToDb(instructorApplication, thisUser);
 
             this.db.SaveChanges();
             return this.Redirect("Index");
         }
 
-        private InstructorApplication buildNewInstructorApplicationAndAddToDB(
+        private InstructorApplication BuildNewInstructorApplicationAndAddToDb(
             InstructorApplicationViewModel applicationFromView, Student thisUser)
         {
-            var instructorApplication = buildNewInstructorApplication(applicationFromView, thisUser);
+            var instructorApplication = BuildNewInstructorApplication(applicationFromView, thisUser);
             this.db.InstructorApplication.Add(instructorApplication);
             return instructorApplication;
         }
 
-        private static InstructorApplication buildNewInstructorApplication(
+        private static InstructorApplication BuildNewInstructorApplication(
             InstructorApplicationViewModel applicationFromView, Student thisUser)
         {
             List<PaulSchool.Models.EducationalBackground> educationList = new List<EducationalBackground>();
@@ -118,19 +118,20 @@ namespace PaulSchool.Controllers
                     StudentID = thisUser.StudentID,
                     EducationalBackground = new List<Models.EducationalBackground>(),
                     Experience = applicationFromView.Experience,
-                    WillingToTravel = applicationFromView.WillingToTravel
+                    WillingToTravel = applicationFromView.WillingToTravel,
+                    Approved = false
                 };
             instructorApplication.EducationalBackground.AddRange(educationList);
             return instructorApplication;
         }
 
-        private void buildNewNotificationAndAddToDB(InstructorApplication instructorApplication, Student thisUser)
+        private void BuildNewNotificationAndAddToDb(InstructorApplication instructorApplication, Student thisUser)
         {
-            var newNotification = this.buildNewNotification(instructorApplication, thisUser);
+            var newNotification = this.BuildNewNotification(instructorApplication, thisUser);
             this.db.Notification.Add(newNotification);
         }
 
-        private Notification buildNewNotification(InstructorApplication instructorApplication, Student thisUser)
+        private Notification BuildNewNotification(InstructorApplication instructorApplication, Student thisUser)
         {
             var newNotification = new Notification
                 {
@@ -160,8 +161,7 @@ namespace PaulSchool.Controllers
         public ViewResult Details(int id)
         {
             InstructorApplication instructorApplication =
-                this.db.InstructorApplication.Include("EducationalBackGround").Where(
-                m => m.InstructorApplicationID == id).FirstOrDefault();
+                db.InstructorApplication.Include("EducationalBackGround").FirstOrDefault(m => m.InstructorApplicationID == id);
             return View(instructorApplication);
         }
 
@@ -174,6 +174,57 @@ namespace PaulSchool.Controllers
         public PartialViewResult EducationalBackground()
         {
             return this.PartialView("EducationalBackGround", new EducationalBackGround());
+        }
+
+        [Authorize(Roles = "Administrator, SuperAdministrator")]
+        public ActionResult ApproveInstructorApplication(int id)
+        {
+            InstructorApplication instructorApplication = db.InstructorApplication.Find(id);
+            instructorApplication.Approved = true;
+
+            Instructor instructor = new Instructor
+                                        {
+                                            UserName = instructorApplication.Student.UserName,
+                                            LastName = instructorApplication.Student.LastName,
+                                            FirstMidName = instructorApplication.Student.FirstMidName,
+                                            Email = instructorApplication.Student.Email,
+                                            EnrollmentDate = DateTime.Now
+                                        };
+            db.Instructors.Add(instructor);
+
+            var newNotification = new Notification
+            {
+                Time = DateTime.Now,
+                Details =
+                    "An Admin has approved your application to become an Instructor as of " + instructor.EnrollmentDate.Date,
+                Link =
+                    this.Url.Action(
+                        "Details",
+                        "InstructorApplication",
+                        new { id = instructorApplication.InstructorApplicationID }),
+                ViewableBy = instructor.UserName,
+                Complete = false
+            };
+            db.Notification.Add(newNotification);
+
+            db.SaveChanges();
+
+            if (!(Roles.IsUserInRole(instructor.UserName, "Instructor")))
+            {
+                Roles.AddUserToRole(instructor.UserName, "Instructor");
+            }
+
+            return View("Success");
+
+            //Roles.AddUserToRole(, "Instructor");
+            // make user an instructor
+            // //  need to set user.role to "Instructor"
+            // //  need to pull data from Student Table into Instructor table (actually need to rework the non-dry components of this feature,
+            // //  but that is for another time).
+            // Create notification for Instructor
+            // visually notify Admin that the change has been made.
+
+
         }
 
         /// <summary>
