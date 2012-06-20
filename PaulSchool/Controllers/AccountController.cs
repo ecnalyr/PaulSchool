@@ -360,6 +360,21 @@ namespace PaulSchool.Controllers
             return View();
         }
 
+        public ActionResult PasswordReset()
+        {
+            return View("PasswordReset");
+        }
+
+        [HttpPost]
+        public ActionResult PasswordReset(PasswordResetViewModel model)
+        {
+            string emailAddress = model.email;
+            var user = Membership.GetUserNameByEmail(emailAddress);
+            AccountMembershipService.ChangePassword(user);
+            TempData["tempMessage"] = "You have reset your password, please retrieve it from your email inbox and log on.";
+            return RedirectToAction("LogOn");            
+        }
+
         public ActionResult Verify(string id)
         {
             if (string.IsNullOrEmpty(id) || (!Regex.IsMatch(id, @"[0-9a-f]{8}\-([0-9a-f]{4}\-){3}[0-9a-f]{12}")))
