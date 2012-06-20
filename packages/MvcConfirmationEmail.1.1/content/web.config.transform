@@ -1,0 +1,12 @@
+<configuration>  
+  <appSettings>
+    <add key="MvcConfirmationEmailFromAccount" value="user_name@gmail.com"/>
+  </appSettings>
+  <system.net>
+    <mailSettings>
+        <smtp deliveryMethod="Network">
+            <network host= "smtp.gmail.com" userName="user_name@gmail.com" password="your_password" port="587"/>
+        </smtp>
+    </mailSettings>
+  </system.net>
+</configuration>
