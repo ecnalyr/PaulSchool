@@ -5,19 +5,16 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web.Mvc;
+using System.Web.Security;
+using PaulSchool.Models;
+using PaulSchool.ViewModels;
+
 namespace PaulSchool.Controllers
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Web.Mvc;
-    using System.Web.Routing;
-
-    using PaulSchool.Models;
-    using PaulSchool.ViewModels;
-    using System.Diagnostics;
-    using System.Web.Security;
-
     /// <summary>
     /// The instructor application controller.
     /// </summary>
@@ -43,27 +40,31 @@ namespace PaulSchool.Controllers
         /// </returns>
         public ActionResult ApplyToBecomeInstructor()
         {
-            Student thisStudent = this.db.Students.FirstOrDefault(o => o.UserName == this.User.Identity.Name);
+            Student thisStudent = db.Students.FirstOrDefault(o => o.UserName == User.Identity.Name);
             IList<string> experiences = new List<string>
-                {
-                   "0-1 year", "2-4 years", "5-7 years", "8-10 years", "Over 10 years" 
-                };
+                                            {
+                                                "0-1 year",
+                                                "2-4 years",
+                                                "5-7 years",
+                                                "8-10 years",
+                                                "Over 10 years"
+                                            };
             var model = new InstructorApplicationViewModel
-                {
-                    EducationalBackgrounds =
-                        new List<EducationalBackGround>
                             {
-                                new EducationalBackGround
-                                    {
-                                        AreaOfStudy = string.Empty, 
-                                        Degree = string.Empty, 
-                                        UniversityOrCollege = string.Empty, 
-                                        YearReceived = string.Empty
-                                    }
-                            }, 
-                    CurrentUserId = thisStudent.StudentID, 
-                    ExperienceList = new SelectList(experiences),
-                };
+                                EducationalBackgrounds =
+                                    new List<EducationalBackGround>
+                                        {
+                                            new EducationalBackGround
+                                                {
+                                                    AreaOfStudy = string.Empty,
+                                                    Degree = string.Empty,
+                                                    UniversityOrCollege = string.Empty,
+                                                    YearReceived = string.Empty
+                                                }
+                                        },
+                                CurrentUserId = thisStudent.StudentID,
+                                ExperienceList = new SelectList(experiences),
+                            };
             return View(model);
         }
 
@@ -79,74 +80,75 @@ namespace PaulSchool.Controllers
         [HttpPost]
         public ActionResult ApplyToBecomeInstructor(InstructorApplicationViewModel applicationFromView)
         {
-            Student thisUser = this.db.Students.FirstOrDefault(o => o.StudentID == applicationFromView.CurrentUserId);
-            var instructorApplication = this.BuildNewInstructorApplicationAndAddToDb(applicationFromView, thisUser);
-            
-            this.db.SaveChanges();
+            Student thisUser = db.Students.FirstOrDefault(o => o.StudentID == applicationFromView.CurrentUserId);
+            InstructorApplication instructorApplication = BuildNewInstructorApplicationAndAddToDb(applicationFromView,
+                                                                                                  thisUser);
 
-            this.BuildNewNotificationAndAddToDb(instructorApplication, thisUser);
+            db.SaveChanges();
 
-            this.db.SaveChanges();
-            return this.Redirect("Index");
+            BuildNewNotificationAndAddToDb(instructorApplication, thisUser);
+
+            db.SaveChanges();
+            return Redirect("Index");
         }
 
         private InstructorApplication BuildNewInstructorApplicationAndAddToDb(
             InstructorApplicationViewModel applicationFromView, Student thisUser)
         {
-            var instructorApplication = BuildNewInstructorApplication(applicationFromView, thisUser);
-            this.db.InstructorApplication.Add(instructorApplication);
+            InstructorApplication instructorApplication = BuildNewInstructorApplication(applicationFromView, thisUser);
+            db.InstructorApplication.Add(instructorApplication);
             return instructorApplication;
         }
 
         private static InstructorApplication BuildNewInstructorApplication(
             InstructorApplicationViewModel applicationFromView, Student thisUser)
         {
-            List<PaulSchool.Models.EducationalBackground> educationList = new List<EducationalBackground>();
-            foreach (var educate in applicationFromView.EducationalBackgrounds)
+            var educationList = new List<EducationalBackground>();
+            foreach (EducationalBackGround educate in applicationFromView.EducationalBackgrounds)
             {
-                var education = new Models.EducationalBackground
-                {
-                    YearReceived = educate.YearReceived,
-                    Degree = educate.Degree,
-                    AreaOfStudy = educate.AreaOfStudy,
-                    UniversityOrCollege = educate.UniversityOrCollege
-                };
+                var education = new EducationalBackground
+                                    {
+                                        YearReceived = educate.YearReceived,
+                                        Degree = educate.Degree,
+                                        AreaOfStudy = educate.AreaOfStudy,
+                                        UniversityOrCollege = educate.UniversityOrCollege
+                                    };
                 educationList.Add(education);
             }
             var instructorApplication = new InstructorApplication
-                {
-                    StudentID = thisUser.StudentID,
-                    EducationalBackground = new List<Models.EducationalBackground>(),
-                    Experience = applicationFromView.Experience,
-                    WillingToTravel = applicationFromView.WillingToTravel,
-                    Approved = false
-                };
+                                            {
+                                                StudentID = thisUser.StudentID,
+                                                EducationalBackground = new List<EducationalBackground>(),
+                                                Experience = applicationFromView.Experience,
+                                                WillingToTravel = applicationFromView.WillingToTravel,
+                                                Approved = false
+                                            };
             instructorApplication.EducationalBackground.AddRange(educationList);
             return instructorApplication;
         }
 
         private void BuildNewNotificationAndAddToDb(InstructorApplication instructorApplication, Student thisUser)
         {
-            var newNotification = this.BuildNewNotification(instructorApplication, thisUser);
-            this.db.Notification.Add(newNotification);
+            Notification newNotification = BuildNewNotification(instructorApplication, thisUser);
+            db.Notification.Add(newNotification);
         }
 
         private Notification BuildNewNotification(InstructorApplication instructorApplication, Student thisUser)
         {
             var newNotification = new Notification
-                {
-                    Time = DateTime.Now,
-                    Details =
-                        "A user by the name of " + thisUser.FirstMidName + " " + thisUser.LastName
-                        + " has applied to become an Instructor",
-                    Link =
-                        this.Url.Action(
-                            "Details",
-                            "InstructorApplication",
-                            new { id = instructorApplication.InstructorApplicationID }),
-                    ViewableBy = "Admin",
-                    Complete = false
-                };
+                                      {
+                                          Time = DateTime.Now,
+                                          Details =
+                                              "A user by the name of " + thisUser.FirstMidName + " " + thisUser.LastName
+                                              + " has applied to become an Instructor",
+                                          Link =
+                                              Url.Action(
+                                                  "Details",
+                                                  "InstructorApplication",
+                                                  new {id = instructorApplication.InstructorApplicationID}),
+                                          ViewableBy = "Admin",
+                                          Complete = false
+                                      };
             return newNotification;
         }
 
@@ -161,8 +163,38 @@ namespace PaulSchool.Controllers
         public ViewResult Details(int id)
         {
             InstructorApplication instructorApplication =
-                db.InstructorApplication.Include("EducationalBackGround").FirstOrDefault(m => m.InstructorApplicationID == id);
+                db.InstructorApplication.Include("EducationalBackGround").FirstOrDefault(
+                    m => m.InstructorApplicationID == id);
             return View(instructorApplication);
+        }
+
+        [Authorize(Roles = "Administrator, SuperAdministrator")]
+        public ActionResult Delete(int id)
+        {
+            InstructorApplication application = db.InstructorApplication.Find(id);
+
+            var newNotification = new Notification
+                                      {
+                                          Time = DateTime.Now,
+                                          Details =
+                                              "An Administrator has denied and deleted your application to become an Instructor",
+                                          Link = Url.Action("ApplyToBecomeInstructor"),
+                                          ViewableBy = application.Student.UserName,
+                                          Complete = false
+                                      };
+            db.Notification.Add(newNotification);
+            db.SaveChanges();
+
+            IEnumerable<EducationalBackground> listOfEducationalBackgrounds =
+                db.EducationalBackground.Where(
+                    o => o.InstructorApplication.InstructorApplicationID == application.InstructorApplicationID);
+            foreach (EducationalBackground item in listOfEducationalBackgrounds)
+            {
+                db.EducationalBackground.Remove(item);
+            }
+            db.InstructorApplication.Remove(application);
+            db.SaveChanges();
+            return RedirectToAction("Index", "Notification");
         }
 
         /// <summary>
@@ -173,7 +205,7 @@ namespace PaulSchool.Controllers
         /// </returns>
         public PartialViewResult EducationalBackground()
         {
-            return this.PartialView("EducationalBackGround", new EducationalBackGround());
+            return PartialView("EducationalBackGround", new EducationalBackGround());
         }
 
         [Authorize(Roles = "Administrator, SuperAdministrator")]
@@ -182,29 +214,30 @@ namespace PaulSchool.Controllers
             InstructorApplication instructorApplication = db.InstructorApplication.Find(id);
             instructorApplication.Approved = true;
 
-            Instructor instructor = new Instructor
-                                        {
-                                            UserName = instructorApplication.Student.UserName,
-                                            LastName = instructorApplication.Student.LastName,
-                                            FirstMidName = instructorApplication.Student.FirstMidName,
-                                            Email = instructorApplication.Student.Email,
-                                            EnrollmentDate = DateTime.Now
-                                        };
+            var instructor = new Instructor
+                                 {
+                                     UserName = instructorApplication.Student.UserName,
+                                     LastName = instructorApplication.Student.LastName,
+                                     FirstMidName = instructorApplication.Student.FirstMidName,
+                                     Email = instructorApplication.Student.Email,
+                                     EnrollmentDate = DateTime.Now
+                                 };
             db.Instructors.Add(instructor);
 
             var newNotification = new Notification
-            {
-                Time = DateTime.Now,
-                Details =
-                    "An Admin has approved your application to become an Instructor as of " + instructor.EnrollmentDate.Date,
-                Link =
-                    this.Url.Action(
-                        "Details",
-                        "InstructorApplication",
-                        new { id = instructorApplication.InstructorApplicationID }),
-                ViewableBy = instructor.UserName,
-                Complete = false
-            };
+                                      {
+                                          Time = DateTime.Now,
+                                          Details =
+                                              "An Admin has approved your application to become an Instructor as of " +
+                                              instructor.EnrollmentDate.Date,
+                                          Link =
+                                              Url.Action(
+                                                  "Details",
+                                                  "InstructorApplication",
+                                                  new {id = instructorApplication.InstructorApplicationID}),
+                                          ViewableBy = instructor.UserName,
+                                          Complete = false
+                                      };
             db.Notification.Add(newNotification);
 
             db.SaveChanges();
@@ -223,8 +256,6 @@ namespace PaulSchool.Controllers
             // //  but that is for another time).
             // Create notification for Instructor
             // visually notify Admin that the change has been made.
-
-
         }
 
         /// <summary>
@@ -235,7 +266,7 @@ namespace PaulSchool.Controllers
         /// </returns>
         public ActionResult Index()
         {
-            return this.View();
+            return View();
         }
 
         #endregion

@@ -605,6 +605,7 @@ namespace PaulSchool.Controllers
         // POST: /Course/Delete/5
 
         [HttpPost, ActionName("Delete")]
+        [Authorize(Roles = "Administrator, SuperAdministrator")]
         public ActionResult DeleteConfirmed(int id, Course hasReasonForDeletion)
         {
             Course course = db.Courses.Find(id);
@@ -624,7 +625,7 @@ namespace PaulSchool.Controllers
 
             db.Courses.Remove(course);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Notification");
         }
     }
 }
