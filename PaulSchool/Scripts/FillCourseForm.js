@@ -32,16 +32,4 @@ $(document).ready(function() {
     $("#DateOfBirth").datetimepicker({
         ampm: true
     });
-    
-    $('#StartDate').rules('add', {
-        date: true
-    });
-    
-    $('#EndDate').rules('add', {
-        date: true
-    });
-
-    $('#DateOfBirth').rules('add', {
-        date: true
-    });
 });
