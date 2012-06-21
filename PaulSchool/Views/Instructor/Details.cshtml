@@ -4,35 +4,18 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>Instructor Details</h2>
 
 <fieldset>
     <legend>Instructor</legend>
 
-    <div class="display-label">LastName</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.LastName)
-    </div>
+    <p><b>Name:</b> @Html.DisplayFor(model => model.FirstMidName) @Html.DisplayFor(model => model.LastName)</p>
 
-    <div class="display-label">FirstMidName</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.FirstMidName)
-    </div>
+    <p><b>Email:</b> @Html.DisplayFor(model => model.Email)</p>
 
-    <div class="display-label">Email</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Email)
-    </div>
+    <p><b>Enrollment Date:</b> @Html.DisplayFor(model => model.EnrollmentDate)</p>
 
-    <div class="display-label">EnrollmentDate</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.EnrollmentDate)
-    </div>
-
-    <div class="display-label">User Name</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.UserName)
-    </div>
+    <p><b>User Name:</b> @Html.DisplayFor(model => model.UserName)</p>
 
     <div class="display-label">
     Classes (currently includes unapproved classes that were applied for)

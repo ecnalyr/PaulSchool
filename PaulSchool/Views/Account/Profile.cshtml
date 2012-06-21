@@ -1,24 +1,37 @@
-﻿@{
+﻿@model PaulSchool.ViewModels.ProfileViewModel
+@{
     ViewBag.Title = "Profile";
 }
 
 <h2>Profile</h2>
 @if (Request.IsAuthenticated)
 {
-    <p>
-        This is your user name: <b>@User.Identity.Name</b>
-    </p>
-    <p>
-        Last Name: <b>@PaulSchool.Models.CustomProfile.GetUserProfile(User.Identity.Name).LastName</b>
-    </p>
-    <p>
-        First and Middle Name: <b>@PaulSchool.Models.CustomProfile.GetUserProfile(User.Identity.Name).FirstMidName</b>
-    </p>
-    <p>
-        Email: <b>@ViewBag.email</b>
-    </p>
-    @Html.ActionLink("Edit Profile", "ChangeProfile")
+    <fieldset>
+        <p><b>User Name</b>: @User.Identity.Name</p>
+    
+        <p><b>Name:</b> @Html.DisplayFor(model => model.FirstMidName) @Html.DisplayFor(model => model.LastName)</p>
+
+        <p><b>Email:</b> @ViewBag.email</p>
+ 
+        <p><b>Address:</b></p>
+        <div>
+            @Html.DisplayFor(model => model.StreetAddress)<br>
+                                                          @Html.DisplayFor(model => model.City), @Html.DisplayFor(model => model.State) @Html.DisplayFor(model => model.ZipCode)
+        </div>
+    
+        <p><b>Phone:</b> @Html.DisplayFor(model => model.Phone)</p>
+    
+        <p><b>Date of Birth:</b> @Html.DisplayFor(model => model.DateOfBirth)</p>
+    
+        <p><b>Parish Affiliation:</b> @Html.DisplayFor(model => model.ParishAffiliation)</p>
+    
+        <p><b>Ministry Involvement:</b> @Html.DisplayFor(model => model.MinistryInvolvement)</p>
+        
+        </fieldset>
     <div>
-    @Html.ActionLink("Change Email", "ChangeEmail")
-    </div>
+            @Html.ActionLink("Edit Profile", "ChangeProfile")
+        </div>
+        <div>
+            @Html.ActionLink("Change Email", "ChangeEmail")
+        </div>
 }

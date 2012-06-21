@@ -1,44 +1,41 @@
 ﻿@model PaulSchool.Models.Student
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Student Details";
 }
 
-<h2>Details</h2>
+<h2>Student Details</h2>
 <p>
-    This is the total number of Core Classes Passed: @ViewBag.coresPassed You need @ViewBag.coresNeeded core courses to apply for Commissioning.
+    This is the total number of Core Classes Passed: @ViewBag.coresPassed  @ViewBag.coresNeeded core courses are needed to apply for Commissioning.
 </p>
 <p>
-    This is the total number of Electives Passed: @ViewBag.electivesPassed You need @ViewBag.electivesNeeded electives to apply for Commissioning.
+    This is the total number of Electives Passed: @ViewBag.electivesPassed  @ViewBag.electivesNeeded electives are neededto apply for Commissioning.
 </p>
 
 <fieldset>
     <legend>Student</legend>
 
-    <div class="display-label">First and Middle Name</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.FirstMidName)
-    </div>
+    <p><b>Name:</b> @Html.DisplayFor(model => model.FirstMidName) @Html.DisplayFor(model => model.LastName)</p>
+
+    <p><b>Email:</b> @Html.DisplayFor(model => model.Email)</p>
+
+    <p><b>Enrollment Date:</b> @Html.DisplayFor(model => model.EnrollmentDate)</p>
+
+    <p><b>User Name:</b> @Html.DisplayFor(model => model.UserName)</p>
     
-    <div class="display-label">LastName</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.LastName)
-    </div>
-
-    <div class="display-label">Email</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Email)
-    </div>
-
-    <div class="display-label">EnrollmentDate</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.EnrollmentDate)
-    </div>
-
-    <div class="display-label">User Name</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.UserName)
-    </div>
+    <p><b>Address:</b></p>
+        <div>
+            @Html.DisplayFor(model => model.StreetAddress)<br>
+                                                          @Html.DisplayFor(model => model.City), @Html.DisplayFor(model => model.State) @Html.DisplayFor(model => model.ZipCode)
+        </div>
+    
+        <p><b>Phone:</b> @Html.DisplayFor(model => model.Phone)</p>
+    
+        <p><b>Date of Birth:</b> @Html.DisplayFor(model => model.DateOfBirth)</p>
+    
+        <p><b>Parish Affiliation:</b> @Html.DisplayFor(model => model.ParishAffiliation)</p>
+    
+        <p><b>Ministry Involvement:</b> @Html.DisplayFor(model => model.MinistryInvolvement)</p>
 
     @{if (User.IsInRole("Administrator"))
       {

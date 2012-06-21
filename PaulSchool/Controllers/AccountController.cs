@@ -284,13 +284,14 @@ namespace PaulSchool.Controllers
         [Authorize]
         public ActionResult Profile()
         {
+            ProfileViewModel model = PreloadProfileViewModelWithCurrentUsersProfileData();
             MembershipUser u = Membership.GetUser(User.Identity.Name);
             if (u != null)
             {
                 ViewBag.Email = u.Email;
             }
 
-            return View();
+            return View(model);
         }
 
         // GET: /Account/Register
