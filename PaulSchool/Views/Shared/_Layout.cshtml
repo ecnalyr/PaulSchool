@@ -22,15 +22,14 @@
                 <div id="menucontainer">
                     <ul id="menu">
                         <li>@Html.ActionLink("Home", "Index", "Home", new {area = ""}, null)</li>
-                        <li>@Html.ActionLink("Students", "Index", "Student", new {area = ""}, null)</li>
-                        <li>@Html.ActionLink("Courses", "Index", "Course", new {area = ""}, null)</li>
-                        <li>@Html.ActionLink("Instructors", "Index", "Instructor", new {area = ""}, null)</li>
-                        <li>@Html.ActionLink("Your Classes", "UsersCourseList", "Course", new {area = ""}, null)</li>
-                        <li>@Html.ActionLink("Classes You Teach", "TeachingCourseList", "Course", new {area = ""}, null)</li>
-                        <li>@Html.ActionLink("User Administration", "Index", "UserAdministration", new {area = "MvcMembership"}, null)</li>
-                        <li>@Html.ActionLink("Notifications", "Index", "Notification", new {area = ""}, null)</li>
-                        <li>@Html.ActionLink("Apply to become an Instructor", "Index", "InstructorApplication", new {area = ""}, null)</li>
-                        <li>@Html.ActionLink("Commissioning", "Index", "Commissioning", new {area = ""}, null)</li>
+                        <li>@Html.ActionLink("Enrolled Courses", "UsersCourseList", "Course", new { area = "" }, null)</li>
+                        @{
+                            if (User.IsInRole("Instructor") || User.IsInRole("Administrator") || User.IsInRole("SuperAdministrator"))
+                            {
+                                <li>@Html.ActionLink("Courses You Instruct", "TeachingCourseList", "Course", new { area = "" }, null)</li>
+                            }
+                        }
+                        <li>@Html.ActionLink("Notifications", "Index", "Notification", new { area = "" }, null)</li>
                     </ul>
                 </div>
             </div>
@@ -38,6 +37,12 @@
                 @RenderBody()
             </div>
             <div id="footer">
+                @Html.ActionLink("List of Students", "Index", "Student", new { area = "" }, null)
+                @Html.ActionLink("List of Instructors", "Index", "Instructor", new { area = "" }, null)
+                @Html.ActionLink("List of Courses", "Index", "Course", new {area = ""}, null)
+                @Html.ActionLink("Apply to become an Instructor", "Index", "InstructorApplication", new { area = "" }, null)
+                @Html.ActionLink("Commissioning", "Index", "Commissioning", new { area = "" }, null)
+                @Html.ActionLink("User Administration", "Index", "UserAdministration", new {area = "MvcMembership"}, null)
             </div>
         </div>
     </body>

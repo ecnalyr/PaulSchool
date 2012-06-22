@@ -376,9 +376,16 @@ namespace PaulSchool.Controllers
         {
             Student thisStudent = db.Students.FirstOrDefault(
                 o => o.UserName == User.Identity.Name);
-            /*ViewBag.cores = foreach(var completedcourse in thisStudent.Enrollments
-            ViewBag.electives = 2;*/
-            // This section being worked on.  Deals with displaying total core and elective credits
+
+            int totalCoresPassed = db.Enrollments.Count(s => s.StudentID == thisStudent.StudentID
+                                                             && s.Grade == "pass"
+                                                             && s.Course.Elective == false);
+
+            int totalElectivesPassed = db.Enrollments.Count(s => s.StudentID == thisStudent.StudentID
+                                                                 && s.Grade == "pass"
+                                                                 && s.Course.Elective);
+            ViewBag.coresPassed = totalCoresPassed;
+            ViewBag.electivesPassed = totalElectivesPassed;
             return View(thisStudent);
         }
 

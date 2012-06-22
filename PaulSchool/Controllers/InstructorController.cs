@@ -18,7 +18,7 @@ namespace PaulSchool.Controllers
         [Authorize(Roles = "Administrator, SuperAdministrator, Instructor")]
         public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
-            if (User.IsInRole("Administrator") | User.IsInRole("SuperAdministrator"))
+            if (User.IsInRole("Administrator") || User.IsInRole("SuperAdministrator"))
             {
                 ViewBag.CurrentSort = sortOrder;
                 ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "Name desc" : "";
@@ -119,7 +119,7 @@ namespace PaulSchool.Controllers
         [Authorize(Roles = "Administrator, SuperAdministrator, Instructor")]
         public ActionResult Details(int id)
         {
-            if (User.IsInRole("Administrator") | User.IsInRole("SuperAdministrator"))
+            if (User.IsInRole("Administrator") || User.IsInRole("SuperAdministrator"))
             {
                 Instructor instructor = db.Instructors.Find(id);
                 return View(instructor);

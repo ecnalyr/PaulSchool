@@ -49,13 +49,13 @@
     </tbody>
 </table>
 @{
-    if (User.IsInRole("Instructor") | User.IsInRole("Administrator") | User.IsInRole("SuperAdministrator"))
+    if (User.IsInRole("Instructor") || User.IsInRole("Administrator") || User.IsInRole("SuperAdministrator"))
     {
         <div>
             <p>
                 @Html.ActionLink("Click here", "CompleteCourse", new { id = Model.courseId }, new { onclick = "return confirm('Are you sure you are ready to mark this Course as Complete?  You will not be able to edit this Course's attendance, grades, or comments after you do this.');" }) to mark this Course as "Complete."  Doing so will make this Course uneditable.
             </p>
-            @{if (User.IsInRole("Administrator") | User.IsInRole("SuperAdministrator"))
+            @{if (User.IsInRole("Administrator") || User.IsInRole("SuperAdministrator"))
               {
                   <p>
                       @Html.ActionLink("Click here", "ArchiveCourse", new { id = Model.courseId }, new { onclick = "return confirm('Are you sure you are ready to Archive this Course?  Administrators will not be able to edit this Course's attendance, grades, or comments after you do this.');" }) to Archive this Course."  Doing so will make this Course uneditable by Administrators.

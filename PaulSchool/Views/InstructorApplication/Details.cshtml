@@ -83,7 +83,7 @@
     </div>
 </fieldset>
 <p>
-    @{ if ((User.IsInRole("Administrator") | User.IsInRole("SuperAdministrator")) && Model.Approved == false)
+    @{ if ((User.IsInRole("Administrator") || User.IsInRole("SuperAdministrator")) && Model.Approved == false)
        {
            <p>
                @Html.ActionLink("Clicking here will approve this Instructor's Application", "ApproveInstructorApplication", new { id = Model.InstructorApplicationID }, new { onclick = "return confirm('Are you sure you are aready to approve this application?  Doing so is not reversible.');" })
