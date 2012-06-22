@@ -16,7 +16,6 @@ namespace PaulSchool.Controllers
         private readonly SchoolContext db = new SchoolContext();
 
         public PartialViewResult PreFillCourse(string selectedCourse)
-            // Note that this is searching by title only - there cannot be more than one class with the same title
         {
             CourseTemplates selectedTemplate = db.CourseTemplates.FirstOrDefault(
                 o => o.Title == selectedCourse);
@@ -43,10 +42,6 @@ namespace PaulSchool.Controllers
             }
             return null;
         }
-
-
-        //
-        // GET: /Course/
 
         public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
@@ -175,17 +170,12 @@ namespace PaulSchool.Controllers
             //}
         }
 
-        //
-        // GET: /Course/Details/5
-
         public ActionResult Details(int id)
         {
             Course course = db.Courses.Find(id);
             return View(course);
         }
 
-        //
-        // POST: /Course/Details/5
         [HttpPost]
         public ActionResult ApplyUsingDetails(Course idGetter)
         {
@@ -204,13 +194,13 @@ namespace PaulSchool.Controllers
                     if (course.Enrollments.Count < course.AttendanceCap)
                     {
                         CreateEnrollmentAttendanceAndNotificationData(course, thisStudent);
-                        return Content("You have been added to the class");
+                        return RedirectToAction("Message", new { message = "You have been enrolled in the course" });
                     }
-                    return Content("Class is full");
+                    return RedirectToAction("Message", new { message = "This course is full." });
                 }
-                return Content("Student is already in class");
+                return RedirectToAction("Message", new { message = "This student is already enrolled in this course." });
             }
-            return Content("Course is not ready to be joined");
+            return RedirectToAction("Message", new { message = "Course is not ready to be joined, it has not been approved by an Administrator." });
         }
 
         private void CreateEnrollmentAttendanceAndNotificationData(Course course, Student thisStudent)
@@ -263,9 +253,7 @@ namespace PaulSchool.Controllers
             db.Enrollments.Add(newEnrollment);
         }
 
-        //
-        // GET: /Course/ApplyToTeach
-        [Authorize (Roles = "Administrator, SuperAdministrator, Instructor")]
+        [Authorize(Roles = "Administrator, SuperAdministrator, Instructor")]
         public ActionResult ApplyToTeach()
         {
             DbSet<CourseTemplates> course = db.CourseTemplates;
@@ -281,9 +269,6 @@ namespace PaulSchool.Controllers
                             };
             return View(model);
         }
-
-        //
-        // POST: /Course/ApplyToTeach
 
         [HttpPost]
         public ActionResult ApplyToTeach(ApplyCourseViewModel appliedCourse)
@@ -380,20 +365,12 @@ namespace PaulSchool.Controllers
             }
         }
 
-
-        //
-        // GET: /Course/TeachingCourseList
-
         public ViewResult TeachingCourseList()
         {
             Instructor thisInstructor = db.Instructors.FirstOrDefault(
                 o => o.UserName == User.Identity.Name);
             return View(thisInstructor);
         }
-
-
-        //
-        // GET: /Course/UsersCourseList
 
         public ViewResult UsersCourseList()
         {
@@ -404,9 +381,6 @@ namespace PaulSchool.Controllers
             // This section being worked on.  Deals with displaying total core and elective credits
             return View(thisStudent);
         }
-
-        //
-        // GET: /Course/ApplyToCourse
 
         public ViewResult ApplyToCourse(string sortOrder, string currentFilter, string searchString, int? page)
         {
@@ -492,22 +466,17 @@ namespace PaulSchool.Controllers
             return View(courses.ToPagedList(pageNumber, pageSize));
         }
 
-        //
-        // GET /Course/Error
-        public ViewResult Error(string message)
+        public ViewResult Message(string message)
         {
-            ViewBag.error = message;
+            ViewBag.message = message;
             return View();
         }
 
-        //
-        // GET /Course/ApproveCourse/5
         public ActionResult ApproveCourse(int id)
         {
             Course course = db.Courses.Find(id);
             course.Approved = true;
 
-            // Add the notification for the Instructor stating that their Course has been approved
             BuildNotificationData(course);
             db.SaveChanges();
             return RedirectToAction("Details", new {id = course.CourseID});
@@ -528,8 +497,6 @@ namespace PaulSchool.Controllers
             db.Notification.Add(newNotification);
         }
 
-        //
-        // POST /Course/RemoveFromCourse/5
         [Authorize(Roles = "Administrator, SuperAdministrator")]
         public ActionResult RemoveFromCourse(int id)
         {
@@ -551,17 +518,11 @@ namespace PaulSchool.Controllers
             return enrollment;
         }
 
-        //
-        // Get /Course/EditClass/5
-
         public ActionResult EditCourse(int id)
         {
             Course course = db.Courses.Find(id);
             return View(course);
         }
-
-        //
-        // POST: /Course/EditClass/5
 
         [HttpPost]
         public ActionResult EditCourse(Course course)
@@ -570,7 +531,7 @@ namespace PaulSchool.Controllers
             {
                 db.Entry(course).State = EntityState.Modified;
 
-                var thisInstructor = db.Instructors.FirstOrDefault(
+                Instructor thisInstructor = db.Instructors.FirstOrDefault(
                     o => o.InstructorID == course.InstructorID);
                 // Add a notification for the Instructor to see that the Course was modified
                 var newNotification = new Notification
@@ -591,18 +552,12 @@ namespace PaulSchool.Controllers
             return View(course);
         }
 
-        //
-        // GET: /Course/Delete/5
-
         [Authorize(Roles = "Administrator, SuperAdministrator")]
         public ActionResult Delete(int id)
         {
             Course course = db.Courses.Find(id);
             return View(course);
         }
-
-        //
-        // POST: /Course/Delete/5
 
         [HttpPost, ActionName("Delete")]
         [Authorize(Roles = "Administrator, SuperAdministrator")]

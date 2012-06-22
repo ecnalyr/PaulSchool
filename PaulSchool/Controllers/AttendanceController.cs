@@ -13,9 +13,6 @@ namespace PaulSchool.Controllers
     {
         private readonly SchoolContext db = new SchoolContext();
 
-        //
-        // GET: /Attendance/
-
         public ActionResult Index()
         {
             return View();
@@ -31,9 +28,6 @@ namespace PaulSchool.Controllers
 
             //
             // Generates list of Students in alphabetical order sorted by LastName
-            // This was the original - it works var student = attendanceItemsList.Select(a => a.Student).Distinct().OrderBy(s => s.LastName);
-            // var student = attendanceItemsList.Select(a => a.Student).Distinct(); // This line does not have the attendance editor bug, but does not order alphabetically
-
             IOrderedQueryable<Student> student =
                 db.Enrollments.Where(e => e.CourseID == id).Select(e => e.Student).OrderBy(s => s.LastName);
             List<Student> StudentList = student.ToList();
@@ -43,7 +37,6 @@ namespace PaulSchool.Controllers
             // Generates a list of all Enrollments for course - to be used to generate grades
             // Should to be refactored with above code-block
             IQueryable<Enrollment> enrollment = db.Enrollments.Where(i => i.CourseID == id);
-            //List<Enrollment> EnrollmentList = enrollment.ToList();
             IEnumerable<Enrollment> enrollmentList = enrollment;
 
             //
@@ -64,6 +57,7 @@ namespace PaulSchool.Controllers
                                 Attendances = attendanceItemsList,
                                 courseId = id
                             };
+            ViewBag.CourseName = course.Title;
             return View(model);
         }
 
@@ -77,9 +71,6 @@ namespace PaulSchool.Controllers
 
             //
             // Generates list of Students in alphabetical order sorted by LastName
-            // This was the original - it works var student = attendanceItemsList.Select(a => a.Student).Distinct().OrderBy(s => s.LastName);
-            //var student = attendanceItemsList.Select(a => a.Student).Distinct(); // This line does not have the attendance editor bug, but does not order alphabetically
-
             IOrderedQueryable<Student> student =
                 db.Enrollments.Where(e => e.CourseID == id && e.StudentID == studentId).Select(e => e.Student).OrderBy(
                     s => s.LastName);
@@ -88,9 +79,7 @@ namespace PaulSchool.Controllers
 
             //
             // Generates a list of all Enrollments for course - to be used to generate grades
-            // Should to be refactored with above code-block
             IQueryable<Enrollment> enrollment = db.Enrollments.Where(i => i.CourseID == id && i.StudentID == studentId);
-            //List<Enrollment> EnrollmentList = enrollment.ToList();
             IEnumerable<Enrollment> enrollmentList = enrollment;
 
             //
@@ -123,7 +112,6 @@ namespace PaulSchool.Controllers
 
             //// Generates list of Students (should be one only one student)
             IQueryable<Student> student = db.Students.Where(a => a.UserName == User.Identity.Name);
-            //// This works for adding one student, not all of them.
             List<Student> studentList = student.ToList();
             //// End of generating list of Students
 
@@ -151,9 +139,6 @@ namespace PaulSchool.Controllers
             return View(model);
         }
 
-        //
-        // GET: /Attendance/EditComment/5 and another int
-
         public ActionResult EditComment(int studentId, int courseId)
         {
             Enrollment enrollment =
@@ -164,18 +149,31 @@ namespace PaulSchool.Controllers
                                 Student = enrollment.Student,
                                 Grades = new List<SelectListItem>
                                              {
-                                                 new SelectListItem {Text = PaulSchoolResource.AttendanceController_EditComment_Incomplete, Value = PaulSchoolResource.AttendanceController_EditComment_Incomplete},
-                                                 new SelectListItem {Text = PaulSchoolResource.AttendanceController_EditComment_Pass, Value = PaulSchoolResource.AttendanceController_EditComment_Pass},
-                                                 new SelectListItem {Text = PaulSchoolResource.AttendanceController_EditComment_Fail, Value = PaulSchoolResource.AttendanceController_EditComment_Fail},
+                                                 new SelectListItem
+                                                     {
+                                                         Text =
+                                                             PaulSchoolResource.
+                                                             AttendanceController_EditComment_Incomplete,
+                                                         Value =
+                                                             PaulSchoolResource.
+                                                             AttendanceController_EditComment_Incomplete
+                                                     },
+                                                 new SelectListItem
+                                                     {
+                                                         Text = PaulSchoolResource.AttendanceController_EditComment_Pass,
+                                                         Value = PaulSchoolResource.AttendanceController_EditComment_Pass
+                                                     },
+                                                 new SelectListItem
+                                                     {
+                                                         Text = PaulSchoolResource.AttendanceController_EditComment_Fail,
+                                                         Value = PaulSchoolResource.AttendanceController_EditComment_Fail
+                                                     },
                                              },
                                 Grade = enrollment.Grade,
                                 Comments = enrollment.Comments
                             };
             return View(model);
         }
-
-        //
-        // POST: /Attendance/EditComment/etc. . .
 
         [HttpPost]
         public ActionResult EditComment(Enrollment enrollmentComment)
@@ -189,14 +187,6 @@ namespace PaulSchool.Controllers
             return View(enrollmentComment);
         }
 
-        /// <summary>
-        /// Method to Update the Attendance of the student
-        /// </summary>
-        /// <param name="userId">Student Id to be updated</param>
-        /// <param name="attendanceDay">Day for which the Attendance must be updated</param>
-        /// <param name="courseId">Course Identifier</param>
-        /// <param name="present">Is the student Present or not flag</param>
-        /// <returns>returns true / false</returns>
         [HttpPost]
         public bool UpdateAttendance(int userId, int attendanceDay, int courseId, int present)
         {
@@ -211,6 +201,103 @@ namespace PaulSchool.Controllers
             }
             db.SaveChanges();
             return true;
+        }
+
+        public ActionResult CompleteCourse(int id)
+        {
+            Course course = db.Courses.Find(id);
+            course.Completed = true;
+
+            BuildNotificationForAdmin(course);
+            BuildNotificationForInstructor(course);
+            BuildNotificationsForStudents(course);
+            db.SaveChanges();
+
+            return View("CompletedCourse");
+        }
+
+        private void BuildNotificationsForStudents(Course course)
+        {
+            foreach (Enrollment item in course.Enrollments)
+            {
+                string studentUserName = item.Student.UserName;
+                BuildNotificationForStudent(item, course);
+            }
+        }
+
+        private void BuildNotificationForStudent(Enrollment item, Course course)
+        {
+            var newNotificationForStudent = new Notification
+                                                {
+                                                    Time = DateTime.Now,
+                                                    Details =
+                                                        "The Course titled: " + course.Title + " and Instructed by " +
+                                                        course.Instructor.LastName +
+                                                        ", in which you were enrolled has been marked Complete.  Your grade and attendance values are final.",
+                                                    Link = Url.Action("StudentDetails", "Attendance", new {id = course.CourseID}),
+                                                    ViewableBy = item.Student.UserName,
+                                                    Complete = false
+                                                };
+            db.Notification.Add(newNotificationForStudent);
+        }
+
+        private void BuildNotificationForInstructor(Course course)
+        {
+            var newNotificationForInstructor = new Notification
+                                                   {
+                                                       Time = DateTime.Now,
+                                                       Details =
+                                                           "The Course titled: " + course.Title +
+                                                           " that was instructed by you has been marked Complete by Username: " +
+                                                           User.Identity.Name,
+                                                       Link =
+                                                           Url.Action("Details", "Course", new {id = course.CourseID}),
+                                                       ViewableBy = course.Instructor.UserName,
+                                                       Complete = false
+                                                   };
+            db.Notification.Add(newNotificationForInstructor);
+        }
+
+        private void BuildNotificationForAdmin(Course course)
+        {
+            var newNotificationForAdmin = new Notification
+                                              {
+                                                  Time = DateTime.Now,
+                                                  Details =
+                                                      "The Course titled: " + course.Title + " that was instructed by " +
+                                                      course.Instructor.LastName +
+                                                      " has been marked Complete by Username: " +
+                                                      User.Identity.Name,
+                                                  Link = Url.Action("Details", "Course", new {id = course.CourseID}),
+                                                  ViewableBy = "Admin",
+                                                  Complete = false
+                                              };
+            db.Notification.Add(newNotificationForAdmin);
+        }
+
+        public ActionResult ArchiveCourse(int id)
+        {
+            Course course = db.Courses.Find(id);
+            course.Archived = true;
+            BuildNotification(course);
+            db.SaveChanges();
+            return View("ArchivedCourse");
+        }
+
+        private void BuildNotification(Course course)
+        {
+            var newNotification = new Notification
+                                      {
+                                          Time = DateTime.Now,
+                                          Details =
+                                              "An Administrator has Archived " + course.Title +
+                                              " that was instructed by " +
+                                              course.Instructor.LastName,
+                                          Link = Url.Action("Details", "Course", new {id = course.CourseID}),
+                                          ViewableBy = "Admin",
+                                          Complete = false
+                                      };
+            db.Notification.Add(newNotification);
         }
     }
 }

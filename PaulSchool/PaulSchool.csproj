@@ -146,6 +146,8 @@
     <Content Include="Views\Account\Welcome.cshtml" />
     <Content Include="Views\Account\Verify.cshtml" />
     <Content Include="Views\Account\PasswordReset.cshtml" />
+    <Content Include="Views\Attendance\CompletedCourse.cshtml" />
+    <Content Include="Views\Attendance\ArchivedCourse.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\ASPNETDB.MDF" />
@@ -334,7 +336,7 @@
     <Content Include="Views\Course\ApplyToCourse.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Course\Error.cshtml" />
+    <Content Include="Views\Course\Message.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Course\TeachingCourseList.cshtml" />
