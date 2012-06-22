@@ -55,7 +55,8 @@ namespace PaulSchool.Controllers
                                 Students = StudentList,
                                 Enrollments = enrollmentList,
                                 Attendances = attendanceItemsList,
-                                courseId = id
+                                CourseId = id,
+                                Course = course 
                             };
             ViewBag.CourseName = course.Title;
             return View(model);
@@ -98,7 +99,7 @@ namespace PaulSchool.Controllers
                                 Students = studentList,
                                 Enrollments = enrollmentList,
                                 Attendances = attendanceItemsList,
-                                courseId = id
+                                CourseId = id
                             };
             return View(model);
         }
@@ -213,7 +214,16 @@ namespace PaulSchool.Controllers
             BuildNotificationsForStudents(course);
             db.SaveChanges();
 
-            return View("CompletedCourse");
+            return RedirectToAction("Message", new { message = "You have completed the course." });
+        }
+
+        [Authorize(Roles = "SuperAdministrator")]
+        public ActionResult UnCompleteCourse(int id)
+        {
+            Course course = db.Courses.Find(id);
+            course.Completed = false;
+            db.SaveChanges();
+            return RedirectToAction("Message", new { message = "You have set the course to incomplete." });
         }
 
         private void BuildNotificationsForStudents(Course course)
@@ -319,13 +329,29 @@ namespace PaulSchool.Controllers
             db.Notification.Add(newNotificationForAdmin);
         }
 
+        [Authorize(Roles = "Administrator, SuperAdministrator")]
         public ActionResult ArchiveCourse(int id)
         {
             Course course = db.Courses.Find(id);
             course.Archived = true;
             BuildNotification(course);
             db.SaveChanges();
-            return View("ArchivedCourse");
+            return RedirectToAction("Message", new { message = "You have added the course to the archive." });
+        }
+
+        [Authorize(Roles = "SuperAdministrator")]
+        public ActionResult UnArchiveCourse(int id)
+        {
+            Course course = db.Courses.Find(id);
+            course.Archived = false;
+            db.SaveChanges();
+            return RedirectToAction("Message", new { message = "You have removed the course from the archive." });
+        }
+
+        public ViewResult Message(string message)
+        {
+            ViewBag.message = message;
+            return View();
         }
 
         private void BuildNotification(Course course)

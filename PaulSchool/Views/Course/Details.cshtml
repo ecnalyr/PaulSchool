@@ -14,7 +14,6 @@
                 <!--@Html.DisplayFor(model => model.CourseID)-->
                 @Html.HiddenFor(model => model.CourseID)
            </div>
-            <p><input type="submit" value="Sign up for this course", new { onclick = "return confirm('Are you sure you are ready to sign up for this class?');" }  /></p>
             <fieldset>
 
                 <div class="display-label">Title</div>
@@ -22,7 +21,7 @@
                     @Html.DisplayFor(model => model.Title)
                 </div>
 
-                <div class="display-label">Credits</div>
+                <div class="display-label">Hours</div>
                 <div class="display-field">
                     @Html.DisplayFor(model => model.Credits)
                 </div>
@@ -92,8 +91,8 @@
                     @Html.DisplayFor(model => model.Approved)
                     @{if ((User.IsInRole("Administrator") || User.IsInRole("SuperAdministrator")) && Model.Approved == false)
                       {
-                        <p>@Html.ActionLink("Clicking here will approve this class with it's current details.", "ApproveCourse", new { id = Model.CourseID }, new { onclick = "return confirm('Are you sure you are ready to approve of this course?');" })</p>
-                        <p>@Html.ActionLink("Clicking here will deny this class with it's current details.  You will be given the option to offer an explanation on the following page.", "Delete", new { id = Model.CourseID }, new { onclick = "return confirm('Are you sure you want to deny this course?');" })</p>
+                        <p>@Html.ActionLink("Clicking here will approve this course with it's current details.", "ApproveCourse", new { id = Model.CourseID }, new { onclick = "return confirm('Are you sure you are ready to approve of this course?');" })</p>
+                        <p>@Html.ActionLink("Clicking here will deny this course with it's current details.  You will be given the option to offer an explanation on the following page.", "Delete", new { id = Model.CourseID }, new { onclick = "return confirm('Are you sure you want to deny this course?');" })</p>
                       }
                      }
                 </div>
@@ -101,6 +100,11 @@
                 <div class="display-label">Completed</div>
                 <div class="display-field">
                     @Html.DisplayFor(model => model.Completed)
+                    @{if ((User.IsInRole("Administrator") || User.IsInRole("SuperAdministrator")) && Model.Completed == false)
+                      {
+                        @Html.ActionLink("Clicking here will Complete this course", "CompleteCourse", "Attendance", new { id = Model.CourseID }, new { onclick = "return confirm('Are you sure you are ready to Archive this Course?  Administrators will not be able to edit this Course's attendance, grades, or comments after you do this.');" })
+                      }
+                     }
                 </div>
 
                 <div class="display-label">Archived</div>
@@ -108,7 +112,7 @@
                 @Html.DisplayFor(model => model.Archived)
                     @{if ((User.IsInRole("Administrator") || User.IsInRole("SuperAdministrator")) && Model.Archived == false)
                       {
-                        @Html.ActionLink("Clicking here will archive this class - this will make the class uneditable.", "ApproveCourse", new { id = Model.CourseID }, new { onclick = "return confirm('Are you sure you are ready to archive this class?  This process is not reversible.');" })
+                        @Html.ActionLink("Clicking here will archive this course - this will make the class uneditable.", "ArchiveCourse", "Attendance", new { id = Model.CourseID }, new { onclick = "return confirm('Are you sure you are ready to archive this class?  This process is not reversible.');" })
                       }
                      }
                 </div>
@@ -123,9 +127,9 @@
                 @{if (User.IsInRole("Administrator"))
                   {
                     <!-- As Viewable by Admin-->
-                    <div class="display-label">
-                    List of Students as viewed by Admins
-                    </div>
+                      <div class="display-label">
+                        Quick view of enrolled students:
+                      </div>
                     <div class="display-field">
                         <table>
                             <tr>
@@ -148,35 +152,42 @@
                                 </tr>
                             }
                         </table>
-                        @Html.ActionLink("Click here to see attendance details of this Course", "AttendanceView", "Attendance", new { id = Model.CourseID }, null)
+                        <p>
+                            @Html.ActionLink("Click here to see attendance details of this Course.", "AttendanceView", "Attendance", new { id = Model.CourseID }, null)  You are also able to modify other elements of the Course within this link if you are of the appropriate role.
+                        </p>
                     </div>
                   }
-                  if (User.IsInRole("Instructor"))
+                  if (User.IsInRole("Instructor") && !User.IsInRole("Administrator"))
                   {
                     <div class="display-label">
                     List of Students
                     </div>
                     <div class="display-field">
-                    <table>
-                        <tr>
-                            <th>First and Middle Name</th>
-                            <th>Last Name</th>
-                        </tr>
-                        @foreach (var item in Model.Enrollments)
-                        {
+                        <table>
                             <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Student.FirstMidName)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Student.LastName)
-                                </td>
+                                <th>First and Middle Name</th>
+                                <th>Last Name</th>
                             </tr>
-                        }
-                    </table>
+                            @foreach (var item in Model.Enrollments)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Student.FirstMidName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Student.LastName)
+                                    </td>
+                                </tr>
+                            }
+                        </table>
+                        <p>
+                            @Html.ActionLink("Click here to see attendance details of this Course.", "AttendanceView", "Attendance", new { id = Model.CourseID }, null)  You are also able to modify other elements of the Course within this link if you are of the appropriate role.
+                        </p>
                     </div>
                   }
-                 }
+                }
+            <p><input type="submit" value="Sign up for this course", new { onclick = "return confirm('Are you sure you are ready to sign up for this class?');" }  /></p>
+
             </fieldset>
     }
   }

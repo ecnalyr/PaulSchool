@@ -15,7 +15,9 @@ namespace PaulSchool.ViewModels
 
         public IEnumerable<Enrollment> Enrollments { get; set; }
 
-        public int courseId { get; set; }
+        public int CourseId { get; set; }
+
+        public Course Course { get; set; }
 
         public string Comments { get; set; }
 

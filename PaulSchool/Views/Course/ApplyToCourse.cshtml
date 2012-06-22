@@ -22,10 +22,10 @@
             @Html.ActionLink("Start Date", "ApplyToCourse", new { sortOrder = ViewBag.StartDateSortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
-            @Html.ActionLink("Credits", "ApplyToCourse", new { sortOrder = ViewBag.CreditsSortParm, currentFilter = ViewBag.CurrentFilter })
+            @Html.ActionLink("Hours", "ApplyToCourse", new { sortOrder = ViewBag.CreditsSortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
-            @Html.ActionLink("Instructor (LName)", "ApplyToCourse", new { sortOrder = ViewBag.InstructorSortParm, currentFilter = ViewBag.CurrentFilter })
+            @Html.ActionLink("Instructor", "ApplyToCourse", new { sortOrder = ViewBag.InstructorSortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
             @Html.ActionLink("Attending Days", "ApplyToCourse", new { sortOrder = ViewBag.AttendingDaysSortParm, currentFilter = ViewBag.CurrentFilter })
@@ -48,7 +48,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-        @Html.ActionLink("Sign Up for Class", "Details", new { id=item.CourseID }) |
+        @Html.ActionLink("See details / sign up for course", "Details", new { id=item.CourseID })
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Title)

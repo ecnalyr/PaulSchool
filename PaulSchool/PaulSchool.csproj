@@ -148,6 +148,8 @@
     <Content Include="Views\Account\PasswordReset.cshtml" />
     <Content Include="Views\Attendance\CompletedCourse.cshtml" />
     <Content Include="Views\Attendance\ArchivedCourse.cshtml" />
+    <Content Include="Views\Course\FullCourseList.cshtml" />
+    <Content Include="Views\Attendance\Message.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\ASPNETDB.MDF" />
