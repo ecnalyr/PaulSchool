@@ -218,11 +218,55 @@ namespace PaulSchool.Controllers
 
         private void BuildNotificationsForStudents(Course course)
         {
+            var totalCoresNeeded = db.CommissioningRequirementse.Find(1).CoreCoursesRequired;
+            var totalElectivesNeeded = db.CommissioningRequirementse.Find(1).ElectiveCoursesRequired;
             foreach (Enrollment item in course.Enrollments)
             {
-                string studentUserName = item.Student.UserName;
                 BuildNotificationForStudent(item, course);
+
+                // Check if student now qualifies for Commissioning.  If so, sent notification stating that they meet the minimum requirements
+                var totalCoresPassed = TotalCoresPassed(item);
+                var totalElectivesPassed = TotalElectivesPassed(item);
+                if (totalCoresPassed >= totalCoresNeeded && totalElectivesPassed >= totalElectivesNeeded)
+                {
+                    BuildNotificationForStudentRegardingCommissioning(course, item, totalElectivesPassed, totalCoresPassed);
+                }
             }
+        }
+
+        private int TotalElectivesPassed(Enrollment item)
+        {
+            int totalElectivesPassed = db.Enrollments.Count(s => s.StudentID == item.Student.StudentID
+                                                                 && s.Grade == "pass"
+                                                                 && s.Course.Elective);
+            return totalElectivesPassed;
+        }
+
+        private int TotalCoresPassed(Enrollment item)
+        {
+            int totalCoresPassed = db.Enrollments.Count(s => s.StudentID == item.Student.StudentID
+                                                             && s.Grade == "pass"
+                                                             && s.Course.Elective == false);
+            return totalCoresPassed;
+        }
+
+        private void BuildNotificationForStudentRegardingCommissioning(Course course, Enrollment item, int totalElectivesPassed,
+                                                                       int totalCoresPassed)
+        {
+            var newNotificationForStudentRegardingCommissioning = new Notification
+                                                                      {
+                                                                          Time = DateTime.Now,
+                                                                          Details =
+                                                                              "With " + totalCoresPassed + " core and " +
+                                                                              totalElectivesPassed +
+                                                                              " elective courses complete, you meet the minimum requirements to apply for Commissioning.",
+                                                                          Link =
+                                                                              Url.Action("Index", "Commissioning",
+                                                                                         new {id = course.CourseID}),
+                                                                          ViewableBy = item.Student.UserName,
+                                                                          Complete = false
+                                                                      };
+            db.Notification.Add(newNotificationForStudentRegardingCommissioning);
         }
 
         private void BuildNotificationForStudent(Enrollment item, Course course)
