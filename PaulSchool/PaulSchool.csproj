@@ -150,6 +150,7 @@
     <Content Include="Views\Attendance\ArchivedCourse.cshtml" />
     <Content Include="Views\Course\FullCourseList.cshtml" />
     <Content Include="Views\Attendance\Message.cshtml" />
+    <Content Include="Views\Commissioning\QualifyForCommissioning.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\ASPNETDB.MDF" />

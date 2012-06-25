@@ -1,8 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data;
+using System.Diagnostics;
 using System.Linq;
 using System.Web.Mvc;
 using PaulSchool.Models;
+using System.Web.Security;
 
 namespace PaulSchool.Controllers
 {
@@ -10,16 +14,32 @@ namespace PaulSchool.Controllers
     {
         private readonly SchoolContext db = new SchoolContext();
 
-        //
-        // GET: /Commissioning/
-
         public ViewResult Index()
         {
             return View(db.ApplicationCommissionings.ToList());
         }
 
-        //
-        // GET: /Commissioning/Details/5
+        public ViewResult QualifyForCommissioning()
+        {
+            var minCoresNeeded = 0;//db.CommissioningRequirementse.Find(1).CoreCoursesRequired;
+            var minElectivesNeeded = 0;//db.CommissioningRequirementse.Find(1).ElectiveCoursesRequired;
+
+            IEnumerable<MembershipUser> users = Membership.GetAllUsers().Cast<MembershipUser>();
+            ICollection<Student> qualifiedUsers = new List<Student>();
+            foreach (var user in users)
+            {
+                Debug.Write("we got into foreach loop");
+                var thisStudent = db.Students.FirstOrDefault( o => o.UserName == user.UserName);
+                var coresPassed = TotalCoresPassed(thisStudent);
+                var electivesPassed = TotalElectivesPassed(thisStudent);
+                if (coresPassed >= minCoresNeeded && electivesPassed >= minElectivesNeeded)
+                {
+                    qualifiedUsers.Add(thisStudent);
+                }
+                Debug.Write("we got to the end of the foreach loop");
+            }
+            return View(qualifiedUsers);
+        }
 
         public ViewResult Details(int id)
         {
@@ -39,9 +59,6 @@ namespace PaulSchool.Controllers
 
             return View(applicationcommissioning);
         }
-
-        //
-        // GET: /Commissioning/Create
 
         public ActionResult Create()
         {
@@ -116,9 +133,6 @@ namespace PaulSchool.Controllers
             return totalElectivesPassed;
         }
 
-        //
-        // POST: /Commissioning/Create
-
         [HttpPost]
         public ActionResult Create(ApplicationCommissioning applicationcommissioning)
         {
@@ -151,17 +165,11 @@ namespace PaulSchool.Controllers
             return View(applicationcommissioning);
         }
         
-        //
-        // GET: /Commissioning/Edit/5
- 
         public ActionResult Edit(int id)
         {
             ApplicationCommissioning applicationcommissioning = db.ApplicationCommissionings.Find(id);
             return View(applicationcommissioning);
         }
-
-        //
-        // POST: /Commissioning/Edit/5
 
         [HttpPost]
         public ActionResult Edit(ApplicationCommissioning applicationcommissioning)
@@ -193,8 +201,6 @@ namespace PaulSchool.Controllers
             return View(applicationcommissioning);
         }
 
-        //
-        // GET: /Commissioning/Delete/5
         [Authorize(Roles = "Administrator, SuperAdministrator")]
         public ActionResult Delete(int id)
         {
@@ -202,8 +208,6 @@ namespace PaulSchool.Controllers
             return View(applicationcommissioning);
         }
 
-        //
-        // POST: /Commissioning/Delete/5
         [Authorize(Roles = "Administrator, SuperAdministrator")]
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id, ApplicationCommissioning hasReasonForDeletion)
