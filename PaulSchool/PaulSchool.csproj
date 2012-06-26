@@ -153,6 +153,7 @@
     <Content Include="Views\Attendance\Message.cshtml" />
     <Content Include="Views\Commissioning\QualifyForCommissioning.cshtml" />
     <Content Include="Views\Student\SendStudentAnEmail.cshtml" />
+    <Content Include="Views\Notification\EmailList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\ASPNETDB.MDF" />

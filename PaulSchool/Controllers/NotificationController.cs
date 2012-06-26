@@ -1,6 +1,8 @@
-﻿using System.Data;
+﻿using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web.Mvc;
+using System.Web.Security;
 using PaulSchool.Models;
 
 namespace PaulSchool.Controllers
@@ -123,6 +125,18 @@ namespace PaulSchool.Controllers
             return RedirectToAction("Index");
         }
 
+        [Authorize(Roles = "Administrator, SuperAdministrator")]
+        public ActionResult EmailList()
+        {
+            IEnumerable<MembershipUser> users = Membership.GetAllUsers().Cast<MembershipUser>();
+            ICollection<string> emailList = new List<string>();
+            foreach (var user in users)
+            {
+                string thisEmail = user.Email + ", ";
+                emailList.Add(thisEmail);
+            }
+            return View(emailList);
+        }
         protected override void Dispose(bool disposing)
         {
             db.Dispose();

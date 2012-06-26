@@ -1,4 +1,5 @@
-﻿@model IEnumerable<PaulSchool.Models.Notification>
+﻿@using PaulSchool.Models
+@model IEnumerable<PaulSchool.Models.Notification>
 
 @{
     ViewBag.Title = "Index";
@@ -26,29 +27,38 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Time)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Details)
-        </td>
-        <td>
-            <a href=@item.Link>View</a>
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ViewableBy)
-        </td>
-        <td>
-            @Html.ActionLink("Remove Notification from Queu", "Complete", new { id=item.NotificationID })
-            @{if (User.IsInRole("SuperAdministrator"))
-              {
-                  @Html.ActionLink("Delete", "Delete", new { id = item.NotificationID });                  
-              }
-            }
-        </td>
-    </tr>
-}
-
+    @foreach (Notification item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Time)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Details)
+            </td>
+            <td>
+                <a href=@item.Link>View</a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ViewableBy)
+            </td>
+            <td>
+                @Html.ActionLink("Remove Notification from Queu", "Complete", new {id = item.NotificationID})
+                @{
+                    if (User.IsInRole("SuperAdministrator"))
+                    {
+                        @Html.ActionLink("Delete", "Delete", new {id = item.NotificationID})
+                        ;
+                    }
+                }
+            </td>
+        </tr>
+    }
 </table>
+@{
+    if (User.IsInRole("Administrator"))
+    {
+        @Html.ActionLink("Get Email List", "EmailList")
+        ;
+    }
+}
