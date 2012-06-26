@@ -84,16 +84,16 @@ namespace PaulSchool.Controllers
             Student student = db.Students.Find(id);
             //ViewBag.testCompletedCoreCourses = (from o in student where o.enrollment)
 
-            var totalCoresPassed = db.Enrollments.Where(s => s.StudentID == id
-                                                 && s.Grade == "pass"
-                                                 && s.Course.Elective == false).Count();
+            int totalCoresPassed = db.Enrollments.Where(s => s.StudentID == id
+                                                             && s.Grade == "pass"
+                                                             && s.Course.Elective == false).Count();
 
-            var totalElectivesPassed = db.Enrollments.Where(s => s.StudentID ==  id
+            int totalElectivesPassed = db.Enrollments.Where(s => s.StudentID == id
                                                                  && s.Grade == "pass"
-                                                                 && s.Course.Elective == true).Count();
+                                                                 && s.Course.Elective).Count();
 
-            var totalCoresNeeded = db.CommissioningRequirementse.Find(1).CoreCoursesRequired;
-            var totalElectivesNeeded = db.CommissioningRequirementse.Find(1).ElectiveCoursesRequired;
+            int totalCoresNeeded = db.CommissioningRequirementse.Find(1).CoreCoursesRequired;
+            int totalElectivesNeeded = db.CommissioningRequirementse.Find(1).ElectiveCoursesRequired;
 
             ViewBag.coresPassed = totalCoresPassed;
             ViewBag.electivesPassed = totalElectivesPassed;
@@ -278,25 +278,22 @@ namespace PaulSchool.Controllers
         {
             //if (ModelState.IsValid)
             //{
-                Debug.Write(emailFormCollection["email"]);
-                Debug.Write(emailFormCollection["subject"]);
-                Debug.Write(emailFormCollection["body"]);
+            Debug.Write(emailFormCollection["email"]);
+            Debug.Write(emailFormCollection["subject"]);
+            Debug.Write(emailFormCollection["body"]);
             var email = new EmailViewModel
-                                {
-                                    Email = emailFormCollection["email"],
-                                    Subject = emailFormCollection["subject"],
-                                    Body = emailFormCollection["body"]
-                                };
-                AccountMembershipService.SendCustomEmail(email);
-                return RedirectToAction("Message", "Course", new { message = "Your email has been sent." });
+                            {
+                                Email = emailFormCollection["email"],
+                                Subject = emailFormCollection["subject"],
+                                Body = emailFormCollection["body"]
+                            };
+            AccountMembershipService.SendCustomEmail(email);
+            return RedirectToAction("Message", "Course", new {message = "Your email has been sent."});
             //}
             //else
             //{
             //    return View("Error");
             //}
-            
         }
-
-
     }
 }

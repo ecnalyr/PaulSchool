@@ -1,4 +1,5 @@
-﻿@model PaulSchool.ViewModels.AttendanceReportViewModel
+﻿@using PaulSchool.Models
+@model PaulSchool.ViewModels.AttendanceReportViewModel
 
 @{
     ViewBag.Title = "StudentDetails";
@@ -6,29 +7,29 @@
 
 <h2>StudentDetails</h2>
 <p>    
-@{
+    @{
         if (!string.IsNullOrEmpty(TempData["tempMessage"] as string))
         {
             <b class="error">@TempData["tempMessage"].ToString()</b>
-        }  
+        }
     }
 </p>
 <table>
     <thead>
         <tr>
             <th>Attendance Day</th>
-            @foreach (var attendanceDay in Model.AttendanceDays)
+            @foreach (int attendanceDay in Model.AttendanceDays)
             {
                 <th>@attendanceDay</th>
             }
         </tr>
     </thead>
     <tbody>
-        @foreach (var student in Model.Students)
+        @foreach (Student student in Model.Students)
         {
             <tr>
                 <td>@student.LastName</td>
-                @foreach (var attendanceDay in Model.AttendanceDays)
+                @foreach (int attendanceDay in Model.AttendanceDays)
                 {
                     <td>@Model.IsPresent(student, attendanceDay)</td>
                 }
