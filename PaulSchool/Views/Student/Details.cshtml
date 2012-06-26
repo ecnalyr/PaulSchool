@@ -17,7 +17,7 @@
 
     <p><b>Name:</b> @Html.DisplayFor(model => model.FirstMidName) @Html.DisplayFor(model => model.LastName)</p>
 
-    <p><b>Email:</b> @Html.DisplayFor(model => model.Email)</p>
+    <p><b>Email:</b> @Html.DisplayFor(model => model.Email) @Html.ActionLink("Send an email", "SendStudentAnEmail", new { emailAddress = Model.Email })</p>
 
     <p><b>Enrollment Date:</b> @Html.DisplayFor(model => model.EnrollmentDate)</p>
 

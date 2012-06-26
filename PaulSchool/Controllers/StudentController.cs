@@ -274,13 +274,19 @@ namespace PaulSchool.Controllers
 
         [HttpPost]
         //[Authorize(Roles = "Administrator, SuperAdministrator")]
-        public ActionResult SendStudentAnEmail(EmailViewModel email)
+        public ActionResult SendStudentAnEmail(FormCollection emailFormCollection)
         {
             //if (ModelState.IsValid)
             //{
-                Debug.Write(email.Subject);
-                Debug.Write(email.Body);
-                Debug.Write(email.Email);
+                Debug.Write(emailFormCollection["email"]);
+                Debug.Write(emailFormCollection["subject"]);
+                Debug.Write(emailFormCollection["body"]);
+            var email = new EmailViewModel
+                                {
+                                    Email = emailFormCollection["email"],
+                                    Subject = emailFormCollection["subject"],
+                                    Body = emailFormCollection["body"]
+                                };
                 AccountMembershipService.SendCustomEmail(email);
                 return RedirectToAction("Message", "Course", new { message = "Your email has been sent." });
             //}

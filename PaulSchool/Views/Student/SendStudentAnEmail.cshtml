@@ -26,7 +26,7 @@
             @Html.LabelFor(model => model.Subject)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.Subject)
+            @Html.TextBoxFor(model => model.Subject, new{style="width:100%"})
             @Html.ValidationMessageFor(model => model.Subject)
         </div>
 
@@ -34,7 +34,7 @@
             @Html.LabelFor(model => model.Body)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.Body)
+            @Html.TextAreaFor(model => model.Body, new{ style="width:100%"})
             @Html.ValidationMessageFor(model => model.Body)
         </div>
 
