@@ -369,5 +369,11 @@ namespace PaulSchool.Controllers
                                       };
             db.Notification.Add(newNotification);
         }
+
+        protected override void Dispose(bool disposing)
+        {
+            db.Dispose();
+            base.Dispose(disposing);
+        }
     }
 }

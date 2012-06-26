@@ -712,5 +712,11 @@ namespace PaulSchool.Controllers
             db.SaveChanges();
             return RedirectToAction("Index", "Notification");
         }
+
+        protected override void Dispose(bool disposing)
+        {
+            db.Dispose();
+            base.Dispose(disposing);
+        }
     }
 }

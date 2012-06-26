@@ -1,12 +1,5 @@
 ﻿<RecentFiles>
   <RecentFiles>
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Attendance/f:EditIndividualAttendance.cshtml" caret="0" fromTop="0" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Attendance/f:Index.cshtml" caret="0" fromTop="0" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Course/f:ApplyToCourse.cshtml" caret="909" fromTop="5" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Course/f:Index.cshtml" caret="2612" fromTop="16" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Course/f:Message.cshtml" caret="84" fromTop="6" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Attendance/f:Message.cshtml" caret="84" fromTop="6" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Course/f:Details.cshtml" caret="6207" fromTop="8" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:ViewModels/f:AttendanceReportViewModel.cs" caret="499" fromTop="13" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Attendance/f:AttendanceView.cshtml" caret="0" fromTop="0" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Course/f:FullCourseList.cshtml" caret="0" fromTop="0" />
@@ -19,40 +12,33 @@
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Student/f:Details.cshtml" caret="730" fromTop="19" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:ViewModels/f:EmailViewModel.cs" caret="469" fromTop="19" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Account/f:LogOn.cshtml" caret="227" fromTop="11" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:CourseController.cs" caret="14957" fromTop="21" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Shared/f:_Layout.cshtml" caret="848" fromTop="16" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Attendance/f:StudentDetails.cshtml" caret="26" fromTop="1" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:AttendanceController.cs" caret="4564" fromTop="15" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:AccountController.cs" caret="13512" fromTop="9" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:StudentController.cs" caret="271" fromTop="12" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Student/f:SendStudentAnEmail.cshtml" caret="1136" fromTop="20" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Notification/f:Index.cshtml" caret="1451" fromTop="36" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Notification/f:EmailList.cshtml" caret="185" fromTop="11" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:CommissioningController.cs" caret="9095" fromTop="20" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:NotificationController.cs" caret="3555" fromTop="22" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Notification/f:EmailList.cshtml" caret="0" fromTop="0" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:NotificationController.cs" caret="4061" fromTop="28" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:StudentController.cs" caret="11570" fromTop="20" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:InstructorController.cs" caret="11145" fromTop="20" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:InstructorApplicationController.cs" caret="12913" fromTop="35" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:HomeController.cs" caret="357" fromTop="17" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:CourseTemplatesController.cs" caret="2646" fromTop="24" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:CourseController.cs" caret="34566" fromTop="37" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:CommissioningRequirementsController.cs" caret="0" fromTop="0" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:CommissioningController.cs" caret="48" fromTop="1" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:AttendanceController.cs" caret="19335" fromTop="28" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:AccountController.cs" caret="14739" fromTop="21" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Models/f:AccountModels.cs" caret="2952" fromTop="20" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Account/f:Register.cshtml" caret="3543" fromTop="23" />
   </RecentFiles>
   <RecentEdits>
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Models/f:AccountMembershipService.cs" caret="1586" fromTop="35" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Models/f:AccountMembershipService.cs" caret="1440" fromTop="30" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Models/f:AccountMembershipService.cs" caret="1141" fromTop="27" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:StudentController.cs" caret="13113" fromTop="23" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:StudentController.cs" caret="13111" fromTop="11" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:StudentController.cs" caret="13111" fromTop="22" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:StudentController.cs" caret="13111" fromTop="18" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:StudentController.cs" caret="12386" fromTop="15" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:ViewModels/f:EmailViewModel.cs" caret="469" fromTop="19" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Student/f:Details.cshtml" caret="730" fromTop="19" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Student/f:SendStudentAnEmail.cshtml" caret="1204" fromTop="24" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Student/f:SendStudentAnEmail.cshtml" caret="950" fromTop="16" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Attendance/f:StudentDetails.cshtml" caret="157" fromTop="7" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Attendance/f:StudentDetails.cshtml" caret="348" fromTop="14" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:CourseController.cs" caret="14956" fromTop="21" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Shared/f:_Layout.cshtml" caret="1781" fromTop="28" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Shared/f:_Layout.cshtml" caret="848" fromTop="16" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Attendance/f:StudentDetails.cshtml" caret="26" fromTop="1" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:StudentController.cs" caret="271" fromTop="12" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Student/f:SendStudentAnEmail.cshtml" caret="0" fromTop="0" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:CommissioningController.cs" caret="890" fromTop="20" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:CommissioningController.cs" caret="851" fromTop="20" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:NotificationController.cs" caret="4038" fromTop="31" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Notification/f:EmailList.cshtml" caret="18" fromTop="0" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Notification/f:EmailList.cshtml" caret="96" fromTop="7" />
@@ -62,5 +48,19 @@
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:NotificationController.cs" caret="3986" fromTop="29" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Notification/f:EmailList.cshtml" caret="185" fromTop="11" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:NotificationController.cs" caret="3555" fromTop="22" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:InstructorApplicationController.cs" caret="12771" fromTop="31" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:InstructorApplicationController.cs" caret="12913" fromTop="35" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:HomeController.cs" caret="357" fromTop="18" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:HomeController.cs" caret="357" fromTop="17" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:CourseController.cs" caret="34424" fromTop="33" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:CourseController.cs" caret="34566" fromTop="37" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:CommissioningRequirementsController.cs" caret="0" fromTop="0" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:CommissioningController.cs" caret="48" fromTop="1" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:AttendanceController.cs" caret="19193" fromTop="24" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:AttendanceController.cs" caret="19335" fromTop="28" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:AccountController.cs" caret="14597" fromTop="17" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:AccountController.cs" caret="14739" fromTop="21" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Account/f:Register.cshtml" caret="3836" fromTop="31" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Account/f:Register.cshtml" caret="3543" fromTop="23" />
   </RecentEdits>
 </RecentFiles>
