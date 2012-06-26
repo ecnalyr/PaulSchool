@@ -5,6 +5,14 @@
 }
 
 <h2>StudentDetails</h2>
+<p>    
+@{
+        if (!string.IsNullOrEmpty(TempData["tempMessage"] as string))
+        {
+            <b class="error">@TempData["tempMessage"].ToString()</b>
+        }  
+    }
+</p>
 <table>
     <thead>
         <tr>

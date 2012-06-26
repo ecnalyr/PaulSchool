@@ -315,7 +315,9 @@ namespace PaulSchool.Controllers
                     if (course.Enrollments.Count < course.AttendanceCap)
                     {
                         CreateEnrollmentAttendanceAndNotificationData(course, thisStudent);
-                        return RedirectToAction("Message", new { message = "You have been enrolled in the course" });
+                        TempData["tempMessage"] = "You have successfully enrolled in this Course. (Please note that the below details are default values until your Instructor updates them)";
+                        return RedirectToAction("StudentDetails", "Attendance", new {id = course.CourseID});
+                        //return RedirectToAction("Message", new { message = "You have been enrolled in the course" });
                     }
                     return RedirectToAction("Message", new { message = "This course is full." });
                 }
