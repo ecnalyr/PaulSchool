@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Diagnostics;
 using System.Linq;
 using System.Web.Mvc;
 using System.Web.Routing;
@@ -102,9 +103,6 @@ namespace PaulSchool.Controllers
             ViewBag.testCompletedElectiveCourses = 1;
             return View(student);
         }
-
-        //
-        // GET: /Student/Create
 
         public ActionResult Create()
         {
@@ -261,5 +259,38 @@ namespace PaulSchool.Controllers
 
             return View();
         }
+
+        [Authorize(Roles = "Administrator, SuperAdministrator")]
+        public ActionResult SendStudentAnEmail(string emailAddress)
+        {
+            var emailViewModel = new EmailViewModel
+                                     {
+                                         Email = emailAddress,
+                                         Subject = "Put Subject Here",
+                                         Body = "Put Body Here"
+                                     };
+            return View(emailViewModel);
+        }
+
+        [HttpPost]
+        //[Authorize(Roles = "Administrator, SuperAdministrator")]
+        public ActionResult SendStudentAnEmail(EmailViewModel email)
+        {
+            //if (ModelState.IsValid)
+            //{
+                Debug.Write(email.Subject);
+                Debug.Write(email.Body);
+                Debug.Write(email.Email);
+                AccountMembershipService.SendCustomEmail(email);
+                return RedirectToAction("Message", "Course", new { message = "Your email has been sent." });
+            //}
+            //else
+            //{
+            //    return View("Error");
+            //}
+            
+        }
+
+
     }
 }

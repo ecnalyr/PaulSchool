@@ -130,6 +130,7 @@
     <Compile Include="ViewModels\ChangeEmailViewModel.cs" />
     <Compile Include="ViewModels\EditCommentGradeViewModel.cs" />
     <Compile Include="ViewModels\CreateStudentViewModel.cs" />
+    <Compile Include="ViewModels\EmailViewModel.cs" />
     <Compile Include="ViewModels\InstructorApplicationViewModel.cs" />
     <Compile Include="ViewModels\PasswordResetViewModel.cs" />
     <Compile Include="ViewModels\ProfileViewModel.cs" />
