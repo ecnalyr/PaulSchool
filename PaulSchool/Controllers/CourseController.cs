@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.Entity;
+using System.Diagnostics;
 using System.Linq;
 using System.Web.Mvc;
 using System.Web.Security;
@@ -35,6 +36,7 @@ namespace PaulSchool.Controllers
                                       Location = selectedTemplate.Location,
                                       Parish = selectedTemplate.Parish,
                                       Description = selectedTemplate.Description,
+                                      Cost = selectedTemplate.Cost,
                                       StartDate = DateTime.Now,
                                       EndDate = DateTime.Now.AddMonths(1)
                                   };
@@ -57,6 +59,7 @@ namespace PaulSchool.Controllers
             ViewBag.LocationSortParm = sortOrder == "Location" ? "Location desc" : "Location";
             ViewBag.ParishSortParm = sortOrder == "Parish" ? "Parish desc" : "Parish";
             ViewBag.DescriptionSortParm = sortOrder == "Description" ? "Description desc" : "Description";
+            ViewBag.CostSortParm = sortOrder == "Cost" ? "Cost desc" : "Cost";
             ViewBag.ApprovedSortPArm = sortOrder == "Approved" ? "Approved desc" : "Approved";
             ViewBag.CompletedSortPArm = sortOrder == "Completed" ? "Completed desc" : "Completed";
 
@@ -141,6 +144,12 @@ namespace PaulSchool.Controllers
                 case "Description desc":
                     courses = courses.OrderByDescending(s => s.Description);
                     break;
+                case "Cost":
+                    courses = courses.OrderBy(s => s.Cost);
+                    break;
+                case "Cost desc":
+                    courses = courses.OrderByDescending(s => s.Cost);
+                    break;
                 case "Approved":
                     courses = courses.OrderBy(s => s.Approved);
                     break;
@@ -178,6 +187,7 @@ namespace PaulSchool.Controllers
             ViewBag.LocationSortParm = sortOrder == "Location" ? "Location desc" : "Location";
             ViewBag.ParishSortParm = sortOrder == "Parish" ? "Parish desc" : "Parish";
             ViewBag.DescriptionSortParm = sortOrder == "Description" ? "Description desc" : "Description";
+            ViewBag.CostSortParm = sortOrder == "Cost" ? "Cost desc" : "Cost";
             ViewBag.ApprovedSortPArm = sortOrder == "Approved" ? "Approved desc" : "Approved";
             ViewBag.CompletedSortPArm = sortOrder == "Completed" ? "Completed desc" : "Completed";
             ViewBag.ArchivedSortPArm = sortOrder == "Archived" ? "Archived desc" : "Archived";
@@ -263,6 +273,12 @@ namespace PaulSchool.Controllers
                 case "Description desc":
                     courses = courses.OrderByDescending(s => s.Description);
                     break;
+                case "Cost":
+                    courses = courses.OrderBy(s => s.Cost);
+                    break;
+                case "Cost desc":
+                    courses = courses.OrderByDescending(s => s.Cost);
+                    break;
                 case "Approved":
                     courses = courses.OrderBy(s => s.Approved);
                     break;
@@ -315,15 +331,21 @@ namespace PaulSchool.Controllers
                     if (course.Enrollments.Count < course.AttendanceCap)
                     {
                         CreateEnrollmentAttendanceAndNotificationData(course, thisStudent);
-                        TempData["tempMessage"] = "You have successfully enrolled in this Course. (Please note that the below details are default values until your Instructor updates them)";
+                        TempData["tempMessage"] =
+                            "You have successfully enrolled in this Course. (Please note that the below details are default values until your Instructor updates them)";
                         return RedirectToAction("StudentDetails", "Attendance", new {id = course.CourseID});
                         //return RedirectToAction("Message", new { message = "You have been enrolled in the course" });
                     }
-                    return RedirectToAction("Message", new { message = "This course is full." });
+                    return RedirectToAction("Message", new {message = "This course is full."});
                 }
-                return RedirectToAction("Message", new { message = "This student is already enrolled in this course." });
+                return RedirectToAction("Message", new {message = "This student is already enrolled in this course."});
             }
-            return RedirectToAction("Message", new { message = "Course is not ready to be joined, it has not been approved by an Administrator." });
+            return RedirectToAction("Message",
+                                    new
+                                        {
+                                            message =
+                                        "Course is not ready to be joined, it has not been approved by an Administrator."
+                                        });
         }
 
         private void CreateEnrollmentAttendanceAndNotificationData(Course course, Student thisStudent)
@@ -398,6 +420,7 @@ namespace PaulSchool.Controllers
         {
             if (ModelState.IsValid)
             {
+                Debug.Write(appliedCourse.Cost);
                 Instructor instructor = db.Instructors.FirstOrDefault(
                     o => o.UserName == User.Identity.Name);
 
@@ -420,12 +443,15 @@ namespace PaulSchool.Controllers
                 // the instructor there will be "null" in the "instructor" variable
 
                 Course newCourse = BuildCourseData(appliedCourse, instructorAgain);
+                Debug.Write(appliedCourse.Cost);
                 db.SaveChanges();
                 BuildNotificationData(appliedCourse, instructorAgain, newCourse);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                TempData["tempMessage"] =
+                    "You have successfully applied to teach this course.  A notification has been sent to an administrator so they can review the application.  You will receive a notification when an administrator takes action on your application to teach.";
+                return RedirectToAction("Details", new {id = newCourse.CourseID});
             }
-            return View("ValidationFailed");
+            return View("Error");
         }
 
         private void BuildNotificationData(ApplyCourseViewModel appliedCourse, Instructor instructorAgain,
@@ -446,6 +472,7 @@ namespace PaulSchool.Controllers
 
         private Course BuildCourseData(ApplyCourseViewModel appliedCourse, Instructor instructorAgain)
         {
+            Debug.Write(appliedCourse.Cost);
             var newCourse = new Course
                                 {
                                     Title = appliedCourse.Title,
@@ -462,6 +489,7 @@ namespace PaulSchool.Controllers
                                     Location = appliedCourse.Location,
                                     Parish = appliedCourse.Parish,
                                     Description = appliedCourse.Description,
+                                    Cost = appliedCourse.Cost,
                                     Approved = false,
                                     Completed = false,
                                     Archived = false
@@ -677,6 +705,8 @@ namespace PaulSchool.Controllers
                                           };
                 db.Notification.Add(newNotification);
                 db.SaveChanges();
+                TempData["tempMessage"] =
+                    "You have successfully applied edited this course.  A notification has been sent to the instructor who applied to teach this course.";
                 return RedirectToAction("Index");
             }
             return View(course);

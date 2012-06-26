@@ -38,6 +38,8 @@ namespace PaulSchool.Models
 
         public string Description { get; set; }
 
+        public decimal Cost { get; set; }
+
         public string AdminDenialReason { get; set; }
 
         public bool Approved { get; set; } // yes, no - needs to be a drop down

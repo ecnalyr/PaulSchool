@@ -26,6 +26,7 @@
             <th>Location</th>
             <th>Parish</th>
             <th>Description</th>
+            <th>Cost</th>
             <th>Admin Approved?</th>
             <th>Completed?</th>
         </tr>
@@ -55,6 +56,9 @@
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Cost)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Approved)

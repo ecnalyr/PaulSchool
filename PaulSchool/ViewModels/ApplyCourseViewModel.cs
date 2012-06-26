@@ -62,5 +62,8 @@ namespace PaulSchool.ViewModels
 
         [Required]
         public string Description { get; set; }
+
+        [Required]
+        public decimal Cost { get; set; }
     }
 }
