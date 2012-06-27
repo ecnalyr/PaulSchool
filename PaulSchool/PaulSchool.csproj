@@ -46,6 +46,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\EntityFramework.4.3.1\lib\net40\EntityFramework.dll</HintPath>
     </Reference>
+    <Reference Include="iTextSharp">
+      <HintPath>..\packages\iTextSharp-LGPL.4.1.6\lib\iTextSharp.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="PagedList, Version=1.14.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -96,6 +99,8 @@
     <Compile Include="Controllers\AccountController.cs" />
     <None Include="Controllers\AccountController.cs.new" />
     <Compile Include="Controllers\AttendanceController.cs" />
+    <Compile Include="Controllers\BinaryContentResult.cs" />
+    <Compile Include="Controllers\CertificateController.cs" />
     <Compile Include="Controllers\CommissioningController.cs" />
     <Compile Include="Controllers\CommissioningRequirementsController.cs" />
     <Compile Include="Controllers\CourseController.cs" />
@@ -104,6 +109,7 @@
     <Compile Include="Controllers\InstructorApplicationController.cs" />
     <Compile Include="Controllers\InstructorController.cs" />
     <Compile Include="Controllers\NotificationController.cs" />
+    <Compile Include="Controllers\PdfController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="CustomViewEngine.cs" />
     <Compile Include="Helpers\HtmlHelpers.cs" />
@@ -145,6 +151,7 @@
     <Compile Include="Models\Enrollment.cs" />
     <Compile Include="Models\Student.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="Content\images\acenturyoftradition.jpg" />
     <Content Include="Views\Account\Welcome.cshtml" />
     <Content Include="Views\Account\Verify.cshtml" />
     <Content Include="Views\Account\PasswordReset.cshtml" />
@@ -156,6 +163,8 @@
     <Content Include="Views\Student\SendStudentAnEmail.cshtml" />
     <Content Include="Views\Notification\EmailList.cshtml" />
     <Content Include="Views\Home\PaypalTest.cshtml" />
+    <Content Include="Views\Certificate\OrdersInHtml.cshtml" />
+    <None Include="Views\Certificate\OrdersInPdf.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\ASPNETDB.MDF" />

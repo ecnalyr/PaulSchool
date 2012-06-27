@@ -1,0 +1,20 @@
+﻿@model PaulSchool.Models.Student
+
+@{
+    Layout = null;
+}
+
+
+<?xml version="1.0" encoding="UTF-8" ?>
+<itext creationdate="2/4/2013 5:49:07 PM" producer="iTextSharpXML">
+    <paragraph leading="18.0" font="unknown" size="16.0" align="Center">
+        <chunk>Orders in PDF</chunk>
+    </paragraph>
+	<paragraph leading="18.0" font="unknown" size="10.0" align="Default">
+		<chunk>First Name: @Html.DisplayFor(model => model.FirstMidName) </chunk><newline />
+		<chunk>Last Name: @Html.DisplayFor(model => model.LastName)</chunk><newline />
+	</paragraph>
+	<paragraph leading="18.0" font="unknown" size="10.0" align="Default">
+	<chunk font="unknown" size="12.0">Orders:</chunk><newline />
+	</paragraph>
+</itext>
