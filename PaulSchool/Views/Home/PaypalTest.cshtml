@@ -1,0 +1,18 @@
+﻿@using PaulSchool.Helpers
+@{
+    ViewBag.Title = "PaypalTest";
+}
+
+
+<h2>PaypalTest</h2>
+
+@Html.PayPalButton(true,
+HtmlHelpers.EButtonType.BuyNow,
+    "ecnaly_1340772680_biz@gmail.com",
+"CourseName",
+"CourseNumber?",
+10.00f,
+HtmlHelpers.ECurrencyCode.USD,
+"http://URL.com/home/complete",
+    "http://URL.com/home/cancel",
+    "http://URL.com/home/ipn")

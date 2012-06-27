@@ -1,12 +1,5 @@
 ﻿<RecentFiles>
   <RecentFiles>
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:CommissioningRequirementsController.cs" caret="0" fromTop="0" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:CommissioningController.cs" caret="48" fromTop="1" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:AttendanceController.cs" caret="19335" fromTop="28" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Account/f:Register.cshtml" caret="0" fromTop="0" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Models/f:AccountModels.cs" caret="2952" fromTop="20" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:StudentController.cs" caret="12779" fromTop="18" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:CourseTemplatesController.cs" caret="0" fromTop="0" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:CourseTemplates/f:Create.cshtml" caret="3117" fromTop="28" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:CourseTemplates/f:Edit.cshtml" caret="2828" fromTop="10" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Models/f:CourseTemplates.cs" caret="1364" fromTop="18" />
@@ -30,14 +23,15 @@
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:AccountController.cs" caret="12465" fromTop="6" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Course/f:Details.cshtml" caret="285" fromTop="14" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Course/f:EditCourse.cshtml" caret="4909" fromTop="10" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Account/f:Profile.cshtml" caret="84" fromTop="3" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Account/f:PasswordReset.cshtml" caret="0" fromTop="0" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:HomeController.cs" caret="449" fromTop="21" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Account/f:Verify.cshtml" caret="0" fromTop="0" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Commissioning/f:Details.cshtml" caret="0" fromTop="0" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Helpers/f:HtmlHelpers.cs" caret="164" fromTop="8" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Home/f:PaypalTest.cshtml" caret="361" fromTop="17" />
   </RecentFiles>
   <RecentEdits>
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:CourseController.cs" caret="24371" fromTop="11" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:CourseController.cs" caret="3281" fromTop="11" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:CourseController.cs" caret="9408" fromTop="11" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Course/f:_CourseForm.cshtml" caret="4738" fromTop="21" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Course/f:_CourseForm.cshtml" caret="4721" fromTop="17" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Course/f:ApplyToCourse.cshtml" caret="4479" fromTop="121" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Course/f:Delete.cshtml" caret="2369" fromTop="18" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Course/f:Details.cshtml" caret="3591" fromTop="20" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Course/f:Details.cshtml" caret="3564" fromTop="18" />
@@ -62,5 +56,11 @@
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:CourseController.cs" caret="22064" fromTop="16" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Course/f:EditCourse.cshtml" caret="4909" fromTop="10" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:CourseController.cs" caret="34515" fromTop="12" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:HomeController.cs" caret="431" fromTop="20" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Helpers/f:HtmlHelpers.cs" caret="73" fromTop="3" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Home/f:PaypalTest.cshtml" caret="25" fromTop="0" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Home/f:PaypalTest.cshtml" caret="115" fromTop="8" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Home/f:PaypalTest.cshtml" caret="196" fromTop="11" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Home/f:PaypalTest.cshtml" caret="361" fromTop="17" />
   </RecentEdits>
 </RecentFiles>
