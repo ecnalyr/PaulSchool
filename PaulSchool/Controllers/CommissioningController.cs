@@ -15,6 +15,7 @@ namespace PaulSchool.Controllers
     {
         private readonly SchoolContext db = new SchoolContext();
 
+        [Authorize(Roles = "Administrator, SuperAdministrator")]
         public ViewResult Index()
         {
             return View(db.ApplicationCommissionings.Where(o => o.Approved == false).ToList());
@@ -171,13 +172,15 @@ namespace PaulSchool.Controllers
 
             return View(applicationcommissioning);
         }
-        
+
+        [Authorize(Roles = "Administrator, SuperAdministrator")]
         public ActionResult Edit(int id)
         {
             ApplicationCommissioning applicationcommissioning = db.ApplicationCommissionings.Find(id);
             return View(applicationcommissioning);
         }
 
+        [Authorize(Roles = "Administrator, SuperAdministrator")]
         [HttpPost]
         public ActionResult Edit(ApplicationCommissioning applicationcommissioning)
         {
@@ -256,6 +259,7 @@ namespace PaulSchool.Controllers
             db.Notification.Add(newNotification);
 
             applicationcommissioning.Approved = true;
+            applicationcommissioning.DateApproved = DateTime.Now;
             db.SaveChanges();
             return RedirectToAction("CertificateOfCommissioning", "Certificate", new { id = applicationcommissioning.Id });
         }

@@ -1,6 +1,5 @@
 ﻿<RecentFiles>
   <RecentFiles>
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Course/f:_CourseForm.cshtml" caret="4609" fromTop="14" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:ViewModels/f:ApplyCourseViewModel.cs" caret="1869" fromTop="12" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Account/f:LogOn.cshtml" caret="227" fromTop="11" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:CourseController.cs" caret="34515" fromTop="12" />
@@ -13,45 +12,32 @@
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Home/f:PaypalTest.cshtml" caret="361" fromTop="17" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:HomeController.cs" caret="0" fromTop="0" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:BinaryContentResult.cs" caret="97" fromTop="0" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Student/f:Details.cshtml" caret="485" fromTop="8" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Shared/f:_Layout.cshtml" caret="1347" fromTop="10" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Certificate/f:OrdersInPdf.cshtml" caret="474" fromTop="13" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:PdfController.cs" caret="3300" fromTop="19" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/f:_ViewStart.cshtml" caret="0" fromTop="0" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Models/f:Student.cs" caret="493" fromTop="18" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Models/f:ApplicationCommissioning.cs" caret="969" fromTop="32" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Course/f:Details.cshtml" caret="4164" fromTop="4" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Commissioning/f:Index.cshtml" caret="116" fromTop="6" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Commissioning/f:AllApplications.cshtml" caret="120" fromTop="6" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Commissioning/f:Details.cshtml" caret="1921" fromTop="48" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:StudentController.cs" caret="0" fromTop="0" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Certificate/f:OrdersInHtml.cshtml" caret="103" fromTop="6" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Certificate/f:CertificateOfCommissioning.cshtml" caret="945" fromTop="31" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Certificate/f:CertificateOfAttendance.cshtml" caret="98" fromTop="7" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:CertificateController.cs" caret="1487" fromTop="26" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:CommissioningController.cs" caret="394" fromTop="16" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Certificate/f:CertificateOfCommissioning.cshtml" caret="652" fromTop="19" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Commissioning/f:Details.cshtml" caret="422" fromTop="13" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Commissioning/f:AllApplications.cshtml" caret="1006" fromTop="12" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Commissioning/f:Edit.cshtml" caret="2605" fromTop="9" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:CommissioningController.cs" caret="460" fromTop="17" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Models/f:ApplicationCommissioning.cs" caret="865" fromTop="25" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Student/f:Details.cshtml" caret="522" fromTop="16" />
   </RecentFiles>
   <RecentEdits>
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Certificate/f:CertificateOfAttendance.cshtml" caret="268" fromTop="23" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Certificate/f:CertificateOfAttendance.cshtml" caret="268" fromTop="19" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Certificate/f:CertificateOfAttendance.cshtml" caret="268" fromTop="14" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Certificate/f:CertificateOfAttendance.cshtml" caret="981" fromTop="30" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Certificate/f:CertificateOfAttendance.cshtml" caret="279" fromTop="14" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:CommissioningController.cs" caret="11780" fromTop="35" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Models/f:ApplicationCommissioning.cs" caret="969" fromTop="32" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:CommissioningController.cs" caret="6584" fromTop="19" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Commissioning/f:Index.cshtml" caret="2346" fromTop="19" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Commissioning/f:Index.cshtml" caret="2346" fromTop="19" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Commissioning/f:Details.cshtml" caret="1921" fromTop="21" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:CommissioningController.cs" caret="11380" fromTop="22" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:CommissioningController.cs" caret="11767" fromTop="30" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:CommissioningController.cs" caret="10768" fromTop="10" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:CommissioningController.cs" caret="10958" fromTop="10" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Commissioning/f:Index.cshtml" caret="2346" fromTop="13" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Commissioning/f:Index.cshtml" caret="2346" fromTop="7" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Commissioning/f:Index.cshtml" caret="2346" fromTop="28" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Commissioning/f:Index.cshtml" caret="2334" fromTop="39" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:CommissioningController.cs" caret="660" fromTop="24" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Commissioning/f:AllApplications.cshtml" caret="2397" fromTop="37" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:CommissioningController.cs" caret="726" fromTop="24" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Commissioning/f:AllApplications.cshtml" caret="194" fromTop="6" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Commissioning/f:Index.cshtml" caret="116" fromTop="6" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:CertificateController.cs" caret="1502" fromTop="29" />
@@ -59,8 +45,22 @@
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:CertificateController.cs" caret="1489" fromTop="26" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Certificate/f:CertificateOfCommissioning.cshtml" caret="85" fromTop="5" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Certificate/f:CertificateOfCommissioning.cshtml" caret="309" fromTop="15" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Certificate/f:CertificateOfCommissioning.cshtml" caret="680" fromTop="19" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Certificate/f:CertificateOfCommissioning.cshtml" caret="880" fromTop="26" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Certificate/f:CertificateOfCommissioning.cshtml" caret="945" fromTop="31" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Certificate/f:CertificateOfCommissioning.cshtml" caret="855" fromTop="26" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Certificate/f:CertificateOfCommissioning.cshtml" caret="920" fromTop="31" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Models/f:ApplicationCommissioning.cs" caret="865" fromTop="25" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:CommissioningController.cs" caret="11870" fromTop="23" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Certificate/f:CertificateOfCommissioning.cshtml" caret="652" fromTop="19" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Commissioning/f:Details.cshtml" caret="2156" fromTop="31" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Commissioning/f:Edit.cshtml" caret="2967" fromTop="19" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Commissioning/f:Edit.cshtml" caret="3161" fromTop="22" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Commissioning/f:AllApplications.cshtml" caret="2225" fromTop="24" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Commissioning/f:AllApplications.cshtml" caret="960" fromTop="19" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Commissioning/f:AllApplications.cshtml" caret="1752" fromTop="31" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Commissioning/f:Details.cshtml" caret="1988" fromTop="20" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Commissioning/f:Details.cshtml" caret="196" fromTop="8" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:CommissioningController.cs" caret="7958" fromTop="11" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:CommissioningController.cs" caret="7670" fromTop="11" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:CommissioningController.cs" caret="460" fromTop="17" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Student/f:Details.cshtml" caret="514" fromTop="15" />
   </RecentEdits>
 </RecentFiles>

@@ -29,6 +29,8 @@ namespace PaulSchool.Models
 
         public DateTime DateFiled { get; set; }
 
+        public DateTime? DateApproved { get; set; }
+
         public string AdminDenialReason { get; set; }
 
         public virtual Student Student { get; set; }

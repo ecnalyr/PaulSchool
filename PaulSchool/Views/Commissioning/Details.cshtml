@@ -6,7 +6,7 @@
 
 <h2>Details of application</h2>
 <p>
-    This applicant was told that they ViewBag.doOrDoNotQualify meet the minimum Course completion requirements according to this database.
+    This applicant was told that they @ViewBag.doOrDoNotQualify meet the minimum Course completion requirements according to this database.
 </p>
 <fieldset>
     <legend>ApplicationCommissioning</legend>
@@ -48,9 +48,18 @@
     <div class="display-field">
         @Html.DisplayFor(model => model.Approved)
     </div>
+    
+    @{if(Model.Approved)
+    {
+        <div class="display-label">Date approved</div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.DateApproved)
+        </div>
+    }}
+    
 </fieldset>
 <p>
-    @Html.ActionLink("Edit / Update Application", "Edit", new { id=Model.Id }) |
-    @Html.ActionLink("Deny Application", "Delete", new { id=Model.Id }) |
+    @Html.ActionLink("Edit / Update Application", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Deny Application", "Delete", new { id = Model.Id }) |
     @Html.ActionLink("Back to List of Applications", "Index")
 </p>
