@@ -166,6 +166,7 @@
     <Content Include="Views\Certificate\OrdersInHtml.cshtml" />
     <Content Include="Views\Certificate\CertificateOfAttendance.cshtml" />
     <Content Include="Views\Certificate\CertificateOfCommissioning.cshtml" />
+    <Content Include="Views\Attendance\ViewComment.cshtml" />
     <None Include="Views\Certificate\OrdersInPdf.cshtml" />
     <Content Include="Views\Commissioning\AllCommissioningApplications.cshtml" />
     <Content Include="Views\Commissioning\ReCommissioningApplications.cshtml" />

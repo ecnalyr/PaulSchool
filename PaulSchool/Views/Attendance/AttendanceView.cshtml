@@ -26,7 +26,20 @@
                 Grade
             </th>
             <th>
-                Edit Grade / Comments
+                                    @{if (Model.Course.Completed)
+                    {
+                        <div>
+                            View Grade / Comments
+                        </div>
+                    }
+                    else
+                    {
+                        <div>
+                            Edit Grade / Comments
+                        </div> 
+                    }
+                    }
+                
             </th>
         </tr>
     </thead>
@@ -43,9 +56,25 @@
                         </span>
                     </td>
                 }
-                <td>@Html.ActionLink("click", "EditIndividualAttendance", new {id = Model.CourseId, studentId = student.StudentID})</td>
-                <td>@Html.Raw(Model.Enrollments.FirstOrDefault(o => o.StudentID == student.StudentID).Grade)</td>
-                <td>@Html.ActionLink("click", "EditComment", new {studentId = student.StudentID, Model.CourseId})</td>
+                <td>
+                    @{if (Model.Course.Completed)
+                    {
+                        <div>
+                            Course is completed, unable to edit.
+                        </div>
+                    }
+                    else
+                    {
+                       @Html.ActionLink("click", "EditIndividualAttendance", new { id = Model.CourseId, studentId = student.StudentID })   
+                    }
+                    }
+                </td>
+                <td>
+                    @Html.Raw(Model.Enrollments.FirstOrDefault(o => o.StudentID == student.StudentID).Grade)
+                </td>
+                <td>
+                       @Html.ActionLink("click", "ViewComment", new { studentId = student.StudentID, Model.CourseId })  
+                </td>
             </tr>
         }
     </tbody>
@@ -55,45 +84,45 @@
     {
         <div>
             @{
-                if (Model.Course.Completed)
-                {
+        if (Model.Course.Completed)
+        {
                     <p>
                         This course is complete.
                     </p>
-                    if (User.IsInRole("SuperAdministrator"))
-                    {
-                        @Html.ActionLink("Click here to mark course as incomplete", "UnCompleteCourse", new {id = Model.CourseId}, new {onclick = "return confirm('Are you sure you are ready to mark this Course as Incomplete?');"})
-                    }
-                }
-                else
-                {
+            if (User.IsInRole("SuperAdministrator"))
+            {
+                        @Html.ActionLink("Click here to mark course as incomplete", "UnCompleteCourse", new { id = Model.CourseId }, new { onclick = "return confirm('Are you sure you are ready to mark this Course as Incomplete?');" })
+            }
+        }
+        else
+        {
                     <p>
-                        @Html.ActionLink("Click here", "CompleteCourse", new {id = Model.CourseId}, new {onclick = "return confirm('Are you sure you are ready to mark this Course as Complete?  You will not be able to edit this Course's attendance, grades, or comments after you do this.');"}) to mark this Course as "Complete."  Doing so will make this Course uneditable.
+                        @Html.ActionLink("Click here", "CompleteCourse", new { id = Model.CourseId }, new { onclick = "return confirm('Are you sure you are ready to mark this Course as Complete?  You will not be able to edit this Course's attendance, grades, or comments after you do this.');" }) to mark this Course as "Complete."  Doing so will make this Course uneditable.
                     </p>
-                }
+        }
             }
             @{
-                if (User.IsInRole("Administrator") || User.IsInRole("SuperAdministrator"))
-                {
-                    if (Model.Course.Archived)
-                    {
+        if (User.IsInRole("Administrator") || User.IsInRole("SuperAdministrator"))
+        {
+            if (Model.Course.Archived)
+            {
                         <p>
                             This course is archived.
                         </p>
-                        if (User.IsInRole("SuperAdministrator"))
-                        {
-                            @Html.ActionLink("Click here to remove course from the archive", "UnArchiveCourse", new {id = Model.CourseId}, new {onclick = "return confirm('Are you sure you are ready to UnArchive this Course?');"})
-                        }
-                    }
-                    else
-                    {
+                if (User.IsInRole("SuperAdministrator"))
+                {
+                            @Html.ActionLink("Click here to remove course from the archive", "UnArchiveCourse", new { id = Model.CourseId }, new { onclick = "return confirm('Are you sure you are ready to UnArchive this Course?');" })
+                }
+            }
+            else
+            {
                         <div>
                             <p>
-                                @Html.ActionLink("Click here", "ArchiveCourse", new {id = Model.CourseId}, new {onclick = "return confirm('Are you sure you are ready to Archive this Course?  Administrators will not be able to edit this Course's attendance, grades, or comments after you do this.');"}) to Archive this Course."  Doing so will make this Course uneditable by Administrators.
+                                @Html.ActionLink("Click here", "ArchiveCourse", new { id = Model.CourseId }, new { onclick = "return confirm('Are you sure you are ready to Archive this Course?  Administrators will not be able to edit this Course's attendance, grades, or comments after you do this.');" }) to Archive this Course."  Doing so will make this Course uneditable by Administrators.
                             </p>
                         </div>
-                    }
-                }
+            }
+        }
 
             }
         </div>

@@ -1,0 +1,8 @@
+L:\Users\Jason\Documents\GitHub\PaulSchool\MvcMembership\bin\Release\MvcMembership.XML
+L:\Users\Jason\Documents\GitHub\PaulSchool\MvcMembership\bin\Release\MvcMembership.dll
+L:\Users\Jason\Documents\GitHub\PaulSchool\MvcMembership\bin\Release\MvcMembership.pdb
+L:\Users\Jason\Documents\GitHub\PaulSchool\MvcMembership\bin\Release\PagedList.dll
+L:\Users\Jason\Documents\GitHub\PaulSchool\MvcMembership\bin\Release\PagedList.xml
+L:\Users\Jason\Documents\GitHub\PaulSchool\MvcMembership\obj\Release\ResolveAssemblyReference.cache
+L:\Users\Jason\Documents\GitHub\PaulSchool\MvcMembership\obj\Release\MvcMembership.dll
+L:\Users\Jason\Documents\GitHub\PaulSchool\MvcMembership\obj\Release\MvcMembership.pdb
