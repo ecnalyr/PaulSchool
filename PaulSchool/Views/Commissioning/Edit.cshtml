@@ -14,7 +14,17 @@
 {
     @this.Html.ValidationSummary(true)
     <fieldset>
-        <legend>ApplicationCommissioning</legend>
+        @{
+            if (this.Model.ReCommissioning)
+            {
+                <legend>Re-Commissioning Application</legend>
+            }
+            else
+            {
+                <legend>Commissioning Application </legend>
+            }
+
+        }
 
         @this.Html.HiddenFor(model => model.Id)
 
@@ -24,6 +34,13 @@
         <div class="editor-field">
             @this.Html.EditorFor(model => model.StudentID)
             @this.Html.ValidationMessageFor(model => model.StudentID)
+        </div>
+        
+        <div class="editor-label">
+            Re-Applying for Commissioning? (leave un-checked if applicant has not been Commissioned before)
+        </div>
+        <div class="editor-field">
+            @this.Html.EditorFor(model => model.ReCommissioning)
         </div>
 
         <div class="editor-label">

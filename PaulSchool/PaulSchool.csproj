@@ -167,7 +167,10 @@
     <Content Include="Views\Certificate\CertificateOfAttendance.cshtml" />
     <Content Include="Views\Certificate\CertificateOfCommissioning.cshtml" />
     <None Include="Views\Certificate\OrdersInPdf.cshtml" />
-    <Content Include="Views\Commissioning\AllApplications.cshtml" />
+    <Content Include="Views\Commissioning\AllCommissioningApplications.cshtml" />
+    <Content Include="Views\Commissioning\ReCommissioningApplications.cshtml" />
+    <Content Include="Views\Commissioning\AllReCommissioningApplications.cshtml" />
+    <Content Include="Views\Commissioning\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\ASPNETDB.MDF" />
@@ -463,7 +466,7 @@
     <Content Include="Views\Commissioning\Delete.cshtml" />
     <Content Include="Views\Commissioning\Details.cshtml" />
     <Content Include="Views\Commissioning\Edit.cshtml" />
-    <Content Include="Views\Commissioning\Index.cshtml" />
+    <Content Include="Views\Commissioning\CommissioningApplications.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\CommissioningRequirements\Index.cshtml" />

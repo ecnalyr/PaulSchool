@@ -15,15 +15,34 @@ namespace PaulSchool.Controllers
     {
         private readonly SchoolContext db = new SchoolContext();
 
-        [Authorize(Roles = "Administrator, SuperAdministrator")]
+        [Authorize]
         public ViewResult Index()
+        {
+            return View();
+        }
+
+        [Authorize(Roles = "Administrator, SuperAdministrator")]
+        public ViewResult CommissioningApplications()
         {
             return View(db.ApplicationCommissionings.Where(o => o.Approved == false).ToList());
         }
 
-        public ViewResult AllApplications()
+        [Authorize(Roles = "Administrator, SuperAdministrator")]
+        public ViewResult AllCommissioningApplications()
         {
             return View(db.ApplicationCommissionings.ToList());
+        }
+
+        [Authorize(Roles = "Administrator, SuperAdministrator")]
+        public ViewResult ReCommissioningApplications()
+        {
+            return View(db.ApplicationCommissionings.Where(o => o.Approved == false && o.ReCommissioning == true).ToList());
+        }
+
+        [Authorize(Roles = "Administrator, SuperAdministrator")]
+        public ViewResult AllReCommissioningApplications()
+        {
+            return View(db.ApplicationCommissionings.Where(o => o.ReCommissioning == true).ToList());
         }
 
         public ViewResult QualifyForCommissioning()
@@ -109,6 +128,7 @@ namespace PaulSchool.Controllers
             var applicationWithUserData = new ApplicationCommissioning
                                               {
                                                   StudentID = thisStudent.StudentID,
+                                                  ReCommissioning = false,
                                                   RecommendationFiled = false,
                                                   PersonalStatement = "Type Personal Statement Here",
                                                   DayOfReflection = false,

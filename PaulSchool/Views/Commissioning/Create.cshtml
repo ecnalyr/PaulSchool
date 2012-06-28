@@ -19,6 +19,12 @@
     @Html.ValidationSummary(true)
     <fieldset>
         <legend>ApplicationCommissioning</legend>
+        <div class="editor-label">
+            Are you Re-Applying for Commissioning? (leave un-checked if you have not been Commissioned before)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ReCommissioning)
+        </div>
 
         <div class="editor-label">
             @Html.LabelFor(model => model.PersonalStatement)

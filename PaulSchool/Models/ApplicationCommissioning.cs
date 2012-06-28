@@ -12,6 +12,8 @@ namespace PaulSchool.Models
 
         public int StudentID { get; set; }
 
+        public bool ReCommissioning { get; set; }
+
         public bool RecommendationFiled { get; set; }
 
         public RecommendationForCommissioning Recommendation { get; set; }
