@@ -1,0 +1,35 @@
+﻿@model PaulSchool.Models.Enrollment
+@{
+    this.Layout = null;
+
+    }
+
+    <!DOCTYPE html>
+
+    <html>
+    <head>
+        <title>CertificateOfAttendance</title>
+    </head>
+        <body>
+            <img src="/Content/images/acenturyoftradition.jpg" />
+            @{
+                if (Model.Course.Completed == true)
+                {
+                    <div>
+                        <p>
+                            This certificate certifies that @Html.DisplayFor(model => model.Student.FirstMidName) @Html.DisplayFor(model => model.Student.LastName) has completed the Course entitled @Html.DisplayFor(model => model.Course.Title) as of @Html.DisplayFor(model => model.Course.EndDate) .
+                        </p>
+                    </div>
+                }
+                else
+                {
+                    <div>
+                        You have not completed this course.
+                    </div>
+                }
+
+            }
+        </body>
+
+
+</html>

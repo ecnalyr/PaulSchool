@@ -1,0 +1,33 @@
+﻿@model PaulSchool.Models.ApplicationCommissioning
+@{
+    this.Layout = null;
+
+}
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>CertificateOfAttendance</title>
+    </head>
+    <body>
+        <img src="/Content/images/acenturyoftradition.jpg" />
+        @{
+            if (this.Model.Approved)
+            {
+                <div>
+                    <p>
+                        This certificate certifies that @this.Html.DisplayFor(model => model.Student.FirstMidName) @this.Html.DisplayFor(model => model.Student.LastName) is Commissioned by the St. Paul School of Catechism based on the application filed on @this.Html.DisplayFor(model => model.DateFiled) .
+                    </p>
+                </div>
+            }
+            else
+            {
+                <div>
+                    This application for Commissioning has not been approved.
+                </div>
+            }
+
+        }
+    </body>
+</html>

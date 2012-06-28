@@ -9,11 +9,18 @@ using System.Web.Security;
 
 namespace PaulSchool.Controllers
 {
+    using System.Web.Routing;
+
     public class CommissioningController : Controller
     {
         private readonly SchoolContext db = new SchoolContext();
 
         public ViewResult Index()
+        {
+            return View(db.ApplicationCommissionings.Where(o => o.Approved == false).ToList());
+        }
+
+        public ViewResult AllApplications()
         {
             return View(db.ApplicationCommissionings.ToList());
         }
@@ -141,6 +148,7 @@ namespace PaulSchool.Controllers
                     o => o.UserName == User.Identity.Name);
                 if (thisStudent != null) applicationcommissioning.StudentID = thisStudent.StudentID;
                 applicationcommissioning.DateFiled = DateTime.Now;
+                applicationcommissioning.Approved = false;
                 db.ApplicationCommissionings.Add(applicationcommissioning);
                 db.SaveChanges();
 
@@ -228,6 +236,28 @@ namespace PaulSchool.Controllers
             db.ApplicationCommissionings.Remove(applicationcommissioning);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        [Authorize(Roles = "Administrator, SuperAdministrator")]
+        public ActionResult ApproveCommissioningApplication(int id)
+        {
+            ApplicationCommissioning applicationcommissioning = db.ApplicationCommissionings.Find(id);
+
+            var newNotification = new Notification
+            {
+                Time = DateTime.Now,
+                Details =
+                    "Your application for Commissioning, filed on " + applicationcommissioning.DateFiled +
+                    " has been approved.  Congratulations",
+                Link = Url.Action("CertificateOfCommissioning", "Certificate", new {id = applicationcommissioning.Id}, null),
+                ViewableBy = applicationcommissioning.Student.UserName,
+                Complete = false
+            };
+            db.Notification.Add(newNotification);
+
+            applicationcommissioning.Approved = true;
+            db.SaveChanges();
+            return RedirectToAction("CertificateOfCommissioning", "Certificate", new { id = applicationcommissioning.Id });
         }
 
         protected override void Dispose(bool disposing)

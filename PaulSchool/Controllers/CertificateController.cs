@@ -7,6 +7,8 @@ using PaulSchool.Models;
 
 namespace PaulSchool.Controllers
 {
+    using System.Diagnostics;
+
     [HandleError]
     public class CertificateController : PdfController
     {
@@ -32,6 +34,18 @@ namespace PaulSchool.Controllers
             // To render a PDF instead of an HTML, all we need to do is call ViewPdf instead of View. This
             // requires the controller to be inherited from MyController instead of MVC's Controller.
             return ViewPdf(c);
+        }
+
+        public ActionResult CertificateOfAttendance(int id)
+        {
+            Enrollment enrollment = db.Enrollments.Find(id);
+            return View(enrollment);
+        }
+
+        public ActionResult CertificateOfCommissioning(int id)
+        {
+            ApplicationCommissioning commissioning = db.ApplicationCommissionings.Find(id);
+            return View(commissioning);
         }
 
     }

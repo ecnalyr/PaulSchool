@@ -33,5 +33,7 @@ namespace PaulSchool.Models
 
         public virtual Student Student { get; set; }
 
+        public bool Approved { get; set; }
+
     }
 }
