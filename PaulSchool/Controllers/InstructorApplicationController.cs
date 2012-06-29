@@ -229,7 +229,7 @@ namespace PaulSchool.Controllers
                                           Time = DateTime.Now,
                                           Details =
                                               "An Admin has approved your application to become an Instructor as of " +
-                                              instructor.EnrollmentDate.Date,
+                                              DateTime.Now,
                                           Link =
                                               Url.Action(
                                                   "Details",

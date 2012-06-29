@@ -7,22 +7,39 @@
     if (User.IsInRole("Administrator") || User.IsInRole("SuperAdministrator"))
     {
         <div>
-            @Html.ActionLink("List of Students who qualify for Commissioning", "QualifyForCommissioning")
+            <p>
+                @Html.ActionLink("List of Students who qualify for Commissioning", "QualifyForCommissioning")
+            </p>
         </div>
         <div>
-            @Html.ActionLink("List of unapproved applications for Commissioning", "CommissioningApplications")
+            <p>
+                @Html.ActionLink("List of unapproved applications for Commissioning", "CommissioningApplications")
+            </p>
         </div>
         <div>
-            @Html.ActionLink("List of all applications for Commissioning", "AllCommissioningApplications")
+            <p>
+                @Html.ActionLink("List of all applications for Commissioning", "AllCommissioningApplications")
+            </p>
         </div>
         <div>
-            @Html.ActionLink("List of unapproved applications for Re-Commissioning", "ReCommissioningApplications")
+            <p>
+                @Html.ActionLink("List of unapproved applications for Re-Commissioning", "ReCommissioningApplications")
+            </p>
         </div>
         <div>
-            @Html.ActionLink("List of all applications for Re-Commissioning", "AllReCommissioningApplications")
+            <p>
+                @Html.ActionLink("List of all applications for Re-Commissioning", "AllReCommissioningApplications")
+            </p>
         </div>
     }
 }
 <div>
-    @Html.ActionLink("Apply for Commissioning or Re-Commissioning", "Create")
+    <p>
+        @Html.ActionLink("Apply for Commissioning or Re-Commissioning", "Create")
+    </p>
+</div>
+<div>
+    <p>
+        @Html.ActionLink("Printable Recommendation Form", "PrintableRecommendationForm")
+    </p>
 </div>

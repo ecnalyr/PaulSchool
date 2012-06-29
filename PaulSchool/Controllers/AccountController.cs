@@ -290,7 +290,6 @@ namespace PaulSchool.Controllers
             {
                 ViewBag.Email = u.Email;
             }
-
             return View(model);
         }
 

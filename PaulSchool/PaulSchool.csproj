@@ -172,6 +172,7 @@
     <Content Include="Views\Commissioning\ReCommissioningApplications.cshtml" />
     <Content Include="Views\Commissioning\AllReCommissioningApplications.cshtml" />
     <Content Include="Views\Commissioning\Index.cshtml" />
+    <Content Include="Views\Commissioning\PrintableRecommendationForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\ASPNETDB.MDF" />

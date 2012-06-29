@@ -54,15 +54,15 @@ namespace PaulSchool.Controllers
             ICollection<Student> qualifiedUsers = new List<Student>();
             foreach (var user in users)
             {
-                Debug.Write("we got into foreach loop");
                 var thisStudent = db.Students.FirstOrDefault( o => o.UserName == user.UserName);
+                Debug.Write(user.UserName);
+                Debug.Write(thisStudent.UserName);
                 var coresPassed = TotalCoresPassed(thisStudent);
                 var electivesPassed = TotalElectivesPassed(thisStudent);
                 if (coresPassed >= minCoresNeeded && electivesPassed >= minElectivesNeeded)
                 {
                     qualifiedUsers.Add(thisStudent);
                 }
-                Debug.Write("we got to the end of the foreach loop");
             }
             return View(qualifiedUsers);
         }
@@ -103,6 +103,11 @@ namespace PaulSchool.Controllers
             var applicationWithUserData = ApplicationWithUserData(thisStudent);
 
             return View(applicationWithUserData);
+        }
+
+        public ActionResult PrintableRecommendationForm()
+        {
+            return View();
         }
 
         private string DoOrDoNotQualify(Student thisStudent, int totalCoresNeeded, int totalElectivesNeeded)
@@ -146,6 +151,7 @@ namespace PaulSchool.Controllers
 
         private int TotalCoresPassed(Student thisStudent)
         {
+            Debug.Write(thisStudent.UserName);
             int totalCoresPassed = db.Enrollments.Count(s => s.StudentID == thisStudent.StudentID
                                                              && s.Grade == "pass"
                                                              && s.Course.Elective == false);

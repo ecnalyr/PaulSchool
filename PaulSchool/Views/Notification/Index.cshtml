@@ -7,13 +7,17 @@
 
 <h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+@{if (User.IsInRole("SuperAdministrator"))
+    {
+        <p>
+            @Html.ActionLink("Create New Notifiaction as a SuperAdministrator", "Create")
+        </p>
+    }}
+
 <table>
     <tr>
         <th>
-            Time
+            Time Notification was Created
         </th>
         <th>
             Description
@@ -43,13 +47,13 @@
                 @Html.DisplayFor(modelItem => item.ViewableBy)
             </td>
             <td>
-                @Html.ActionLink("Remove Notification from Queu", "Complete", new {id = item.NotificationID})
+                @Html.ActionLink("Remove Notification from Queu", "Complete", new { id = item.NotificationID })
                 @{
-                    if (User.IsInRole("SuperAdministrator"))
-                    {
-                        @Html.ActionLink("Delete", "Delete", new {id = item.NotificationID})
-                        ;
-                    }
+        if (User.IsInRole("SuperAdministrator"))
+        {
+                        @Html.ActionLink("Delete", "Delete", new { id = item.NotificationID })
+            ;
+        }
                 }
             </td>
         </tr>
@@ -58,7 +62,8 @@
 @{
     if (User.IsInRole("Administrator"))
     {
-        @Html.ActionLink("Get Email List", "EmailList")
-        ;
+        <p>
+            @Html.ActionLink("Get Email List", "EmailList") of every User.
+        </p>
     }
 }
