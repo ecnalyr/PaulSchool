@@ -8,18 +8,42 @@
 
     <html>
     <head>
-        <title>CertificateOfAttendance</title>
+        <title>Certificate Of Attendance</title>
     </head>
         <body>
-            <img src="/Content/images/acenturyoftradition.jpg" />
             @{
                 if (Model.Course.Completed == true)
                 {
+                    <center>
                     <div>
                         <p>
-                            This certificate certifies that @Html.DisplayFor(model => model.Student.FirstMidName) @Html.DisplayFor(model => model.Student.LastName) has completed the Course entitled @Html.DisplayFor(model => model.Course.Title) as of @Html.DisplayFor(model => model.Course.EndDate) .
+                            Awarded to @Html.DisplayFor(model => model.Student.FirstMidName) @Html.DisplayFor(model => model.Student.LastName)
                         </p>
                     </div>
+                    <div>
+                        <p>
+                            in
+                        </p>
+                    </div>
+                    <div>
+                        <p>
+                            @Html.DisplayFor(model => model.Course.Title)
+                        </p>
+                    </div>
+                    <div>
+                        <p>
+                            for a total of @Html.DisplayFor(model => model.Course.Credits) hours.
+                        </p>
+                    </div>
+                    <div>
+                        <p>
+                            On this @Html.DisplayFor(model => model.Course.EndDate.Day) day of @Html.DisplayFor(model => model.Course.EndDate.Month) , @Html.DisplayFor(model => model.Course.EndDate.Year)
+                        </p>
+                    </div>
+                    <div>
+                        <p>*SEAL* Instructor: @Html.DisplayFor(model => model.Course.Instructor.FirstMidName) @Html.DisplayFor(model => model.Course.Instructor.LastName) *SEAL*</p>
+                    </div>
+                    </center>
                 }
                 else
                 {

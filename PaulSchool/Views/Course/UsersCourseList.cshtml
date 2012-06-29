@@ -59,9 +59,20 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Course.Description)
                 </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Grade)
-                </td>
+                @{if (item.Grade == "Pass")
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Grade) @Html.ActionLink("Certificate", "CertificateOfAttendance", "Certificate", new {id = item.EnrollmentID}, null)
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Grade)
+                    </td>
+                }
+                }
+                
                 <td>
                     @Html.DisplayFor(modelItem => item.Course.Elective)
                 </td>

@@ -1,7 +1,5 @@
 ﻿<RecentFiles>
   <RecentFiles>
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:BinaryContentResult.cs" caret="97" fromTop="0" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Shared/f:_Layout.cshtml" caret="1347" fromTop="10" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Certificate/f:OrdersInPdf.cshtml" caret="474" fromTop="13" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:PdfController.cs" caret="3300" fromTop="19" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/f:_ViewStart.cshtml" caret="0" fromTop="0" />
@@ -9,7 +7,6 @@
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Course/f:Details.cshtml" caret="4164" fromTop="4" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:StudentController.cs" caret="0" fromTop="0" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Certificate/f:OrdersInHtml.cshtml" caret="103" fromTop="6" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Certificate/f:CertificateOfAttendance.cshtml" caret="98" fromTop="7" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:CertificateController.cs" caret="1487" fromTop="26" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Certificate/f:CertificateOfCommissioning.cshtml" caret="652" fromTop="19" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Student/f:Details.cshtml" caret="0" fromTop="0" />
@@ -30,15 +27,11 @@
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Attendance/f:EditComment.cshtml" caret="1433" fromTop="34" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Attendance/f:AttendanceView.cshtml" caret="1720" fromTop="8" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Commissioning/f:Index.cshtml" caret="56" fromTop="4" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Course/f:UsersCourseList.cshtml" caret="2510" fromTop="10" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Certificate/f:CertificateOfAttendance.cshtml" caret="1712" fromTop="9" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Shared/f:_Layout.cshtml" caret="1219" fromTop="6" />
   </RecentFiles>
   <RecentEdits>
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:CommissioningController.cs" caret="2597" fromTop="9" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:CommissioningController.cs" caret="2597" fromTop="7" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:CommissioningController.cs" caret="414" fromTop="14" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Commissioning/f:Index.cshtml" caret="874" fromTop="10" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Commissioning/f:Index.cshtml" caret="948" fromTop="26" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Commissioning/f:Index.cshtml" caret="56" fromTop="4" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Attendance/f:EditIndividualAttendance.cshtml" caret="629" fromTop="21" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Attendance/f:EditIndividualAttendance.cshtml" caret="1317" fromTop="20" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Attendance/f:AttendanceView.cshtml" caret="4941" fromTop="26" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Attendance/f:AttendanceView.cshtml" caret="2174" fromTop="24" />
@@ -62,5 +55,12 @@
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:AttendanceController.cs" caret="10162" fromTop="19" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:AttendanceController.cs" caret="7025" fromTop="20" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:AttendanceController.cs" caret="7047" fromTop="28" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Certificate/f:CertificateOfAttendance.cshtml" caret="665" fromTop="12" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Certificate/f:CertificateOfAttendance.cshtml" caret="853" fromTop="11" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Course/f:UsersCourseList.cshtml" caret="2634" fromTop="12" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Course/f:UsersCourseList.cshtml" caret="2510" fromTop="10" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Certificate/f:CertificateOfAttendance.cshtml" caret="319" fromTop="10" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Certificate/f:CertificateOfAttendance.cshtml" caret="1712" fromTop="9" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Shared/f:_Layout.cshtml" caret="1218" fromTop="6" />
   </RecentEdits>
 </RecentFiles>

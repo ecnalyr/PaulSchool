@@ -22,7 +22,7 @@
                 <div id="menucontainer">
                     <ul id="menu">
                         <li>@Html.ActionLink("Home", "Index", "Home", new {area = ""}, null)</li>
-                        <li>@Html.ActionLink("Enrolled Courses", "UsersCourseList", "Course", new {area = ""}, null)</li>
+                        <li>@Html.ActionLink("Your Courses", "UsersCourseList", "Course", new {area = ""}, null)</li>
                         @{
                             if (User.IsInRole("Instructor") || User.IsInRole("Administrator") || User.IsInRole("SuperAdministrator"))
                             {
