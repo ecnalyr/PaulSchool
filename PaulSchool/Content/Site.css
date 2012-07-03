@@ -325,7 +325,42 @@ div#title {
     width: 6em;
 }
 
-/* css for timepicker */
+/* Styles for columns
+----------------------------------------------------------*/
+#column-container {
+	clear:left;
+	float:left;
+	width:100%;
+	overflow:hidden;
+    padding-bottom: 2%;
+}
+#column-1 {
+    float:left;
+    width:25%;
+    position:relative;
+    padding:0%;
+}
+#column-2 {
+    float:left;
+    width:25%;
+    position:relative;
+    padding:0%;
+}
+#column-3 {
+    float:left;
+    width:25%;
+    position:relative;
+    padding:0%;
+}
+#column-4 {
+    float:left;
+    width:25%;
+    position:relative;
+    padding:0%;
+}
+
+/* css for timepicker
+----------------------------------------------------------*/
 .ui-timepicker-div .ui-widget-header { margin-bottom: 8px; }
 .ui-timepicker-div dl { text-align: left; }
 .ui-timepicker-div dl dt { height: 25px; margin-bottom: -25px; }

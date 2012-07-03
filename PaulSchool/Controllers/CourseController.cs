@@ -344,7 +344,7 @@ namespace PaulSchool.Controllers
                                     new
                                         {
                                             message =
-                                        "Course is not ready to be joined, it has not been approved by an Administrator."
+                                        "Course is not ready to be joined, it has not been approved by an Administrator or has already concluded."
                                         });
         }
 
