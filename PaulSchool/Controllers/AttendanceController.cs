@@ -320,7 +320,8 @@ namespace PaulSchool.Controllers
                     Students = studentList, 
                     ////should be only one student for this ActionResult
                     Attendances = attendanceItemsList, 
-                    Comments = enrollment.Comments
+                    Comments = enrollment.Comments,
+                    Paid = enrollment.Paid
                 };
 
             return View(model);

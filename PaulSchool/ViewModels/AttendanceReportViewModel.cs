@@ -21,11 +21,14 @@ namespace PaulSchool.ViewModels
 
         public string Comments { get; set; }
 
+        public bool Paid { get; set; }
+
         public string IsPresent(Student student, int attendanceDay)
         {
             return Attendances.Single(a => a.StudentID == student.StudentID && a.AttendanceDay == attendanceDay).Present
                        ? PaulSchoolResource.Present_Text
                        : PaulSchoolResource.Absent_Text;
         }
+
     }
 }

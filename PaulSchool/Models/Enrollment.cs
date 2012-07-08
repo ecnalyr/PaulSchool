@@ -12,6 +12,8 @@
 
         public string Comments { get; set; }
 
+        public bool Paid { get; set; }
+
         public virtual Course Course { get; set; }
 
         public virtual Student Student { get; set; }

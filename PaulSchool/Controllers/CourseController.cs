@@ -389,11 +389,13 @@ namespace PaulSchool.Controllers
 
         private void BuildEnrollmentData(Course course, Student thisStudent)
         {
+            bool paidDefault = course.Cost == 0;
             var newEnrollment = new Enrollment
                                     {
                                         CourseID = course.CourseID,
                                         StudentID = thisStudent.StudentID,
-                                        Grade = "incomplete"
+                                        Grade = "incomplete",
+                                        Paid = paidDefault
                                     };
             db.Enrollments.Add(newEnrollment);
         }
