@@ -23,6 +23,8 @@ namespace PaulSchool.ViewModels
 
         public bool Paid { get; set; }
 
+        public Enrollment SingleStudentEnrollment { get; set; }
+
         public string IsPresent(Student student, int attendanceDay)
         {
             return Attendances.Single(a => a.StudentID == student.StudentID && a.AttendanceDay == attendanceDay).Present
