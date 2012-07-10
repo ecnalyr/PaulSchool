@@ -1,19 +1,5 @@
 ﻿<RecentFiles>
   <RecentFiles>
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:CommissioningController.cs" caret="386" fromTop="15" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Paypal/f:IPN.cshtml" caret="0" fromTop="0" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Models/f:Enrollment.cs" caret="0" fromTop="0" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:AttendanceController.cs" caret="13551" fromTop="70" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Helpers/f:HtmlHelpers.cs" caret="0" fromTop="0" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Attendance/f:StudentDetails.cshtml" caret="1035" fromTop="22" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:AccountController.cs" caret="0" fromTop="0" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/f:Web.config" caret="1094" fromTop="0" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:App_Start/f:RegisterClientValidationExtensions.cs" caret="0" fromTop="0" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/f:Global.asax.cs" caret="847" fromTop="6" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/f:Web.config" caret="1212" fromTop="0" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:HomeController.cs" caret="355" fromTop="16" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Home/f:Index.cshtml" caret="0" fromTop="0" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:PdfController.cs" caret="0" fromTop="0" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:PaypalController.cs" caret="1900" fromTop="33" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:ViewModels/f:ApplyCourseViewModel.cs" caret="0" fromTop="0" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:ViewModels/f:ChangeEmailViewModel.cs" caret="0" fromTop="0" />
@@ -26,41 +12,55 @@
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:ViewModels/f:ProfileViewModel.cs" caret="0" fromTop="0" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Models/f:Course.cs" caret="197" fromTop="2" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:ViewModels/f:AttendanceReportViewModel.cs" caret="0" fromTop="0" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:CourseController.cs" caret="26492" fromTop="19" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Course/f:Details.cshtml" caret="0" fromTop="0" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Course/f:Index.cshtml" caret="4246" fromTop="19" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Course/f:ApplyToCourse.cshtml" caret="0" fromTop="0" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Course/f:ApplyToCourse.cshtml" caret="349" fromTop="5" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Attendance/f:EditComment.cshtml" caret="1052" fromTop="25" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Attendance/f:EditIndividualAttendance.cshtml" caret="1335" fromTop="19" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Attendance/f:Message.cshtml" caret="0" fromTop="0" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Shared/f:_Layout.cshtml" caret="2320" fromTop="21" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Course/f:UsersCourseList.cshtml" caret="0" fromTop="0" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Course/f:TeachingCourseList.cshtml" caret="865" fromTop="0" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Instructor/f:Index.cshtml" caret="1796" fromTop="28" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Course/f:Details.cshtml" caret="6635" fromTop="11" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Attendance/f:StudentDetails.cshtml" caret="1987" fromTop="22" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:CourseController.cs" caret="0" fromTop="0" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Models/f:Student.cs" caret="0" fromTop="0" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Student/f:Index.cshtml" caret="2467" fromTop="61" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:InstructorController.cs" caret="5665" fromTop="14" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Instructor/f:Details.cshtml" caret="447" fromTop="17" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Attendance/f:AttendanceView.cshtml" caret="5966" fromTop="153" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:StudentController.cs" caret="979" fromTop="15" />
   </RecentFiles>
   <RecentEdits>
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:PaypalController.cs" caret="2735" fromTop="31" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:PaypalController.cs" caret="387" fromTop="15" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:PaypalController.cs" caret="2735" fromTop="25" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Models/f:Enrollment.cs" caret="1533" fromTop="31" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Models/f:Enrollment.cs" caret="1321" fromTop="19" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:PaypalController.cs" caret="2735" fromTop="9" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:PaypalController.cs" caret="2736" fromTop="35" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/f:Web.config" caret="1212" fromTop="18" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/f:Web.config" caret="1910" fromTop="19" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/f:Web.config" caret="3771" fromTop="18" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Attendance/f:StudentDetails.cshtml" caret="1102" fromTop="26" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:PaypalController.cs" caret="805" fromTop="16" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:PaypalController.cs" caret="1779" fromTop="23" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:PaypalController.cs" caret="1602" fromTop="23" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:PaypalController.cs" caret="68" fromTop="2" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/f:Web.config" caret="635" fromTop="11" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:HomeController.cs" caret="355" fromTop="16" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:PaypalController.cs" caret="873" fromTop="17" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:PaypalController.cs" caret="1900" fromTop="33" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:CourseController.cs" caret="30741" fromTop="20" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Course/f:ApplyToCourse.cshtml" caret="2153" fromTop="7" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:CourseController.cs" caret="30961" fromTop="24" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Models/f:Course.cs" caret="740" fromTop="30" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Models/f:Course.cs" caret="197" fromTop="11" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Course/f:ApplyToCourse.cshtml" caret="3509" fromTop="32" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:CourseController.cs" caret="33020" fromTop="26" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:CourseController.cs" caret="16904" fromTop="21" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Course/f:Index.cshtml" caret="4246" fromTop="13" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Course/f:Index.cshtml" caret="2771" fromTop="22" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Course/f:Details.cshtml" caret="4495" fromTop="22" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Shared/f:_Layout.cshtml" caret="2320" fromTop="21" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:CourseController.cs" caret="34959" fromTop="802" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:CourseController.cs" caret="28329" fromTop="19" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:CourseController.cs" caret="8628" fromTop="22" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:CourseController.cs" caret="30781" fromTop="24" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Attendance/f:StudentDetails.cshtml" caret="679" fromTop="12" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Attendance/f:StudentDetails.cshtml" caret="1285" fromTop="24" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Attendance/f:StudentDetails.cshtml" caret="2154" fromTop="21" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Attendance/f:StudentDetails.cshtml" caret="202" fromTop="8" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Attendance/f:StudentDetails.cshtml" caret="1987" fromTop="22" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Attendance/f:AttendanceView.cshtml" caret="5966" fromTop="16" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Attendance/f:AttendanceView.cshtml" caret="5966" fromTop="153" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:InstructorController.cs" caret="5732" fromTop="14" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:InstructorController.cs" caret="6304" fromTop="26" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Instructor/f:Details.cshtml" caret="447" fromTop="17" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:StudentController.cs" caret="9669" fromTop="43" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:StudentController.cs" caret="6177" fromTop="23" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:StudentController.cs" caret="6952" fromTop="15" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:StudentController.cs" caret="8209" fromTop="32" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:StudentController.cs" caret="8478" fromTop="38" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:StudentController.cs" caret="5967" fromTop="7" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:StudentController.cs" caret="8787" fromTop="41" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:StudentController.cs" caret="9104" fromTop="43" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:StudentController.cs" caret="9074" fromTop="36" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:StudentController.cs" caret="483" fromTop="13" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:StudentController.cs" caret="5016" fromTop="43" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Student/f:Index.cshtml" caret="1568" fromTop="37" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Student/f:Index.cshtml" caret="2479" fromTop="45" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Student/f:Index.cshtml" caret="2467" fromTop="44" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:StudentController.cs" caret="1438" fromTop="19" />
   </RecentEdits>
 </RecentFiles>

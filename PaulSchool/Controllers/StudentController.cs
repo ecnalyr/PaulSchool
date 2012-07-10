@@ -21,7 +21,12 @@ namespace PaulSchool.Controllers
             ViewBag.DateSortParm = sortOrder == "Date" ? "Date desc" : "Date";
             ViewBag.FNameSortParm = sortOrder == "FName" ? "FName desc" : "FName";
             ViewBag.EmailSortParm = sortOrder == "Email" ? "Email desc" : "Email";
+            ViewBag.CitySortParm = sortOrder == "City" ? "City desc" : "City";
+            ViewBag.ZipCodeSortParm = sortOrder == "ZipCode" ? "ZipCode desc" : "ZipCode";
+            ViewBag.ParishAffiliationSortParm = sortOrder == "ParishAffiliation" ? "ParishAffiliation desc" : "ParishAffiliation";
+            ViewBag.MinistryInvolvementSortParm = sortOrder == "MinistryInvolvement" ? "MinistryInvolvement desc" : "MinistryInvolvement";
             ViewBag.UserNameSortParm = sortOrder == "UserName" ? "UserName desc" : "UserName";
+            ViewBag.EnrollmentSortParm = sortOrder == "EnrollmentDate" ? "EnrollmentDate desc" : "EnrollmentDate";
 
             if (Request.HttpMethod == "GET")
             {
@@ -40,6 +45,7 @@ namespace PaulSchool.Controllers
                 students = students.Where(s => s.LastName.ToUpper().Contains(searchString.ToUpper())
                                                || s.FirstMidName.ToUpper().Contains(searchString.ToUpper()));
             }
+            //            city, zipcode, ministryinvolvement, parishaffiliation, username, enrollmentdate
             switch (sortOrder)
             {
                 case "Name desc":
@@ -62,6 +68,124 @@ namespace PaulSchool.Controllers
                     break;
                 case "Email desc":
                     students = students.OrderByDescending(s => s.Email);
+                    break;
+                case "City":
+                    students = students.OrderBy(s => s.City);
+                    break;
+                case "City desc":
+                    students = students.OrderByDescending(s => s.City);
+                    break;
+                case "ZipCode":
+                    students = students.OrderBy(s => s.ZipCode);
+                    break;
+                case "ZipCode desc":
+                    students = students.OrderByDescending(s => s.ZipCode);
+                    break;
+                case "ParishAffiliation":
+                    students = students.OrderBy(s => s.ParishAffiliation);
+                    break;
+                case "ParishAffiliation desc":
+                    students = students.OrderByDescending(s => s.ParishAffiliation);
+                    break;
+                case "MinistryInvolvement":
+                    students = students.OrderBy(s => s.MinistryInvolvement);
+                    break;
+                case "MinistryInvolvement desc":
+                    students = students.OrderByDescending(s => s.MinistryInvolvement);
+                    break;
+                case "UserName":
+                    students = students.OrderBy(s => s.UserName);
+                    break;
+                case "UserName desc":
+                    students = students.OrderByDescending(s => s.UserName);
+                    break;
+                default:
+                    students = students.OrderBy(s => s.LastName);
+                    break;
+            }
+            int pageSize = 25;
+            int pageNumber = (page ?? 1);
+            return View(students.ToPagedList(pageNumber, pageSize));
+        }
+
+        public ViewResult StudentListWithAllDetails(string sortOrder, string currentFilter, string searchString, int? page)
+        {
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "Name desc" : "";
+            ViewBag.DateSortParm = sortOrder == "Date" ? "Date desc" : "Date";
+            ViewBag.FNameSortParm = sortOrder == "FName" ? "FName desc" : "FName";
+            ViewBag.EmailSortParm = sortOrder == "Email" ? "Email desc" : "Email";
+            ViewBag.UserNameSortParm = sortOrder == "City" ? "City desc" : "City";
+            ViewBag.UserNameSortParm = sortOrder == "ZipCode" ? "ZipCode desc" : "ZipCode";
+            ViewBag.UserNameSortParm = sortOrder == "ParishAffiliation" ? "ParishAffiliation desc" : "ParishAffiliation";
+            ViewBag.UserNameSortParm = sortOrder == "MinistryInvolvement" ? "MinistryInvolvement desc" : "MinistryInvolvement";
+            ViewBag.UserNameSortParm = sortOrder == "UserName" ? "UserName desc" : "UserName";
+            ViewBag.UserNameSortParm = sortOrder == "EnrollmentDate" ? "EnrollmentDate desc" : "EnrollmentDate";
+
+            if (Request.HttpMethod == "GET")
+            {
+                searchString = currentFilter;
+            }
+            else
+            {
+                page = 1;
+            }
+            ViewBag.CurrentFilter = searchString;
+
+            IQueryable<Student> students = from s in db.Students
+                                           select s;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                students = students.Where(s => s.LastName.ToUpper().Contains(searchString.ToUpper())
+                                               || s.FirstMidName.ToUpper().Contains(searchString.ToUpper()));
+            }
+            //            city, zipcode, ministryinvolvement, parishaffiliation, username, enrollmentdate
+            switch (sortOrder)
+            {
+                case "Name desc":
+                    students = students.OrderByDescending(s => s.LastName);
+                    break;
+                case "Date":
+                    students = students.OrderBy(s => s.EnrollmentDate);
+                    break;
+                case "Date desc":
+                    students = students.OrderByDescending(s => s.EnrollmentDate);
+                    break;
+                case "FName":
+                    students = students.OrderBy(s => s.FirstMidName);
+                    break;
+                case "FName desc":
+                    students = students.OrderByDescending(s => s.FirstMidName);
+                    break;
+                case "Email":
+                    students = students.OrderBy(s => s.Email);
+                    break;
+                case "Email desc":
+                    students = students.OrderByDescending(s => s.Email);
+                    break;
+                case "City":
+                    students = students.OrderBy(s => s.City);
+                    break;
+                case "City desc":
+                    students = students.OrderByDescending(s => s.City);
+                    break;
+                case "ZipCode":
+                    students = students.OrderBy(s => s.ZipCode);
+                    break;
+                case "ZipCode desc":
+                    students = students.OrderByDescending(s => s.ZipCode);
+                    break;
+                case "ParishAffiliation":
+                    students = students.OrderBy(s => s.ParishAffiliation);
+                    break;
+                case "ParishAffiliation desc":
+                    students = students.OrderByDescending(s => s.ParishAffiliation);
+                    break;
+                case "MinistryInvolvement":
+                    students = students.OrderBy(s => s.MinistryInvolvement);
+                    break;
+                case "MinistryInvolvement desc":
+                    students = students.OrderByDescending(s => s.MinistryInvolvement);
                     break;
                 case "UserName":
                     students = students.OrderBy(s => s.UserName);

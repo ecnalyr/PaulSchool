@@ -32,12 +32,16 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.Comments)
+            @Html.LabelFor(model => model.Comments)*
         </div>
         <div class="editor-field">
             @Html.TextAreaFor(model => model.Comments)
             @Html.ValidationMessageFor(model => model.Comments)
         </div>
+        
+        <p>
+            *Note that comments are visible by the Student and Instructor involved as well as Admin.
+        </p>
 
         <p>
             <input type="submit" value="Save" />

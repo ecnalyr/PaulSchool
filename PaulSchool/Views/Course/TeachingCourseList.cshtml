@@ -22,9 +22,10 @@
             <th></th>
             <th>Course Title</th>
             <th>Start Date</th>
+            <th>End Date</th>
             <th>Days in Course</th>
             <th>Location</th>
-            <th>Parish</th>
+            <th>Paris h</th>
             <th>Description</th>
             <th>Cost</th>
             <th>Admin Approved?</th>
@@ -37,13 +38,15 @@
                 <tr>
                     <td>
                         @Html.ActionLink("Attendance", "AttendanceView", "Attendance", new { id = item.CourseID }, null)
-                        @Html.ActionLink("Details", "Details", new { id = item.CourseID })
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Title)
+                        @Html.ActionLink(item.Title, "Details", new { id = item.CourseID })
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.StartDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EndDate)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.AttendingDays)

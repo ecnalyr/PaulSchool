@@ -21,29 +21,39 @@
                 </div>
                 <div id="menucontainer">
                     <ul id="menu">
-                        <li>@Html.ActionLink("Home", "Index", "Home", new {area = ""}, null)</li>
-                        <li>@Html.ActionLink("Your Courses", "UsersCourseList", "Course", new {area = ""}, null)</li>
+                        <li>@Html.ActionLink("Home", "Index", "Home", new { area = string.Empty }, null)</li>
+                        <li>@Html.ActionLink("Your Courses", "UsersCourseList", "Course", new { area = string.Empty }, null)</li>
                         @{
                             if (User.IsInRole("Instructor") || User.IsInRole("Administrator") || User.IsInRole("SuperAdministrator"))
                             {
-                                <li>@Html.ActionLink("Courses You Instruct", "TeachingCourseList", "Course", new {area = ""}, null)</li>
+                                <li>@Html.ActionLink("Courses You Instruct", "TeachingCourseList", "Course", new { area = string.Empty }, null)</li>
                             }
+
                         }
-                        <li>@Html.ActionLink("Apply To Take Course", "ApplyToCourse", "Course", new {area = ""}, null)</li>
-                        <li>@Html.ActionLink("Notifications", "Index", "Notification", new {area = ""}, null)</li>
+                        <li>@Html.ActionLink("Apply To Take Course", "ApplyToCourse", "Course", new { area = string.Empty }, null)</li>
+                        <li>@Html.ActionLink("Notifications", "Index", "Notification", new { area = string.Empty }, null)</li>
                     </ul>
                 </div>
             </div>
             <div id="main">
+                <p>    
+                    @{
+                        if (!string.IsNullOrEmpty(TempData["importantMessage"] as string))
+                        {
+                            <b class="error">@TempData["importantMessage"].ToString()</b>
+                        }
+
+                    }
+                </p>
                 @RenderBody()
             </div>
             <div id="footer">
-                @Html.ActionLink("List of Students", "Index", "Student", new {area = ""}, null)
-                @Html.ActionLink("List of Instructors", "Index", "Instructor", new {area = ""}, null)
-                @Html.ActionLink("List of Courses", "Index", "Course", new {area = ""}, null)
-                @Html.ActionLink("Apply to become an Instructor", "Index", "InstructorApplication", new {area = ""}, null)
-                @Html.ActionLink("Commissioning", "Index", "Commissioning", new {area = ""}, null)
-                @Html.ActionLink("User Administration", "Index", "UserAdministration", new {area = "MvcMembership"}, null)
+                @Html.ActionLink("List of Students", "Index", "Student", new { area = string.Empty }, null)
+                @Html.ActionLink("List of Instructors", "Index", "Instructor", new { area = string.Empty }, null)
+                @Html.ActionLink("List of Courses", "Index", "Course", new { area = string.Empty }, null)
+                @Html.ActionLink("Apply to become an Instructor", "Index", "InstructorApplication", new { area = string.Empty }, null)
+                @Html.ActionLink("Commissioning", "Index", "Commissioning", new { area = string.Empty }, null)
+                @Html.ActionLink("User Administration", "Index", "UserAdministration", new { area = "MvcMembership" }, null)
             </div>
         </div>
     </body>

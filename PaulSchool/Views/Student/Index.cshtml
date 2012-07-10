@@ -30,7 +30,19 @@ ViewBag.Title = "Students";
 <th>
     @Html.ActionLink("Enrollment Date", "Index", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
 </th>
-<th>
+    <th>
+        @Html.ActionLink("City", "Index", new { sortOrder = ViewBag.CitySortParm, currentFilter = ViewBag.CurrentFilter })
+    </th>
+    <th>
+        @Html.ActionLink("ZipCode", "Index", new { sortOrder = ViewBag.ZipCodeSortParm, currentFilter = ViewBag.CurrentFilter })
+    </th>
+    <th>
+        @Html.ActionLink("ParishAffiliation", "Index", new { sortOrder = ViewBag.ParishAffiliationSortParm, currentFilter = ViewBag.CurrentFilter })
+    </th>
+    <th>
+        @Html.ActionLink("MinistryInvolvement", "Index", new { sortOrder = ViewBag.MinistryInvolvementSortParm, currentFilter = ViewBag.CurrentFilter })
+    </th>
+    <th>
     @Html.ActionLink("UserName", "Index", new { sortOrder = ViewBag.UserNameSortParm, currentFilter = ViewBag.CurrentFilter})
 </th>
 </tr>
@@ -51,6 +63,18 @@ ViewBag.Title = "Students";
     </td>
     <td>
         @Html.DisplayFor(modelItem => item.EnrollmentDate)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.City)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.ZipCode)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.ParishAffiliation)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.MinistryInvolvement)
     </td>
     <td>
         @Html.DisplayFor(modelItem => item.UserName)

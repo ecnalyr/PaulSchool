@@ -15,7 +15,7 @@
 
     <p><b>Enrollment Date:</b> @Html.DisplayFor(model => model.EnrollmentDate)</p>
 
-    <p><b>User Name:</b> @Html.DisplayFor(model => model.UserName)</p>
+    <p><b>User Name: </b>@Html.ActionLink(Model.UserName, "Details", "Student", new { id = ViewBag.instructorsStudentId }, null)</p>
 
     <div class="display-label">
     Classes (currently includes unapproved classes that were applied for)

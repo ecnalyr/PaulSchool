@@ -140,7 +140,7 @@
                                 @{
                                     if ((User.IsInRole("Administrator") || User.IsInRole("SuperAdministrator")) && Model.Approved == false)
                                     {
-                                        <p>@Html.ActionLink("Clicking here will approve this course with it's current details.", "ApproveCourse", new {id = Model.CourseID}, new {onclick = "return confirm('Are you sure you are ready to approve of this course?');"})</p>
+                                        @Html.ActionLink("Clicking here will approve this course with it's current details.", "ApproveCourse", new {id = Model.CourseID}, new {onclick = "return confirm('Are you sure you are ready to approve of this course?');"})
                                         <p>@Html.ActionLink("Clicking here will deny this course with it's current details.  You will be given the option to offer an explanation on the following page.", "Delete", new {id = Model.CourseID}, new {onclick = "return confirm('Are you sure you want to deny this course?');"})</p>
                                     }
                                 }
@@ -171,7 +171,7 @@
                                 @{
                                     if ((User.IsInRole("Administrator") || User.IsInRole("SuperAdministrator")) && Model.Approved == false)
                                     {
-                                        @Html.ActionLink("Click here to edit the details of the course", "EditCourse", new {id = Model.CourseID})
+                                        <p>@Html.ActionLink("Click here to edit the details of the course", "EditCourse", new {id = Model.CourseID})</p>
                                     }
                                 }
                             </div>

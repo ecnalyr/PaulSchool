@@ -122,6 +122,8 @@ namespace PaulSchool.Controllers
             if (User.IsInRole("Administrator") || User.IsInRole("SuperAdministrator"))
             {
                 Instructor instructor = db.Instructors.Find(id);
+                Student instructorsStudentProfile = db.Students.FirstOrDefault(o => o.UserName == instructor.UserName);
+                ViewBag.instructorsStudentId = instructorsStudentProfile.StudentID;
                 return View(instructor);
             }
             else
@@ -131,6 +133,9 @@ namespace PaulSchool.Controllers
                 if (instructor != null && id == instructor.InstructorID)
                     // if the current user's id matches the instructor's id
                 {
+                    Student instructorsStudentProfile = db.Students.FirstOrDefault(
+                        o => o.UserName == User.Identity.Name);
+                    ViewBag.instructorsStudentId = instructorsStudentProfile.StudentID;
                     return View(instructor);
                 }
                 // the current user and the selected instructor's id do not match

@@ -6,7 +6,7 @@
     ViewBag.Title = "StudentDetails";
 }
 
-<h2>StudentDetails</h2>
+<h2>Your attendance details for the course:</h2>
 <p>    
     @{
         if (!string.IsNullOrEmpty(TempData["tempMessage"] as string))
@@ -19,7 +19,7 @@
     @{
         if (Model.Paid == false)
         {
-            <h1>You have not paid for this course PUT A PAYPAL BUTTON HERE</h1>
+            <h1>You have not paid for this course.  The application fee is @Model.Course.Cost.ToString("c"). You can pay this fee using the Paypal link below, or by contacting an Administrator for other payment methods.</h1>
                     var actualCost = Model.Course.Cost;
             @Html.PayPalButton(true,
                 HtmlHelpers.EButtonType.PayNow,
@@ -31,10 +31,6 @@
                 "http://localhost.com/home/complete",
                 "http://localhost.com/home/cancel",
                      "http://24.155.210.182/paulschool/paypal/ipn")
-        }
-        else
-        {
-            <h1>You have paid for this course</h1>
         }
     }
 </p>
@@ -61,5 +57,14 @@
         }
     </tbody>
 </table>
+
+<h4>Your grade for the course:</h4>
+@Model.SingleStudentEnrollment.Grade
+
 <h4>Comments made by your Instructor:</h4>
 @Model.Comments
+
+@{ if (Model.Paid == true)
+   {
+       <div>*There is no payment due for this course.</div>
+   }}
