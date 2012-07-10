@@ -15,11 +15,5 @@ namespace PaulSchool.Controllers
         {
             return View();
         }
-
-        public ActionResult PaypalTest()
-        {
-            return View();
-        }
-
     }
 }

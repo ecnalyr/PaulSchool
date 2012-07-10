@@ -98,6 +98,14 @@
                         <div class="display-field">
                             @Html.DisplayFor(model => model.AttendanceCap)
                         </div>
+                        
+                        <div class="display-label">Seats left</div>
+                        <div class="display-field">
+                            @{
+                                var seatsAvailable = Model.AttendanceCap - Model.SeatsTaken;
+                            }
+                            @seatsAvailable of @Html.DisplayFor(model => model.AttendanceCap)
+                        </div>
                     </div>
 
                     <div id="column-4">

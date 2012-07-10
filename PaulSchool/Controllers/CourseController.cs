@@ -350,6 +350,7 @@ namespace PaulSchool.Controllers
 
         private void CreateEnrollmentAttendanceAndNotificationData(Course course, Student thisStudent)
         {
+            course.SeatsTaken = course.SeatsTaken + 1;
             BuildEnrollmentData(course, thisStudent);
             BuildAttendanceData(course, thisStudent);
             BuildNotificationData(course, thisStudent);
@@ -623,6 +624,16 @@ namespace PaulSchool.Controllers
             }
             int pageSize = 10;
             int pageNumber = (page ?? 1);
+
+            // Find out how many seats are available
+            foreach (var course in courses)
+            {
+                var count = this.db.Enrollments.Count(o => o.CourseID == course.CourseID);
+                var seatsLeft = course.AttendanceCap - count;
+                ViewBag.course = seatsLeft;
+            }
+            
+
             return View(courses.ToPagedList(pageNumber, pageSize));
         }
 
@@ -668,6 +679,8 @@ namespace PaulSchool.Controllers
         private Enrollment RemoveEnrollmentAndAttendanceData(int id)
         {
             Enrollment enrollment = db.Enrollments.Find(id);
+            Course course = db.Courses.First(o => o.CourseID == enrollment.CourseID);
+            course.SeatsTaken = course.SeatsTaken - 1;
             db.Enrollments.Remove(enrollment);
             IQueryable<Attendance> attendanceItems = db.Attendance.Where(s => s.CourseID == enrollment.CourseID &&
                                                                               s.StudentID == enrollment.StudentID);

@@ -28,7 +28,6 @@ namespace PaulSchool.Controllers
             if (response == "VERIFIED")
             {
                 Debug.Write("VERIFIED RESPONSE");
-                string transactionID = Request["txn_id"];
                 string stringAmountPaid = Request["mc_gross"];
                 string stringEnrollmentID = Request["item_number"];
 
@@ -52,6 +51,7 @@ namespace PaulSchool.Controllers
                 {
                     enrollment.Paid = true;
                     db.SaveChanges();
+
                     // the enrollment should now be marked as paid.
                 }
             }
