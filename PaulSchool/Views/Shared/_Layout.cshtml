@@ -38,9 +38,9 @@
             <div id="main">
                 <p>    
                     @{
-                        if (!string.IsNullOrEmpty(TempData["importantMessage"] as string))
+                        if (!string.IsNullOrEmpty(TempData["notificationMessage"] as string))
                         {
-                            <b class="error">@TempData["importantMessage"].ToString()</b>
+                            <b class="error">@TempData["notificationMessage"].ToString()</b>
                         }
 
                     }
@@ -53,6 +53,7 @@
                 @Html.ActionLink("List of Courses", "Index", "Course", new { area = string.Empty }, null)
                 @Html.ActionLink("Apply to become an Instructor", "Index", "InstructorApplication", new { area = string.Empty }, null)
                 @Html.ActionLink("Commissioning", "Index", "Commissioning", new { area = string.Empty }, null)
+                @Html.ActionLink("Course Template Management", "Index", "CourseTemplates", new { area = string.Empty }, null)
                 @Html.ActionLink("User Administration", "Index", "UserAdministration", new { area = "MvcMembership" }, null)
             </div>
         </div>

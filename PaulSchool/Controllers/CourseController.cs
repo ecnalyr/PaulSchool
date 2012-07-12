@@ -622,18 +622,25 @@
 
             int totalCoresPassed =
                 db.Enrollments.Count(
-                    s => s.StudentID == thisStudent.StudentID && s.Grade == "pass" && s.Course.Elective == false);
+                    s => s.StudentID == thisStudent.StudentID && s.Grade == "pass" && s.Course.Elective == false && s.Course.Title != "Day of Reflection");
 
             int totalElectivesPassed =
                 db.Enrollments.Count(
                     s => s.StudentID == thisStudent.StudentID && s.Grade == "pass" && s.Course.Elective);
+
+            var dayOfReflection = db.Enrollments.FirstOrDefault(s => s.StudentID == thisStudent.StudentID && s.Course.Title == "Day of Reflection" && s.Grade == "pass");
             ViewBag.coresPassed = totalCoresPassed;
             ViewBag.electivesPassed = totalElectivesPassed;
+            ViewBag.completedDayOfReflection = "You have not completed the Commissioning requirement: Day of Reflection";
+            if (dayOfReflection != null)
+            {
+                ViewBag.completedDayOfReflection = "You have completed the Commissioning requirement: Day of Reflection";
+            }
             Enrollment nullIfAllCourseFeesArePaid = thisStudent.Enrollments.FirstOrDefault(o => o.Paid == false);
 
             if (nullIfAllCourseFeesArePaid != null)
             {
-                TempData["importantMessage"] =
+                TempData["paymentMessage"] =
                     "You have enrolled in at least one course with an application fee, but have not paid the fee.  Please view the details of your courses and pay online with Paypal or contact an Administrator to pay using another method.";
             }
 

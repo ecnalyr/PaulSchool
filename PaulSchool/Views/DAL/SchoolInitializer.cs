@@ -9,7 +9,7 @@ namespace PaulSchool.DAL
     {
         protected override void Seed(SchoolContext context)
         {
-            var students = new List<Student>
+            /*var students = new List<Student>
             {
                 new Student { FirstMidName = "Carson", UserName="TestUser", LastName = "Alexander", Email = "123@aol.com",     EnrollmentDate = DateTime.Parse("2005-09-01") },
                 new Student { FirstMidName = "Meredith", LastName = "Alonso", Email = "345@aol.com",        EnrollmentDate = DateTime.Parse("2002-09-01") },
@@ -42,7 +42,7 @@ namespace PaulSchool.DAL
                 new Course { Title = "Literature",      InstructorID = 1, Credits = 4, Elective = true,Year = 2011, AttendingDays = 10, AttendanceCap = 30, StartDate = DateTime.Parse("2012-01-01"), EndDate = DateTime.Parse("2012-02-01"), DurationHours = 1, DurationMins = 30, Location = "Corpus Christi", Parish = "AliceParish", Description = "Very Cool Course", Approved = true, Completed = false, Archived = false, Cost = new decimal(10.00) }
             };
             courses.ForEach(s => context.Courses.Add(s));
-            context.SaveChanges();
+            context.SaveChanges();*/
 
             var courseTemplates = new List<CourseTemplates>
             {
@@ -52,6 +52,7 @@ namespace PaulSchool.DAL
                 new CourseTemplates { Title = "Macroeconomics", Credits = 3, Elective = true, AttendingDays = 8, AttendanceCap = 30, DurationHours = 1, DurationMins = 30, Location = "Corpus Christi", Parish = "GoodParish", Description = "A course taken in Corpus Christi", Cost = new decimal(10.00) },
                 new CourseTemplates { Title = "Calculus", Credits = 1, Elective = true, AttendingDays = 3, AttendanceCap = 25, DurationHours = 1, DurationMins = 30, Location = "Corpus Christi", Parish = "GoodParish", Description = "A course taken in Corpus Christi", Cost = new decimal(10.00) },
                 new CourseTemplates { Title = "Trigonometry", Credits = 1, Elective = true, AttendingDays = 8, AttendanceCap = 25, DurationHours = 1, DurationMins = 30, Location = "Corpus Christi", Parish = "GoodParish", Description = "A course taken in Corpus Christi", Cost = new decimal(10.00) },
+                new CourseTemplates { Title = "Day of Reflection", Credits = 1, Elective = false, AttendingDays = 1, AttendanceCap = 1, DurationHours = 24, DurationMins = 0, Location = "Corpus Christi", Parish = "GoodParish", Description = "Required for Commissioning", Cost = new decimal(0.00) },
             };
             courseTemplates.ForEach(s => context.CourseTemplates.Add(s));
             context.SaveChanges();

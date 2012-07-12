@@ -153,6 +153,7 @@
     <Compile Include="Models\Student.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="Content\images\acenturyoftradition.jpg" />
+    <Content Include="Scripts\AutoCompleteMinistryInvolvement.js" />
     <Content Include="Views\Account\Welcome.cshtml" />
     <Content Include="Views\Account\Verify.cshtml" />
     <Content Include="Views\Account\PasswordReset.cshtml" />
@@ -179,9 +180,6 @@
     <Content Include="App_Data\ASPNETDB.MDF" />
     <Content Include="App_Data\aspnetdb_log.ldf">
       <DependentUpon>ASPNETDB.MDF</DependentUpon>
-    </Content>
-    <Content Include="App_Data\School.sdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />

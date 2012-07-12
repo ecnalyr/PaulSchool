@@ -102,6 +102,13 @@ namespace PaulSchool.Controllers
 
             var applicationWithUserData = ApplicationWithUserData(thisStudent);
 
+            var dayOfReflection = db.Enrollments.FirstOrDefault(s => s.StudentID == thisStudent.StudentID && s.Course.Title == "Day of Reflection" && s.Grade == "pass");
+            ViewBag.completedDayOfReflection = "(You have not completed the Day of Reflection, ask an Administrator for details on how to complete this.)";
+            if (dayOfReflection != null)
+            {
+                ViewBag.completedDayOfReflection = "(You have completed the Day of Reflection)";
+            }
+
             return View(applicationWithUserData);
         }
 
@@ -116,8 +123,10 @@ namespace PaulSchool.Controllers
             int totalCoresPassed;
             TotalCoresAndElectivesPassed(thisStudent, out totalElectivesPassed, out totalCoresPassed);
 
+            var dayOfReflection = db.Enrollments.FirstOrDefault(s => s.StudentID == thisStudent.StudentID && s.Course.Title == "Day of Reflection" && s.Grade == "pass");
+
             string doOrDoNotQualify;
-            if (totalCoresPassed >= totalCoresNeeded && totalElectivesPassed >= totalElectivesNeeded)
+            if (totalCoresPassed >= totalCoresNeeded && totalElectivesPassed >= totalElectivesNeeded && dayOfReflection != null)
             {
                 doOrDoNotQualify = "do";
             }
@@ -154,7 +163,8 @@ namespace PaulSchool.Controllers
             Debug.Write(thisStudent.UserName);
             int totalCoresPassed = db.Enrollments.Count(s => s.StudentID == thisStudent.StudentID
                                                              && s.Grade == "pass"
-                                                             && s.Course.Elective == false);
+                                                             && s.Course.Elective == false
+                                                             && s.Course.Title != "Day of Reflection");
             return totalCoresPassed;
         }
 

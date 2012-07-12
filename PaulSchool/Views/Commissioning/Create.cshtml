@@ -8,6 +8,7 @@
 <p>
     The basic course requirements for Commissioning are: @ViewBag.totalCoresNeeded Core Courses passed and @ViewBag.totalElectivesNeeded Elective Courses passed.
 </p>
+    You also need to have completed a Day of Reflection.  @ViewBag.completedDayOfReflection  Ask an Administrator for details on how to complete this.
 <p>
     You @ViewBag.doOrDoNotQualify meet the basic course requirement according to this database's records.
 </p>
@@ -33,7 +34,7 @@
             </p>
         </div>
         <div class="editor-field">
-            @Html.TextAreaFor(model => model.PersonalStatement)
+            @Html.TextAreaFor(model => model.PersonalStatement, new { style = "width: 100%" })
             @Html.ValidationMessageFor(model => model.PersonalStatement)
         </div>
         

@@ -16,6 +16,7 @@ namespace PaulSchool.Controllers
     using PaulSchool.Models;
     using PaulSchool.Resources;
     using PaulSchool.ViewModels;
+    using System.Diagnostics;
 
     /// <summary>
     /// The attendance controller.
@@ -615,7 +616,7 @@ namespace PaulSchool.Controllers
         {
             int totalCoresPassed =
                 this.db.Enrollments.Count(
-                    s => s.StudentID == item.Student.StudentID && s.Grade == "pass" && s.Course.Elective == false);
+                    s => s.StudentID == item.Student.StudentID && s.Grade == "pass" && s.Course.Elective == false && s.Course.Title != "Day of Reflection");
             return totalCoresPassed;
         }
 

@@ -31,5 +31,5 @@ $(document).ready(function() {
 
     $("#DateOfBirth").datetimepicker({
         ampm: true
-    });
+    });          
 });
