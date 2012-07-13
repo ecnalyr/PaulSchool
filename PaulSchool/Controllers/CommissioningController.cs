@@ -112,6 +112,11 @@ namespace PaulSchool.Controllers
             return View(applicationWithUserData);
         }
 
+        public ViewResult RecommendationForm()
+        {
+            return View();
+        }
+
         public ActionResult PrintableRecommendationForm()
         {
             return View();

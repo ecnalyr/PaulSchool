@@ -1,59 +1,242 @@
-﻿@model PaulSchool.Models.Enrollment
+﻿@using System.Globalization
+@model PaulSchool.Models.Enrollment
 @{
-    this.Layout = null;
+    Layout = null;
+}
 
+<!DOCTYPE html>
+<style media="all" type="text/css">
+    /* Body
+
+-------------------------------------------------*/
+    body {
+
+        font: 62.5%/1.5 Arial, Hevetica, sans-serif
+    }
+    #wrapper 
+    {
+        /*background-image:url('../../Content/images/diocese.png');
+        background-repeat:no-repeat;*/
+
+        margin: 0 auto;
+
+        width: 960px;
+    }
+        #wrapper image {
+        position:absolute;
+        /*left:198px;*/
+            left: 25%;
+        top:5%;
+        z-index:-1;
+    }
+        #wrapper h1 {
+        font-size: 2em;
+
+        margin: 0px 0 0 0px;
+
+        text-align: center;
+    }
+        #wrapper h2 
+    {
+        font-size: 1.6em;
+        margin: 0px 0 0 0px;
+
+        text-align: center;
+    }
+/* Header
+
+-------------------------------------------------*/
+
+    Header {
+
+        background-color: #FFF;
+
+        display: block;
+
+        height: 50px;
     }
 
-    <!DOCTYPE html>
 
-    <html>
+
+    Header h1 {
+
+        font-size: 2em;
+
+        margin: 10px 0 0 10px;
+
+        text-align: center;
+    }
+
+/* Nav
+
+-------------------------------------------------*/
+
+    #nav {
+
+        Float: right;
+
+        list-style-position: inside;
+
+        list-style-type: none;
+
+        margin: 20px 0 0 0;
+    }
+
+
+
+    #nav li {
+
+        display: inline;
+
+        font-size: 12px;
+
+        margin: 0 20px 0 0;
+    }
+
+
+
+
+
+/* Content
+
+-------------------------------------------------*/
+
+
+
+    #content { padding: 10px; }
+
+
+
+    #gallery {
+
+        list-style-type: none;
+
+        margin: 10px 0 0 0;
+    }
+
+
+
+    #gallery li {
+
+        display: inline;
+
+        margin: 0 20px 0 0;
+    }
+
+
+
+    #gallery li a img { border: 3px solid #06f; }
+
+
+
+    #gallery li a img:hover { border: 3px solid #444; }
+
+
+
+/* Footer
+
+-------------------------------------------------*/
+
+    footer { background-color: #999; }
+
+
+
+    footer p {
+
+        font-size: 1.4em;
+
+        padding: 10px 0;
+
+        text-align: center;
+    }
+
+
+
+/* Text and Links
+
+-------------------------------------------------*/
+
+
+
+    p {
+
+        color: #000;
+
+        font-size: 1.5em;
+    }
+
+
+
+    P1 { color 
+
+    # 000;
+
+    font-size: 2em
+
+    ;
+
+    margin-left: auto;
+
+    margin-right: auto;
+
+    
+
+}
+
+
+
+
+
+
+a{
+
+    color: #333;
+
+    text-decoration: none;
+
+}
+
+
+
+a:hover{
+
+    color: aqua;
+
+    text-decoration: underline;
+
+}
+</style>
+<html>
     <head>
-        <title>Certificate Of Attendance</title>
+        <title>Certificate of Attendance</title>
     </head>
-        <body>
-            @{
-                if (Model.Course.Completed == true)
-                {
-                    <center>
-                    <div>
-                        <p>
-                            Awarded to @Html.DisplayFor(model => model.Student.FirstMidName) @Html.DisplayFor(model => model.Student.LastName)
-                        </p>
-                    </div>
-                    <div>
-                        <p>
-                            in
-                        </p>
-                    </div>
-                    <div>
-                        <p>
-                            @Html.DisplayFor(model => model.Course.Title)
-                        </p>
-                    </div>
-                    <div>
-                        <p>
-                            for a total of @Html.DisplayFor(model => model.Course.Credits) hours.
-                        </p>
-                    </div>
-                    <div>
-                        <p>
-                            On this @Html.DisplayFor(model => model.Course.EndDate.Day) day of @Html.DisplayFor(model => model.Course.EndDate.Month) , @Html.DisplayFor(model => model.Course.EndDate.Year)
-                        </p>
-                    </div>
-                    <div>
-                        <p>*SEAL* Instructor: @Html.DisplayFor(model => model.Course.Instructor.FirstMidName) @Html.DisplayFor(model => model.Course.Instructor.LastName) *SEAL*</p>
-                    </div>
-                    </center>
-                }
-                else
-                {
-                    <div>
-                        You have not completed this course.
-                    </div>
-                }
+    <body>
+        
+        <div id="wrapper">
+            <br/>
 
-            }
-        </body>
+            <p1>
+            <img src="../../Content/images/dioceseTransparent.png"  />
+                
+                <h2><br /><br />Department of Evangelization and Catechesis<br /> Office of Religious Education<br /> St. Paul School of Catechesis</h2>
 
 
+
+                <center><br />Awarded to<br /><br />@Html.Raw(Model.Student.FirstMidName) @Html.Raw(Model.Student.LastName)<br /><br /> 
+
+                    in Catholic Doctrine <br /><br />
+
+                    for the completion of<br /><br />@Html.Raw(Model.Course.Credits.ToString()) hours in @Html.Raw(Model.Course.Title)<br /><br />
+
+                    On this @ViewBag.dateWithOrdinal day of @Html.Raw(Model.Course.EndDate.ToString("MMMM")), @Html.Raw(Model.Course.EndDate.Year.ToString(CultureInfo.InvariantCulture))<br /><br />
+
+                    @Html.Raw(Model.Course.Instructor.FirstMidName) @Html.Raw(Model.Course.Instructor.LastName)<br />
+
+                    <i>Instructor</i></center> 
+
+            </p1>
+
+        </div>
+
+    </body>
 </html>
