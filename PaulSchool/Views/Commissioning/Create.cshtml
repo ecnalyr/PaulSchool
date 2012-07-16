@@ -10,7 +10,7 @@
 </p>
     You also need to have completed a Day of Reflection.  @ViewBag.completedDayOfReflection  Ask an Administrator for details on how to complete this.
 <p>
-    You @ViewBag.doOrDoNotQualify meet the basic course requirement according to this database's records.
+    You <span style="color:#FF0000">@ViewBag.doOrDoNotQualify</span> meet the basic course requirement according to this database's records.
 </p>
 
 <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
@@ -39,16 +39,22 @@
         </div>
         
         <p>
-            In addition to your profile information, you are responsible for providing/completing the following steps to the Department of Evangelization and Catechesis Office of Religious Education at the St. Paul School of Catechesis.
+            In addition to your profile information, you are responsible for providing/completing the following steps to the Department of Evangelization and Catechesis Office of Religious Education at the St. Paul School of Catechesis:
         </p>
-        <p>
-            A Recommendation form from a Pastor, parish catechetical leader (DRE), principal, or ministry supervisor attesting to competence as a qualified catechist.
-        </p>
-        <p>
+        <li>
+            A Recommendation form from a Pastor, parish catechetical leader (DRE), principal, or ministry supervisor attesting to competence as a qualified catechist (@Html.ActionLink("printable here", "RecommendationForm")).
+        </li>
+        <li>
             You must have completed a Diocesan sponsored day of reflection.
+        </li>
+        <li>
+            You must have paid the Application Fee (submit in person along with above recommendation form).
+        </li>
+        <p>
+            Please speak to an Admin if you have any questions.
         </p>
         <p>
-            You must have paid the Application Fee.
+            Please note that Commissioning expires after 5 years.  You will need to apply to be Re-Commissioned at that time.
         </p>
 
         <p>

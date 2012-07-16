@@ -42,9 +42,16 @@
                         {
                             <b class="error">@TempData["notificationMessage"].ToString()</b>
                         }
-
                     }
                 </p>
+                @{
+                    if (!string.IsNullOrEmpty(TempData["message"] as string))
+                    {
+                        <p>
+                            <b class="error">@TempData["message"].ToString()</b>
+                        </p>
+                    }
+                }
                 @RenderBody()
             </div>
             <div id="footer">

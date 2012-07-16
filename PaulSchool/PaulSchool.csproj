@@ -175,7 +175,6 @@
     <Content Include="Views\Commissioning\ReCommissioningApplications.cshtml" />
     <Content Include="Views\Commissioning\AllReCommissioningApplications.cshtml" />
     <Content Include="Views\Commissioning\Index.cshtml" />
-    <Content Include="Views\Commissioning\PrintableRecommendationForm.cshtml" />
     <Content Include="Views\Paypal\IPN.cshtml" />
     <Content Include="Views\Commissioning\RecommendationForm.cshtml" />
   </ItemGroup>

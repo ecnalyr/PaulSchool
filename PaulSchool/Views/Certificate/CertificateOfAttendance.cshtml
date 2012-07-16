@@ -9,12 +9,10 @@
     /* Body
 
 -------------------------------------------------*/
-    body {
 
-        font: 62.5%/1.5 Arial, Hevetica, sans-serif
-    }
-    #wrapper 
-    {
+    body { font: 62.5%/1.5 Arial, Hevetica, sans-serif }
+
+    #wrapper {
         /*background-image:url('../../Content/images/diocese.png');
         background-repeat:no-repeat;*/
 
@@ -23,15 +21,15 @@
         width: 960px;
     }
 
-        #wrapper h1 {
+    #wrapper h1 {
         font-size: 2em;
 
         margin: 0px 0 0 0px;
 
         text-align: center;
     }
-        #wrapper h2 
-    {
+
+    #wrapper h2 {
         font-size: 1.6em;
         margin: 0px 0 0 0px;
 
@@ -161,81 +159,87 @@
 
 
 
-    #subwrapper { color: #000;
+    #subwrapper {
+        color: #000;
 
-    font-size: 2em;
+        font-size: 2em;
 
-    margin-left: auto;
+        margin-left: auto;
 
-    margin-right: auto;
+        margin-right: auto;
 
         width: 720px;
+    }
 
-}
-        #subwrapper img {
-        position:absolute;
-        left:60px;
-        top:5%;
-        z-index:-1;
+    #subwrapper img {
+        left: 60px;
+        position: absolute;
+        top: 5%;
+        z-index: -1;
     }
 
 
 
 
 
-a{
+    a {
 
-    color: #333;
+        color: #333;
 
-    text-decoration: none;
-
-}
-
+        text-decoration: none;
+    }
 
 
-a:hover{
 
-    color: aqua;
+    a:hover {
 
-    text-decoration: underline;
+        color: aqua;
 
-}
+        text-decoration: underline;
+    }
 </style>
 <html>
     <head>
         <title>Certificate of Attendance</title>
     </head>
     <body>
-        
-        <div id="wrapper">
-            <br/>
+        @{
+            if (Model.Grade == "Pass")
+            {
+                <div id="wrapper">
+                    <br/>
 
-            <div id="subwrapper">
-                <div style="text-align: center;" >
-                <div style="position:relative;top:30px;left:20px">
-                    <img src="../../Content/images/dioceseTransparent.png"  />
-                    </div>
+                    <div id="subwrapper">
+                        <div style="text-align: center;" >
+                            <div style="left: 20px; position: relative; top: 30px;">
+                                <img src="../../Content/images/dioceseTransparent.png"  />
+                            </div>
                 
-                <h2><br /><br />Department of Evangelization and Catechesis<br /> Office of Religious Education<br /> St. Paul School of Catechesis</h2>
+                            <h2><br /><br />Department of Evangelization and Catechesis<br /> Office of Religious Education<br /> St. Paul School of Catechesis</h2>
 
 
 
-                <br/>Awarded to<br/><br/>@Html.Raw(Model.Student.FirstMidName) @Html.Raw(Model.Student.LastName)<br/><br/> 
+                            <br/>Awarded to<br/><br/>@Html.Raw(Model.Student.FirstMidName) @Html.Raw(Model.Student.LastName)<br/><br/> 
 
-                in Catholic Doctrine <br/><br/>
+                            in Catholic Doctrine <br/><br/>
 
-                for the completion of<br/><br/>@Html.Raw(Model.Course.Credits.ToString()) hours in @Html.Raw(Model.Course.Title)<br/><br/>
+                            for the completion of<br/><br/>@Html.Raw(Model.Course.Credits.ToString()) hours in @Html.Raw(Model.Course.Title)<br/><br/>
 
-                On this @ViewBag.dateWithOrdinal day of @Html.Raw(Model.Course.EndDate.ToString("MMMM")), @Html.Raw(Model.Course.EndDate.Year.ToString(CultureInfo.InvariantCulture))<br/><br/>
+                            On this @ViewBag.dateWithOrdinal day of @Html.Raw(Model.Course.EndDate.ToString("MMMM")), @Html.Raw(Model.Course.EndDate.Year.ToString(CultureInfo.InvariantCulture))<br/><br/>
 
-                @Html.Raw(Model.Course.Instructor.FirstMidName) @Html.Raw(Model.Course.Instructor.LastName)<br/>
+                            @Html.Raw(Model.Course.Instructor.FirstMidName) @Html.Raw(Model.Course.Instructor.LastName)<br/>
 
-                <i>Instructor</i>
-            </div> 
+                            <i>Instructor</i>
+                        </div> 
 
-            </div>
+                    </div>
 
-        </div>
-
+                </div>
+            }
+            else
+    {
+        <div>You have not completed this course.</div>
+    }
+        }
     </body>
 </html>

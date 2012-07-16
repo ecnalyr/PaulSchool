@@ -208,6 +208,8 @@ namespace PaulSchool.Controllers
                 db.Notification.Add(newNotification);
                 db.SaveChanges();
 
+                TempData["message"] =
+                    "Please make sure you have completed all the steps for your application (contact an Admin if you have questions)";
                 return RedirectToAction("Index");  
             }
 
