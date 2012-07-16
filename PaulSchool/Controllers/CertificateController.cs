@@ -1,15 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using PaulSchool.Models;
-using System.Globalization;
 
 namespace PaulSchool.Controllers
 {
-    using System.Diagnostics;
-
     [HandleError]
     public class CertificateController : PdfController
     {
@@ -26,6 +20,15 @@ namespace PaulSchool.Controllers
         public ActionResult CertificateOfCommissioning(int id)
         {
             ApplicationCommissioning commissioning = db.ApplicationCommissionings.Find(id);
+            if (commissioning.DateApproved != null)
+            {
+                DateTime dateTime = (DateTime) commissioning.DateApproved;
+                var dateWithOrdinals = AddOrdinal(dateTime.Day);
+                ViewBag.dateWithOrdinal = dateWithOrdinals;
+                ViewBag.approvedDate = dateTime;
+                ViewBag.approvedMonth = dateTime.ToString("MMMM");
+                ViewBag.expirationDate = dateTime.AddYears(5);
+            }
             return View(commissioning);
         }
 

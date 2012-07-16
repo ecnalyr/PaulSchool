@@ -296,6 +296,11 @@ namespace PaulSchool.Controllers
             {
                 ViewBag.Email = u.Email;
             }
+            var usersCommissionings =
+                db.ApplicationCommissionings.Where(o => o.Student.UserName == User.Identity.Name && o.Approved == true).
+                    OrderByDescending(m => m.DateApproved);
+            var usersMostRecentCommissioning = usersCommissionings.FirstOrDefault();
+            if (usersMostRecentCommissioning != null) ViewBag.mostRecentCommissioningCertificateID = usersMostRecentCommissioning.Id;
             return View(model);
         }
 

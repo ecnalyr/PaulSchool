@@ -27,11 +27,19 @@
     
         <p><b>Ministry Involvement:</b> @Html.DisplayFor(model => model.MinistryInvolvement)</p>
         
-        </fieldset>
+    </fieldset>
+    {
+        if (ViewBag.mostRecentCommissioningCertificateID != null)
+        {
+            <p>
+                Print out Certificate of Commissioning: @Html.ActionLink("view", "CertificateOfCommissioning", "Certificate", new {id = ViewBag.mostRecentCommissioningCertificateID}, null)
+            </p>
+        }
+    }
     <div>
-            @Html.ActionLink("Edit Profile", "ChangeProfile")
-        </div>
-        <div>
-            @Html.ActionLink("Change Email", "ChangeEmail")
-        </div>
+        @Html.ActionLink("Edit Profile", "ChangeProfile")
+    </div>
+    <div>
+        @Html.ActionLink("Change Email", "ChangeEmail")
+    </div>
 }

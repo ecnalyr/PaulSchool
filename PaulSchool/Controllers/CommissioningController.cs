@@ -249,7 +249,7 @@ namespace PaulSchool.Controllers
                 db.Notification.Add(newNotification);
                 db.SaveChanges();
 
-                return this.RedirectToAction("Index");
+                return this.RedirectToAction("CommissioningApplications");
             }
             return View(applicationcommissioning);
         }
