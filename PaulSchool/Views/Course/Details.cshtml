@@ -102,7 +102,7 @@
                         <div class="display-label">Seats left</div>
                         <div class="display-field">
                             @{
-                                var seatsAvailable = Model.AttendanceCap - Model.SeatsTaken;
+                                int seatsAvailable = Model.AttendanceCap - Model.SeatsTaken;
                             }
                             @seatsAvailable of @Html.DisplayFor(model => model.AttendanceCap)
                         </div>
@@ -188,7 +188,11 @@
                                             <tr>
                                                 <th>First and Middle Name</th>
                                                 <th>Last Name</th>
-                                                <th>Remove from class</th>
+                                                <th>Paid Fee?</th>
+                                                @if (User.IsInRole("SuperAdministrator"))
+                                                {
+                                                    <th>Remove from course</th>
+                                                }
                                             </tr>
                                             @foreach (Enrollment item in Model.Enrollments)
                                             {
@@ -200,8 +204,17 @@
                                                         @Html.ActionLink(item.Student.LastName, "Details", "Student", new {id = item.Student.StudentID}, "a")
                                                     </td>
                                                     <td>
-                                                        @Html.ActionLink("Remove", "RemoveFromCourse", new {id = item.EnrollmentID}, new {onclick = "return confirm('Are you absolutely certain that you want to remove this student from this Course?  This is not reversible.');"})
+                                                        @Html.Raw(item.Paid.ToString()) @if (item.Paid != true)
+                                                                                        {
+                                                                                            <span> </span>@Html.ActionLink("Mark as paid", "MarkAsPaid", "Course", new {id = item.EnrollmentID}, new {onclick = "return confirm('Are you certain you want to mark this enrollment field as paid?  This is not reversible.');"});
+                                                                                        }
                                                     </td>
+                                                    @if (User.IsInRole("SuperAdministrator"))
+                                                        {
+                                                            <td>
+                                                            @Html.ActionLink("Remove", "RemoveFromCourse", new {id = item.EnrollmentID}, new {onclick = "return confirm('Are you absolutely certain that you want to remove this student from this Course?  This is not reversible.');"})
+                                                            </td>
+                                                        }
                                                 </tr>
                                             }
                                         </table>

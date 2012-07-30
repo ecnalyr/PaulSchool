@@ -10,6 +10,7 @@ using PaulSchool.ViewModels;
 
 namespace PaulSchool.Controllers
 {
+    [Authorize(Roles = "Administrator, SuperAdministrator, Instructor")]
     public class StudentController : Controller
     {
         private readonly SchoolContext db = new SchoolContext();
@@ -207,13 +208,13 @@ namespace PaulSchool.Controllers
             Student student = db.Students.Find(id);
             //ViewBag.testCompletedCoreCourses = (from o in student where o.enrollment)
 
-            int totalCoresPassed = db.Enrollments.Where(s => s.StudentID == id
+            int totalCoresPassed = db.Enrollments.Count(s => s.StudentID == id
                                                              && s.Grade == "pass"
-                                                             && s.Course.Elective == false).Count();
+                                                             && s.Course.Elective == false);
 
-            int totalElectivesPassed = db.Enrollments.Where(s => s.StudentID == id
+            int totalElectivesPassed = db.Enrollments.Count(s => s.StudentID == id
                                                                  && s.Grade == "pass"
-                                                                 && s.Course.Elective).Count();
+                                                                 && s.Course.Elective);
 
             int totalCoresNeeded = db.CommissioningRequirementse.Find(1).CoreCoursesRequired;
             int totalElectivesNeeded = db.CommissioningRequirementse.Find(1).ElectiveCoursesRequired;

@@ -602,11 +602,13 @@
             return null;
         }
 
-        [Authorize(Roles = "Administrator, SuperAdministrator")]
+        [Authorize(Roles = "SuperAdministrator")]
         public ActionResult RemoveFromCourse(int id)
         {
             Enrollment enrollment = RemoveEnrollmentAndAttendanceData(id);
             db.SaveChanges();
+            TempData["tempMessage"] =
+                    "You have successfully removed " + enrollment.Student.FirstMidName + " " + enrollment.Student.LastName + " from this course.";
             return RedirectToAction("Details", new { id = enrollment.CourseID });
         }
 
@@ -804,5 +806,15 @@
         }
 
         #endregion
+
+        public ActionResult MarkAsPaid(int id)
+        {
+            Enrollment enrollment = db.Enrollments.Find(id);
+            enrollment.Paid = true;
+            db.SaveChanges();
+            TempData["tempMessage"] =
+                    "You have successfully marked " + enrollment.Student.FirstMidName + " " + enrollment.Student.LastName + "'s fee for this course as: Paid";
+            return RedirectToAction("Details", new {id = enrollment.CourseID});
+        }
     }
 }
