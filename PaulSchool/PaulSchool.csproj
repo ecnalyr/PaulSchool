@@ -50,6 +50,9 @@
       <HintPath>..\packages\iTextSharp-LGPL.4.1.6\lib\iTextSharp.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="NLog">
+      <HintPath>..\packages\NLog.2.0.0.2000\lib\net40\NLog.dll</HintPath>
+    </Reference>
     <Reference Include="PagedList, Version=1.14.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\PagedList.1.14\lib\net40\PagedList.dll</HintPath>
@@ -170,6 +173,12 @@
     <Content Include="Views\Certificate\CertificateOfCommissioning.cshtml" />
     <Content Include="Views\Attendance\ViewComment.cshtml" />
     <Content Include="Views\Certificate\CertificateOfAttendance.cshtml" />
+    <Content Include="NLog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="NLog.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Views\Certificate\OrdersInPdf.cshtml" />
     <Content Include="Views\Commissioning\AllCommissioningApplications.cshtml" />
     <Content Include="Views\Commissioning\ReCommissioningApplications.cshtml" />
@@ -488,6 +497,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\InstructorApplication\Success.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="logs\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

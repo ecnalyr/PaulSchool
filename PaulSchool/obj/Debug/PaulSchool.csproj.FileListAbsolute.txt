@@ -183,3 +183,6 @@ L:\Users\Jason\Desktop\PaulSchoolModifiedVersion\PaulSchoolModifiedVersion\PaulS
 L:\Users\Jason\Desktop\PaulSchoolModifiedVersion\PaulSchoolModifiedVersion\PaulSchool\obj\Debug\PaulSchool.pdb
 C:\Users\Administrator\Documents\GitHub\PaulSchool\PaulSchool\bin\iTextSharp.dll
 L:\Users\Jason\Documents\GitHub\PaulSchool\PaulSchool\bin\iTextSharp.dll
+C:\Users\Administrator\Documents\GitHub\PaulSchool\PaulSchool\bin\NLog.config
+C:\Users\Administrator\Documents\GitHub\PaulSchool\PaulSchool\bin\NLog.dll
+C:\Users\Administrator\Documents\GitHub\PaulSchool\PaulSchool\bin\NLog.xml
