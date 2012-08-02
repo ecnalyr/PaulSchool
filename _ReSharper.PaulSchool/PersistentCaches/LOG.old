@@ -1,5 +1,5 @@
-2012/07/31-07:54:06.248 a2c Recovering log #6
-2012/07/31-07:54:06.248 a2c Level-0 table #8: started
-2012/07/31-07:54:06.263 a2c Level-0 table #8: 431 bytes OK
-2012/07/31-07:54:06.263 a2c Delete type=0 #6
-2012/07/31-07:54:06.263 a2c Delete type=3 #4
+2012/07/31-08:03:44.692 d1c Recovering log #9
+2012/07/31-08:03:44.692 d1c Level-0 table #11: started
+2012/07/31-08:03:44.692 d1c Level-0 table #11: 6314 bytes OK
+2012/07/31-08:03:44.692 d1c Delete type=0 #9
+2012/07/31-08:03:44.692 d1c Delete type=3 #7

@@ -186,3 +186,7 @@ L:\Users\Jason\Documents\GitHub\PaulSchool\PaulSchool\bin\iTextSharp.dll
 C:\Users\Administrator\Documents\GitHub\PaulSchool\PaulSchool\bin\NLog.config
 C:\Users\Administrator\Documents\GitHub\PaulSchool\PaulSchool\bin\NLog.dll
 C:\Users\Administrator\Documents\GitHub\PaulSchool\PaulSchool\bin\NLog.xml
+C:\Users\Administrator\Documents\GitHub\PaulSchool\PaulSchool\bin\AntiXssLibrary.dll
+C:\Users\Administrator\Documents\GitHub\PaulSchool\PaulSchool\bin\HtmlSanitizationLibrary.dll
+C:\Users\Administrator\Documents\GitHub\PaulSchool\PaulSchool\bin\AntiXssLibrary.xml
+C:\Users\Administrator\Documents\GitHub\PaulSchool\PaulSchool\bin\HtmlSanitizationLibrary.xml
