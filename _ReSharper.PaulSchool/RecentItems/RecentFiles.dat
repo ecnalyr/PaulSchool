@@ -1,6 +1,5 @@
 ﻿<RecentFiles>
   <RecentFiles>
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Attendance/f:AttendanceView.cshtml" caret="5966" fromTop="153" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Scripts/f:EducationalBackgroundListEditor.js" caret="0" fromTop="0" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:DAL/f:SchoolInitializer.cs" caret="9419" fromTop="39" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:ViewModels/f:ApplyCourseViewModel.cs" caret="0" fromTop="0" />
@@ -25,11 +24,12 @@
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/f:NLog.config" caret="503" fromTop="12" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/f:Global.asax.cs" caret="1827" fromTop="47" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:StudentController.cs" caret="5161" fromTop="0" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:CourseController.cs" caret="4867" fromTop="13" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Shared/f:_Layout.cshtml" caret="213" fromTop="5" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/f:Web.Release.config" caret="1334" fromTop="11" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/f:Web.config" caret="1016" fromTop="6" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/f:AntiXssEncoder.cs" caret="357" fromTop="11" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/f:Web.config" caret="1016" fromTop="6" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:CourseController.cs" caret="19349" fromTop="0" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Home/f:Index.cshtml" caret="763" fromTop="10" />
   </RecentFiles>
   <RecentEdits>
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Certificate/f:CertificateOfAttendance.cshtml" caret="2745" fromTop="11" />
@@ -50,5 +50,6 @@
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/f:Web.Release.config" caret="1334" fromTop="11" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/f:AntiXssEncoder.cs" caret="118" fromTop="5" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/f:Web.config" caret="1314" fromTop="12" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Home/f:Index.cshtml" caret="763" fromTop="10" />
   </RecentEdits>
 </RecentFiles>
