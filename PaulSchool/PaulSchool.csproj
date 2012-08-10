@@ -162,7 +162,11 @@
     <Compile Include="Models\Enrollment.cs" />
     <Compile Include="Models\Student.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="App_Data\school.mdf" />
     <Content Include="App_Data\School.sdf" />
+    <Content Include="App_Data\school_log.ldf">
+      <DependentUpon>school.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\images\acenturyoftradition.jpg" />
     <Content Include="Content\images\diocese.png" />
     <Content Include="Content\images\dioceseTransparent.png" />

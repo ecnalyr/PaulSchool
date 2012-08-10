@@ -1,5 +1,5 @@
-2012/08/10-05:37:06.873 b64 Recovering log #19
-2012/08/10-05:37:06.873 b64 Level-0 table #21: started
-2012/08/10-05:37:06.904 b64 Level-0 table #21: 3380 bytes OK
-2012/08/10-05:37:06.904 b64 Delete type=0 #19
-2012/08/10-05:37:06.904 b64 Delete type=3 #17
+2012/08/10-06:00:56.540 e2c Recovering log #22
+2012/08/10-06:00:56.540 e2c Level-0 table #24: started
+2012/08/10-06:00:56.555 e2c Level-0 table #24: 3339 bytes OK
+2012/08/10-06:00:56.555 e2c Delete type=0 #22
+2012/08/10-06:00:56.555 e2c Delete type=3 #20
