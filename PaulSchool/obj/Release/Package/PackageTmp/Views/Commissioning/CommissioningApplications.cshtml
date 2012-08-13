@@ -1,0 +1,69 @@
+﻿@model IEnumerable<PaulSchool.Models.ApplicationCommissioning>
+
+@{
+    ViewBag.Title = "Commissioning Applications";
+}
+
+<h2>List of Commissioning Applications</h2>
+
+<p>
+    @Html.ActionLink("Apply for Commissioning", "Create")
+</p>
+
+@{if (User.IsInRole("Administrator") || User.IsInRole("SuperAdministrator"))
+  {
+      @Html.ActionLink("List of Students who qualify for Commissioning", "QualifyForCommissioning")
+      <p>
+          This is a list of all current applications for Commissioning:
+      </p>
+      
+      <table>
+          <tr>
+              <th>
+                  Name
+              </th>
+              <th>
+                  Recommendation Filed?
+              </th>
+              <th>
+                  Personal Statement
+              </th>
+              <th>
+                  Application Fee Paid
+              </th>
+              <th>
+                  Approve Application
+              </th>
+              <th></th>
+          </tr>
+
+          @foreach (var item in Model)
+          {
+              <tr>
+                  <td>
+                      @Html.DisplayFor(modelItem => item.Student.FirstMidName) @Html.DisplayFor(modelItem => item.Student.LastName)
+                  </td>
+                  <td>
+                      @Html.DisplayFor(modelItem => item.RecommendationFiled)
+                  </td>
+                  <td>
+                      @Html.DisplayFor(modelItem => item.PersonalStatement)
+                  </td>
+                  <td>
+                      @Html.DisplayFor(modelItem => item.ApplicationFeePaid)
+                  </td>
+                  <td>
+                      @Html.ActionLink("Approve", "ApproveCommissioningApplication", new { id = item.Id }, new { onclick = "return confirm('Are you sure you are ready to approve of this application for Commissioning?');" })
+                  </td>
+                  <td>
+                      @Html.ActionLink("Edit / Update", "Edit", new { id = item.Id }) |
+                      @Html.ActionLink("Details / Status", "Details", new { id = item.Id }) |
+                      @Html.ActionLink("Delete / Deny", "Delete", new { id = item.Id })
+                  </td>
+              </tr>
+          }
+
+      </table>
+      @Html.ActionLink("See approved Commissioning applications as well", "AllCommissioningApplications")
+
+  }}

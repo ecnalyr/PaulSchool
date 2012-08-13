@@ -1,0 +1,15 @@
+﻿@model ICollection<string>
+
+@{
+    ViewBag.Title = "EmailList";
+}
+
+<h2>EmailList</h2>
+<p>
+    @{
+        foreach (string email in Model)
+        {
+            @Html.Raw(email)
+        }
+    }
+</p>

@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <title>@ViewBag.Title</title>
+        <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
+        <link href="@Url.Content("~/Content/themes/ui-lightness/jquery-ui-1.8.19.custom.css")" rel="stylesheet"
+              type="text/css" />
+        <script src="@Url.Content("~/Scripts/jquery-1.7.2.min.js")" type="text/javascript"> </script>
+        <script src="@Url.Content("~/Scripts/jquery-ui-1.8.19.min.js")" type="text/javascript"> </script>
+        <script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.min.js")"  type="text/javascript"> </script>
+        @RenderSection("Header", false)
+    </head>
+    <body>
+        <div class="page">
+            <div id="header">
+                <div id="title">
+                    <h1>St. Paul School of Catechesis</h1>
+                </div>
+                <div id="logindisplay">
+                    @Html.Partial("_LogOnPartial")
+                </div>
+                <div id="menucontainer">
+                    <ul id="menu">
+                        <li>@Html.ActionLink("Home", "Index", "Home", new { area = string.Empty }, null)</li>
+                        <li>@Html.ActionLink("Your Courses", "UsersCourseList", "Course", new { area = string.Empty }, null)</li>
+                        @{
+                            if (User.IsInRole("Instructor") || User.IsInRole("Administrator") || User.IsInRole("SuperAdministrator"))
+                            {
+                                <li>@Html.ActionLink("Courses You Instruct", "TeachingCourseList", "Course", new { area = string.Empty }, null)</li>
+                            }
+
+                        }
+                        <li>@Html.ActionLink("Apply To Take Course", "ApplyToCourse", "Course", new { area = string.Empty }, null)</li>
+                        <li>@Html.ActionLink("Notifications", "Index", "Notification", new { area = string.Empty }, null)</li>
+                    </ul>
+                </div>
+            </div>
+            <div id="main">
+                <p>    
+                    @{
+                        if (!string.IsNullOrEmpty(TempData["notificationMessage"] as string))
+                        {
+                            <b class="error">@TempData["notificationMessage"].ToString()</b>
+                        }
+                    }
+                </p>
+                @{
+                    if (!string.IsNullOrEmpty(TempData["message"] as string))
+                    {
+                        <p>
+                            <b class="error">@TempData["message"].ToString()</b>
+                        </p>
+                    }
+                }
+                @RenderBody()
+            </div>
+            <div id="footer">
+                @Html.ActionLink("List of Students", "Index", "Student", new { area = string.Empty }, null)
+                @Html.ActionLink("List of Instructors", "Index", "Instructor", new { area = string.Empty }, null)
+                @Html.ActionLink("List of Courses", "Index", "Course", new { area = string.Empty }, null)
+                @Html.ActionLink("Apply to become an Instructor", "Index", "InstructorApplication", new { area = string.Empty }, null)
+                @Html.ActionLink("Commissioning", "Index", "Commissioning", new { area = string.Empty }, null)
+                @Html.ActionLink("Course Template Management", "Index", "CourseTemplates", new { area = string.Empty }, null)
+                @Html.ActionLink("User Administration", "Index", "UserAdministration", new { area = "MvcMembership" }, null)
+            </div>
+        </div>
+    </body>
+</html>

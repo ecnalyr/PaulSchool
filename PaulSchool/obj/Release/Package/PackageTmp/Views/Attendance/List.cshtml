@@ -1,0 +1,15 @@
+﻿@model IEnumerable<dynamic>
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>List</h2>
+
+<div>
+@{
+    var grid = new WebGrid(Model, defaultSort: "Name");
+}
+        
+    @grid.GetHtml()
+
+</div>

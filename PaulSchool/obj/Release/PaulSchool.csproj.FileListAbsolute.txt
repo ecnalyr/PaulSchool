@@ -21,7 +21,6 @@ L:\Users\Jason\Documents\GitHub\PaulSchool\PaulSchool\obj\Release\GenerateResour
 L:\Users\Jason\Documents\GitHub\PaulSchool\PaulSchool\obj\Release\GenerateResource.write.1.tlog
 L:\Users\Jason\Documents\GitHub\PaulSchool\PaulSchool\obj\Release\PaulSchool.dll
 L:\Users\Jason\Documents\GitHub\PaulSchool\PaulSchool\obj\Release\PaulSchool.pdb
-C:\Users\Administrator\Documents\GitHub\PaulSchool\PaulSchool\bin\App_Data\School.sdf
 C:\Users\Administrator\Documents\GitHub\PaulSchool\PaulSchool\bin\PaulSchool.dll
 C:\Users\Administrator\Documents\GitHub\PaulSchool\PaulSchool\bin\PaulSchool.pdb
 C:\Users\Administrator\Documents\GitHub\PaulSchool\PaulSchool\bin\DataAnnotationsExtensions.ClientValidation.dll
@@ -44,3 +43,10 @@ C:\Users\Administrator\Documents\GitHub\PaulSchool\PaulSchool\obj\Release\Genera
 C:\Users\Administrator\Documents\GitHub\PaulSchool\PaulSchool\obj\Release\GenerateResource.write.1.tlog
 C:\Users\Administrator\Documents\GitHub\PaulSchool\PaulSchool\obj\Release\PaulSchool.dll
 C:\Users\Administrator\Documents\GitHub\PaulSchool\PaulSchool\obj\Release\PaulSchool.pdb
+C:\Users\Administrator\Documents\GitHub\PaulSchool\PaulSchool\bin\NLog.config
+C:\Users\Administrator\Documents\GitHub\PaulSchool\PaulSchool\bin\AntiXssLibrary.dll
+C:\Users\Administrator\Documents\GitHub\PaulSchool\PaulSchool\bin\HtmlSanitizationLibrary.dll
+C:\Users\Administrator\Documents\GitHub\PaulSchool\PaulSchool\bin\NLog.dll
+C:\Users\Administrator\Documents\GitHub\PaulSchool\PaulSchool\bin\AntiXssLibrary.xml
+C:\Users\Administrator\Documents\GitHub\PaulSchool\PaulSchool\bin\HtmlSanitizationLibrary.xml
+C:\Users\Administrator\Documents\GitHub\PaulSchool\PaulSchool\bin\NLog.xml

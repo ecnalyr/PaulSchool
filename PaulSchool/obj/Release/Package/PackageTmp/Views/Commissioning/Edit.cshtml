@@ -1,0 +1,124 @@
+﻿@model PaulSchool.Models.ApplicationCommissioning
+
+@{
+    this.ViewBag.Title = "ViewPage1";
+
+}
+
+<h2>ViewPage1</h2>
+
+<script src="@this.Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"> </script>
+<script src="@this.Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"> </script>
+
+@using (this.Html.BeginForm())
+{
+    @this.Html.ValidationSummary(true)
+    <fieldset>
+        @{
+            if (this.Model.ReCommissioning)
+            {
+                <legend>Re-Commissioning Application</legend>
+            }
+            else
+            {
+                <legend>Commissioning Application </legend>
+            }
+
+        }
+
+        @this.Html.HiddenFor(model => model.Id)
+
+        <div class="editor-label">
+            @this.Html.LabelFor(model => model.StudentID)
+        </div>
+        <div class="editor-field">
+            @this.Html.EditorFor(model => model.StudentID)
+            @this.Html.ValidationMessageFor(model => model.StudentID)
+        </div>
+        
+        <div class="editor-label">
+            Re-Applying for Commissioning? (leave un-checked if applicant has not been Commissioned before)
+        </div>
+        <div class="editor-field">
+            @this.Html.EditorFor(model => model.ReCommissioning)
+        </div>
+
+        <div class="editor-label">
+            @this.Html.LabelFor(model => model.RecommendationFiled)
+        </div>
+        <div class="editor-field">
+            @this.Html.EditorFor(model => model.RecommendationFiled)
+            @this.Html.ValidationMessageFor(model => model.RecommendationFiled)
+        </div>
+
+        <div class="editor-label">
+            @this.Html.LabelFor(model => model.PersonalStatement)
+        </div>
+        <div class="editor-field">
+            @this.Html.EditorFor(model => model.PersonalStatement)
+            @this.Html.ValidationMessageFor(model => model.PersonalStatement)
+        </div>
+
+        <div class="editor-label">
+            @this.Html.LabelFor(model => model.DayOfReflection)
+        </div>
+        <div class="editor-field">
+            @this.Html.EditorFor(model => model.DayOfReflection)
+            @this.Html.ValidationMessageFor(model => model.DayOfReflection)
+        </div>
+
+        <div class="editor-label">
+            @this.Html.LabelFor(model => model.ApplicationFeePaid)
+        </div>
+        <div class="editor-field">
+            @this.Html.EditorFor(model => model.ApplicationFeePaid)
+            @this.Html.ValidationMessageFor(model => model.ApplicationFeePaid)
+        </div>
+
+        <div class="editor-label">
+            @this.Html.LabelFor(model => model.MeetsMinimumRequirements)
+        </div>
+        <div class="editor-field">
+            @this.Html.EditorFor(model => model.MeetsMinimumRequirements)
+            @this.Html.ValidationMessageFor(model => model.MeetsMinimumRequirements)
+        </div>
+
+        <div class="editor-label">
+            @this.Html.LabelFor(model => model.DateFiled)
+        </div>
+        <div class="editor-field">
+            @this.Html.EditorFor(model => model.DateFiled)
+            @this.Html.ValidationMessageFor(model => model.DateFiled)
+        </div>
+        
+        @{
+            if (this.Model.Approved)
+            {
+                <div class="editor-label">
+                    @this.Html.LabelFor(model => model.DateApproved)
+                </div>
+                <div class="editor-field">
+                    @this.Html.EditorFor(model => model.DateApproved)
+                    @this.Html.ValidationMessageFor(model => model.DateApproved)
+                </div>
+            }
+
+        }
+
+        <div class="editor-label">
+            @this.Html.LabelFor(model => model.AdminDenialReason)
+        </div>
+        <div class="editor-field">
+            @this.Html.EditorFor(model => model.AdminDenialReason)
+            @this.Html.ValidationMessageFor(model => model.AdminDenialReason)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @this.Html.ActionLink("Back to List", "CommissioningApplications")
+</div>

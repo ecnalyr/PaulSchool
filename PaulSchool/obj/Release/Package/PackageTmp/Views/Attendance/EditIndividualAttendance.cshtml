@@ -1,0 +1,46 @@
+﻿@model PaulSchool.ViewModels.AttendanceReportViewModel
+@{
+    ViewBag.Title = "AttendanceView";
+}
+<script src="@Url.Content("~/Scripts/AttendanceForm.js")" type="text/javascript"></script>
+<h2>
+    AttendanceView</h2>
+    <p>Click on an attendance value to toggle it between "present" and "absent"</p>
+<table>
+    <thead>
+        <tr>
+            <th>
+                Attendance Day
+            </th>
+            @foreach (var attendanceDay in Model.AttendanceDays)
+            {
+                <th>@attendanceDay
+                </th>
+            }
+        </tr>
+    </thead>
+    <tbody id="@Model.CourseId">
+        @foreach (var student in Model.Students)
+        {
+            <tr id="@student.StudentID">
+                <td>@student.LastName</td>
+                @foreach (var attendanceDay in Model.AttendanceDays)
+                {
+                    <td id="@attendanceDay" class="attendance">
+                        <span>
+                            @Model.IsPresent(student, attendanceDay)
+                        </span>
+                    </td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>
+<p>
+    @Html.ActionLink("Click here to return to the details of the course (your changes are instantly saved)", "AttendanceView", new { id = Model.CourseId })
+</p>
+<script type="text/javascript">
+    absentText = $.trim('@PaulSchool.Resources.PaulSchoolResource.Absent_Text').toLowerCase();
+    presentText = $.trim('@PaulSchool.Resources.PaulSchoolResource.Present_Text').toLowerCase();
+    updateAttendanceUrl = '@Url.Action("UpdateAttendance", "Attendance")';
+</script>

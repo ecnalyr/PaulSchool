@@ -1,0 +1,69 @@
+﻿@using PaulSchool.Models
+@model IEnumerable<PaulSchool.Models.Notification>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@{if (User.IsInRole("SuperAdministrator"))
+    {
+        <p>
+            @Html.ActionLink("Create New Notifiaction as a SuperAdministrator", "Create")
+        </p>
+    }}
+
+<table>
+    <tr>
+        <th>
+            Time Notification was Created
+        </th>
+        <th>
+            Description
+        </th>
+        <th>
+            Link
+        </th>
+        <th>
+            ViewableBy
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (Notification item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Time)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Details)
+            </td>
+            <td>
+                <a href=@item.Link>View</a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ViewableBy)
+            </td>
+            <td>
+                @Html.ActionLink("Remove Notification from Queu", "Complete", new { id = item.NotificationID })
+                @{
+        if (User.IsInRole("SuperAdministrator"))
+        {
+                        @Html.ActionLink("Delete", "Delete", new { id = item.NotificationID })
+            ;
+        }
+                }
+            </td>
+        </tr>
+    }
+</table>
+@{
+    if (User.IsInRole("Administrator"))
+    {
+        <p>
+            @Html.ActionLink("Get Email List", "EmailList") of every User.
+        </p>
+    }
+}

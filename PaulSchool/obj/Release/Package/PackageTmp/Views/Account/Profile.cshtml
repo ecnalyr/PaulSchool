@@ -1,0 +1,45 @@
+﻿@model PaulSchool.ViewModels.ProfileViewModel
+@{
+    ViewBag.Title = "Profile";
+}
+
+<h2>Profile</h2>
+@if (Request.IsAuthenticated)
+{
+    <fieldset>
+        <p><b>User Name</b>: @User.Identity.Name</p>
+    
+        <p><b>Name:</b> @Html.DisplayFor(model => model.FirstMidName) @Html.DisplayFor(model => model.LastName)</p>
+
+        <p><b>Email:</b> @ViewBag.email</p>
+ 
+        <p><b>Address:</b></p>
+        <div>
+            @Html.DisplayFor(model => model.StreetAddress)<br>
+                                                          @Html.DisplayFor(model => model.City), @Html.DisplayFor(model => model.State) @Html.DisplayFor(model => model.ZipCode)
+        </div>
+    
+        <p><b>Phone:</b> @Html.DisplayFor(model => model.Phone)</p>
+    
+        <p><b>Date of Birth:</b> @Html.DisplayFor(model => model.DateOfBirth)</p>
+    
+        <p><b>Parish Affiliation:</b> @Html.DisplayFor(model => model.ParishAffiliation)</p>
+    
+        <p><b>Ministry Involvement:</b> @Html.DisplayFor(model => model.MinistryInvolvement)</p>
+        
+    </fieldset>
+    {
+        if (ViewBag.mostRecentCommissioningCertificateID != null)
+        {
+            <p>
+                Print out Certificate of Commissioning: @Html.ActionLink("view", "CertificateOfCommissioning", "Certificate", new {id = ViewBag.mostRecentCommissioningCertificateID}, null)
+            </p>
+        }
+    }
+    <div>
+        @Html.ActionLink("Edit Profile", "ChangeProfile")
+    </div>
+    <div>
+        @Html.ActionLink("Change Email", "ChangeEmail")
+    </div>
+}

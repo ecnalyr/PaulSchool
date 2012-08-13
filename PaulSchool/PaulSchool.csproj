@@ -32,6 +32,26 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PublishDatabaseSettings>
+      <Objects>
+        <ObjectGroup Name="ApplicationServices-Deployment" Order="1">
+          <Destination Path="data source=.\SQLEXPRESS%3bIntegrated Security=SSPI%3bAttachDBFilename=|DataDirectory|aspnetdb.mdf%3bUser Instance=true" />
+          <Object Type="dbFullSql">
+            <PreSource Path="data source=.\SQLEXPRESS%3bIntegrated Security=SSPI%3bAttachDBFilename=|DataDirectory|school.mdf%3bUser Instance=true" ScriptSchema="True" ScriptData="True" CopyAllFullTextCatalogs="False" DriDefaults="True" />
+            <Source Path="obj\Release\AutoScripts\ApplicationServices-Deployment_SchemaAndData.sql" Transacted="True" />
+          </Object>
+        </ObjectGroup>
+        <ObjectGroup Name="SchoolContext-Deployment" Order="2">
+          <Destination Path="data source=.\SQLEXPRESS%3bIntegrated Security=SSPI%3bAttachDBFilename=|DataDirectory|school.mdf%3bUser Instance=true" />
+          <Object Type="dbFullSql">
+            <PreSource Path="data source=.\SQLEXPRESS%3bIntegrated Security=SSPI%3bAttachDBFilename=|DataDirectory|aspnetdb.mdf%3bUser Instance=true" ScriptSchema="True" ScriptData="True" CopyAllFullTextCatalogs="False" DriDefaults="True" />
+            <Source Path="obj\Release\AutoScripts\SchoolContext-Deployment_SchemaAndData.sql" Transacted="True" />
+          </Object>
+        </ObjectGroup>
+      </Objects>
+    </PublishDatabaseSettings>
+    <FilesToIncludeForPublish>OnlyFilesToRunTheApp</FilesToIncludeForPublish>
+    <DeployIisAppPath>Default Web Site</DeployIisAppPath>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AntiXssLibrary">
@@ -164,9 +184,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="App_Data\school.mdf" />
     <Content Include="App_Data\School.sdf" />
-    <Content Include="App_Data\school_log.ldf">
-      <DependentUpon>school.mdf</DependentUpon>
-    </Content>
     <Content Include="Content\images\acenturyoftradition.jpg" />
     <Content Include="Content\images\diocese.png" />
     <Content Include="Content\images\dioceseTransparent.png" />
@@ -201,9 +218,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\ASPNETDB.MDF" />
-    <Content Include="App_Data\aspnetdb_log.ldf">
-      <DependentUpon>ASPNETDB.MDF</DependentUpon>
-    </Content>
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
@@ -403,9 +417,6 @@
       <Project>{C9D7F653-E589-44CE-9D41-89821F4F9E4E}</Project>
       <Name>MvcMembership</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Attendance\Attendance.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Attendance\List.cshtml" />

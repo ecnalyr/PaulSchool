@@ -1,0 +1,35 @@
+﻿@model PaulSchool.Models.Notification
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Notification</legend>
+
+    <div class="display-label">Time</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Time)
+    </div>
+
+    <div class="display-label">Link</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Link)
+    </div>
+
+    <div class="display-label">ViewableBy</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ViewableBy)
+    </div>
+
+    <div class="display-label">Complete</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Complete)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.NotificationID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

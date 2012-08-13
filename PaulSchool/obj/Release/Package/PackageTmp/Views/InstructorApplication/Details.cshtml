@@ -1,0 +1,98 @@
+﻿@model PaulSchool.Models.InstructorApplication
+@{
+    ViewBag.Title = "Details";
+}
+<h2>
+    Details</h2>
+<fieldset>
+    <legend>InstructorApplication</legend>
+    
+    <div class="display-label">Applicant's name</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Student.FirstMidName) @Html.DisplayFor(model => model.Student.LastName)
+        <p>
+            You can click @Html.ActionLink("here", "Details", "Student", new { id = Model.StudentID }, null) to see the rest of the student's basic profile information.
+        </p>
+    </div>
+
+    <div class="display-label">First Name and Middle Initial</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Student.FirstMidName)
+    </div>
+    
+    <div class="display-label">Last Name</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Student.LastName)
+    </div>
+
+    <div class="display-label">Address</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Student.StreetAddress)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Student.City) , @Html.DisplayFor(model => model.Student.State) @Html.DisplayFor(model => model.Student.ZipCode)
+    </div>
+    
+    <div class="display-label">Phone and Email:</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Student.Phone) , @Html.DisplayFor(model => model.Student.Email)
+    </div>
+    
+    <div class="display-label">Parish Affiliation</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Student.ParishAffiliation)
+    </div>
+    <div class="display-label">
+        Education Details</div>
+    @{foreach (var education in Model.EducationalBackground)
+      { 
+        <fieldset>
+            <div class="display-label">
+                UniversitOfCollege</div>
+            <div class="display-field">@education.UniversityOrCollege
+            </div>
+            <div class="display-label">
+                AreaOfStudy</div>
+            <div class="display-field">@education.AreaOfStudy
+            </div>
+            <div class="display-label">
+                Degree</div>
+            <div class="display-field">@education.Degree
+            </div>
+            <div class="display-label">
+                YearReceived</div>
+            <div class="display-field">@education.YearReceived
+            </div>
+        </fieldset>
+      }
+    }
+    <div class="display-label">
+        Experience</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Experience)
+    </div>
+    <div class="display-label">
+        Willing To Travel?</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.WillingToTravel)
+    </div>
+     <div class="display-label">
+        Approved?</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Approved)
+    </div>
+</fieldset>
+<p>
+    @{ if ((User.IsInRole("Administrator") || User.IsInRole("SuperAdministrator")) && Model.Approved == false)
+       {
+           <p>
+               @Html.ActionLink("Clicking here will approve this Instructor's Application", "ApproveInstructorApplication", new { id = Model.InstructorApplicationID }, new { onclick = "return confirm('Are you sure you are aready to approve this application?  Doing so is not reversible.');" })
+           </p>
+           <p>
+               @Html.ActionLink("Clicking here will deny and delete this Instructor's Application", "Delete", new { id = Model.InstructorApplicationID }, new { onclick = "return confirm('Are you sure you are aready to DELETE this application?  Doing so is not reversible.');" }) 
+           </p>
+        }
+    }
+    @Html.ActionLink("Edit", "Edit", new { id = Model.InstructorApplicationID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

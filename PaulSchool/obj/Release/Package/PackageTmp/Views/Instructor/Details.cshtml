@@ -1,0 +1,54 @@
+﻿@model PaulSchool.Models.Instructor
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Instructor Details</h2>
+
+<fieldset>
+    <legend>Instructor</legend>
+
+    <p><b>Name:</b> @Html.DisplayFor(model => model.FirstMidName) @Html.DisplayFor(model => model.LastName)</p>
+
+    <p><b>Email:</b> @Html.DisplayFor(model => model.Email)</p>
+
+    <p><b>Enrollment Date:</b> @Html.DisplayFor(model => model.EnrollmentDate)</p>
+
+    <p><b>User Name: </b>@Html.ActionLink(Model.UserName, "Details", "Student", new { id = ViewBag.instructorsStudentId }, null)</p>
+
+    <div class="display-label">
+    Classes (currently includes unapproved classes that were applied for)
+    </div>
+    <div class="display-field">
+    <table>
+        <tr>
+            <th>Course Title</th>
+            <th>Start Date</th>
+            <th>Approved?</th>
+            <th>Completed?</th>
+        </tr>
+        @foreach (var item in Model.Courses)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink(item.Title, "Details", "Course", new { id= item.CourseID }, "a")
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Approved)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Completed)
+                </td>
+            </tr>
+        }
+    </table>
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.InstructorID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

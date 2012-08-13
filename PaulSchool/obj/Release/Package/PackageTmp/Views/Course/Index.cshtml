@@ -1,0 +1,167 @@
+﻿@model PagedList.IPagedList<PaulSchool.Models.Course>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Course List</h2>
+
+<p>
+    @Html.ActionLink("Apply to teach a Course", "ApplyToTeach")
+</p>
+
+@using (Html.BeginForm())
+{
+<p>
+    Find by course title: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string) &nbsp;
+    <input type="submit" value="Search" /></p>
+}
+<table>
+<tr>
+<th></th>
+        <th>
+            @Html.ActionLink("Title", "Index", new { sortOrder = ViewBag.TitleSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("Hours", "Index", new { sortOrder = ViewBag.CreditsSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("Elective", "Index", new { sortOrder = ViewBag.ElectiveSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            <!--Instructor (LName)-->
+            @Html.ActionLink("Instructor (LName)", "Index", new { sortOrder = ViewBag.InstructorSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("Year", "Index", new { sortOrder = ViewBag.YearSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("Attending Days", "Index", new { sortOrder = ViewBag.AttendingDaysSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("Attendance Cap", "Index", new { sortOrder = ViewBag.AttendanceCapSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("Start Date", "Index", new { sortOrder = ViewBag.StartDateSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("Location", "Index", new { sortOrder = ViewBag.LocationSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("Parish", "Index", new { sortOrder = ViewBag.ParishSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("Description", "Index", new { sortOrder = ViewBag.DescriptionSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("Cost", "Index", new { sortOrder = ViewBag.CostSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("Approved", "Index", new { sortOrder = ViewBag.ApprovedSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("Completed", "Index", new { sortOrder = ViewBag.CompletedSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            Seats Available
+        </th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+        @Html.ActionLink("Details", "Details", new { id = item.CourseID })
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Credits)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Elective)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Instructor.LastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Year)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AttendingDays)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AttendanceCap)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StartDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Location)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Parish)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cost)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Approved)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Completed)
+        </td>
+        <td>
+            @{var seatsLeft = item.AttendanceCap - item.SeatsTaken;}
+            @seatsLeft of @Html.DisplayFor(modelItem => item.AttendanceCap)
+        </td>
+    </tr>
+}
+
+</table>
+
+<div>
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+of @Model.PageCount
+&nbsp;
+@if (Model.HasPreviousPage)
+{
+    @Html.ActionLink("<<", "Index", new { page = 1, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter })
+    @Html.Raw("&nbsp;");
+    @Html.ActionLink("< Prev", "Index", new { page = Model.PageNumber - 1, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter })
+}
+else
+{
+    @:<<
+    @Html.Raw("&nbsp;");
+    @:< Prev
+}
+&nbsp;
+@if (Model.HasNextPage)
+{
+    @Html.ActionLink("Next >", "Index", new { page = Model.PageNumber + 1, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter })
+    @Html.Raw("&nbsp;");
+    @Html.ActionLink(">>", "Index", new { page = Model.PageCount, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter })
+}
+else
+{
+    @:Next >
+    @Html.Raw("&nbsp;")
+    @:>>
+}
+</div>
+@{
+    if(User.IsInRole("Administrator") || User.IsInRole("SuperAdministrator"))
+    {
+        <p>
+            Note to Admin: Archived Courses are not visible in this list.  To see Archived Courses you need to be logged in as a SuperAdministrator and @Html.ActionLink("click to see this list", "FullCourseList")
+        </p>
+        <p>
+            @Html.ActionLink("Edit Course Templates", "Index", "CourseTemplates")
+        </p>
+    }
+}

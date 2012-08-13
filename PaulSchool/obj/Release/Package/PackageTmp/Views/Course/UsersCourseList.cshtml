@@ -1,0 +1,98 @@
+﻿@model PaulSchool.Models.Student
+
+@{
+    ViewBag.Title = "UsersCourseList";
+}
+
+<h2>These are your existing courses</h2>
+<p>If you do not see any courses here, you have yet to sign up for one.  Click @Html.ActionLink("here", "ApplyToCourse", "Course") to sign up for one.</p>
+
+@{
+                        if (!string.IsNullOrEmpty(TempData["paymentMessage"] as string))
+                        {
+                            <b class="error">@TempData["paymentMessage"].ToString()</b>
+                        }
+
+                    }
+
+
+
+    <div class="display-label">User Name</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.UserName)
+    </div>
+
+    <div class="display-label">
+    <!--@Html.LabelFor(model => model.Enrollments)-->
+    Enrolled Classes
+    </div>
+    <div class="display-field">
+    <table>
+        <tr>
+            <th>Course Title</th>
+            <th>Start Date</th>
+            <th>Instructor</th>
+            <th>Days in Course</th>
+            <th>Location</th>
+            <th>Parish</th>
+            <th>Description</th>
+            <th>Grade</th>
+            <th>Elective if checked</th>
+            <th>Link to attendance and notes</th>
+        </tr>
+        @{if (Model != null)
+          { 
+            foreach (var item in Model.Enrollments)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Course.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Course.StartDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Course.Instructor.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Course.AttendingDays)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Course.Location)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Course.Parish)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Course.Description)
+                </td>
+                @{if (item.Grade == "Pass")
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Grade) @Html.ActionLink("Certificate", "CertificateOfAttendance", "Certificate", new {id = item.EnrollmentID}, null)
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Grade)
+                    </td>
+                }
+                }
+                
+                <td>
+                    @Html.DisplayFor(modelItem => item.Course.Elective)
+                </td>
+                <td>
+                    @Html.ActionLink("Click here for details", "StudentDetails", "Attendance", new { id = item.CourseID }, null)
+                </td>
+            </tr>
+            }
+          }
+        }
+
+    </table>
+    <div>You have completed this many core classes: @ViewBag.coresPassed</div>
+<div>You have completed this many elective classes: @ViewBag.electivesPassed</div>
+<div>@ViewBag.completedDayOfReflection</div>
+    </div>
