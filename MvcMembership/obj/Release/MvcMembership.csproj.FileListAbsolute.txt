@@ -12,3 +12,4 @@ C:\Users\Administrator\Documents\GitHub\PaulSchool\MvcMembership\bin\Release\Pag
 C:\Users\Administrator\Documents\GitHub\PaulSchool\MvcMembership\obj\Release\ResolveAssemblyReference.cache
 C:\Users\Administrator\Documents\GitHub\PaulSchool\MvcMembership\obj\Release\MvcMembership.dll
 C:\Users\Administrator\Documents\GitHub\PaulSchool\MvcMembership\obj\Release\MvcMembership.pdb
+C:\Users\Administrator\Documents\GitHub\PaulSchool\MvcMembership\bin\Release\MvcMembership.XML

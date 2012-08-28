@@ -113,9 +113,18 @@
                 }
                 else
                 {
-                    <p>
-                        @Html.ActionLink("Click here", "CompleteCourse", new { id = Model.CourseId }, new { onclick = "return confirm('Are you sure you are ready to mark this Course as Complete?  You will not be able to edit the attendance, grades, or comments after you do this.');" }) to mark this Course as "Complete."  Doing so will make this Course uneditable.
-                    </p>
+                    if ((User.IsInRole("Administrator") || User.IsInRole("SuperAdministrator")) || Model.Course.EndDate < DateTime.Now )
+                    {
+                        <p>
+                            @Html.ActionLink("Click here", "CompleteCourse", new {id = Model.CourseId}, new {onclick = "return confirm('Are you sure you are ready to mark this Course as Complete?  You will not be able to edit the attendance, grades, or comments after you do this.');"}) to mark this Course as "Complete."  Doing so will make this Course uneditable.
+                        </p>
+                    }
+                    else
+                    {
+                        <p>
+                            As an Instructor you will have the option to mark this course as completed with a link that will appear here after the end-date of the course has passed.
+                        </p>
+                    }
                 }
 
             }

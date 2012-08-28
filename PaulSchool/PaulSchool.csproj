@@ -172,6 +172,7 @@
     <Compile Include="ViewModels\InstructorApplicationViewModel.cs" />
     <Compile Include="ViewModels\PasswordResetViewModel.cs" />
     <Compile Include="ViewModels\ProfileViewModel.cs" />
+    <Compile Include="ViewModels\RegisterViewModel.cs" />
     <Compile Include="Views\DAL\SchoolContext.cs" />
     <Compile Include="Views\DAL\SchoolInitializer.cs" />
     <Compile Include="Global.asax.cs">

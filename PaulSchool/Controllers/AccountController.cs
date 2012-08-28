@@ -11,6 +11,7 @@
 // <summary>
 
 using System;
+using System.Diagnostics;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Web.Mvc;
@@ -314,7 +315,15 @@ namespace PaulSchool.Controllers
         /// </returns>
         public ActionResult Register()
         {
-            return View();
+            var model = new RegisterViewModel();
+            model.State = new SelectList(new[]
+                {
+                    new { Value = "1", Text = "client 1" },
+                    new { Value = "2", Text = "client 2" },
+                    new { Value = "3", Text = "client 3" },
+                }, "Value", "Text");
+            model.StateInt = 2;
+            return View(model);
         }
 
         // POST: /Account/Register
@@ -329,10 +338,30 @@ namespace PaulSchool.Controllers
         /// or redisplays the register form view.
         /// </returns>
         [HttpPost]
-        public ActionResult Register(RegisterModel model)
+        public ActionResult Register(RegisterViewModel viewModel)
         {
+            Debug.Write(viewModel.StateInt + " <-- stateint || ");
+            Debug.Write(viewModel.State);
             if (ModelState.IsValid)
             {
+                var model = new RegisterModel()
+                    {
+                        UserName = viewModel.UserName,
+                        Email = viewModel.Email,
+                        FirstMidName = viewModel.FirstMidName,
+                        LastName = viewModel.LastName,
+                        StreetAddress = viewModel.StreetAddress,
+                        City = viewModel.City,
+                        //State = viewModel.State.SelectedValue.ToString(),
+                        State = viewModel.StateInt.ToString(),
+                        ZipCode = viewModel.ZipCode,
+                        Phone = viewModel.Phone,
+                        DateOfBirth = viewModel.DateOfBirth,
+                        ParishAffiliation = viewModel.ParishAffiliation,
+                        MinistryInvolvement = viewModel.MinistryInvolvement,
+                        Password = viewModel.Password,
+                        ConfirmPassword = viewModel.ConfirmPassword
+                    };
                 // Attempt to register the user
                 MembershipCreateStatus createStatus;
                 Membership.CreateUser(
@@ -358,7 +387,7 @@ namespace PaulSchool.Controllers
             }
 
             // If we got this far, something failed, redisplay form
-            return View(model);
+            return View(viewModel);
         }
 
         public ActionResult Confirmation()
