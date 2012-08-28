@@ -1,4 +1,3 @@
-L:\Users\Jason\Documents\GitHub\PaulSchool\MvcMembership\bin\Release\MvcMembership.XML
 L:\Users\Jason\Documents\GitHub\PaulSchool\MvcMembership\bin\Release\MvcMembership.dll
 L:\Users\Jason\Documents\GitHub\PaulSchool\MvcMembership\bin\Release\MvcMembership.pdb
 L:\Users\Jason\Documents\GitHub\PaulSchool\MvcMembership\bin\Release\PagedList.dll

@@ -1,4 +1,3 @@
-L:\Users\Jason\Documents\GitHub\PaulSchool\PaulSchool\bin\App_Data\School.sdf
 L:\Users\Jason\Documents\GitHub\PaulSchool\PaulSchool\bin\PaulSchool.dll
 L:\Users\Jason\Documents\GitHub\PaulSchool\PaulSchool\bin\PaulSchool.pdb
 L:\Users\Jason\Documents\GitHub\PaulSchool\PaulSchool\bin\DataAnnotationsExtensions.ClientValidation.dll
@@ -50,3 +49,10 @@ C:\Users\Administrator\Documents\GitHub\PaulSchool\PaulSchool\bin\NLog.dll
 C:\Users\Administrator\Documents\GitHub\PaulSchool\PaulSchool\bin\AntiXssLibrary.xml
 C:\Users\Administrator\Documents\GitHub\PaulSchool\PaulSchool\bin\HtmlSanitizationLibrary.xml
 C:\Users\Administrator\Documents\GitHub\PaulSchool\PaulSchool\bin\NLog.xml
+L:\Users\Jason\Documents\GitHub\PaulSchool\PaulSchool\bin\NLog.config
+L:\Users\Jason\Documents\GitHub\PaulSchool\PaulSchool\bin\AntiXssLibrary.dll
+L:\Users\Jason\Documents\GitHub\PaulSchool\PaulSchool\bin\HtmlSanitizationLibrary.dll
+L:\Users\Jason\Documents\GitHub\PaulSchool\PaulSchool\bin\NLog.dll
+L:\Users\Jason\Documents\GitHub\PaulSchool\PaulSchool\bin\AntiXssLibrary.xml
+L:\Users\Jason\Documents\GitHub\PaulSchool\PaulSchool\bin\HtmlSanitizationLibrary.xml
+L:\Users\Jason\Documents\GitHub\PaulSchool\PaulSchool\bin\NLog.xml

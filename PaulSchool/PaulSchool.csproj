@@ -34,15 +34,15 @@
     <WarningLevel>4</WarningLevel>
     <PublishDatabaseSettings>
       <Objects>
-        <ObjectGroup Name="ApplicationServices-Deployment" Order="1">
-          <Destination Path="data source=.\SQLEXPRESS%3bIntegrated Security=SSPI%3bAttachDBFilename=|DataDirectory|aspnetdb.mdf%3bUser Instance=true" />
+        <ObjectGroup Name="ApplicationServices-Deployment" Order="1" Enabled="False">
+          <Destination Path="data source=.\SQLEXPRESS%3bDatabase=aspnetdb.mdf%3bUser id=diocesedev1%3bPassword=tempDweb1%3b" />
           <Object Type="dbFullSql">
             <PreSource Path="data source=.\SQLEXPRESS%3bIntegrated Security=SSPI%3bAttachDBFilename=|DataDirectory|school.mdf%3bUser Instance=true" ScriptSchema="True" ScriptData="True" CopyAllFullTextCatalogs="False" DriDefaults="True" />
             <Source Path="obj\Release\AutoScripts\ApplicationServices-Deployment_SchemaAndData.sql" Transacted="True" />
           </Object>
         </ObjectGroup>
-        <ObjectGroup Name="SchoolContext-Deployment" Order="2">
-          <Destination Path="data source=.\SQLEXPRESS%3bIntegrated Security=SSPI%3bAttachDBFilename=|DataDirectory|school.mdf%3bUser Instance=true" />
+        <ObjectGroup Name="SchoolContext-Deployment" Order="2" Enabled="False">
+          <Destination Path="data source=.\SQLEXPRESS%3bDatabase=school.mdf%3bUser id=diocesedev1%3bPassword=tempDweb1%3b" />
           <Object Type="dbFullSql">
             <PreSource Path="data source=.\SQLEXPRESS%3bIntegrated Security=SSPI%3bAttachDBFilename=|DataDirectory|aspnetdb.mdf%3bUser Instance=true" ScriptSchema="True" ScriptData="True" CopyAllFullTextCatalogs="False" DriDefaults="True" />
             <Source Path="obj\Release\AutoScripts\SchoolContext-Deployment_SchemaAndData.sql" Transacted="True" />
@@ -182,8 +182,14 @@
     <Compile Include="Models\Enrollment.cs" />
     <Compile Include="Models\Student.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="App_Data\aspnetdb_log.LDF">
+      <DependentUpon>ASPNETDB.MDF</DependentUpon>
+    </Content>
     <Content Include="App_Data\school.mdf" />
     <Content Include="App_Data\School.sdf" />
+    <Content Include="App_Data\school_log.LDF">
+      <DependentUpon>school.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\images\acenturyoftradition.jpg" />
     <Content Include="Content\images\diocese.png" />
     <Content Include="Content\images\dioceseTransparent.png" />
@@ -540,9 +546,9 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>1098</DevelopmentServerPort>
+          <DevelopmentServerPort>1459</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:1098/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>

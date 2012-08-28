@@ -136,7 +136,6 @@ L:\Users\Jason\Desktop\ecnalyr-PaulSchool-b3582f7-Updated_Version\ecnalyr-PaulSc
 L:\Users\Jason\Desktop\ecnalyr-PaulSchool-b3582f7-Updated_Version\ecnalyr-PaulSchool-b3582f7\ecnalyr-PaulSchool-b3582f7\PaulSchool\obj\Debug\GenerateResource.write.1.tlog
 L:\Users\Jason\Desktop\ecnalyr-PaulSchool-b3582f7-Updated_Version\ecnalyr-PaulSchool-b3582f7\ecnalyr-PaulSchool-b3582f7\PaulSchool\obj\Debug\PaulSchool.dll
 L:\Users\Jason\Desktop\ecnalyr-PaulSchool-b3582f7-Updated_Version\ecnalyr-PaulSchool-b3582f7\ecnalyr-PaulSchool-b3582f7\PaulSchool\obj\Debug\PaulSchool.pdb
-L:\Users\Jason\Documents\GitHub\PaulSchool\PaulSchool\bin\App_Data\School.sdf
 C:\Users\febin\Desktop\ecnalyr-PaulSchool-39eb466 (1)\ecnalyr-PaulSchool-39eb466\PaulSchool\bin\App_Data\School.sdf
 C:\Users\febin\Desktop\ecnalyr-PaulSchool-39eb466 (1)\ecnalyr-PaulSchool-39eb466\PaulSchool\bin\PaulSchool.dll
 C:\Users\febin\Desktop\ecnalyr-PaulSchool-39eb466 (1)\ecnalyr-PaulSchool-39eb466\PaulSchool\bin\PaulSchool.pdb
@@ -190,3 +189,10 @@ C:\Users\Administrator\Documents\GitHub\PaulSchool\PaulSchool\bin\AntiXssLibrary
 C:\Users\Administrator\Documents\GitHub\PaulSchool\PaulSchool\bin\HtmlSanitizationLibrary.dll
 C:\Users\Administrator\Documents\GitHub\PaulSchool\PaulSchool\bin\AntiXssLibrary.xml
 C:\Users\Administrator\Documents\GitHub\PaulSchool\PaulSchool\bin\HtmlSanitizationLibrary.xml
+L:\Users\Jason\Documents\GitHub\PaulSchool\PaulSchool\bin\NLog.config
+L:\Users\Jason\Documents\GitHub\PaulSchool\PaulSchool\bin\AntiXssLibrary.dll
+L:\Users\Jason\Documents\GitHub\PaulSchool\PaulSchool\bin\HtmlSanitizationLibrary.dll
+L:\Users\Jason\Documents\GitHub\PaulSchool\PaulSchool\bin\NLog.dll
+L:\Users\Jason\Documents\GitHub\PaulSchool\PaulSchool\bin\AntiXssLibrary.xml
+L:\Users\Jason\Documents\GitHub\PaulSchool\PaulSchool\bin\HtmlSanitizationLibrary.xml
+L:\Users\Jason\Documents\GitHub\PaulSchool\PaulSchool\bin\NLog.xml

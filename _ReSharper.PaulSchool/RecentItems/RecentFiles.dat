@@ -1,34 +1,35 @@
 ﻿<RecentFiles>
   <RecentFiles>
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:DAL/f:SchoolInitializer.cs" caret="9419" fromTop="39" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:ViewModels/f:ApplyCourseViewModel.cs" caret="0" fromTop="0" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Commissioning/f:RecommendationForm.cshtml" caret="0" fromTop="0" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Commissioning/f:Create.cshtml" caret="2695" fromTop="6" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Commissioning/f:Index.cshtml" caret="1633" fromTop="3" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Commissioning/f:CommissioningApplications.cshtml" caret="523" fromTop="17" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Commissioning/f:Edit.cshtml" caret="4222" fromTop="17" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:AccountController.cs" caret="10727" fromTop="18" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Account/f:Profile.cshtml" caret="1087" fromTop="9" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:CommissioningRequirementsController.cs" caret="601" fromTop="0" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Certificate/f:CertificateOfAttendance.cshtml" caret="275" fromTop="0" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Attendance/f:StudentDetails.cshtml" caret="394" fromTop="15" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:AttendanceController.cs" caret="12654" fromTop="10" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Models/f:ApplicationCommissioning.cs" caret="738" fromTop="10" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Models/f:Enrollment.cs" caret="345" fromTop="10" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Certificate/f:CertificateOfCommissioning.cshtml" caret="342" fromTop="15" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:CertificateController.cs" caret="1112" fromTop="15" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Course/f:Details.cshtml" caret="11223" fromTop="6" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:CommissioningController.cs" caret="6522" fromTop="10" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/f:NLog.config" caret="503" fromTop="12" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/f:Global.asax.cs" caret="1827" fromTop="47" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:StudentController.cs" caret="5161" fromTop="0" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Shared/f:_Layout.cshtml" caret="213" fromTop="5" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/f:Web.Release.config" caret="1334" fromTop="11" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/f:AntiXssEncoder.cs" caret="357" fromTop="11" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:CourseController.cs" caret="19349" fromTop="0" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:HomeController.cs" caret="355" fromTop="10" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Home/f:Index.cshtml" caret="0" fromTop="0" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/f:Web.config" caret="988" fromTop="13" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/f:Web.Release.config" caret="480" fromTop="6" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:AttendanceController.cs" caret="5356" fromTop="12" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:CommissioningController.cs" caret="4926" fromTop="12" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:InstructorApplicationController.cs" caret="9859" fromTop="12" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:InstructorController.cs" caret="10939" fromTop="12" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:StudentController.cs" caret="18331" fromTop="12" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Instructor/f:Index.cshtml" caret="0" fromTop="0" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Course/f:Details.cshtml" caret="0" fromTop="0" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Commissioning/f:RecommendationForm.cshtml" caret="0" fromTop="0" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:AccountController.cs" caret="12420" fromTop="26" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Models/f:AccountMembershipService.cs" caret="1080" fromTop="21" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/f:Web.config" caret="5396" fromTop="13" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:CourseController.cs" caret="10007" fromTop="6" />
   </RecentFiles>
   <RecentEdits>
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Certificate/f:CertificateOfAttendance.cshtml" caret="2745" fromTop="11" />
@@ -36,19 +37,20 @@
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Commissioning/f:Create.cshtml" caret="2695" fromTop="6" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Commissioning/f:Edit.cshtml" caret="4222" fromTop="17" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:CommissioningController.cs" caret="11446" fromTop="15" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:AccountController.cs" caret="10356" fromTop="14" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Account/f:Profile.cshtml" caret="1087" fromTop="9" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:CertificateController.cs" caret="1112" fromTop="15" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Certificate/f:CertificateOfCommissioning.cshtml" caret="3972" fromTop="8" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:CourseController.cs" caret="35977" fromTop="12" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Course/f:Details.cshtml" caret="11223" fromTop="6" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:StudentController.cs" caret="318" fromTop="6" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/f:Global.asax.cs" caret="1827" fromTop="32" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/f:NLog.config" caret="503" fromTop="12" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Shared/f:_Layout.cshtml" caret="213" fromTop="5" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/f:Web.Release.config" caret="1334" fromTop="11" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/f:AntiXssEncoder.cs" caret="118" fromTop="5" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Home/f:Index.cshtml" caret="763" fromTop="10" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/f:Web.config" caret="1037" fromTop="10" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/f:Web.Release.config" caret="1084" fromTop="21" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:AccountController.cs" caret="2827" fromTop="12" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Course/f:Details.cshtml" caret="15370" fromTop="16" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Models/f:AccountMembershipService.cs" caret="1034" fromTop="16" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/f:Web.config" caret="5494" fromTop="14" />
   </RecentEdits>
 </RecentFiles>

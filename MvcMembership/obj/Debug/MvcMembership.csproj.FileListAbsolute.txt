@@ -27,3 +27,4 @@ C:\Users\Administrator\Documents\GitHub\PaulSchool\MvcMembership\obj\Debug\Resol
 C:\Users\Administrator\Documents\GitHub\PaulSchool\MvcMembership\obj\Debug\MvcMembership.dll
 C:\Users\Administrator\Documents\GitHub\PaulSchool\MvcMembership\obj\Debug\MvcMembership.pdb
 C:\Users\Administrator\Documents\GitHub\PaulSchool\MvcMembership\bin\Debug\MvcMembership.XML
+L:\Users\Jason\Documents\GitHub\PaulSchool\MvcMembership\bin\Debug\MvcMembership.XML
