@@ -22,6 +22,8 @@ using PaulSchool.ViewModels;
 
 namespace PaulSchool.Controllers
 {
+    using System.Collections.Generic;
+
     /// <summary>
     /// The account controller.
     /// </summary>
@@ -316,14 +318,70 @@ namespace PaulSchool.Controllers
         public ActionResult Register()
         {
             var model = new RegisterViewModel();
-            model.State = new SelectList(new[]
-                {
-                    new { Value = "1", Text = "client 1" },
-                    new { Value = "2", Text = "client 2" },
-                    new { Value = "3", Text = "client 3" },
-                }, "Value", "Text");
-            model.StateInt = 2;
+            model.State = StateList;
+            model.StateInt = 44;
             return View(model);
+        }
+
+        private static SelectList StateList
+        {
+            get
+            {
+                return new SelectList(new[]
+                    {
+                        new { Value = "1", Text = "AK" },
+                        new { Value = "2", Text = "AL" },
+                        new { Value = "3", Text = "AR" },
+                        new { Value = "4", Text = "AZ" },
+                        new { Value = "5", Text = "CA" },
+                        new { Value = "6", Text = "CO" },
+                        new { Value = "7", Text = "CT" },
+                        new { Value = "8", Text = "DC" },
+                        new { Value = "9", Text = "DE" },
+                        new { Value = "10", Text = "FL" },
+                        new { Value = "11", Text = "GA" },
+                        new { Value = "12", Text = "HI" },
+                        new { Value = "13", Text = "IA" },
+                        new { Value = "14", Text = "ID" },
+                        new { Value = "15", Text = "IL" },
+                        new { Value = "16", Text = "IN" },
+                        new { Value = "17", Text = "KS" },
+                        new { Value = "18", Text = "KY" },
+                        new { Value = "19", Text = "LA" },
+                        new { Value = "20", Text = "MA" },
+                        new { Value = "21", Text = "MD" },
+                        new { Value = "22", Text = "ME" },
+                        new { Value = "23", Text = "MI" },
+                        new { Value = "24", Text = "MN" },
+                        new { Value = "25", Text = "MO" },
+                        new { Value = "26", Text = "MS" },
+                        new { Value = "27", Text = "MT" },
+                        new { Value = "28", Text = "NC" },
+                        new { Value = "29", Text = "ND" },
+                        new { Value = "30", Text = "NE" },
+                        new { Value = "31", Text = "NH" },
+                        new { Value = "32", Text = "NJ" },
+                        new { Value = "33", Text = "NM" },
+                        new { Value = "34", Text = "NV" },
+                        new { Value = "35", Text = "NY" },
+                        new { Value = "36", Text = "OH" },
+                        new { Value = "37", Text = "OK" },
+                        new { Value = "38", Text = "OR" },
+                        new { Value = "39", Text = "PA" },
+                        new { Value = "40", Text = "RI" },
+                        new { Value = "41", Text = "SC" },
+                        new { Value = "42", Text = "SD" },
+                        new { Value = "43", Text = "TN" },
+                        new { Value = "44", Text = "TX" },
+                        new { Value = "45", Text = "UT" },
+                        new { Value = "46", Text = "VA" },
+                        new { Value = "47", Text = "VT" },
+                        new { Value = "48", Text = "WA" },
+                        new { Value = "49", Text = "WI" },
+                        new { Value = "50", Text = "WV" },
+                        new { Value = "51", Text = "WY" }
+                    }, "Value", "Text");
+            }
         }
 
         // POST: /Account/Register
@@ -338,10 +396,11 @@ namespace PaulSchool.Controllers
         /// or redisplays the register form view.
         /// </returns>
         [HttpPost]
-        public ActionResult Register(RegisterViewModel viewModel)
+        public ActionResult Register(RegisterViewModel viewModel, string stateInt)
         {
-            Debug.Write(viewModel.StateInt + " <-- stateint || ");
-            Debug.Write(viewModel.State);
+            Debug.Write(stateInt);
+            var actualState = StateList.Where(m => m.Value == stateInt);
+            Debug.Write(actualState);
             if (ModelState.IsValid)
             {
                 var model = new RegisterModel()
@@ -352,8 +411,7 @@ namespace PaulSchool.Controllers
                         LastName = viewModel.LastName,
                         StreetAddress = viewModel.StreetAddress,
                         City = viewModel.City,
-                        //State = viewModel.State.SelectedValue.ToString(),
-                        State = viewModel.StateInt.ToString(),
+                        State = actualState,
                         ZipCode = viewModel.ZipCode,
                         Phone = viewModel.Phone,
                         DateOfBirth = viewModel.DateOfBirth,
