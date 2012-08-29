@@ -22,6 +22,7 @@ $(document).ready(function (event) {
             event.preventDefault();
         }
     });
+    $(".page *").highlight("absent", "highlight");
 });
 function UpdateAttendance(present) {
     url = updateAttendanceUrl;
@@ -33,9 +34,22 @@ function UpdateAttendance(present) {
             if (isPresent == absentText) {
                 $('#' + userId).find('.currentClass').text(presentText).removeAttr('class');
             } else {
-                $('#' + userId).find('.currentClass').text(absentText).removeAttr('class');
+                $('#' + userId).find('.currentClass').text(absentText).removeAttr('class').addClass("highlight");
             }
             return true;
         }
     });
 }
+
+jQuery.fn.highlight = function (str, className) {
+    var regex = new RegExp(str, "gi");
+    return this.each(function () {
+        $(this).contents().filter(function () {
+            return this.nodeType == 3 && regex.test(this.nodeValue);
+        }).replaceWith(function () {
+            return (this.nodeValue || "").replace(regex, function (match) {
+                return "<span class=\"" + className + "\">" + match + "</span>";
+            });
+        });
+    });
+};

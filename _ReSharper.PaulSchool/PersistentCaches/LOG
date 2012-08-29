@@ -1,5 +1,5 @@
-2012/08/29-06:49:25.459 59c Recovering log #3
-2012/08/29-06:49:25.459 59c Level-0 table #5: started
-2012/08/29-06:49:25.475 59c Level-0 table #5: 301909 bytes OK
-2012/08/29-06:49:25.491 59c Delete type=0 #3
-2012/08/29-06:49:25.491 59c Delete type=3 #2
+2012/08/29-07:28:06.333 fec Recovering log #6
+2012/08/29-07:28:06.333 fec Level-0 table #8: started
+2012/08/29-07:28:06.333 fec Level-0 table #8: 27960 bytes OK
+2012/08/29-07:28:06.333 fec Delete type=0 #6
+2012/08/29-07:28:06.333 fec Delete type=3 #4
