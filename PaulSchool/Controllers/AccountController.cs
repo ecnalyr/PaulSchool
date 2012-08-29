@@ -22,8 +22,6 @@ using PaulSchool.ViewModels;
 
 namespace PaulSchool.Controllers
 {
-    using System.Collections.Generic;
-
     /// <summary>
     /// The account controller.
     /// </summary>
@@ -39,6 +37,67 @@ namespace PaulSchool.Controllers
         #endregion
 
         #region Public Methods and Operators
+
+        private static SelectList StateList
+        {
+            get
+            {
+                return new SelectList(new[]
+                    {
+                        new {Value = "1", Text = "AK"},
+                        new {Value = "2", Text = "AL"},
+                        new {Value = "3", Text = "AR"},
+                        new {Value = "4", Text = "AZ"},
+                        new {Value = "5", Text = "CA"},
+                        new {Value = "6", Text = "CO"},
+                        new {Value = "7", Text = "CT"},
+                        new {Value = "8", Text = "DC"},
+                        new {Value = "9", Text = "DE"},
+                        new {Value = "10", Text = "FL"},
+                        new {Value = "11", Text = "GA"},
+                        new {Value = "12", Text = "HI"},
+                        new {Value = "13", Text = "IA"},
+                        new {Value = "14", Text = "ID"},
+                        new {Value = "15", Text = "IL"},
+                        new {Value = "16", Text = "IN"},
+                        new {Value = "17", Text = "KS"},
+                        new {Value = "18", Text = "KY"},
+                        new {Value = "19", Text = "LA"},
+                        new {Value = "20", Text = "MA"},
+                        new {Value = "21", Text = "MD"},
+                        new {Value = "22", Text = "ME"},
+                        new {Value = "23", Text = "MI"},
+                        new {Value = "24", Text = "MN"},
+                        new {Value = "25", Text = "MO"},
+                        new {Value = "26", Text = "MS"},
+                        new {Value = "27", Text = "MT"},
+                        new {Value = "28", Text = "NC"},
+                        new {Value = "29", Text = "ND"},
+                        new {Value = "30", Text = "NE"},
+                        new {Value = "31", Text = "NH"},
+                        new {Value = "32", Text = "NJ"},
+                        new {Value = "33", Text = "NM"},
+                        new {Value = "34", Text = "NV"},
+                        new {Value = "35", Text = "NY"},
+                        new {Value = "36", Text = "OH"},
+                        new {Value = "37", Text = "OK"},
+                        new {Value = "38", Text = "OR"},
+                        new {Value = "39", Text = "PA"},
+                        new {Value = "40", Text = "RI"},
+                        new {Value = "41", Text = "SC"},
+                        new {Value = "42", Text = "SD"},
+                        new {Value = "43", Text = "TN"},
+                        new {Value = "44", Text = "TX"},
+                        new {Value = "45", Text = "UT"},
+                        new {Value = "46", Text = "VA"},
+                        new {Value = "47", Text = "VT"},
+                        new {Value = "48", Text = "WA"},
+                        new {Value = "49", Text = "WI"},
+                        new {Value = "50", Text = "WV"},
+                        new {Value = "51", Text = "WY"}
+                    }, "Value", "Text");
+            }
+        }
 
         /// <summary>
         /// Changes logged-in user's email
@@ -266,7 +325,8 @@ namespace PaulSchool.Controllers
             {
                 if (Membership.ValidateUser(model.UserName, model.Password))
                 {
-                    var newNotifications = db.Notification.FirstOrDefault(o => o.ViewableBy == model.UserName && o.Complete == false);
+                    Notification newNotifications =
+                        db.Notification.FirstOrDefault(o => o.ViewableBy == model.UserName && o.Complete == false);
                     if (newNotifications != null)
                     {
                         TempData["notificationMessage"] =
@@ -299,11 +359,12 @@ namespace PaulSchool.Controllers
             {
                 ViewBag.Email = u.Email;
             }
-            var usersCommissionings =
-                db.ApplicationCommissionings.Where(o => o.Student.UserName == User.Identity.Name && o.Approved == true).
+            IOrderedQueryable<ApplicationCommissioning> usersCommissionings =
+                db.ApplicationCommissionings.Where(o => o.Student.UserName == User.Identity.Name && o.Approved).
                     OrderByDescending(m => m.DateApproved);
-            var usersMostRecentCommissioning = usersCommissionings.FirstOrDefault();
-            if (usersMostRecentCommissioning != null) ViewBag.mostRecentCommissioningCertificateID = usersMostRecentCommissioning.Id;
+            ApplicationCommissioning usersMostRecentCommissioning = usersCommissionings.FirstOrDefault();
+            if (usersMostRecentCommissioning != null)
+                ViewBag.mostRecentCommissioningCertificateID = usersMostRecentCommissioning.Id;
             return View(model);
         }
 
@@ -323,67 +384,6 @@ namespace PaulSchool.Controllers
             return View(model);
         }
 
-        private static SelectList StateList
-        {
-            get
-            {
-                return new SelectList(new[]
-                    {
-                        new { Value = "1", Text = "AK" },
-                        new { Value = "2", Text = "AL" },
-                        new { Value = "3", Text = "AR" },
-                        new { Value = "4", Text = "AZ" },
-                        new { Value = "5", Text = "CA" },
-                        new { Value = "6", Text = "CO" },
-                        new { Value = "7", Text = "CT" },
-                        new { Value = "8", Text = "DC" },
-                        new { Value = "9", Text = "DE" },
-                        new { Value = "10", Text = "FL" },
-                        new { Value = "11", Text = "GA" },
-                        new { Value = "12", Text = "HI" },
-                        new { Value = "13", Text = "IA" },
-                        new { Value = "14", Text = "ID" },
-                        new { Value = "15", Text = "IL" },
-                        new { Value = "16", Text = "IN" },
-                        new { Value = "17", Text = "KS" },
-                        new { Value = "18", Text = "KY" },
-                        new { Value = "19", Text = "LA" },
-                        new { Value = "20", Text = "MA" },
-                        new { Value = "21", Text = "MD" },
-                        new { Value = "22", Text = "ME" },
-                        new { Value = "23", Text = "MI" },
-                        new { Value = "24", Text = "MN" },
-                        new { Value = "25", Text = "MO" },
-                        new { Value = "26", Text = "MS" },
-                        new { Value = "27", Text = "MT" },
-                        new { Value = "28", Text = "NC" },
-                        new { Value = "29", Text = "ND" },
-                        new { Value = "30", Text = "NE" },
-                        new { Value = "31", Text = "NH" },
-                        new { Value = "32", Text = "NJ" },
-                        new { Value = "33", Text = "NM" },
-                        new { Value = "34", Text = "NV" },
-                        new { Value = "35", Text = "NY" },
-                        new { Value = "36", Text = "OH" },
-                        new { Value = "37", Text = "OK" },
-                        new { Value = "38", Text = "OR" },
-                        new { Value = "39", Text = "PA" },
-                        new { Value = "40", Text = "RI" },
-                        new { Value = "41", Text = "SC" },
-                        new { Value = "42", Text = "SD" },
-                        new { Value = "43", Text = "TN" },
-                        new { Value = "44", Text = "TX" },
-                        new { Value = "45", Text = "UT" },
-                        new { Value = "46", Text = "VA" },
-                        new { Value = "47", Text = "VT" },
-                        new { Value = "48", Text = "WA" },
-                        new { Value = "49", Text = "WI" },
-                        new { Value = "50", Text = "WV" },
-                        new { Value = "51", Text = "WY" }
-                    }, "Value", "Text");
-            }
-        }
-
         // POST: /Account/Register
 
         /// <summary>
@@ -396,14 +396,15 @@ namespace PaulSchool.Controllers
         /// or redisplays the register form view.
         /// </returns>
         [HttpPost]
-        public ActionResult Register(RegisterViewModel viewModel, string stateInt)
+        public ActionResult Register(RegisterViewModel viewModel, int stateInt, FormCollection formCollection)
         {
             Debug.Write(stateInt);
-            var actualState = StateList.Where(m => m.Value == stateInt);
-            Debug.Write(actualState);
+
+            string stringStateAbbreviation = StateList.First(m => m.Value == stateInt.ToString()).Text;
+
             if (ModelState.IsValid)
             {
-                var model = new RegisterModel()
+                var model = new RegisterModel
                     {
                         UserName = viewModel.UserName,
                         Email = viewModel.Email,
@@ -411,7 +412,7 @@ namespace PaulSchool.Controllers
                         LastName = viewModel.LastName,
                         StreetAddress = viewModel.StreetAddress,
                         City = viewModel.City,
-                        State = actualState,
+                        State = stringStateAbbreviation,
                         ZipCode = viewModel.ZipCode,
                         Phone = viewModel.Phone,
                         DateOfBirth = viewModel.DateOfBirth,
@@ -467,10 +468,11 @@ namespace PaulSchool.Controllers
         public ActionResult PasswordReset(PasswordResetViewModel model)
         {
             string emailAddress = model.email;
-            var user = Membership.GetUserNameByEmail(emailAddress);
+            string user = Membership.GetUserNameByEmail(emailAddress);
             AccountMembershipService.ChangePassword(user);
-            TempData["tempMessage"] = "You have reset your password, please retrieve it from your email inbox and log on.";
-            return RedirectToAction("LogOn");            
+            TempData["tempMessage"] =
+                "You have reset your password, please retrieve it from your email inbox and log on.";
+            return RedirectToAction("LogOn");
         }
 
         public ActionResult Verify(string id)
@@ -656,21 +658,21 @@ namespace PaulSchool.Controllers
             }
 
             var newStudent = new Student
-                                 {
-                                     LastName = model.LastName,
-                                     FirstMidName = model.FirstMidName,
-                                     Email = u.Email,
-                                     UserName = User.Identity.Name,
-                                     EnrollmentDate = DateTime.Now,
-                                     StreetAddress = model.StreetAddress,
-                                     City = model.City,
-                                     State = model.State,
-                                     ZipCode = model.ZipCode,
-                                     Phone = model.Phone,
-                                     DateOfBirth = model.DateOfBirth,
-                                     ParishAffiliation = model.ParishAffiliation,
-                                     MinistryInvolvement = model.MinistryInvolvement
-                                 };
+                {
+                    LastName = model.LastName,
+                    FirstMidName = model.FirstMidName,
+                    Email = u.Email,
+                    UserName = User.Identity.Name,
+                    EnrollmentDate = DateTime.Now,
+                    StreetAddress = model.StreetAddress,
+                    City = model.City,
+                    State = model.State,
+                    ZipCode = model.ZipCode,
+                    Phone = model.Phone,
+                    DateOfBirth = model.DateOfBirth,
+                    ParishAffiliation = model.ParishAffiliation,
+                    MinistryInvolvement = model.MinistryInvolvement
+                };
             db.Students.Add(newStudent);
             db.SaveChanges();
             if (!User.IsInRole("Student"))
@@ -692,21 +694,21 @@ namespace PaulSchool.Controllers
                                                                                   MembershipUser user)
         {
             var newStudent = new Student
-                                 {
-                                     LastName = profile.LastName,
-                                     FirstMidName = profile.FirstMidName,
-                                     Email = user.Email,
-                                     UserName = profile.UserName,
-                                     EnrollmentDate = DateTime.Now,
-                                     StreetAddress = profile.StreetAddress,
-                                     City = profile.City,
-                                     State = profile.State,
-                                     ZipCode = profile.ZipCode,
-                                     Phone = profile.Phone,
-                                     DateOfBirth = profile.DateOfBirth,
-                                     ParishAffiliation = profile.ParishAffiliation,
-                                     MinistryInvolvement = profile.MinistryInvolvement
-                                 };
+                {
+                    LastName = profile.LastName,
+                    FirstMidName = profile.FirstMidName,
+                    Email = user.Email,
+                    UserName = profile.UserName,
+                    EnrollmentDate = DateTime.Now,
+                    StreetAddress = profile.StreetAddress,
+                    City = profile.City,
+                    State = profile.State,
+                    ZipCode = profile.ZipCode,
+                    Phone = profile.Phone,
+                    DateOfBirth = profile.DateOfBirth,
+                    ParishAffiliation = profile.ParishAffiliation,
+                    MinistryInvolvement = profile.MinistryInvolvement
+                };
             db.Students.Add(newStudent);
             db.SaveChanges();
             if (!User.IsInRole("Student"))
@@ -751,18 +753,18 @@ namespace PaulSchool.Controllers
         {
             CustomProfile profile = CustomProfile.GetUserProfile(User.Identity.Name);
             var model = new ProfileViewModel
-                            {
-                                LastName = profile.LastName,
-                                FirstMidName = profile.FirstMidName,
-                                StreetAddress = profile.StreetAddress,
-                                City = profile.City,
-                                State = profile.State,
-                                ZipCode = profile.ZipCode,
-                                Phone = profile.Phone,
-                                DateOfBirth = profile.DateOfBirth,
-                                ParishAffiliation = profile.ParishAffiliation,
-                                MinistryInvolvement = profile.MinistryInvolvement
-                            };
+                {
+                    LastName = profile.LastName,
+                    FirstMidName = profile.FirstMidName,
+                    StreetAddress = profile.StreetAddress,
+                    City = profile.City,
+                    State = profile.State,
+                    ZipCode = profile.ZipCode,
+                    Phone = profile.Phone,
+                    DateOfBirth = profile.DateOfBirth,
+                    ParishAffiliation = profile.ParishAffiliation,
+                    MinistryInvolvement = profile.MinistryInvolvement
+                };
             return model;
         }
 
