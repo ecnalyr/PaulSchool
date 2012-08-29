@@ -11,7 +11,6 @@
 // <summary>
 
 using System;
-using System.Diagnostics;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Web.Mvc;
@@ -229,6 +228,8 @@ namespace PaulSchool.Controllers
         public ActionResult ChangeProfile()
         {
             ProfileViewModel model = PreloadProfileViewModelWithCurrentUsersProfileData();
+            model.State = StateList;
+            model.StateInt = 44;
             return View(model);
         }
 
@@ -243,28 +244,27 @@ namespace PaulSchool.Controllers
         /// </returns>
         [Authorize]
         [HttpPost]
-        public ActionResult ChangeProfile(ProfileViewModel model)
+        public ActionResult ChangeProfile(ProfileViewModel model, int stateInt)
         {
             if (!ModelState.IsValid)
             {
                 return View(model);
             }
 
-            // validation succeeded => process the results
-            // save the profile data
-            SaveNewProfileData(model);
+            string stringStateAbbreviation = StateList.First(m => m.Value == stateInt.ToString()).Text;
+            SaveNewProfileData(model, stringStateAbbreviation);
 
             // check if already existing on the student table - update the table if needed
             Student isStudent = db.Students.FirstOrDefault(o => o.UserName == User.Identity.Name);
             if (isStudent != null)
             {
                 // IF the user already exists in the Student Table . . .
-                UpdateStudentsTableWithUpdatedProfileDataFromProfileViewModel(model, isStudent);
+                UpdateStudentsTableWithUpdatedProfileDataFromProfileViewModel(model, isStudent, stringStateAbbreviation);
             }
             else
             {
                 // Create student in student table if they have not been there before (everyone needs to be at least a student)
-                CreateStudentInStudentTableFromProfileViewModel(model);
+                CreateStudentInStudentTableFromProfileViewModel(model, stringStateAbbreviation);
             }
 
             // check if already existing on the instructor table - update the table if needed
@@ -396,10 +396,8 @@ namespace PaulSchool.Controllers
         /// or redisplays the register form view.
         /// </returns>
         [HttpPost]
-        public ActionResult Register(RegisterViewModel viewModel, int stateInt, FormCollection formCollection)
+        public ActionResult Register(RegisterViewModel viewModel, int stateInt)
         {
-            Debug.Write(stateInt);
-
             string stringStateAbbreviation = StateList.First(m => m.Value == stateInt.ToString()).Text;
 
             if (ModelState.IsValid)
@@ -608,14 +606,14 @@ namespace PaulSchool.Controllers
         /// <param name="model">
         /// The model.
         /// </param>
-        private static void SaveNewProfileData(ProfileViewModel model)
+        private static void SaveNewProfileData(ProfileViewModel model, string state)
         {
             CustomProfile profile = CustomProfile.GetUserProfile();
             profile.LastName = model.LastName;
             profile.FirstMidName = model.FirstMidName;
             profile.StreetAddress = model.StreetAddress;
             profile.City = model.City;
-            profile.State = model.State;
+            profile.State = state;
             profile.ZipCode = model.ZipCode;
             profile.Phone = model.Phone;
             profile.DateOfBirth = model.DateOfBirth;
@@ -649,7 +647,7 @@ namespace PaulSchool.Controllers
         /// <param name="model">
         /// The model.
         /// </param>
-        private void CreateStudentInStudentTableFromProfileViewModel(ProfileViewModel model)
+        private void CreateStudentInStudentTableFromProfileViewModel(ProfileViewModel model, string state)
         {
             MembershipUser u = Membership.GetUser(User.Identity.Name); // needed to get email for Email = u.Email;
             if (u == null)
@@ -666,7 +664,7 @@ namespace PaulSchool.Controllers
                     EnrollmentDate = DateTime.Now,
                     StreetAddress = model.StreetAddress,
                     City = model.City,
-                    State = model.State,
+                    State = state,
                     ZipCode = model.ZipCode,
                     Phone = model.Phone,
                     DateOfBirth = model.DateOfBirth,
@@ -758,7 +756,7 @@ namespace PaulSchool.Controllers
                     FirstMidName = profile.FirstMidName,
                     StreetAddress = profile.StreetAddress,
                     City = profile.City,
-                    State = profile.State,
+                    StateString = profile.State,
                     ZipCode = profile.ZipCode,
                     Phone = profile.Phone,
                     DateOfBirth = profile.DateOfBirth,
@@ -864,13 +862,13 @@ namespace PaulSchool.Controllers
         /// The is student.
         /// </param>
         private void UpdateStudentsTableWithUpdatedProfileDataFromProfileViewModel(
-            ProfileViewModel model, Student isStudent)
+            ProfileViewModel model, Student isStudent, string state)
         {
             isStudent.LastName = model.LastName;
             isStudent.FirstMidName = model.FirstMidName;
             isStudent.StreetAddress = model.StreetAddress;
             isStudent.City = model.City;
-            isStudent.State = model.State;
+            isStudent.State = state;
             isStudent.ZipCode = model.ZipCode;
             isStudent.Phone = model.Phone;
             isStudent.DateOfBirth = model.DateOfBirth;

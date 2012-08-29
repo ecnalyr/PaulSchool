@@ -44,7 +44,6 @@ namespace PaulSchool.ViewModels
 
         [Required(ErrorMessage = "Must have a State")]
         [Display(Name = "State")]
-        //[StringLength(15)]
         public int StateInt { get; set; }
 
         [Required(ErrorMessage = "Must have a Zip Code")]

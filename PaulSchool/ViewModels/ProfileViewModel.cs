@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 
 namespace PaulSchool.ViewModels
 {
@@ -24,10 +25,13 @@ namespace PaulSchool.ViewModels
         [StringLength(30)]
         public string City { get; set; }
 
+        public SelectList State { get; set; }
+
+        public string StateString { get; set; }
+
         [Required(ErrorMessage = "Must have a State")]
         [Display(Name = "State")]
-        [StringLength(15)]
-        public string State { get; set; }
+        public int StateInt { get; set; }
 
         [Required(ErrorMessage = "Must have a Zip Code")]
         [Display(Name = "Zip Code")]

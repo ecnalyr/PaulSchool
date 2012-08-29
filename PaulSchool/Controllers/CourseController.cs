@@ -237,7 +237,7 @@
         {
             Course course = db.Courses.Find(id);
 
-            // Add the notification for the Instructor that their Course has been approved
+            // Add the notification for the Instructor that their Course has been unapproved
             var newNotification = new Notification
                 {
                     Time = DateTime.Now, 
