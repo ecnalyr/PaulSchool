@@ -103,11 +103,14 @@ namespace PaulSchool.Controllers
             var applicationWithUserData = ApplicationWithUserData(thisStudent);
 
             var dayOfReflection = db.Enrollments.FirstOrDefault(s => s.StudentID == thisStudent.StudentID && s.Course.Title == "Day of Reflection" && s.Grade == "pass");
-            ViewBag.completedDayOfReflection = "(You have not completed the Day of Reflection, ask an Administrator for details on how to complete this.)";
+            ViewBag.completedDayOfReflection = "Incomplete, ask an Administrator for details on how to complete this.";
             if (dayOfReflection != null)
             {
-                ViewBag.completedDayOfReflection = "(You have completed the Day of Reflection)";
+                ViewBag.completedDayOfReflection = "Complete";
             }
+
+            ViewBag.electivesPassed = TotalElectivesPassed(thisStudent);
+            ViewBag.coresPassed = TotalCoresPassed(thisStudent);
 
             return View(applicationWithUserData);
         }
