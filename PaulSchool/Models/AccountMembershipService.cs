@@ -19,7 +19,7 @@ namespace PaulSchool.Models
                               {
                                   Subject =
                                       "Please confirm your email address for regisration for the Diocese of Corpus Christi St. Paul School of Catechism.",
-                                  Body = verifyUrl
+                                  Body = verifyUrl + " <-- Click that link to verify your account for the St. Paul School of Catechism."
                               };
 
             var client = new SmtpClient();

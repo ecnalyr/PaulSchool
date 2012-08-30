@@ -371,6 +371,10 @@ div#title {
 
 /* misc
 ----------------------------------------------------------*/
-.highlight {
+.redtext {
     color: red;
+}
+
+.highlight {
+    background-color: yellow;
 }

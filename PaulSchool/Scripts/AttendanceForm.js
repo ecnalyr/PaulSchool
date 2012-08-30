@@ -34,7 +34,7 @@ function UpdateAttendance(present) {
             if (isPresent == absentText) {
                 $('#' + userId).find('.currentClass').text(presentText).removeAttr('class');
             } else {
-                $('#' + userId).find('.currentClass').text(absentText).removeAttr('class').addClass("highlight");
+                $('#' + userId).find('.currentClass').text(absentText).removeAttr('class').addClass("redtext");
             }
             return true;
         }

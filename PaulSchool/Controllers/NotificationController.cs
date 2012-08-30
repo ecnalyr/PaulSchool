@@ -33,6 +33,21 @@ namespace PaulSchool.Controllers
             }
         }
 
+        public ActionResult MarkPreviouslyReadTrue(int id)
+        {
+            Notification notification = db.Notification.Find(id);
+            notification.PreviouslyRead = true;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult MarkPreviouslyReadFalse(int id)
+        {
+            Notification notification = db.Notification.Find(id);
+            notification.PreviouslyRead = false;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
         public ViewResult Details(int id)
         {
             Notification notification = db.Notification.Find(id);

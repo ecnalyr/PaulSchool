@@ -12,7 +12,7 @@ namespace PaulSchool.Controllers
         {
             ViewBag.Message = "St. Paul School of Catechesis";
 
-            var newNotifications = db.Notification.FirstOrDefault(o => o.ViewableBy == User.Identity.Name && o.Complete == false);
+            var newNotifications = db.Notification.FirstOrDefault(o => o.ViewableBy == User.Identity.Name && o.PreviouslyRead == false);
             if (newNotifications != null)
             {
                 TempData["notificationMessage"] =

@@ -4,21 +4,23 @@
 @{
     ViewBag.Title = "Index";
 }
+<h2>Your Notifications</h2>
 
-<h2>Index</h2>
-
-@{if (User.IsInRole("SuperAdministrator"))
+@{
+    if (User.IsInRole("SuperAdministrator"))
     {
         <p>
             @Html.ActionLink("Create New Notifiaction as a SuperAdministrator", "Create")
         </p>
-    }}
+    }
+}
 
 <table>
     <tr>
         <th>
-            Time Notification was Created
+            Time Created
         </th>
+        <th></th>
         <th>
             Description
         </th>
@@ -26,37 +28,54 @@
             Link
         </th>
         <th>
-            ViewableBy
+            Viewable By
         </th>
         <th></th>
     </tr>
 
     @foreach (Notification item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Time)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Details)
-            </td>
-            <td>
-                <a href=@item.Link>View</a>
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ViewableBy)
-            </td>
-            <td>
-                @Html.ActionLink("Remove Notification from Queu", "Complete", new { id = item.NotificationID })
-                @{
-        if (User.IsInRole("SuperAdministrator"))
+        if (item.PreviouslyRead)
         {
-                        @Html.ActionLink("Delete", "Delete", new { id = item.NotificationID })
-            ;
+            @:<tr>
         }
+        else
+        {
+            @:<tr class="highlight">
+        }
+        <td>
+            @Html.DisplayFor(modelItem => item.Time)
+        </td>
+        <td>
+            @if (item.PreviouslyRead)
+            {
+                @Html.ActionLink("mark as unread", "MarkPreviouslyReadFalse", new {id = item.NotificationID})
+            }
+            else
+            {
+                @Html.ActionLink("mark as read", "MarkPreviouslyReadTrue", new {id = item.NotificationID})
+            }
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Details)
+        </td>
+        <td class="containslink" id=@item.NotificationID>
+            <a href=@item.Link>View</a>
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ViewableBy)
+        </td>
+        <td>
+            @Html.ActionLink("Remove Notification from Queu", "Complete", new {id = item.NotificationID})
+            @{
+                if (User.IsInRole("SuperAdministrator"))
+                {
+                    @Html.ActionLink("Delete", "Delete", new {id = item.NotificationID})
+                    ;
                 }
-            </td>
-        </tr>
+            }
+        </td>
+        @:</tr>
     }
 </table>
 @{
@@ -67,3 +86,15 @@
         </p>
     }
 }
+<script type="text/javascript">
+    readTrueUrl = '@Url.Action("MarkPreviouslyReadTrue", "Notification")/';
+
+    $(document).ready(function() {
+        $("td.containslink a").click(function() {
+            var id = $(this).closest("td.containslink").attr("id");
+            $.ajax({
+                url: readTrueUrl + id
+            });
+        });
+    });
+</script>

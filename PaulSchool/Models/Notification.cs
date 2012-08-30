@@ -15,5 +15,12 @@ namespace PaulSchool.Models
         public string ViewableBy { get; set; } // "Admin" or 'UserName/ID'
 
         public bool Complete { get; set; }
+
+        public bool PreviouslyRead { get; set; }
+
+        public Notification()
+        {
+            PreviouslyRead = false;
+        }
     }
 }

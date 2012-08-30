@@ -10,7 +10,7 @@ using SampleWebsite.Mvc3.Areas.MvcMembership.Models.UserAdministration;
 
 namespace SampleWebsite.Mvc3.Areas.MvcMembership.Controllers
 {
-	[AuthorizeUnlessOnlyUser(Roles = "Administrator")] // allows access if you're the only user, only validates role if role provider is enabled
+	[AuthorizeUnlessOnlyUser(Roles = "SuperAdministrator")] // allows access if you're the only user, only validates role if role provider is enabled
 	public class UserAdministrationController : Controller
 	{
 		private const int PageSize = 10;
