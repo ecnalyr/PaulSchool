@@ -22,7 +22,7 @@ $(document).ready(function (event) {
             event.preventDefault();
         }
     });
-    $(".page *").highlight("absent", "highlight");
+    $(".page *").highlight("absent", "redtext");
 });
 function UpdateAttendance(present) {
     url = updateAttendanceUrl;

@@ -41,18 +41,12 @@ namespace PaulSchool.ViewModels
         // default of 30
 
         [Required]
+        [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
         public DateTime StartDate { get; set; }
 
         [Required]
+        [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
         public DateTime EndDate { get; set; }
-
-        [Required]
-        [Range(0, 24, ErrorMessage = "Hours must be a value (you can use 0 hours 45 mins, for example")]
-        public int DurationHours { get; set; }
-
-        [Required]
-        [Range(0, 59, ErrorMessage = "0 - 59 mins")]
-        public int DurationMins { get; set; }
 
         [Required]
         public string Location { get; set; }

@@ -587,8 +587,6 @@
                         Elective = selectedTemplate.Elective, 
                         AttendingDays = selectedTemplate.AttendingDays, 
                         AttendanceCap = selectedTemplate.AttendanceCap, 
-                        DurationHours = selectedTemplate.DurationHours, 
-                        DurationMins = selectedTemplate.DurationMins, 
                         Location = selectedTemplate.Location, 
                         Parish = selectedTemplate.Parish, 
                         Description = selectedTemplate.Description, 
@@ -669,7 +667,7 @@
                         CourseID = course.CourseID, 
                         StudentID = thisStudent.StudentID, 
                         AttendanceDay = i + 1, 
-                        Present = false
+                        Present = true
                     };
                 db.Attendance.Add(newAttendance);
             }
@@ -689,8 +687,6 @@
                     AttendanceCap = appliedCourse.AttendanceCap, 
                     StartDate = appliedCourse.StartDate, 
                     EndDate = appliedCourse.EndDate, 
-                    DurationHours = appliedCourse.DurationHours, 
-                    DurationMins = appliedCourse.DurationMins, 
                     Location = appliedCourse.Location, 
                     Parish = appliedCourse.Parish, 
                     Description = appliedCourse.Description, 

@@ -1,4 +1,5 @@
-﻿@model PaulSchool.Models.Course
+﻿@using System.Globalization
+@model PaulSchool.Models.Course
 
 @{
     ViewBag.Title = "Delete";
@@ -45,24 +46,24 @@
         @Html.DisplayFor(model => model.AttendanceCap)
     </div>
 
-    <div class="display-label">StartDate</div>
+    <div class="display-label">Star tDate</div>
     <div class="display-field">
         @Html.DisplayFor(model => model.StartDate)
     </div>
 
-    <div class="display-label">EndDate</div>
+    <div class="display-label">End Date</div>
     <div class="display-field">
         @Html.DisplayFor(model => model.EndDate)
     </div>
 
-    <div class="display-label">DurationHours</div>
+    <div class="display-label">Start Time</div>
     <div class="display-field">
-        @Html.DisplayFor(model => model.DurationHours)
+        @Html.DisplayFor(model => model.StartDate.ToString("hh:mm tt"), CultureInfo.CreateSpecificCulture("hu-HU"));
     </div>
 
-    <div class="display-label">DurationMins</div>
+    <div class="display-label">End Time</div>
     <div class="display-field">
-        @Html.DisplayFor(model => model.DurationMins)
+        @Html.DisplayFor(model => model.EndDate.ToString("hh:mm tt"), CultureInfo.CreateSpecificCulture("hu-HU"));
     </div>
 
     <div class="display-label">Location</div>

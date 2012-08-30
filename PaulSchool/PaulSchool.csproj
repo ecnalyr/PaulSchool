@@ -186,7 +186,6 @@
     <Content Include="App_Data\aspnetdb_log.LDF">
       <DependentUpon>ASPNETDB.MDF</DependentUpon>
     </Content>
-    <Content Include="App_Data\school.mdf" />
     <Content Include="Content\images\acenturyoftradition.jpg" />
     <Content Include="Content\images\diocese.png" />
     <Content Include="Content\images\dioceseTransparent.png" />

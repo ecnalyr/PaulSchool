@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Globalization;
 
 namespace PaulSchool.Models
 {
@@ -31,13 +33,23 @@ namespace PaulSchool.Models
 
         public int SeatsTaken { get; set; }
 
+        [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
         public DateTime StartDate { get; set; }
 
+        [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
         public DateTime EndDate { get; set; }
 
-        public int DurationHours { get; set; } // i.e. 1 hour, or 0 hour and 45 mins
+        [DisplayFormat(DataFormatString = "{0: h:mm tt}", ApplyFormatInEditMode = true)]
+        public DateTime StartTime
+        {
+            get { return StartDate; }
+        }
 
-        public int DurationMins { get; set; } // i.e. 0 mins, or 0 hour and 45 mins
+        [DisplayFormat(DataFormatString = "{0: h:mm tt}", ApplyFormatInEditMode = true)]
+        public DateTime EndTime
+        {
+            get { return EndDate; }
+        }
 
         public string Location { get; set; }
 
@@ -54,10 +66,8 @@ namespace PaulSchool.Models
         public bool Completed { get; set; } // yes, no - needs to be a drop down
 
         public bool Archived { get; set; } // yes, no - needs to be a drop down
-        // end of modified part*/
-        //
 
         public virtual ICollection<Enrollment> Enrollments { get; set; }
-        // The Enrollments property is a navigation property. A Course entity can be related to any number of Enrollment entities.
     }
+
 }
