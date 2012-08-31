@@ -44,6 +44,14 @@
                 }
                 
             </th>
+            @{
+                if (Model.Course.Completed)
+                {
+                    <th>
+                        Certificate
+                    </th>
+                }
+            }
         </tr>
     </thead>
     <tbody id="@Model.CourseId">
@@ -92,6 +100,14 @@
 
                     }
                 </td>
+                @{
+                if (Model.Course.Completed)
+                {
+                    <td>
+                        @Html.ActionLink("View", "CertificateOfAttendance", "Certificate", new { id = Model.Enrollments.First(o => o.Student.StudentID == student.StudentID).EnrollmentID }, null)
+                    </td>
+                }
+            }
             </tr>
         }
     </tbody>
