@@ -5,7 +5,7 @@
 @{
     ViewBag.Title = "StudentDetails";
 }
-
+<script src="@Url.Content("~/Scripts/AttendanceForm.js")" type="text/javascript"></script>
 <h2>Your attendance details for the course:</h2>
 <p>    
     @{
@@ -20,20 +20,25 @@
         if (Model.Paid == false)
         {
             <h1>You have not paid for this course.  The application fee is @Model.Course.Cost.ToString("c"). You can pay this fee using the Paypal link below, or by contacting an Administrator for other payment methods.</h1>
-                    var actualCost = Model.Course.Cost;
+            var actualCost = Model.Course.Cost;
             @Html.PayPalButton(true,
-                HtmlHelpers.EButtonType.PayNow,
-                "ecnaly_1340772680_biz@gmail.com",
-                "Enrollment fee for " + Model.Course.Title,
-                Model.SingleStudentEnrollment.EnrollmentID.ToString(),
-                (float)actualCost,
-                HtmlHelpers.ECurrencyCode.USD,
-                "http://localhost.com/home/complete",
-                "http://localhost.com/home/cancel",
-                     "http://24.155.210.182/paulschool/paypal/ipn")
+                               HtmlHelpers.EButtonType.PayNow,
+                               "ecnaly_1340772680_biz@gmail.com",
+                               "Enrollment fee for " + Model.Course.Title,
+                               Model.SingleStudentEnrollment.EnrollmentID.ToString(),
+                               (float)actualCost,
+                               HtmlHelpers.ECurrencyCode.USD,
+                               "http://localhost.com/home/complete",
+                               "http://localhost.com/home/cancel",
+                               "http://24.155.210.182/paulschool/paypal/ipn")
         }
     }
 </p>
+
+<div>
+    <p>The first day of class is @Model.Course.StartDate and the last day is @Model.Course.EndDate . </p>
+    <p>This class starts at @Model.Course.StartTime and ends at @Model.Course.EndTime .</p>
+</div>
 <table>
     <thead>
         <tr>

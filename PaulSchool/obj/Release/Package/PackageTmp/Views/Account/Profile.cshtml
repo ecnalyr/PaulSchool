@@ -16,7 +16,7 @@
         <p><b>Address:</b></p>
         <div>
             @Html.DisplayFor(model => model.StreetAddress)<br>
-                                                          @Html.DisplayFor(model => model.City), @Html.DisplayFor(model => model.State) @Html.DisplayFor(model => model.ZipCode)
+                                                          @Html.DisplayFor(model => model.City), @Html.DisplayFor(model => model.StateString) @Html.DisplayFor(model => model.ZipCode)
         </div>
     
         <p><b>Phone:</b> @Html.DisplayFor(model => model.Phone)</p>
@@ -41,5 +41,8 @@
     </div>
     <div>
         @Html.ActionLink("Change Email", "ChangeEmail")
+    </div>
+    <div>
+        @Html.ActionLink("Change Password", "ChangePassword")
     </div>
 }

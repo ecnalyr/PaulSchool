@@ -1,4 +1,5 @@
-﻿@{
+﻿@model PaulSchool.ViewModels.ProfileViewModel
+@{
     ViewBag.Title = "ChangeProfile";
 }
     <link href="@Url.Content("~/Content/themes/ui-lightness/jquery-ui-1.8.19.custom.css")" rel="stylesheet"
@@ -15,11 +16,97 @@
 {
     <div>
 
-    @using (Html.BeginForm())
-    {
-        @Html.EditorForModel()
-        <button type="submit">OK</button>
-    }
+    @using (Html.BeginForm()) {
+    @Html.ValidationSummary(true, "Profile change was unsuccessful. Please correct the errors and try again.")
+    <div>
+        <fieldset>
+            <legend>Profile Information</legend>
+
+            <div class="editor-label">
+                @Html.LabelFor(m => m.FirstMidName)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(m => m.FirstMidName)
+                @Html.ValidationMessageFor(m => m.FirstMidName)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(m => m.LastName)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(m => m.LastName)
+                @Html.ValidationMessageFor(m => m.LastName)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(m => m.StreetAddress)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(m => m.StreetAddress)
+                @Html.ValidationMessageFor(m => m.StreetAddress)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(m => m.City)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(m => m.City)
+                @Html.ValidationMessageFor(m => m.City)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(m => m.StateInt)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(m => m.StateInt, Model.State)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(m => m.ZipCode)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(m => m.ZipCode)
+                @Html.ValidationMessageFor(m => m.ZipCode)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(m => m.Phone) (3615551234)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(m => m.Phone)
+                @Html.ValidationMessageFor(m => m.Phone)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(m => m.DateOfBirth) (MM/DD/YYYY)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(m => m.DateOfBirth)
+                @Html.ValidationMessageFor(m => m.DateOfBirth)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(m => m.ParishAffiliation)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(m => m.ParishAffiliation)
+                @Html.ValidationMessageFor(m => m.ParishAffiliation)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(m => m.MinistryInvolvement)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(m => m.MinistryInvolvement, new { id = "autocomplete" })
+                @Html.ValidationMessageFor(m => m.MinistryInvolvement)
+            </div>
+            <p>
+                <input type="submit" value="Save Changes" />
+            </p>
+        </fieldset>
+    </div>
+}
+
     <div>
         @Html.ActionLink("Back to Profile", "Profile")
     </div>

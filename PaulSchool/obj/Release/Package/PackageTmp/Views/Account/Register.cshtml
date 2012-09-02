@@ -1,4 +1,4 @@
-﻿@model PaulSchool.Models.RegisterModel
+﻿@model PaulSchool.ViewModels.RegisterViewModel
 
 @{
     ViewBag.Title = "Register";
@@ -74,11 +74,10 @@
             </div>
 
             <div class="editor-label">
-                @Html.LabelFor(m => m.State)
+                @Html.LabelFor(m => m.StateInt)
             </div>
             <div class="editor-field">
-                @Html.TextBoxFor(m => m.State)
-                @Html.ValidationMessageFor(m => m.State)
+                @Html.DropDownListFor(m => m.StateInt, Model.State)
             </div>
 
             <div class="editor-label">
@@ -136,8 +135,6 @@
                 @Html.PasswordFor(m => m.ConfirmPassword)
                 @Html.ValidationMessageFor(m => m.ConfirmPassword)
             </div>
-            
-            <!--@Html.EditorForModel()-->
             <p>
                 <input type="submit" value="Register" />
             </p>

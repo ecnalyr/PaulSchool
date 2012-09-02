@@ -1,4 +1,5 @@
-﻿@using PaulSchool.Models
+﻿@using System.Globalization
+@using PaulSchool.Models
 @model PaulSchool.Models.Course
 
 @{
@@ -72,14 +73,14 @@
                             @Html.DisplayFor(model => model.EndDate)
                         </div>
 
-                        <div class="display-label">Duration Hours</div>
+                        <div class="display-label">Start Time</div>
                         <div class="display-field">
-                            @Html.DisplayFor(model => model.DurationHours)
+                            @Html.DisplayFor(model => model.StartTime)
                         </div>
 
-                        <div class="display-label">Duration Mins</div>
+                        <div class="display-label">End Time</div>
                         <div class="display-field">
-                            @Html.DisplayFor(model => model.DurationMins)
+                            @Html.DisplayFor(model => model.EndTime)
                         </div>
                     </div>
             

@@ -332,6 +332,7 @@ namespace PaulSchool.Controllers
                         TempData["notificationMessage"] =
                             "You have an unchecked notification.  Please visit the Notification tab and tend to this notification.";
                     }
+                    
                     return LogUserIn(model, returnUrl);
                 }
 
@@ -731,7 +732,12 @@ namespace PaulSchool.Controllers
         {
             FormsAuthentication.SetAuthCookie(model.UserName, model.RememberMe);
 
-            // FormsAuthentication.SetAuthCookie(model.UserName, model.RememberMe);
+            var authorized = Roles.IsUserInRole(model.UserName, "Administrator");
+            if (authorized)
+            {
+                return RedirectToAction("Index", "Notification");
+            }
+
             if (Url.IsLocalUrl(returnUrl) && returnUrl.Length > 1 && returnUrl.StartsWith("/")
                 && !returnUrl.StartsWith("//") && !returnUrl.StartsWith("/\\"))
             {
