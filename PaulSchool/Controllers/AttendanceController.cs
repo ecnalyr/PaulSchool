@@ -4,9 +4,10 @@
 //   This code and information is provided "as is" without warranty of any kind, either expressed or implied, including but not limited to the implied warranties of merchantability and fitness for a particular purpose.
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace PaulSchool.Controllers
 {
+    #region
+
     using System;
     using System.Collections.Generic;
     using System.Data;
@@ -16,32 +17,19 @@ namespace PaulSchool.Controllers
     using PaulSchool.Models;
     using PaulSchool.Resources;
     using PaulSchool.ViewModels;
-    using System.Diagnostics;
 
-    /// <summary>
-    /// The attendance controller.
-    /// </summary>
+    #endregion
+
     public class AttendanceController : Controller
     {
         #region Fields
 
-        /// <summary>
-        /// The db.
-        /// </summary>
         private readonly SchoolContext db = new SchoolContext();
 
         #endregion
 
         #region Public Methods and Operators
 
-        /// <summary>
-        /// The archive course.
-        /// </summary>
-        /// <param name="id">
-        /// The id.
-        /// </param>
-        /// <returns>
-        /// </returns>
         [Authorize(Roles = "Administrator, SuperAdministrator")]
         public ActionResult ArchiveCourse(int id)
         {
@@ -52,47 +40,18 @@ namespace PaulSchool.Controllers
             return this.RedirectToAction("Message", new { message = "You have added the course to the archive." });
         }
 
-        /// <summary>
-        /// The attendance view.
-        /// </summary>
-        /// <param name="id">
-        /// The id.
-        /// </param>
-        /// <returns>
-        /// </returns>
         public ActionResult AttendanceView(int id)
         {
-            // Generates list of Attendances specifically for current Course
-            IQueryable<Attendance> attendanceItems = this.db.Attendance.Where(s => s.CourseID == id);
-            List<Attendance> attendanceItemsList = attendanceItems.ToList();
-
-            // End of generating list of Attendances
-
-            // Generates list of Students in alphabetical order sorted by LastName
-            IOrderedQueryable<Student> student =
-                this.db.Enrollments.Where(e => e.CourseID == id).Select(e => e.Student).OrderBy(s => s.LastName);
-            List<Student> StudentList = student.ToList();
-
-            // End of generating list of Students
-
-            // Generates a list of all Enrollments for course - to be used to generate grades
-            // Should to be refactored with above code-block
-            IQueryable<Enrollment> enrollment = this.db.Enrollments.Where(i => i.CourseID == id);
-            IEnumerable<Enrollment> enrollmentList = enrollment;
-
-            // Generates list of AttendingDays specifically for current Course
+            List<Attendance> attendanceItemsList = this.AttendanceItemsList(id);
+            List<Student> studentList = this.StudentList(id);
+            IEnumerable<Enrollment> enrollmentList = this.EnrollmentList(id);
             Course course = this.db.Courses.FirstOrDefault(p => p.CourseID == id);
-            var attDayList = new List<int>();
-            for (int i = 0; i < course.AttendingDays; i++)
-            {
-                attDayList.Add(i + 1);
-            }
+            List<int> attDayList = AttDayList(course);
 
-            // End of generating list of AttendingDays
             var model = new AttendanceReportViewModel
                 {
                     AttendanceDays = attDayList, 
-                    Students = StudentList, 
+                    Students = studentList, 
                     Enrollments = enrollmentList, 
                     Attendances = attendanceItemsList, 
                     CourseId = id, 
@@ -102,14 +61,6 @@ namespace PaulSchool.Controllers
             return View(model);
         }
 
-        /// <summary>
-        /// The complete course.
-        /// </summary>
-        /// <param name="id">
-        /// The id.
-        /// </param>
-        /// <returns>
-        /// </returns>
         public ActionResult CompleteCourse(int id)
         {
             Course course = this.db.Courses.Find(id);
@@ -123,22 +74,11 @@ namespace PaulSchool.Controllers
             return this.RedirectToAction("Message", new { message = "You have completed the course." });
         }
 
-        /// <summary>
-        /// The edit comment.
-        /// </summary>
-        /// <param name="studentId">
-        /// The student id.
-        /// </param>
-        /// <param name="courseId">
-        /// The course id.
-        /// </param>
-        /// <returns>
-        /// </returns>
         public ActionResult EditComment(int studentId, int courseId)
         {
             Enrollment enrollment =
                 this.db.Enrollments.FirstOrDefault(s => s.StudentID == studentId && s.CourseID == courseId);
-            if (enrollment.Course.Completed)
+            if (enrollment != null && enrollment.Course.Completed)
             {
                 RedirectToAction("Error");
             }
@@ -146,43 +86,36 @@ namespace PaulSchool.Controllers
             {
                 var model = new EditCommentGradeViewModel
                     {
-                        EnrollmentID = enrollment.EnrollmentID,
-                        Student = enrollment.Student,
+                        EnrollmentID = enrollment.EnrollmentID, 
+                        Student = enrollment.Student, 
                         Grades =
                             new List<SelectListItem>
                                 {
                                     new SelectListItem
                                         {
-                                            Text = PaulSchoolResource.AttendanceController_EditComment_Incomplete,
+                                            Text = PaulSchoolResource.AttendanceController_EditComment_Incomplete, 
                                             Value = PaulSchoolResource.AttendanceController_EditComment_Incomplete
-                                        },
+                                        }, 
                                     new SelectListItem
                                         {
-                                            Text = PaulSchoolResource.AttendanceController_EditComment_Pass,
+                                            Text = PaulSchoolResource.AttendanceController_EditComment_Pass, 
                                             Value = PaulSchoolResource.AttendanceController_EditComment_Pass
-                                        },
+                                        }, 
                                     new SelectListItem
                                         {
-                                            Text = PaulSchoolResource.AttendanceController_EditComment_Fail,
+                                            Text = PaulSchoolResource.AttendanceController_EditComment_Fail, 
                                             Value = PaulSchoolResource.AttendanceController_EditComment_Fail
-                                        },
-                                },
-                        Grade = enrollment.Grade,
+                                        }, 
+                                }, 
+                        Grade = enrollment.Grade, 
                         Comments = enrollment.Comments
                     };
                 return View(model);
             }
+
             return View("Error");
         }
 
-        /// <summary>
-        /// The edit comment.
-        /// </summary>
-        /// <param name="enrollmentComment">
-        /// The enrollment comment.
-        /// </param>
-        /// <returns>
-        /// </returns>
         [HttpPost]
         public ActionResult EditComment(Enrollment enrollmentComment)
         {
@@ -196,47 +129,14 @@ namespace PaulSchool.Controllers
             return View(enrollmentComment);
         }
 
-        /// <summary>
-        /// The edit individual attendance.
-        /// </summary>
-        /// <param name="id">
-        /// The id.
-        /// </param>
-        /// <param name="studentId">
-        /// The student id.
-        /// </param>
-        /// <returns>
-        /// </returns>
         public ActionResult EditIndividualAttendance(int id, int studentId)
         {
-            // Generates list of Attendances specifically for current Course
-            IQueryable<Attendance> attendanceItems = this.db.Attendance.Where(s => s.CourseID == id);
-            List<Attendance> attendanceItemsList = attendanceItems.ToList();
-
-            // End of generating list of Attendances
-
-            // Generates list of Students in alphabetical order sorted by LastName
-            IOrderedQueryable<Student> student =
-                this.db.Enrollments.Where(e => e.CourseID == id && e.StudentID == studentId).Select(e => e.Student).
-                    OrderBy(s => s.LastName);
-            List<Student> studentList = student.ToList();
-
-            // End of generating list of Students
-
-            // Generates a list of all Enrollments for course - to be used to generate grades
-            IQueryable<Enrollment> enrollment =
-                this.db.Enrollments.Where(i => i.CourseID == id && i.StudentID == studentId);
-            IEnumerable<Enrollment> enrollmentList = enrollment;
-
-            // Generates list of AttendingDays specifically for current Course
+            List<Attendance> attendanceItemsList = this.AttendanceItemsList(id);
+            List<Student> studentList = this.SingleStudentList(id, studentId);
+            IEnumerable<Enrollment> enrollmentList = this.SingleStudentEnrollmentList(id, studentId);
             Course course = this.db.Courses.FirstOrDefault(p => p.CourseID == id);
-            var attDayList = new List<int>();
-            for (int i = 0; i < course.AttendingDays; i++)
-            {
-                attDayList.Add(i + 1);
-            }
+            List<int> attDayList = AttDayList(course);
 
-            // End of generating list of AttendingDays
             var model = new AttendanceReportViewModel
                 {
                     AttendanceDays = attDayList, 
@@ -245,7 +145,8 @@ namespace PaulSchool.Controllers
                     Attendances = attendanceItemsList, 
                     CourseId = id
                 };
-            if (course.Completed == true)
+
+            if (course.Completed)
             {
                 RedirectToAction("Error");
             }
@@ -253,41 +154,21 @@ namespace PaulSchool.Controllers
             {
                 return View(model);
             }
+
             return View("Error");
         }
 
-        /// <summary>
-        /// The index.
-        /// </summary>
-        /// <returns>
-        /// </returns>
         public ActionResult Index()
         {
             return this.View();
         }
 
-        /// <summary>
-        /// The message.
-        /// </summary>
-        /// <param name="message">
-        /// The message.
-        /// </param>
-        /// <returns>
-        /// </returns>
         public ViewResult Message(string message)
         {
             this.ViewBag.message = message;
             return this.View();
         }
 
-        /// <summary>
-        /// The student details.
-        /// </summary>
-        /// <param name="id">
-        /// The id.
-        /// </param>
-        /// <returns>
-        /// </returns>
         public ActionResult StudentDetails(int id)
         {
             //// Generates list of Attendances specifically for current Course
@@ -319,25 +200,19 @@ namespace PaulSchool.Controllers
                 {
                     AttendanceDays = attDayList, 
                     Students = studentList, 
+                    
+                    
                     ////should be only one student for this ActionResult
                     Attendances = attendanceItemsList, 
-                    Comments = enrollment.Comments,
-                    Paid = enrollment.Paid,
-                    Course = course,
+                    Comments = enrollment.Comments, 
+                    Paid = enrollment.Paid, 
+                    Course = course, 
                     SingleStudentEnrollment = enrollment
                 };
 
             return View(model);
         }
 
-        /// <summary>
-        /// The un archive course.
-        /// </summary>
-        /// <param name="id">
-        /// The id.
-        /// </param>
-        /// <returns>
-        /// </returns>
         [Authorize(Roles = "SuperAdministrator")]
         public ActionResult UnArchiveCourse(int id)
         {
@@ -347,14 +222,6 @@ namespace PaulSchool.Controllers
             return this.RedirectToAction("Message", new { message = "You have removed the course from the archive." });
         }
 
-        /// <summary>
-        /// The un complete course.
-        /// </summary>
-        /// <param name="id">
-        /// The id.
-        /// </param>
-        /// <returns>
-        /// </returns>
         [Authorize(Roles = "SuperAdministrator")]
         public ActionResult UnCompleteCourse(int id)
         {
@@ -364,24 +231,6 @@ namespace PaulSchool.Controllers
             return this.RedirectToAction("Message", new { message = "You have set the course to incomplete." });
         }
 
-        /// <summary>
-        /// The update attendance.
-        /// </summary>
-        /// <param name="userId">
-        /// The user id.
-        /// </param>
-        /// <param name="attendanceDay">
-        /// The attendance day.
-        /// </param>
-        /// <param name="courseId">
-        /// The course id.
-        /// </param>
-        /// <param name="present">
-        /// The present.
-        /// </param>
-        /// <returns>
-        /// The update attendance.
-        /// </returns>
         [HttpPost]
         public bool UpdateAttendance(int userId, int attendanceDay, int courseId, int present)
         {
@@ -399,17 +248,6 @@ namespace PaulSchool.Controllers
             return true;
         }
 
-        /// <summary>
-        /// The view comment.
-        /// </summary>
-        /// <param name="studentId">
-        /// The student id.
-        /// </param>
-        /// <param name="courseId">
-        /// The course id.
-        /// </param>
-        /// <returns>
-        /// </returns>
         public ActionResult ViewComment(int studentId, int courseId)
         {
             Enrollment enrollment =
@@ -448,11 +286,9 @@ namespace PaulSchool.Controllers
         #region Methods
 
         /// <summary>
-        /// The dispose.
+        ///   The dispose.
         /// </summary>
-        /// <param name="disposing">
-        /// The disposing.
-        /// </param>
+        /// <param name="disposing"> The disposing. </param>
         protected override void Dispose(bool disposing)
         {
             this.db.Dispose();
@@ -460,11 +296,37 @@ namespace PaulSchool.Controllers
         }
 
         /// <summary>
-        /// The build notification.
+        ///   Generates list of AttendingDays specifically for current Course
         /// </summary>
-        /// <param name="course">
-        /// The course.
-        /// </param>
+        /// <param name="course"> The Course object </param>
+        /// <returns> A list of integers representing the each day of attendance </returns>
+        private static List<int> AttDayList(Course course)
+        {
+            var attDayList = new List<int>();
+            for (int i = 0; i < course.AttendingDays; i++)
+            {
+                attDayList.Add(i + 1);
+            }
+
+            return attDayList;
+        }
+
+        /// <summary>
+        ///   Generates list of Attendances specifically for current Course
+        /// </summary>
+        /// <param name="id"> The CourseId </param>
+        /// <returns> A List of Attendances </returns>
+        private List<Attendance> AttendanceItemsList(int id)
+        {
+            IQueryable<Attendance> attendanceItems = this.db.Attendance.Where(s => s.CourseID == id);
+            List<Attendance> attendanceItemsList = attendanceItems.ToList();
+            return attendanceItemsList;
+        }
+
+        /// <summary>
+        ///   The build notification.
+        /// </summary>
+        /// <param name="course"> The course. </param>
         private void BuildNotification(Course course)
         {
             var newNotification = new Notification
@@ -481,11 +343,9 @@ namespace PaulSchool.Controllers
         }
 
         /// <summary>
-        /// The build notification for admin.
+        ///   The build notification for admin.
         /// </summary>
-        /// <param name="course">
-        /// The course.
-        /// </param>
+        /// <param name="course"> The course. </param>
         private void BuildNotificationForAdmin(Course course)
         {
             var newNotificationForAdmin = new Notification
@@ -502,11 +362,9 @@ namespace PaulSchool.Controllers
         }
 
         /// <summary>
-        /// The build notification for instructor.
+        ///   The build notification for instructor.
         /// </summary>
-        /// <param name="course">
-        /// The course.
-        /// </param>
+        /// <param name="course"> The course. </param>
         private void BuildNotificationForInstructor(Course course)
         {
             var newNotificationForInstructor = new Notification
@@ -523,14 +381,10 @@ namespace PaulSchool.Controllers
         }
 
         /// <summary>
-        /// The build notification for student.
+        ///   The build notification for student.
         /// </summary>
-        /// <param name="item">
-        /// The item.
-        /// </param>
-        /// <param name="course">
-        /// The course.
-        /// </param>
+        /// <param name="item"> The item. </param>
+        /// <param name="course"> The course. </param>
         private void BuildNotificationForStudent(Enrollment item, Course course)
         {
             var newNotificationForStudent = new Notification
@@ -548,20 +402,12 @@ namespace PaulSchool.Controllers
         }
 
         /// <summary>
-        /// The build notification for student regarding commissioning.
+        ///   The build notification for student regarding commissioning.
         /// </summary>
-        /// <param name="course">
-        /// The course.
-        /// </param>
-        /// <param name="item">
-        /// The item.
-        /// </param>
-        /// <param name="totalElectivesPassed">
-        /// The total electives passed.
-        /// </param>
-        /// <param name="totalCoresPassed">
-        /// The total cores passed.
-        /// </param>
+        /// <param name="course"> The course. </param>
+        /// <param name="item"> The item. </param>
+        /// <param name="totalElectivesPassed"> The total electives passed. </param>
+        /// <param name="totalCoresPassed"> The total cores passed. </param>
         private void BuildNotificationForStudentRegardingCommissioning(
             Course course, Enrollment item, int totalElectivesPassed, int totalCoresPassed)
         {
@@ -579,11 +425,9 @@ namespace PaulSchool.Controllers
         }
 
         /// <summary>
-        /// The build notifications for students.
+        ///   The build notifications for students.
         /// </summary>
-        /// <param name="course">
-        /// The course.
-        /// </param>
+        /// <param name="course"> The course. </param>
         private void BuildNotificationsForStudents(Course course)
         {
             int totalCoresNeeded = this.db.CommissioningRequirementse.Find(1).CoreCoursesRequired;
@@ -604,31 +448,79 @@ namespace PaulSchool.Controllers
         }
 
         /// <summary>
-        /// The total cores passed.
+        ///   Generates a list of all Enrollments for course - to be used to generate grades
         /// </summary>
-        /// <param name="item">
-        /// The item.
-        /// </param>
-        /// <returns>
-        /// The total cores passed.
-        /// </returns>
+        /// <param name="id"> The CourseId </param>
+        /// <returns> A List of Enrollments </returns>
+        private IEnumerable<Enrollment> EnrollmentList(int id)
+        {
+            IQueryable<Enrollment> enrollment = this.db.Enrollments.Where(i => i.CourseID == id);
+            IEnumerable<Enrollment> enrollmentList = enrollment;
+            return enrollmentList;
+        }
+
+        /// <summary>
+        ///   Generates a list of all Enrollments for a single Student from a Course - to be used to generate grades
+        /// </summary>
+        /// <param name="id"> The CourseId </param>
+        /// <param name="studentId"> The StudentId </param>
+        /// <returns> A List of enrollment values representing the single Student in the Course </returns>
+        private IEnumerable<Enrollment> SingleStudentEnrollmentList(int id, int studentId)
+        {
+            IQueryable<Enrollment> enrollment =
+                this.db.Enrollments.Where(i => i.CourseID == id && i.StudentID == studentId);
+            IEnumerable<Enrollment> enrollmentList = enrollment;
+            return enrollmentList;
+        }
+
+        /// <summary>
+        ///   Generates list of one Student in alphabetical order sorted by LastName (it is just one Student)
+        /// </summary>
+        /// <param name="id"> The CourseId </param>
+        /// <param name="studentId"> The StudentId </param>
+        /// <returns> A List of Students </returns>
+        private List<Student> SingleStudentList(int id, int studentId)
+        {
+            IOrderedQueryable<Student> student =
+                this.db.Enrollments.Where(e => e.CourseID == id && e.StudentID == studentId).Select(e => e.Student).
+                    OrderBy(s => s.LastName);
+            List<Student> studentList = student.ToList();
+            return studentList;
+        }
+
+        /// <summary>
+        ///   Generates list of Students in alphabetical order sorted by LastName
+        /// </summary>
+        /// <param name="id"> The CourseId </param>
+        /// <returns> A List of Students </returns>
+        private List<Student> StudentList(int id)
+        {
+            IOrderedQueryable<Student> student =
+                this.db.Enrollments.Where(e => e.CourseID == id).Select(e => e.Student).OrderBy(s => s.LastName);
+            List<Student> studentList = student.ToList();
+            return studentList;
+        }
+
+        /// <summary>
+        ///   The total cores passed.
+        /// </summary>
+        /// <param name="item"> The item. </param>
+        /// <returns> The total cores passed. </returns>
         private int TotalCoresPassed(Enrollment item)
         {
             int totalCoresPassed =
                 this.db.Enrollments.Count(
-                    s => s.StudentID == item.Student.StudentID && s.Grade == "pass" && s.Course.Elective == false && s.Course.Title != "Day of Reflection");
+                    s =>
+                    s.StudentID == item.Student.StudentID && s.Grade == "pass" && s.Course.Elective == false
+                    && s.Course.Title != "Day of Reflection");
             return totalCoresPassed;
         }
 
         /// <summary>
-        /// The total electives passed.
+        ///   The total electives passed.
         /// </summary>
-        /// <param name="item">
-        /// The item.
-        /// </param>
-        /// <returns>
-        /// The total electives passed.
-        /// </returns>
+        /// <param name="item"> The item. </param>
+        /// <returns> The total electives passed. </returns>
         private int TotalElectivesPassed(Enrollment item)
         {
             int totalElectivesPassed =
