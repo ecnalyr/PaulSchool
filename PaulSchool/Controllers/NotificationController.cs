@@ -111,6 +111,7 @@ namespace PaulSchool.Controllers
         {
             Notification notification = db.Notification.Find(id);
             notification.Complete = true;
+            notification.PreviouslyRead = true;
             db.SaveChanges();
             return RedirectToAction("Index");
         }

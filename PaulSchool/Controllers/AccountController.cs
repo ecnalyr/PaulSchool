@@ -326,7 +326,7 @@ namespace PaulSchool.Controllers
                 if (Membership.ValidateUser(model.UserName, model.Password))
                 {
                     Notification newNotifications =
-                        db.Notification.FirstOrDefault(o => o.ViewableBy == model.UserName && o.Complete == false);
+                        db.Notification.FirstOrDefault(o => o.ViewableBy == model.UserName && o.PreviouslyRead == false);
                     if (newNotifications != null)
                     {
                         TempData["notificationMessage"] =
