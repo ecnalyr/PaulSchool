@@ -1,6 +1,5 @@
 ﻿<RecentFiles>
   <RecentFiles>
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Commissioning/f:Create.cshtml" caret="185" fromTop="7" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:CommissioningController.cs" caret="4582" fromTop="5" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Scripts/f:FillCourseForm.js" caret="1131" fromTop="9" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Course/f:ApplyToTeach.cshtml" caret="905" fromTop="7" />
@@ -15,25 +14,24 @@
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Models/f:Course.cs" caret="1345" fromTop="14" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Scripts/f:AttendanceForm.js" caret="817" fromTop="6" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Attendance/f:EditIndividualAttendance.cshtml" caret="0" fromTop="0" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Attendance/f:StudentDetails.cshtml" caret="0" fromTop="0" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Attendance/f:AttendanceView.cshtml" caret="0" fromTop="0" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:ViewModels/f:AttendanceReportViewModel.cs" caret="165" fromTop="7" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:CourseController.cs" caret="7795" fromTop="18" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Course/f:UsersCourseList.cshtml" caret="2405" fromTop="20" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Certificate/f:CertificateOfAttendance.cshtml" caret="0" fromTop="0" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:CertificateController.cs" caret="304" fromTop="11" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:AttendanceController.cs" caret="906" fromTop="21" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Attendance/f:EditComment.cshtml" caret="0" fromTop="0" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/f:Web.config" caret="1159" fromTop="13" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Content/f:Site.css" caret="9926" fromTop="37" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Shared/f:_Layout.cshtml" caret="0" fromTop="0" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:AccountController.cs" caret="12490" fromTop="25" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Home/f:Index.cshtml" caret="424" fromTop="11" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:NotificationController.cs" caret="4245" fromTop="37" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Attendance/f:StudentDetails.cshtml" caret="475" fromTop="13" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Attendance/f:AttendanceView.cshtml" caret="3883" fromTop="20" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Certificate/f:CertificateOfAttendanceWSig.cshtml" caret="4397" fromTop="17" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:CertificateController.cs" caret="895" fromTop="25" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Home/f:Index.cshtml" caret="1527" fromTop="29" />
   </RecentFiles>
   <RecentEdits>
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Account/f:LogOn.cshtml" caret="2002" fromTop="12" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Account/f:Profile.cshtml" caret="1598" fromTop="18" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Attendance/f:EditIndividualAttendance.cshtml" caret="1540" fromTop="10" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Areas/d:MvcMembership/d:Controllers/f:UserAdministrationController.cs" caret="378" fromTop="9" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Models/f:Notification.cs" caret="528" fromTop="21" />
@@ -51,16 +49,18 @@
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Models/f:Course.cs" caret="1345" fromTop="14" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Course/f:_CourseForm.cshtml" caret="2831" fromTop="12" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Course/f:EditCourse.cshtml" caret="3872" fromTop="13" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Attendance/f:StudentDetails.cshtml" caret="1715" fromTop="12" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Scripts/f:AttendanceForm.js" caret="817" fromTop="6" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:CourseController.cs" caret="29766" fromTop="15" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Attendance/f:AttendanceView.cshtml" caret="3421" fromTop="24" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:AttendanceController.cs" caret="906" fromTop="21" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Content/f:Site.css" caret="9970" fromTop="33" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Shared/f:_Layout.cshtml" caret="4823" fromTop="18" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/f:Web.config" caret="1159" fromTop="13" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:AccountController.cs" caret="12490" fromTop="25" />
-    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Home/f:Index.cshtml" caret="2999" fromTop="40" />
     <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:NotificationController.cs" caret="3693" fromTop="23" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Attendance/f:StudentDetails.cshtml" caret="301" fromTop="8" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Attendance/f:AttendanceView.cshtml" caret="3883" fromTop="20" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Certificate/f:CertificateOfAttendanceWSig.cshtml" caret="4397" fromTop="17" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Controllers/f:CertificateController.cs" caret="895" fromTop="25" />
+    <File id="CC2DC116-F51B-416C-A716-45025F1A33D2/d:Views/d:Home/f:Index.cshtml" caret="1527" fromTop="29" />
   </RecentEdits>
 </RecentFiles>

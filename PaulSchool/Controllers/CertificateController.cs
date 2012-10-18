@@ -17,6 +17,14 @@ namespace PaulSchool.Controllers
             return View(enrollment);
         }
 
+        public ActionResult CertificateOfAttendanceWSig(int id)
+        {
+            Enrollment enrollment = db.Enrollments.Find(id);
+            var dateWithOrdinals = AddOrdinal(enrollment.Course.EndDate.Day);
+            ViewBag.dateWithOrdinal = dateWithOrdinals;
+            return View(enrollment);
+        }
+
         public ActionResult CertificateOfCommissioning(int id)
         {
             ApplicationCommissioning commissioning = db.ApplicationCommissionings.Find(id);

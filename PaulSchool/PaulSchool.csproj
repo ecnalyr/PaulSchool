@@ -214,6 +214,7 @@
     <None Include="NLog.xsd">
       <SubType>Designer</SubType>
     </None>
+    <Content Include="Views\Certificate\CertificateOfAttendanceWSig.cshtml" />
     <None Include="Views\Certificate\OrdersInPdf.cshtml" />
     <Content Include="Views\Commissioning\AllCommissioningApplications.cshtml" />
     <Content Include="Views\Commissioning\ReCommissioningApplications.cshtml" />

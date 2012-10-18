@@ -104,7 +104,7 @@
                 if (Model.Course.Completed)
                 {
                     <td>
-                        @Html.ActionLink("View", "CertificateOfAttendance", "Certificate", new { id = Model.Enrollments.First(o => o.Student.StudentID == student.StudentID).EnrollmentID }, null)
+                        @Html.ActionLink("Standard", "CertificateOfAttendance", "Certificate", new { id = Model.Enrollments.First(o => o.Student.StudentID == student.StudentID).EnrollmentID }, null)                         <span> or </span>                        @Html.ActionLink("With line for signature", "CertificateOfAttendanceWSig", "Certificate", new { id = Model.Enrollments.First(o => o.Student.StudentID == student.StudentID).EnrollmentID }, null)
                     </td>
                 }
             }
