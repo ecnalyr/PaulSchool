@@ -445,6 +445,7 @@ namespace PaulSchool.Controllers
             }
 
             // If we got this far, something failed, redisplay form
+            viewModel.State = StateList;
             return View(viewModel);
         }
 
