@@ -430,8 +430,8 @@ namespace PaulSchool.Controllers
         /// <param name="course"> The course. </param>
         private void BuildNotificationsForStudents(Course course)
         {
-            int totalCoresNeeded = this.db.CommissioningRequirementse.Find(1).CoreCoursesRequired;
-            int totalElectivesNeeded = this.db.CommissioningRequirementse.Find(1).ElectiveCoursesRequired;
+            int totalCoresNeeded = this.db.CommissioningRequirements.Find(1).CoreCoursesRequired;
+            int totalElectivesNeeded = this.db.CommissioningRequirements.Find(1).ElectiveCoursesRequired;
             foreach (Enrollment item in course.Enrollments)
             {
                 this.BuildNotificationForStudent(item, course);

@@ -62,7 +62,7 @@ namespace PaulSchool.DAL
                 new CommissioningRequirements
                     {CoreCoursesRequired = 6, ElectiveCoursesRequired = 2}
             };
-            commissioningRequirements.ForEach(s => context.CommissioningRequirementse.Add(s));
+            commissioningRequirements.ForEach(s => context.CommissioningRequirements.Add(s));
             context.SaveChanges();
 
             /*var enrollments = new List<Enrollment>

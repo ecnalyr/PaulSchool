@@ -71,8 +71,8 @@ namespace PaulSchool.Controllers
         {
             ApplicationCommissioning applicationcommissioning = db.ApplicationCommissionings.Find(id);
 
-            var totalCoresNeeded = db.CommissioningRequirementse.Find(1).CoreCoursesRequired;
-            var totalElectivesNeeded = db.CommissioningRequirementse.Find(1).ElectiveCoursesRequired;
+            var totalCoresNeeded = db.CommissioningRequirements.Find(1).CoreCoursesRequired;
+            var totalElectivesNeeded = db.CommissioningRequirements.Find(1).ElectiveCoursesRequired;
             ViewBag.totalCoresNeeded = totalCoresNeeded;
             ViewBag.totalElectivesNeeded = totalElectivesNeeded;
 
@@ -88,8 +88,8 @@ namespace PaulSchool.Controllers
 
         public ActionResult Create()
         {
-            var totalCoresNeeded = db.CommissioningRequirementse.Find(1).CoreCoursesRequired;
-            var totalElectivesNeeded = db.CommissioningRequirementse.Find(1).ElectiveCoursesRequired;
+            var totalCoresNeeded = db.CommissioningRequirements.Find(1).CoreCoursesRequired;
+            var totalElectivesNeeded = db.CommissioningRequirements.Find(1).ElectiveCoursesRequired;
             ViewBag.totalCoresNeeded = totalCoresNeeded;
             ViewBag.totalElectivesNeeded = totalElectivesNeeded;
 

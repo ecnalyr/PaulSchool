@@ -216,8 +216,8 @@ namespace PaulSchool.Controllers
                                                                  && s.Grade == "pass"
                                                                  && s.Course.Elective);
 
-            int totalCoresNeeded = db.CommissioningRequirementse.Find(1).CoreCoursesRequired;
-            int totalElectivesNeeded = db.CommissioningRequirementse.Find(1).ElectiveCoursesRequired;
+            int totalCoresNeeded = db.CommissioningRequirements.Find(1).CoreCoursesRequired;
+            int totalElectivesNeeded = db.CommissioningRequirements.Find(1).ElectiveCoursesRequired;
 
             ViewBag.coresPassed = totalCoresPassed;
             ViewBag.electivesPassed = totalElectivesPassed;

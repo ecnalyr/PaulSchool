@@ -86,10 +86,10 @@
     @{ if ((User.IsInRole("Administrator") || User.IsInRole("SuperAdministrator")) && Model.Approved == false)
        {
            <p>
-               @Html.ActionLink("Clicking here will approve this Instructor's Application", "ApproveInstructorApplication", new { id = Model.InstructorApplicationID }, new { onclick = "return confirm('Are you sure you are aready to approve this application?  Doing so is not reversible.');" })
+               @Html.ActionLink("Clicking here will approve this Instructor's Application", "ApproveInstructorApplication", new { id = Model.InstructorApplicationID }, new { onclick = "return confirm('Are you sure you are ready to approve this application?  Doing so is not reversible.');" })
            </p>
            <p>
-               @Html.ActionLink("Clicking here will deny and delete this Instructor's Application", "Delete", new { id = Model.InstructorApplicationID }, new { onclick = "return confirm('Are you sure you are aready to DELETE this application?  Doing so is not reversible.');" }) 
+               @Html.ActionLink("Clicking here will deny and delete this Instructor's Application", "Delete", new { id = Model.InstructorApplicationID }, new { onclick = "return confirm('Are you sure you are ready to DELETE this application?  Doing so is not reversible.');" }) 
            </p>
         }
     }

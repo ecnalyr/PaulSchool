@@ -15,7 +15,7 @@ namespace PaulSchool.Controllers
 
         public ViewResult Index()
         {
-            return View(db.CommissioningRequirementse.ToList());
+            return View(db.CommissioningRequirements.ToList());
         }
 
         //
@@ -23,7 +23,7 @@ namespace PaulSchool.Controllers
 
         public ViewResult Details(int id)
         {
-            CommissioningRequirements commissioningrequirements = db.CommissioningRequirementse.Find(id);
+            CommissioningRequirements commissioningrequirements = db.CommissioningRequirements.Find(id);
             return View(commissioningrequirements);
         }
 
@@ -43,7 +43,7 @@ namespace PaulSchool.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.CommissioningRequirementse.Add(commissioningrequirements);
+                db.CommissioningRequirements.Add(commissioningrequirements);
                 db.SaveChanges();
                 return RedirectToAction("Index");  
             }
@@ -56,7 +56,7 @@ namespace PaulSchool.Controllers
  
         public ActionResult Edit(int id)
         {
-            CommissioningRequirements commissioningrequirements = db.CommissioningRequirementse.Find(id);
+            CommissioningRequirements commissioningrequirements = db.CommissioningRequirements.Find(id);
             return View(commissioningrequirements);
         }
 
@@ -80,7 +80,7 @@ namespace PaulSchool.Controllers
  
         public ActionResult Delete(int id)
         {
-            CommissioningRequirements commissioningrequirements = db.CommissioningRequirementse.Find(id);
+            CommissioningRequirements commissioningrequirements = db.CommissioningRequirements.Find(id);
             return View(commissioningrequirements);
         }
 
@@ -90,8 +90,8 @@ namespace PaulSchool.Controllers
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id)
         {            
-            CommissioningRequirements commissioningrequirements = db.CommissioningRequirementse.Find(id);
-            db.CommissioningRequirementse.Remove(commissioningrequirements);
+            CommissioningRequirements commissioningrequirements = db.CommissioningRequirements.Find(id);
+            db.CommissioningRequirements.Remove(commissioningrequirements);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
