@@ -4,9 +4,6 @@
     ViewBag.Title = "Index";
 }
 
-<p>
-@Html.ActionLink("Create New", "Create") Cannot actually create an Instructor, Create a student > give the "student" a class to teach > the "student" is now an "instructor."
-</p>
 @using (Html.BeginForm())
 {
 <p>
@@ -36,7 +33,6 @@
 @foreach (var item in Model) {
 <tr>
     <td>
-        @Html.ActionLink("Edit", "Edit", new { id=item.InstructorID }) |
         @Html.ActionLink("Details", "Details", new { id=item.InstructorID })
     </td>
     <td>
