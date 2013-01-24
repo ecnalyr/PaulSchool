@@ -177,7 +177,7 @@ namespace PaulSchool.Controllers
                                       {
                                           Time = DateTime.Now,
                                           Details =
-                                              "An Administrator has denied and deleted your application to become an Instructor",
+                                              "An Administrator has denied and deleted your application to become an Instructor. Contact the St. Paul School of Catechesis at 361-882-6191.",
                                           Link = Url.Action("ApplyToBecomeInstructor"),
                                           ViewableBy = application.Student.UserName,
                                           Complete = false
