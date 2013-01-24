@@ -212,7 +212,7 @@ namespace PaulSchool.Controllers
                 db.SaveChanges();
 
                 TempData["message"] =
-                    "Please make sure you have completed all the steps for your application (contact an Admin if you have questions)";
+                    "Please make sure you have completed all the steps for your application.  Contact the St. Paul School of Catechesis at 361-882-6191 if you have any questions.";
                 return RedirectToAction("Index");  
             }
 
