@@ -168,19 +168,22 @@ namespace PaulSchool.Controllers
 
         private int TotalCoresPassed(Student thisStudent)
         {
-            Debug.Write(thisStudent.UserName);
+            var sevenYearsAgo = DateTime.Now.AddYears(-7);
             int totalCoresPassed = db.Enrollments.Count(s => s.StudentID == thisStudent.StudentID
                                                              && s.Grade == "pass"
                                                              && s.Course.Elective == false
-                                                             && s.Course.Title != "Day of Reflection");
+                                                             && s.Course.Title != "Day of Reflection"
+                                                             && s.Course.EndDate >= sevenYearsAgo);
             return totalCoresPassed;
         }
 
         private int TotalElectivesPassed(Student thisStudent)
         {
+            var sevenYearsAgo = DateTime.Now.AddYears(-7);
             int totalElectivesPassed = db.Enrollments.Count(s => s.StudentID == thisStudent.StudentID
                                                                  && s.Grade == "pass"
-                                                                 && s.Course.Elective);
+                                                                 && s.Course.Elective
+                                                                 && s.Course.EndDate >= sevenYearsAgo);
             return totalElectivesPassed;
         }
 
