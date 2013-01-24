@@ -19,7 +19,7 @@
     @{
         if (Model.Paid == false)
         {
-            <h1>You have not paid for this course.  The application fee is @Model.Course.Cost.ToString("c"). You can pay this fee using the Paypal link below, or by contacting an Administrator for other payment methods.</h1>
+            <h1>You have not paid for this course.  The application fee is @Model.Course.Cost.ToString("c"). You can pay this fee using the Paypal link below, or by mailing check or money order to St. Paul School of Catechesis, 620 Lipan, Corpus Christi, TX 78401.</h1>
             var actualCost = Model.Course.Cost;
             @Html.PayPalButton(true,
                                HtmlHelpers.EButtonType.PayNow,
