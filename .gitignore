@@ -40,6 +40,8 @@ local.properties
 *.suo
 *.user
 *.sln.docstates
+App_Data/*.mdf
+App_Data/*.ldf
 
 # Build results
 [Dd]ebug/

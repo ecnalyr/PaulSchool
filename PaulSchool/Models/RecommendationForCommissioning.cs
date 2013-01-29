@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 
@@ -19,14 +20,18 @@ namespace PaulSchool.Models
 
         public bool ActiveInRecommendersParish { get; set; }
 
+        [UIHint("IsChecked")]
         public bool Experienced { get; set; }
 
+        [UIHint("IsChecked")]
         public bool ExhibitsUnderstanding { get; set; }
 
         public string RecommendersThoughts { get; set; }
 
+        [UIHint("IsChecked")]
         public bool SignedByRecommender { get; set; }
 
+        [UIHint("IsChecked")]
         public bool SignedByApplicant { get; set; }
 
         public DateTime DateFiled { get; set; }

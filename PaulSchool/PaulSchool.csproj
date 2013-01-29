@@ -211,6 +211,7 @@
     <Content Include="NLog.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Views\Shared\DisplayTemplates\IsChecked.cshtml" />
     <None Include="NLog.xsd">
       <SubType>Designer</SubType>
     </None>

@@ -204,10 +204,7 @@
                                                         @Html.ActionLink(item.Student.LastName, "Details", "Student", new {id = item.Student.StudentID}, "a")
                                                     </td>
                                                     <td>
-                                                        @{
-                                                            string hasPaid = item.Paid ? "Yes" : "No";
-                                                        }
-                                                        @Html.Raw(hasPaid)
+                                                        @Html.DisplayFor(enrollmentItem => item.Paid)
                                                         @if (item.Paid != true)
                                                         {
                                                             <span> </span>

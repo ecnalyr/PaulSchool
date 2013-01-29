@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace PaulSchool.Models
 {
@@ -14,8 +15,10 @@ namespace PaulSchool.Models
 
         public string Experience { get; set; }
 
+        [UIHint("IsChecked")]
         public bool WillingToTravel { get; set; }
 
+        [UIHint("IsChecked")]
         public bool Approved { get; set; }
     }
 }

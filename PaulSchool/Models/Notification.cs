@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace PaulSchool.Models
 {
@@ -14,8 +15,10 @@ namespace PaulSchool.Models
 
         public string ViewableBy { get; set; } // "Admin" or 'UserName/ID'
 
+        [UIHint("IsChecked")]
         public bool Complete { get; set; }
 
+        [UIHint("IsChecked")]
         public bool PreviouslyRead { get; set; }
 
         public Notification()

@@ -18,6 +18,7 @@ namespace PaulSchool.Models
 
         public int Credits { get; set; }
 
+        [UIHint("IsChecked")]
         public bool Elective { get; set; }
 
         // public string Instructor { get; set; }
@@ -61,10 +62,13 @@ namespace PaulSchool.Models
 
         public string AdminDenialReason { get; set; }
 
+        [UIHint("IsChecked")]
         public bool Approved { get; set; } // yes, no - needs to be a drop down
 
+        [UIHint("IsChecked")]
         public bool Completed { get; set; } // yes, no - needs to be a drop down
 
+        [UIHint("IsChecked")]
         public bool Archived { get; set; } // yes, no - needs to be a drop down
 
         public virtual ICollection<Enrollment> Enrollments { get; set; }

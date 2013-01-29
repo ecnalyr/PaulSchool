@@ -16,6 +16,7 @@ namespace PaulSchool.Models
         public int Credits { get; set; }
 
         [Required]
+        [UIHint("IsChecked")]
         public bool Elective { get; set; }
 
         [Range(1, 100.00, ErrorMessage = "Total Attending Days must be a positive value (often 10, 8, or 3)")]

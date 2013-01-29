@@ -12,8 +12,10 @@ namespace PaulSchool.Models
 
         public int StudentID { get; set; }
 
+        [UIHint("IsChecked")]
         public bool ReCommissioning { get; set; }
 
+        [UIHint("IsChecked")]
         public bool RecommendationFiled { get; set; }
 
         public RecommendationForCommissioning Recommendation { get; set; }
@@ -23,10 +25,13 @@ namespace PaulSchool.Models
         [StringLength(1000)]
         public string PersonalStatement { get; set; }
 
+        [UIHint("IsChecked")]
         public bool DayOfReflection { get; set; }
 
+        [UIHint("IsChecked")]
         public bool ApplicationFeePaid { get; set; }
 
+        [UIHint("IsChecked")]
         public bool MeetsMinimumRequirements { get; set; }
 
         public DateTime DateFiled { get; set; }
@@ -37,6 +42,7 @@ namespace PaulSchool.Models
 
         public virtual Student Student { get; set; }
 
+        [UIHint("IsChecked")]
         public bool Approved { get; set; }
 
     }

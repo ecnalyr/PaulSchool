@@ -1,4 +1,6 @@
-﻿namespace PaulSchool.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace PaulSchool.Models
 {
     public class Enrollment
     {
@@ -12,6 +14,7 @@
 
         public string Comments { get; set; }
 
+        [UIHint("IsChecked")]
         public bool Paid { get; set; }
 
         public virtual Course Course { get; set; }
