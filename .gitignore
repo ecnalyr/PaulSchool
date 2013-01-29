@@ -42,6 +42,10 @@ local.properties
 *.sln.docstates
 PaulSchool/App_Data/*.mdf
 PaulSchool/App_Data/*.ldf
+*.MDF
+*.LDF
+*.mdf
+*.ldf
 
 # Build results
 [Dd]ebug/
