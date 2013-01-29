@@ -1,5 +1,4 @@
-﻿@using System.Globalization
-@using PaulSchool.Models
+﻿@using PaulSchool.Models
 @model PaulSchool.Models.Course
 
 @{
@@ -205,17 +204,23 @@
                                                         @Html.ActionLink(item.Student.LastName, "Details", "Student", new {id = item.Student.StudentID}, "a")
                                                     </td>
                                                     <td>
-                                                        @Html.Raw(item.Paid.ToString()) @if (item.Paid != true)
-                                                                                        {
-                                                                                            <span> </span>@Html.ActionLink("Mark as paid", "MarkAsPaid", "Course", new {id = item.EnrollmentID}, new {onclick = "return confirm('Are you certain you want to mark this enrollment field as paid?  This is not reversible.');"});
-                                                                                        }
+                                                        @{
+                                                            string hasPaid = item.Paid ? "Yes" : "No";
+                                                        }
+                                                        @Html.Raw(hasPaid)
+                                                        @if (item.Paid != true)
+                                                        {
+                                                            <span> </span>
+                                                            @Html.ActionLink("Mark as paid", "MarkAsPaid", "Course", new {id = item.EnrollmentID}, new {onclick = "return confirm('Are you certain you want to mark this enrollment field as paid?  This is not reversible.');"})
+                                                            ;
+                                                        }
                                                     </td>
                                                     @if (User.IsInRole("SuperAdministrator"))
-                                                        {
-                                                            <td>
+                                                    {
+                                                        <td>
                                                             @Html.ActionLink("Remove", "RemoveFromCourse", new {id = item.EnrollmentID}, new {onclick = "return confirm('Are you absolutely certain that you want to remove this student from this Course?  This is not reversible.');"})
-                                                            </td>
-                                                        }
+                                                        </td>
+                                                    }
                                                 </tr>
                                             }
                                         </table>
