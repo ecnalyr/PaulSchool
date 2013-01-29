@@ -133,19 +133,19 @@
     <value>Incomplete</value>
   </data>
   <data name="AttendanceController_EditComment_Pass" xml:space="preserve">
-    <value>Pass</value>
+    <value>Credit Received</value>
   </data>
   <data name="AttendanceController_EditComment_Fail" xml:space="preserve">
-    <value>Fail</value>
+    <value>No Credit</value>
   </data>
   <data name="Additional_background_Text" xml:space="preserve">
     <value>Add additional educational background.</value>
   </data>
   <data name="ApplyToBecomeInstructor_Text" xml:space="preserve">
-    <value>ApplyToBecomeInstructor</value>
+    <value>Apply to Become an Instructor</value>
   </data>
   <data name="AreaofStudy_Text" xml:space="preserve">
-    <value>AreaOfStudy</value>
+    <value>Area of Study</value>
   </data>
   <data name="Degree_Text" xml:space="preserve">
     <value>Degree</value>
@@ -157,12 +157,12 @@
     <value>Information from your user profile will be considered when applying to become an Instructor</value>
   </data>
   <data name="University_Text" xml:space="preserve">
-    <value>UniversityOrCollege</value>
+    <value>University or College</value>
   </data>
   <data name="Willing_travel_Text" xml:space="preserve">
     <value>Are you willing to travel?</value>
   </data>
   <data name="YearReceiver_Text" xml:space="preserve">
-    <value>YearReceived</value>
+    <value>Year Received</value>
   </data>
 </root>
