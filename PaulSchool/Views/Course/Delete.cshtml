@@ -58,12 +58,12 @@
 
     <div class="display-label">Start Time</div>
     <div class="display-field">
-        @Html.DisplayFor(model => model.StartDate.ToString("hh:mm tt"), CultureInfo.CreateSpecificCulture("hu-HU"));
+        @Html.DisplayFor(model => model.StartDate)
     </div>
 
     <div class="display-label">End Time</div>
     <div class="display-field">
-        @Html.DisplayFor(model => model.EndDate.ToString("hh:mm tt"), CultureInfo.CreateSpecificCulture("hu-HU"));
+        @Html.DisplayFor(model => model.EndDate)
     </div>
 
     <div class="display-label">Location</div>
