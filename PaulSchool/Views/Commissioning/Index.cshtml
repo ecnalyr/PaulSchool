@@ -6,31 +6,24 @@
 @{
     if (User.IsInRole("Administrator") || User.IsInRole("SuperAdministrator"))
     {
-        <div>
-            <p>
+        <h4>Administrative Lists:</h4>
+        <ul>
+            <li>
                 @Html.ActionLink("List of Students who qualify for Commissioning", "QualifyForCommissioning")
-            </p>
-        </div>
-        <div>
-            <p>
-                @Html.ActionLink("List of unapproved applications for Commissioning", "CommissioningApplications")
-            </p>
-        </div>
-        <div>
-            <p>
+            </li>
+            <li>
+                @Html.ActionLink("List of unapproved applications for Commissioning", "CommissioningApplications")               
+            </li>
+            <li>
                 @Html.ActionLink("List of all applications for Commissioning", "AllCommissioningApplications")
-            </p>
-        </div>
-        <div>
-            <p>
+            </li>
+            <li>
                 @Html.ActionLink("List of unapproved applications for Re-Commissioning", "ReCommissioningApplications")
-            </p>
-        </div>
-        <div>
-            <p>
+            </li>
+            <li>
                 @Html.ActionLink("List of all applications for Re-Commissioning", "AllReCommissioningApplications")
-            </p>
-        </div>
+            </li>
+        </ul>
     }
 }
 <div>

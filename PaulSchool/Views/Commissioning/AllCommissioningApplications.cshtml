@@ -37,7 +37,7 @@
           {
               <tr>
                   <td>
-                      @Html.DisplayFor(modelItem => item.Student.FirstMidName) @Html.DisplayFor(modelItem => item.Student.LastName)
+                      @Html.ActionLink(item.Student.FirstMidName + " " + item.Student.LastName, "Details", "Student", new {id = item.StudentID}, null)
                   </td>
                   <td>
                       @Html.DisplayFor(modelItem => item.RecommendationFiled)
@@ -54,7 +54,13 @@
                   <td>
                       @Html.ActionLink("Edit / Update", "Edit", new { id = item.Id }) |
                       @Html.ActionLink("Details / Status", "Details", new { id = item.Id }) |
-                      @Html.ActionLink("Delete / Deny", "Delete", new { id = item.Id })
+                      @Html.ActionLink("Delete / Deny", "Delete", new { id = item.Id }) |
+                      @{if (item.Approved)
+                        {
+                            @Html.ActionLink("Certificate", "CertificateOfCommissioning", "Certificate", new {id = item.Id}, null)
+                        }
+                          
+                      }
                   </td>
               </tr>
           }

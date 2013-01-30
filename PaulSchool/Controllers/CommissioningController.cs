@@ -256,7 +256,7 @@ namespace PaulSchool.Controllers
                 db.SaveChanges();
 
                 TempData["message"] = "Changes saved.";
-                return this.RedirectToAction("CommissioningApplications");
+                return this.RedirectToAction("AllCommissioningApplications");
             }
             return View(applicationcommissioning);
         }

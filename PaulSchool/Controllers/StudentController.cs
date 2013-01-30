@@ -224,7 +224,13 @@ namespace PaulSchool.Controllers
             ViewBag.coresNeeded = totalCoresNeeded;
             ViewBag.electivesNeeded = totalElectivesNeeded;
 
-            ViewBag.testCompletedElectiveCourses = 1;
+            IOrderedQueryable<ApplicationCommissioning> usersCommissionings =
+                db.ApplicationCommissionings.Where(o => o.Student.UserName == student.UserName && o.Approved).
+                    OrderByDescending(m => m.DateApproved);
+            ApplicationCommissioning usersMostRecentCommissioning = usersCommissionings.FirstOrDefault();
+            if (usersMostRecentCommissioning != null)
+                ViewBag.mostRecentCommissioningCertificateID = usersMostRecentCommissioning.Id;
+
             return View(student);
         }
 

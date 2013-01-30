@@ -40,6 +40,21 @@
         <p><b>Parish Affiliation:</b> @Html.DisplayFor(model => model.ParishAffiliation)</p>
     
         <p><b>Ministry Involvement:</b> @Html.DisplayFor(model => model.MinistryInvolvement)</p>
+    
+        @{
+            if (ViewBag.mostRecentCommissioningCertificateID != null)
+            {
+                <p>
+                    Certificate of Commissioning: @Html.ActionLink("view", "CertificateOfCommissioning", "Certificate", new {id = ViewBag.mostRecentCommissioningCertificateID}, null)
+                </p>
+            }
+            else
+            {
+                <p>
+                    Student is not Commissioned.
+                </p>
+            }
+        }
 
     @{if (User.IsInRole("Administrator"))
       {

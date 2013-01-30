@@ -91,6 +91,14 @@
             @this.Html.ValidationMessageFor(model => model.DateFiled)
         </div>
         
+        <div class="editor-label">
+            @this.Html.LabelFor(model => model.Approved)
+        </div>
+        <div class="editor-field">
+            @this.Html.EditorFor(model => model.Approved)
+            @this.Html.ValidationMessageFor(model => model.Approved)
+        </div>
+        
         @{
             if (this.Model.Approved)
             {

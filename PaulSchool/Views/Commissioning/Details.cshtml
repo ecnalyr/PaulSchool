@@ -80,7 +80,18 @@
     
 </fieldset>
 <p>
-    @this.Html.ActionLink("Edit / Update Application", "Edit", new { id = this.Model.Id }) |
-    @this.Html.ActionLink("Deny Application", "Delete", new { id = this.Model.Id }) |
-    @this.Html.ActionLink("Back to List of Applications", "Index")
+    @this.Html.ActionLink("Edit / Update", "Edit", new { id = this.Model.Id }) |
+    @Html.ActionLink("Approve", "ApproveCommissioningApplication", new { id = this.Model.Id }, new { onclick = "return confirm('Are you sure you are ready to approve of this application for Commissioning?');" }) |
+    @this.Html.ActionLink("Deny", "Delete", new { id = this.Model.Id }) |
+    @this.Html.ActionLink("Back to List", "AllCommissioningApplications")
+</p>
+<p>
+    @{
+        if (this.Model.Approved)
+        {
+            <p>
+                Print out Certificate of Commissioning: @Html.ActionLink("view", "CertificateOfCommissioning", "Certificate", new {id = this.Model.Id}, null)
+            </p>
+        }
+    }
 </p>
