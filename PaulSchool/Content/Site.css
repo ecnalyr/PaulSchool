@@ -326,6 +326,13 @@ div#title {
     width: 6em;
 }
 
+.editorRow-container {
+    width: 335px;
+}
+
+.editorRow p {
+    text-align: right;
+}
 /* Styles for columns
 ----------------------------------------------------------*/
 #column-container {

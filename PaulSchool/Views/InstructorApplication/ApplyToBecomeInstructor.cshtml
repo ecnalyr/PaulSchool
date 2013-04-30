@@ -17,8 +17,11 @@
         <div class="editor-label">
             <label for="EducationalBackgrounds">Educational Background</label>
         </div>
-        <div id="editorRows">
-            @Html.EditorFor(model => model.EducationalBackgrounds)
+        <div class="editorRow-container">
+            <h4>Every field should be complete (no blanks).</h4>
+            <div id="editorRows">
+                @Html.EditorFor(model => model.EducationalBackgrounds)
+            </div>
         </div>
         @Html.ActionLink(@PaulSchool.Resources.PaulSchoolResource.Additional_background_Text, "EducationalBackground", null, new { id = "addItem" })
         <div class="editor-label">
@@ -38,41 +41,7 @@
         </p>
         <div class="newRow" style="display: none;">
             <div class="editorRow">
-                <p>
-                    <div class="editor-label">
-                        <label>@PaulSchool.Resources.PaulSchoolResource.University_Text</label>
-                    </div>
-                    <div class="editor-field">
-                        <input class="university" type="text" value="" />
-                    </div>
-                </p>
-                <p>
-                    <div class="editor-label">
-                        <label>@PaulSchool.Resources.PaulSchoolResource.AreaofStudy_Text</label>
-                    </div>
-                    <div class="editor-field">
-                        <input class="area" type="text" value="" />
-                    </div>
-                </p>
-                <p>
-                    <div class="editor-label">
-                        <label>@PaulSchool.Resources.PaulSchoolResource.Degree_Text</label>
-                    </div>
-                    <div class="editor-field">
-                        <input class="degree" type="text" value="" />
-                    </div>
-                </p>
-                <p>
-                    <div class="editor-label">
-                        <label>@PaulSchool.Resources.PaulSchoolResource.YearReceiver_Text</label>
-                    </div>
-                    <div class="editor-field">
-                        <input class="year" type="text" value="" />
-                    </div>
-                </p>
-                <div>
-                    <a href="javascript:void(0);" class="deleteRow">@PaulSchool.Resources.PaulSchoolResource.Delete_Text</a>
-                </div>
+                @Html.EditorFor(model => model.EducationalBackgrounds)
             </div>
         </div>
     </fieldset>

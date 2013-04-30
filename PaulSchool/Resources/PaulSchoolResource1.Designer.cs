@@ -161,7 +161,7 @@ namespace PaulSchool.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Information from your user profile will be considered when applying to become an Instructor.
+        ///   Looks up a localized string similar to Information from your user profile will be considered when applying to become an Instructor..
         /// </summary>
         public static string Instructor_Information_Text {
             get {

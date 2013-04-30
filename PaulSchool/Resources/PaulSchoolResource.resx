@@ -154,7 +154,7 @@
     <value>Delete</value>
   </data>
   <data name="Instructor_Information_Text" xml:space="preserve">
-    <value>Information from your user profile will be considered when applying to become an Instructor</value>
+    <value>Information from your user profile will be considered when applying to become an Instructor.</value>
   </data>
   <data name="University_Text" xml:space="preserve">
     <value>University or College</value>

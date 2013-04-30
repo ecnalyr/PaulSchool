@@ -7,6 +7,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web.Mvc;
 using System.Web.Security;
@@ -18,7 +19,7 @@ namespace PaulSchool.Controllers
     /// <summary>
     /// The instructor application controller.
     /// </summary>
-    //[Authorize]
+    [Authorize]
     public class InstructorApplicationController : Controller
     {
         #region Fields
@@ -80,18 +81,30 @@ namespace PaulSchool.Controllers
         [HttpPost]
         public ActionResult ApplyToBecomeInstructor(InstructorApplicationViewModel applicationFromView)
         {
-            Student thisUser = db.Students.FirstOrDefault(o => o.StudentID == applicationFromView.CurrentUserId);
-            InstructorApplication instructorApplication = BuildNewInstructorApplicationAndAddToDb(applicationFromView,
-                                                                                                  thisUser);
+            try
+            {
+                Student thisUser = db.Students.FirstOrDefault(o => o.StudentID == applicationFromView.CurrentUserId);
+                InstructorApplication instructorApplication = BuildNewInstructorApplicationAndAddToDb(applicationFromView,
+                                                                                                      thisUser);
 
-            db.SaveChanges();
+                db.SaveChanges();
 
-            BuildNewNotificationAndAddToDb(instructorApplication, thisUser);
+                BuildNewNotificationAndAddToDb(instructorApplication, thisUser);
 
-            db.SaveChanges();
+                db.SaveChanges();
+                TempData["message"] =
+                    "Your application to become an Instructor has been submitted and is awaiting Administrative review.  You will be notified via your notifications page when your application has been reviewed.  Contact the St. Paul School of Catechesis at 361-882-6191 if you have any questions.";
+                return Redirect("Index");
+            }
+            catch (DataException)
+            {
+                ModelState.AddModelError("",
+                                         "Saving failed for some reason.  You may have left some information blank.  Please try again (several times in several different ways if possible (i.e. try using a different computer) - if the problem persists see your system administrator.");
+            }
             TempData["message"] =
-                "Your application to become an Instructor has been submitted and is awaiting Administrative review.  You will be notified via your notifications page when your application has been reviewed.  Contact the St. Paul School of Catechesis at 361-882-6191 if you have any questions.";
-            return Redirect("Index");
+                "Your application to become an Instructor failed to submit.  A common reason for this error is blank spaces within the form.  Please fill all blanks and resubmit.  If the problem persists, contact the administrator.";
+            return RedirectToAction("ApplyToBecomeInstructor");
+            
         }
 
         private InstructorApplication BuildNewInstructorApplicationAndAddToDb(
