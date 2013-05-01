@@ -9,7 +9,7 @@ namespace PaulSchool.Models
         public int EducationalBackgroundID { get; set; }
 
         [Required]
-        [Display(Name = "University or Collegeasdfasdf")]
+        [Display(Name = "University or College")]
         [StringLength(50)]
         public string UniversityOrCollege { get; set; }
 
