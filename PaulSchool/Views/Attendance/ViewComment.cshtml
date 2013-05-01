@@ -7,11 +7,11 @@
 <h2>ViewComment</h2>
 
 <fieldset>
-    <legend>EditCommentGradeViewModel</legend>
+    <legend>Viewing Grade / Comments</legend>
 
-    <div class="display-label">EnrollmentID</div>
+    <div class="display-label">Student Name:</div>
     <div class="display-field">
-        @Html.DisplayFor(model => model.EnrollmentID)
+        @Html.DisplayFor(model => model.Student.FirstMidName) @Html.DisplayFor(model => model.Student.LastName)
     </div>
 
     <div class="display-label">Grade</div>

@@ -168,7 +168,7 @@
                 BuildNotificationData(appliedCourse, instructorAgain, newCourse);
                 db.SaveChanges();
                 TempData["tempMessage"] =
-                    "You have successfully applied to teach this course.  A notification has been sent to an administrator so they can review the application.  You will receive a notification when an administrator takes action on your application to teach.";
+                    "You have successfully applied to teach this course.  A notification has been sent to an administrator so they can review the application.  You will receive a notification when an administrator takes action on your application to teach, this typically takes 1 - 3 business days.";
                 return RedirectToAction("Details", new { id = newCourse.CourseID });
             }
 

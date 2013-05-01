@@ -93,7 +93,7 @@ namespace PaulSchool.Controllers
 
                 db.SaveChanges();
                 TempData["message"] =
-                    "Your application to become an Instructor has been submitted and is awaiting Administrative review.  You will be notified via your notifications page when your application has been reviewed.  Contact the St. Paul School of Catechesis at 361-882-6191 if you have any questions.";
+                    "Your application to become an Instructor has been submitted and is awaiting Administrative review.  You will be notified via your notifications page when your application has been reviewed, this typically takes 1 - 3 business days.  Contact the St. Paul School of Catechesis at 361-882-6191 if you have any questions.";
                 return Redirect("Index");
             }
             catch (DataException)
