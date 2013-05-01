@@ -177,7 +177,7 @@
                             </div>
 
                             @{
-                                if (User.IsInRole("Administrator, Instructor"))
+                                if ((User.IsInRole("Administrator")) || User.IsInRole("Instructor"))
                                 {
                                     <!-- As Viewable by Admin-->
                                     <div class="display-label">
@@ -189,6 +189,10 @@
                                                 <th>First and Middle Name</th>
                                                 <th>Last Name</th>
                                                 <th>Paid Fee?</th>
+                                                if (Model.Course.Completed)
+                                                {
+                                                    <th>Certificate</th>
+                                                }
                                                 @if (User.IsInRole("SuperAdministrator"))
                                                 {
                                                     <th>Remove from course</th>
@@ -208,10 +212,17 @@
                                                         @if (item.Paid != true)
                                                         {
                                                             <span> </span>
-                                                            @Html.ActionLink("Mark as paid", "MarkAsPaid", "Course", new {id = item.EnrollmentID}, new {onclick = "return confirm('Are you certain you want to mark this enrollment field as paid?  This is not reversible.');"})
-                                                            ;
+                                                            @Html.ActionLink("Mark as paid", "MarkAsPaid", "Course", new {id = item.EnrollmentID}, new {onclick = "return confirm('Are you certain you want to mark this enrollment field as paid?  This is not reversible.');"});
                                                         }
                                                     </td>
+                                                    if (Model.Course.Completed)
+                                                    {
+                                                        <td>
+                                                            @Html.ActionLink("Standard", "CertificateOfAttendance", "Certificate", new { id = Model.Enrollments.First(o => o.Student.StudentID == item.Student.StudentID).EnrollmentID }, null) 
+                                                            <span> or </span>
+                                                            @Html.ActionLink("With line for signature", "CertificateOfAttendanceWSig", "Certificate", new { id = Model.Enrollments.First(o => o.Student.StudentID == item.Student.StudentID).EnrollmentID }, null)
+                                                        </td>
+                                                    }
                                                     @if (User.IsInRole("SuperAdministrator"))
                                                     {
                                                         <td>
@@ -223,34 +234,6 @@
                                         </table>
                                         <p>
                                             @Html.ActionLink("Click here to see attendance details of this course.", "AttendanceView", "Attendance", new {id = Model.CourseID}, null)  You are also able to modify other elements of the Course within this link if you are of the appropriate role.
-                                        </p>
-                                    </div>
-                                }
-                                if (User.IsInRole("Instructor") && !User.IsInRole("Administrator"))
-                                {
-                                    <div class="display-label">
-                                        List of Students
-                                    </div>
-                                    <div class="display-field">
-                                        <table>
-                                            <tr>
-                                                <th>First and Middle Name</th>
-                                                <th>Last Name</th>
-                                            </tr>
-                                            @foreach (Enrollment item in Model.Enrollments)
-                                            {
-                                                <tr>
-                                                    <td>
-                                                        @Html.DisplayFor(modelItem => item.Student.FirstMidName)
-                                                    </td>
-                                                    <td>
-                                                        @Html.DisplayFor(modelItem => item.Student.LastName)
-                                                    </td>
-                                                </tr>
-                                            }
-                                        </table>
-                                        <p>
-                                            @Html.ActionLink("Click here to see attendance details of this Course.", "AttendanceView", "Attendance", new {id = Model.CourseID}, null)  You are also able to modify other elements of the Course within this link if you are of the appropriate role.
                                         </p>
                                     </div>
                                 }

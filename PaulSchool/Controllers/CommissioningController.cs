@@ -102,7 +102,7 @@ namespace PaulSchool.Controllers
 
             var applicationWithUserData = ApplicationWithUserData(thisStudent);
 
-            var dayOfReflection = db.Enrollments.FirstOrDefault(s => s.StudentID == thisStudent.StudentID && s.Course.Title == "Day of Reflection" && s.Grade == "pass");
+            var dayOfReflection = db.Enrollments.FirstOrDefault(s => s.StudentID == thisStudent.StudentID && s.Course.Title == "Day of Reflection" && s.Grade == "Credit Received");
             ViewBag.completedDayOfReflection = "Incomplete, ask an Administrator for details on how to complete this.";
             if (dayOfReflection != null)
             {
@@ -131,7 +131,7 @@ namespace PaulSchool.Controllers
             int totalCoresPassed;
             TotalCoresAndElectivesPassed(thisStudent, out totalElectivesPassed, out totalCoresPassed);
 
-            var dayOfReflection = db.Enrollments.FirstOrDefault(s => s.StudentID == thisStudent.StudentID && s.Course.Title == "Day of Reflection" && s.Grade == "pass");
+            var dayOfReflection = db.Enrollments.FirstOrDefault(s => s.StudentID == thisStudent.StudentID && s.Course.Title == "Day of Reflection" && s.Grade == "Credit Received");
 
             string doOrDoNotQualify;
             if (totalCoresPassed >= totalCoresNeeded && totalElectivesPassed >= totalElectivesNeeded && dayOfReflection != null)
@@ -170,7 +170,7 @@ namespace PaulSchool.Controllers
         {
             var sevenYearsAgo = DateTime.Now.AddYears(-7);
             int totalCoresPassed = db.Enrollments.Count(s => s.StudentID == thisStudent.StudentID
-                                                             && s.Grade == "pass"
+                                                             && s.Grade == "Credit Received"
                                                              && s.Course.Elective == false
                                                              && s.Course.Title != "Day of Reflection"
                                                              && s.Course.EndDate >= sevenYearsAgo);
@@ -181,7 +181,7 @@ namespace PaulSchool.Controllers
         {
             var sevenYearsAgo = DateTime.Now.AddYears(-7);
             int totalElectivesPassed = db.Enrollments.Count(s => s.StudentID == thisStudent.StudentID
-                                                                 && s.Grade == "pass"
+                                                                 && s.Grade == "Credit Received"
                                                                  && s.Course.Elective
                                                                  && s.Course.EndDate >= sevenYearsAgo);
             return totalElectivesPassed;

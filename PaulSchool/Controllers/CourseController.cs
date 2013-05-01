@@ -622,13 +622,13 @@
 
             int totalCoresPassed =
                 db.Enrollments.Count(
-                    s => s.StudentID == thisStudent.StudentID && s.Grade == "pass" && s.Course.Elective == false && s.Course.Title != "Day of Reflection");
+                    s => s.StudentID == thisStudent.StudentID && s.Grade == "Credit Received" && s.Course.Elective == false && s.Course.Title != "Day of Reflection");
 
             int totalElectivesPassed =
                 db.Enrollments.Count(
-                    s => s.StudentID == thisStudent.StudentID && s.Grade == "pass" && s.Course.Elective);
+                    s => s.StudentID == thisStudent.StudentID && s.Grade == "Credit Received" && s.Course.Elective);
 
-            var dayOfReflection = db.Enrollments.FirstOrDefault(s => s.StudentID == thisStudent.StudentID && s.Course.Title == "Day of Reflection" && s.Grade == "pass");
+            var dayOfReflection = db.Enrollments.FirstOrDefault(s => s.StudentID == thisStudent.StudentID && s.Course.Title == "Day of Reflection" && s.Grade == "Credit Received");
             ViewBag.coresPassed = totalCoresPassed;
             ViewBag.electivesPassed = totalElectivesPassed;
             ViewBag.completedDayOfReflection = "You have not completed the Commissioning requirement: Day of Reflection";

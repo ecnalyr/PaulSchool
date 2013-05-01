@@ -209,11 +209,11 @@ namespace PaulSchool.Controllers
             //ViewBag.testCompletedCoreCourses = (from o in student where o.enrollment)
 
             int totalCoresPassed = db.Enrollments.Count(s => s.StudentID == id
-                                                             && s.Grade == "pass"
+                                                             && s.Grade == "Credit Received"
                                                              && s.Course.Elective == false);
 
             int totalElectivesPassed = db.Enrollments.Count(s => s.StudentID == id
-                                                                 && s.Grade == "pass"
+                                                                 && s.Grade == "Credit Received"
                                                                  && s.Course.Elective);
 
             int totalCoresNeeded = db.CommissioningRequirements.Find(1).CoreCoursesRequired;

@@ -511,7 +511,7 @@ namespace PaulSchool.Controllers
             int totalCoresPassed =
                 this.db.Enrollments.Count(
                     s =>
-                    s.StudentID == item.Student.StudentID && s.Grade == "pass" && s.Course.Elective == false
+                    s.StudentID == item.Student.StudentID && s.Grade == "Credit Received" && s.Course.Elective == false
                     && s.Course.Title != "Day of Reflection");
             return totalCoresPassed;
         }
@@ -525,7 +525,7 @@ namespace PaulSchool.Controllers
         {
             int totalElectivesPassed =
                 this.db.Enrollments.Count(
-                    s => s.StudentID == item.Student.StudentID && s.Grade == "pass" && s.Course.Elective);
+                    s => s.StudentID == item.Student.StudentID && s.Grade == "Credit Received" && s.Course.Elective);
             return totalElectivesPassed;
         }
 
