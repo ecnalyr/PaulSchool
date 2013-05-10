@@ -22,7 +22,8 @@ namespace PaulSchool.Controllers
             return View();
         }
 
-        public ActionResult About()
+        [RequireHttps]
+        public ActionResult SslTest()
         {
             return View();
         }
