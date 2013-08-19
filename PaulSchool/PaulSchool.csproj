@@ -195,6 +195,7 @@
     <Content Include="Content\images\acenturyoftradition.jpg" />
     <Content Include="Content\images\diocese.png" />
     <Content Include="Content\images\dioceseTransparent.png" />
+    <Content Include="Content\images\site_header.png" />
     <Content Include="Scripts\AutoCompleteMinistryInvolvement.js" />
     <Content Include="Views\Account\Welcome.cshtml" />
     <Content Include="Views\Account\Verify.cshtml" />
@@ -227,6 +228,7 @@
     <Content Include="Views\Commissioning\RecommendationForm.cshtml" />
     <Content Include="Views\Home\SslTest.cshtml" />
     <Content Include="Views\Home\Help.cshtml" />
+    <Content Include="Views\Home\Changes.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\ASPNETDB.MDF" />
