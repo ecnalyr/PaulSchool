@@ -224,6 +224,7 @@
     <Content Include="Views\Paypal\IPN.cshtml" />
     <Content Include="Views\Commissioning\RecommendationForm.cshtml" />
     <Content Include="Views\Home\SslTest.cshtml" />
+    <Content Include="Views\Home\Help.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\ASPNETDB.MDF" />

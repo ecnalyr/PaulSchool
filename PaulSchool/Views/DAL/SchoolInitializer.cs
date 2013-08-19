@@ -49,9 +49,6 @@ namespace PaulSchool.DAL
                 new CourseTemplates { Title = "Custom (edit title)", Credits = 3, Elective = false, AttendingDays = 10, AttendanceCap = 30, Cost = new decimal(10.00) },
                 new CourseTemplates { Title = "Prayer", Credits = 3, Elective = false, AttendingDays = 10,  AttendanceCap = 30, Location = "Corpus Christi", Parish = "GoodParish", Description = "A course taken in Corpus Christi", Cost = new decimal(10.00) },
                 new CourseTemplates { Title = "Spirituality", Credits = 3, Elective = false, AttendingDays = 10, AttendanceCap = 30, Location = "Corpus Christi", Parish = "GoodParish", Description = "A course taken in Corpus Christi", Cost = new decimal(10.00) },
-                new CourseTemplates { Title = "Macroeconomics", Credits = 3, Elective = true, AttendingDays = 8, AttendanceCap = 30, Location = "Corpus Christi", Parish = "GoodParish", Description = "A course taken in Corpus Christi", Cost = new decimal(10.00) },
-                new CourseTemplates { Title = "Calculus", Credits = 1, Elective = true, AttendingDays = 3, AttendanceCap = 25, Location = "Corpus Christi", Parish = "GoodParish", Description = "A course taken in Corpus Christi", Cost = new decimal(10.00) },
-                new CourseTemplates { Title = "Trigonometry", Credits = 1, Elective = true, AttendingDays = 8, AttendanceCap = 25, Location = "Corpus Christi", Parish = "GoodParish", Description = "A course taken in Corpus Christi", Cost = new decimal(10.00) },
                 new CourseTemplates { Title = "Day of Reflection", Credits = 1, Elective = false, AttendingDays = 1, AttendanceCap = 1, Location = "Corpus Christi", Parish = "GoodParish", Description = "Required for Commissioning", Cost = new decimal(0.00) },
             };
             courseTemplates.ForEach(s => context.CourseTemplates.Add(s));

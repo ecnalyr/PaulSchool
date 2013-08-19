@@ -10,8 +10,6 @@ namespace PaulSchool.Controllers
 
         public ActionResult Index()
         {
-            ViewBag.Message = "St. Paul School of Catechesis";
-
             var newNotifications = db.Notification.FirstOrDefault(o => o.ViewableBy == User.Identity.Name && o.PreviouslyRead == false);
             if (newNotifications != null)
             {
@@ -24,6 +22,11 @@ namespace PaulSchool.Controllers
 
         [RequireHttps]
         public ActionResult SslTest()
+        {
+            return View();
+        }
+
+        public ActionResult Help()
         {
             return View();
         }
