@@ -30,5 +30,10 @@ namespace PaulSchool.Controllers
         {
             return View();
         }
+
+        public ActionResult Changes()
+        {
+            return View();
+        }
     }
 }
