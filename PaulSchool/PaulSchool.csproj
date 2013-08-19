@@ -52,6 +52,8 @@
     </PublishDatabaseSettings>
     <FilesToIncludeForPublish>OnlyFilesToRunTheApp</FilesToIncludeForPublish>
     <DeployIisAppPath>Default Web Site</DeployIisAppPath>
+    <PublishDatabases>false</PublishDatabases>
+    <ExcludeApp_Data>true</ExcludeApp_Data>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AntiXssLibrary">
